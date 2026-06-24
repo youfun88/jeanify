@@ -1,0 +1,296 @@
+/* global React, ReactDOM */
+const { useState, useEffect, useRef } = React;
+
+const D = window.JR_DATA;
+
+// ---------- Routing ----------
+function useHashRoute() {
+  const [route, setRoute] = useState(() => window.location.hash.replace(/^#\/?/, "") || "home");
+  useEffect(() => {
+    const onHash = () => {
+      setRoute(window.location.hash.replace(/^#\/?/, "") || "home");
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  return [route, (r) => { window.location.hash = "#/" + r; }];
+}
+
+// ---------- Tweaks defaults ----------
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "lang": "en",
+  "accent": "#c9a567",
+  "density": "spacious",
+  "fontPair": "cormorant-inter"
+}/*EDITMODE-END*/;
+
+const FONT_PAIRS = {
+  "cormorant-inter": { display: '"Cormorant Garamond", Garamond, "Times New Roman", serif', body: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif', label: "Cormorant + Inter" },
+  "playfair-inter": { display: '"Playfair Display", Garamond, serif', body: '"Inter", Helvetica, sans-serif', label: "Playfair + Inter" },
+  "fraunces-mono": { display: '"Fraunces", Garamond, serif', body: '"IBM Plex Sans", Helvetica, sans-serif', label: "Fraunces + Plex" },
+};
+
+const ACCENT_OPTIONS = [
+  "#c9a567", // brass
+  "#b08968", // bronze
+  "#9aa67f", // sage
+  "#a17a8a", // dusty rose
+];
+
+// ---------- Top nav ----------
+function Nav({ route, go, lang, setLang }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  // Lock body scroll + close on route change / Esc
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [open]);
+  useEffect(() => { setOpen(false); }, [route]);
+  const t = D.i18n[lang].nav;
+  const links = [
+    { id: "home", label: t.home },
+    { id: "listings", label: t.listings },
+    { id: "videos", label: t.videos },
+    { id: "about", label: t.about },
+    { id: "guides", label: t.guides },
+    { id: "exchange", label: t.exchange },
+    { id: "contact", label: t.contact },
+  ];
+  return (
+    <>
+      <nav className={"nav" + (scrolled ? " scrolled" : "")}>
+        <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label="Jeanify — Home">
+          <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+        </a>
+        <div className="nav-links">
+          {links.map((l) => (
+            <a key={l.id} href={"#/" + l.id}
+               onClick={(e) => { e.preventDefault(); go(l.id); }}
+               className={"nav-link" + (route.split("/")[0] === l.id ? " active" : "")}>
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="nav-right">
+          <span className="nav-phone">{D.agent.phone}</span>
+          <div className="lang-toggle">
+            <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button>
+            <button className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")}>中文</button>
+          </div>
+        </div>
+        <button
+          type="button"
+          className={"nav-burger" + (open ? " open" : "")}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      {open && (
+        <div className="nav-mobile" role="dialog" aria-modal="true">
+          <div className="nav-mobile-backdrop" onClick={() => setOpen(false)}></div>
+          <aside className="nav-mobile-panel">
+            <button
+              type="button"
+              className="nav-mobile-close"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+            >×</button>
+            <div className="nav-mobile-links">
+              {links.map((l) => (
+                <a key={l.id} href={"#/" + l.id}
+                   onClick={(e) => { e.preventDefault(); go(l.id); }}
+                   className={"nav-mobile-link" + (route.split("/")[0] === l.id ? " active" : "")}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
+            <div className="nav-mobile-foot">
+              <div className="lang-toggle">
+                <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button>
+                <button className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")}>中文</button>
+              </div>
+              <a className="nav-mobile-call" href={"tel:" + D.agent.phone.replace(/[^0-9+]/g, "")}>
+                {lang === "en" ? "Call " : "撥打 "}{D.agent.phone}
+              </a>
+              <a className="nav-mobile-email" href={"mailto:" + D.agent.email}>{D.agent.email}</a>
+            </div>
+          </aside>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ---------- Footer ----------
+function Footer({ lang, go }) {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div>
+            <a className="nav-brand footer-brand" href="#/home" onClick={(e)=>{e.preventDefault();go("home");}} style={{ marginBottom: 16 }}>
+              <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+            </a>
+            <p style={{ color: "var(--ink-dim)", fontSize: 14, maxWidth: 36 + "ch", lineHeight: 1.7 }}>
+              {lang === "en"
+                ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand."
+                : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"}
+            </p>
+            <div className="footer-newsletter">
+              <input placeholder={lang === "en" ? "Quarterly market briefings" : "季度市場簡報"} />
+              <button>{lang === "en" ? "Subscribe" : "訂閱"}</button>
+            </div>
+          </div>
+          <div>
+            <h5>{lang === "en" ? "Explore" : "探索"}</h5>
+            <ul>
+              <li><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang === "en" ? "Featured Homes" : "精選房源"}</a></li>
+              <li><a href="#/listings/active" onClick={(e)=>{e.preventDefault();go("listings/active");}}>{lang === "en" ? "Active Listings" : "在售房源"}</a></li>
+              <li><a href="#/estimator" onClick={(e)=>{e.preventDefault();go("estimator");}}>{lang === "en" ? "Home Valuation" : "房價評估"}</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>{lang === "en" ? "Resources" : "資源"}</h5>
+            <ul>
+              <li><a href="#/guides/buyer" onClick={(e)=>{e.preventDefault();go("guides/buyer");}}>{lang === "en" ? "Buyer Guide" : "買家指南"}</a></li>
+              <li><a href="#/guides/seller" onClick={(e)=>{e.preventDefault();go("guides/seller");}}>{lang === "en" ? "Seller Guide" : "賣家指南"}</a></li>
+              <li><a href="#/exchange" onClick={(e)=>{e.preventDefault();go("exchange");}}>{lang === "en" ? "1031 Exchange" : "1031 交換"}</a></li>
+              <li><a href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>{lang === "en" ? "Video Library" : "影片中心"}</a></li>
+              <li><a href={D.agent.youtube} target="_blank" rel="noopener noreferrer">{lang === "en" ? "YouTube — " : "YouTube · "}{D.agent.youtubeHandle}</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>{lang === "en" ? "Contact" : "聯絡"}</h5>
+            <ul>
+              <li><a href={"tel:" + D.agent.phone.replace(/[^0-9+]/g, "")}>{D.agent.phone}</a></li>
+              <li><a href={"mailto:" + D.agent.email}>{D.agent.email}</a></li>
+              <li style={{ color: "var(--ink-faint)", fontSize: 13 }}>9888 Carroll Centre Rd, Ste 200<br/>San Diego, CA 92126</li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© 2026 Jean Riley · {D.agent.license} · {D.agent.brokerage}</span>
+          <span>Equal Housing Opportunity · MLS Member</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ---------- Video card + YouTube lightbox ----------
+function ytThumb(id) { return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; }
+function ytEmbed(id, start) {
+  return "https://www.youtube-nocookie.com/embed/" + id +
+    "?autoplay=1&rel=0&modestbranding=1" + (start ? "&start=" + start : "");
+}
+function ytWatch(id, start) {
+  return "https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start + "s" : "");
+}
+
+function VideoCard({ v, feature }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [open]);
+  const isFeature = feature || v.feature;
+  return (
+    <>
+      <button
+        type="button"
+        className={"video-card" + (isFeature ? " feature" : "")}
+        onClick={() => setOpen(true)}
+        style={{ backgroundImage: "url(" + ytThumb(v.id) + ")" }}
+        aria-label={"Play video: " + v.title}
+      >
+        <span className="play">▶</span>
+        <span className="video-overlay">
+          <span className="ttl">{v.title}</span>
+          <span className="meta">{v.category}</span>
+        </span>
+      </button>
+      {open && (
+        <div className="video-modal" onClick={() => setOpen(false)} role="dialog" aria-modal="true">
+          <button type="button" className="video-modal-close" onClick={() => setOpen(false)} aria-label="Close">×</button>
+          <div className="video-modal-frame" onClick={(e) => e.stopPropagation()}>
+            <iframe
+              src={ytEmbed(v.id, v.start)}
+              title={v.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ---------- Listing card ----------
+const SIDE_LABEL = { list: "Listing Side", buy: "Buy Side", both: "Both Sides" };
+function ListingCard({ l, go }) {
+  const hasSpecs = l.beds || l.baths || l.sqft;
+  // Photo source: explicit image > YouTube tour thumbnail > none (typographic placeholder).
+  const photoSrc = l.image ? encodeURI(l.image) : (l.videoId ? ytThumb(l.videoId) : null);
+  const photoStyle = photoSrc
+    ? { backgroundImage: "url(" + photoSrc + ")", backgroundSize: "cover", backgroundPosition: "center" }
+    : null;
+  // For typographic placeholder, parse neighborhood / city from "City, ST 92127"
+  const cityMatch = l.area && l.area.match(/^([^,]+),\s*([A-Z]{2})\s*(\d{5})?/);
+  const cityName = cityMatch ? cityMatch[1] : null;
+  const zipName = cityMatch ? cityMatch[3] : null;
+  return (
+    <a className="listing-card" href={"#/listing/" + l.id} onClick={(e) => { e.preventDefault(); go("listing/" + l.id); }}>
+      <div className={"listing-photo" + (photoSrc ? " has-image" : "")} style={photoStyle}>
+        <div className={"listing-status " + (l.status === "sold" ? "sold" : l.status === "rent" ? "rent" : "")}>
+          {l.status === "sold" ? "Sold" : l.status === "rent" ? "For Rent" : "Active"}
+        </div>
+        <div className="listing-fav">♡</div>
+        {!photoSrc && (
+          l.ph
+            ? <div className="ph-label">{l.ph}</div>
+            : cityName
+              ? <div className="ph-mark"><div className="ph-mark-city">{cityName}</div>{zipName && <div className="ph-mark-zip">{zipName}</div>}</div>
+              : <div className="ph-label">{l.type || "Property"}</div>
+        )}
+        {l.videoId && <div className="listing-video-pill">▶ Video Tour</div>}
+      </div>
+      <div className="listing-body">
+        <div className="listing-price">{l.price}</div>
+        <div className="listing-addr"><strong>{l.street}</strong>{l.area}</div>
+        <div className="listing-meta">
+          {hasSpecs ? (
+            <>
+              {l.beds && <span>{l.beds} BD</span>}
+              {l.baths && <span>{l.baths} BA</span>}
+              {l.sqft && <span>{l.sqft} SF</span>}
+            </>
+          ) : (
+            l.side && <span className="listing-side">{SIDE_LABEL[l.side] || l.side}</span>
+          )}
+          {l.overAsk && <span style={{marginLeft:'auto', color:'var(--brass)'}}>{l.overAsk}</span>}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+window.JR_CORE = { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, ListingCard, VideoCard, ytThumb, ytEmbed, ytWatch, D };

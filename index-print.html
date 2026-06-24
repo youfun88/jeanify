@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jean Riley · San Diego Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Fraunces:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Print optimizations */
+  @page {
+    size: A4 portrait;
+    margin: 0.4cm;
+  }
+  html, body {
+    background: #0b0d10 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* Hide chrome that doesn't make sense in print */
+  .nav, .twk-panel, .twk-toggle, .twk-rail { display: none !important; }
+  body::before { display: none !important; }
+  main { padding-top: 0 !important; }
+
+  /* Disable animations & interactions */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .strip-track { animation: none !important; transform: none !important; }
+
+  /* Lift overflow clipping that hides content */
+  .hero, .listing-photo, .article-img, .video-card, .specialty-img, .bio-portrait,
+  .detail-hero, .estimator { overflow: visible !important; }
+
+  /* Avoid breaking key elements across pages */
+  .listing-card, .test-card, .video-card, .guide-card, .article-card,
+  .bio-credit, .process-step, .hero-stat, .faq-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  section.section, section.section-sm, .page-head, .hero {
+    break-inside: avoid-page;
+  }
+  h1, h2, h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Reduce huge hero so it fits on one page */
+  .hero {
+    min-height: auto !important;
+    padding: 60px 0 40px !important;
+  }
+  .hero-headline {
+    font-size: 56px !important;
+  }
+
+  /* Scale down section padding for print */
+  :root {
+    --pad-sect: 48px !important;
+    --pad-sect-sm: 32px !important;
+  }
+  .section { padding: 48px 0 !important; }
+  .section-sm { padding: 32px 0 !important; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script src="tweaks-panel.compiled.js"></script>
+<script src="core.compiled.js"></script>
+<script src="home.compiled.js"></script>
+<script src="listings.compiled.js"></script>
+<script src="pages.compiled.js"></script>
+<script src="forms.compiled.js"></script>
+<script src="app.compiled.js"></script>
+
+<script>
+  // Wait for fonts + React render, then trigger print
+  window.addEventListener('load', () => {
+    const ready = document.fonts ? document.fonts.ready : Promise.resolve();
+    ready.then(() => {
+      // wait for React tree to mount + lay out
+      setTimeout(() => { window.print(); }, 1200);
+    });
+  });
+</script>
+</body>
+</html>
