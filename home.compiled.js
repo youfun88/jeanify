@@ -17,6 +17,13 @@ function HomePage({
 }) {
   const t = D.i18n[lang];
   const sold = D.listings.filter(l => l.status === "sold").slice(0, 3);
+  const songs = D.videos.filter(v => v.group === "song");
+  const reel = D.videos.filter(v => v.group !== "song").slice(0, 5);
+  const articles = (window.JR_ARTICLES || []).slice(0, 3);
+  // pages.jsx loads after this file, so resolve at render time rather than import time.
+  const {
+    ArticleCard
+  } = window.JR_PAGES;
   return /*#__PURE__*/React.createElement("div", {
     className: "page-fade"
   }, /*#__PURE__*/React.createElement("section", {
@@ -282,7 +289,7 @@ function HomePage({
     className: "test-stars"
   }, "\u2605 \u2605 \u2605 \u2605 \u2605"), /*#__PURE__*/React.createElement("div", {
     className: "test-quote"
-  }, "\"", tt.quote, "\""), /*#__PURE__*/React.createElement("div", {
+  }, "\"", lang === "zh" && tt.quoteZh ? tt.quoteZh : tt.quote, "\""), /*#__PURE__*/React.createElement("div", {
     className: "test-author"
   }, /*#__PURE__*/React.createElement("div", {
     className: "test-avatar"
@@ -290,7 +297,56 @@ function HomePage({
     className: "test-name"
   }, tt.name), /*#__PURE__*/React.createElement("div", {
     className: "test-meta"
-  }, tt.area)))))))), /*#__PURE__*/React.createElement("section", {
+  }, tt.area)))))))), songs.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Signature Marketing" : "獨家行銷"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Every listing gets its ", /*#__PURE__*/React.createElement("em", null, "own song"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u6BCF\u5957\u623F\u6E90\uFF0C\u90FD\u6709 ", /*#__PURE__*/React.createElement("em", null, "\u5C08\u5C6C\u6B4C\u66F2"))), /*#__PURE__*/React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 20,
+      maxWidth: '58ch'
+    }
+  }, lang === "en" ? "Not a stock music bed under a slideshow. An original song written about your property — its street, its setting, what it feels like to live there. It is the listing video people actually watch to the end, and send to a friend." : "不是套用罐頭配樂的幻燈片，而是為您的物業量身創作的原創歌曲——關於它的街道、它的環境、住在那裡的感覺。這是真正會被看完、會被轉發給朋友的房源影片。")), /*#__PURE__*/React.createElement("a", {
+    className: "btn-text arrow-right",
+    href: "#/videos",
+    onClick: e => {
+      e.preventDefault();
+      go("videos");
+    }
+  }, lang === "en" ? "All Videos" : "完整影片")), /*#__PURE__*/React.createElement("div", {
+    className: "video-grid"
+  }, songs.map(v => /*#__PURE__*/React.createElement(VideoCard, {
+    key: v.id,
+    v: v,
+    feature: v.feature
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 36,
+      display: 'flex',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary arrow-right",
+    href: "#/contact",
+    onClick: e => {
+      e.preventDefault();
+      go("contact");
+    }
+  }, lang === "en" ? "Get a song for your listing" : "為您的房源製作專屬歌曲")))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -313,7 +369,7 @@ function HomePage({
     }
   }, lang === "en" ? "Full Library" : "完整影片")), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
-  }, D.videos.slice(0, 5).map(v => /*#__PURE__*/React.createElement(VideoCard, {
+  }, reel.map(v => /*#__PURE__*/React.createElement(VideoCard, {
     key: v.id,
     v: v
   }))), /*#__PURE__*/React.createElement("div", {
@@ -327,7 +383,37 @@ function HomePage({
     href: D.agent.youtube,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, lang === "en" ? "Subscribe on YouTube — " : "訂閱 YouTube · ", D.agent.youtubeHandle)))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Subscribe on YouTube — " : "訂閱 YouTube · ", D.agent.youtubeHandle)))), articles.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Field Notes" : "札記"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? "Reading for buyers, sellers and investors" : "買家、賣家與投資人的閱讀清單")), /*#__PURE__*/React.createElement("a", {
+    className: "btn-text arrow-right",
+    href: "#/articles",
+    onClick: e => {
+      e.preventDefault();
+      go("articles");
+    }
+  }, lang === "en" ? "All Articles" : "全部文章")), /*#__PURE__*/React.createElement("div", {
+    className: "grid-3"
+  }, articles.map(a => /*#__PURE__*/React.createElement(ArticleCard, {
+    key: a.slug,
+    a: a,
+    go: go
+  }))))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"

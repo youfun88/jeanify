@@ -1,7 +1,8 @@
 (function(){
 /* global React */
 const {
-  useState: uS3
+  useState: uS3,
+  useEffect: uE3
 } = React;
 const {
   D: D3
@@ -34,7 +35,7 @@ function AboutPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8996\u5BA2\u6236 ", /*#__PURE__*/React.createElement("em", null, "\u5982\u7687\u5BA4"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Centermac SD, Inc. \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Centermac SD, Inc. \xB7 \u8056\u5730\u4E9E\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 \u8056\u5730\u4E9E\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -65,11 +66,11 @@ function AboutPage({
     style: {
       color: 'var(--ink)'
     }
-  }, "Centermac SD, Inc."), " \u2014 one of the most trusted real estate groups in California \u2014 we consult, negotiate, and handle every detail so our clients successfully buy or sell what is, for most of them, the largest asset they will ever own. That orientation guides everything I do.") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5728 ", /*#__PURE__*/React.createElement("strong", {
+  }, "Jeanify"), " \u2014 one of the most trusted real estate groups in California \u2014 we consult, negotiate, and handle every detail so our clients successfully buy or sell what is, for most of them, the largest asset they will ever own. That orientation guides everything I do.") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5728 ", /*#__PURE__*/React.createElement("strong", {
     style: {
       color: 'var(--ink)'
     }
-  }, "Centermac SD, Inc."), " \u2014\u2014 \u52A0\u5DDE\u6700\u53D7\u4FE1\u8CF4\u7684\u623F\u5730\u7522\u5718\u968A\u4E4B\u4E00 \u2014\u2014 \u6211\u5011\u63D0\u4F9B\u8AEE\u8A62\u3001\u8AC7\u5224\uFF0C\u4E26\u8655\u7406\u6BCF\u4E00\u500B\u7D30\u7BC0\uFF0C\u78BA\u4FDD\u5BA2\u6236\u6210\u529F\u8CB7\u8CE3\u4ED6\u5011\u4E00\u751F\u4E2D\u6700\u91CD\u8981\u7684\u8CC7\u7522\u3002\u9019\u4E00\u7406\u5FF5\u6307\u5F15\u8457\u6211\u7684\u6BCF\u4E00\u9805\u5DE5\u4F5C\u3002")), /*#__PURE__*/React.createElement("p", {
+  }, "Jeanify"), " \u2014\u2014 \u52A0\u5DDE\u6700\u53D7\u4FE1\u8CF4\u7684\u623F\u5730\u7522\u5718\u968A\u4E4B\u4E00 \u2014\u2014 \u6211\u5011\u63D0\u4F9B\u8AEE\u8A62\u3001\u8AC7\u5224\uFF0C\u4E26\u8655\u7406\u6BCF\u4E00\u500B\u7D30\u7BC0\uFF0C\u78BA\u4FDD\u5BA2\u6236\u6210\u529F\u8CB7\u8CE3\u4ED6\u5011\u4E00\u751F\u4E2D\u6700\u91CD\u8981\u7684\u8CC7\u7522\u3002\u9019\u4E00\u7406\u5FF5\u6307\u5F15\u8457\u6211\u7684\u6BCF\u4E00\u9805\u5DE5\u4F5C\u3002")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--ink-dim)',
       marginTop: 20,
@@ -100,6 +101,31 @@ function AboutPage({
   }, "SF + CRE"), /*#__PURE__*/React.createElement("div", {
     className: "lbl"
   }, lang === "en" ? "Specialty" : "專長領域"))))))), /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-tight brand-story"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "brand-story-mark",
+    src: "uploads/jeanify-logo-brass.png",
+    alt: "Jeanify"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "The Name" : "品牌命名"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Jeanify is a ", /*#__PURE__*/React.createElement("em", null, "verb"), ", not a noun.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Jeanify \u662F\u4E00\u500B ", /*#__PURE__*/React.createElement("em", null, "\u52D5\u8A5E"))), lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+    className: "brand-story-lede"
+  }, "Every other name on a For Sale sign is a noun. Ours is something you do."), /*#__PURE__*/React.createElement("p", null, "The suffix ", /*#__PURE__*/React.createElement("em", null, "-ify"), " means to bring into a state \u2014 to make something so.", /*#__PURE__*/React.createElement("strong", null, " Clarify"), ", to make clear. ", /*#__PURE__*/React.createElement("strong", null, "Simplify"), ", to make simple. It is the grammar of transformation, and it never describes a moment. It always describes a passage from one condition to another."), /*#__PURE__*/React.createElement("p", null, "That is the whole idea. A house does not become a home at the closing table. It becomes one across every conversation, every walkthrough and every negotiation that leads there.", /*#__PURE__*/React.createElement("strong", null, " Jeanify"), " is the name for that passage \u2014 the work of turning what you are looking for into where you actually live."), /*#__PURE__*/React.createElement("p", null, "Through Jean, a listing becomes a shortlist. A shortlist becomes an offer. An offer becomes keys in your hand. Not a transaction you have to survive, but a process someone walks you through \u2014 which is precisely why the name ends the way it does.")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+    className: "brand-story-lede"
+  }, "\u5225\u4EBA\u7684\u62DB\u724C\u4E0A\u662F\u540D\u8A5E\uFF0C\u6211\u5011\u7684\u662F\u4E00\u4EF6\u6B63\u5728\u9032\u884C\u7684\u4E8B\u3002"), /*#__PURE__*/React.createElement("p", null, "\u82F1\u6587\u5F8C\u7DB4 ", /*#__PURE__*/React.createElement("em", null, "-ify"), " \u610F\u70BA\u300C\u4F7F\u4E4B\u6210\u70BA\u300D\u2014\u2014", /*#__PURE__*/React.createElement("strong", null, "clarify"), " \u662F\u4F7F\u4E4B\u6E05\u6670\uFF0C", /*#__PURE__*/React.createElement("strong", null, "simplify"), " \u662F\u4F7F\u4E4B\u7C21\u55AE\u3002\u5B83\u63CF\u8FF0\u7684\u5F9E\u4F86\u4E0D\u662F\u67D0\u500B\u77AC\u9593\uFF0C \u800C\u662F\u5F9E\u4E00\u7A2E\u72C0\u614B\u901A\u5F80\u53E6\u4E00\u7A2E\u72C0\u614B\u7684\u904E\u7A0B\u3002"), /*#__PURE__*/React.createElement("p", null, "\u9019\u6B63\u662F\u54C1\u724C\u7684\u6838\u5FC3\u3002\u623F\u5B50\u4E0D\u662F\u5728\u7C3D\u7D04\u684C\u4E0A\u6210\u70BA\u5BB6\u7684\uFF0C\u800C\u662F\u5728\u901A\u5F80\u90A3\u4E00\u523B\u7684\u6BCF\u4E00\u6B21\u5C0D\u8A71\u3001 \u6BCF\u4E00\u6B21\u770B\u5C4B\u3001\u6BCF\u4E00\u6B21\u8B70\u50F9\u4E4B\u4E2D\uFF0C\u4E00\u9EDE\u4E00\u9EDE\u6210\u70BA\u5BB6\u7684\u3002", /*#__PURE__*/React.createElement("strong", null, "Jeanify"), "\uFF0C \u5C31\u662F\u9019\u6BB5\u8DEF\u7A0B\u7684\u540D\u5B57\u2014\u2014\u628A\u60A8\u6240\u5C0B\u627E\u7684\uFF0C\u8B8A\u6210\u60A8\u771F\u6B63\u5C45\u4F4F\u7684\u5730\u65B9\u3002"), /*#__PURE__*/React.createElement("p", null, "\u900F\u904E Jean\uFF0C\u4E00\u5247\u623F\u6E90\u6210\u70BA\u5019\u9078\uFF0C\u5019\u9078\u6210\u70BA\u51FA\u50F9\uFF0C\u51FA\u50F9\u6210\u70BA\u60A8\u624B\u4E2D\u7684\u9470\u5319\u3002 \u4E0D\u662F\u4E00\u5834\u5FC5\u9808\u71AC\u904E\u53BB\u7684\u4EA4\u6613\uFF0C\u800C\u662F\u4E00\u6BB5\u6709\u4EBA\u5168\u7A0B\u966A\u4F34\u5F15\u5C0E\u7684\u904E\u7A0B\u2014\u2014 \u9019\u6B63\u662F\u9019\u500B\u540D\u5B57\u5982\u6B64\u7D50\u5C3E\u7684\u539F\u56E0\u3002")), /*#__PURE__*/React.createElement("div", {
+    className: "brand-story-rule"
+  }), /*#__PURE__*/React.createElement("p", {
+    className: "brand-story-kicker"
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "house ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " shortlist ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " offer ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " ", /*#__PURE__*/React.createElement("em", null, "home")) : /*#__PURE__*/React.createElement(React.Fragment, null, "\u623F\u6E90 ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " \u5019\u9078 ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " \u51FA\u50F9 ", /*#__PURE__*/React.createElement("span", null, "\u2192"), " ", /*#__PURE__*/React.createElement("em", null, "\u5BB6"))))), /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container-tight",
@@ -148,7 +174,7 @@ function AboutPage({
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, lang === "en" ? "The Centermac Practice" : "Centermac 業務"), /*#__PURE__*/React.createElement("h2", {
+  }, lang === "en" ? "The Jeanify Practice" : "Jeanify 業務"), /*#__PURE__*/React.createElement("h2", {
     style: {
       marginTop: 16
     }
@@ -158,8 +184,8 @@ function AboutPage({
       marginTop: 20,
       maxWidth: '60ch'
     }
-  }, lang === "en" ? "Beyond traditional sales — Centermac SD offers a complete suite of services for owners, investors and aspiring agents." : "不止於傳統交易 —— Centermac SD 為業主、投資人與有志經紀人提供完整的服務體系。")), /*#__PURE__*/React.createElement("div", {
-    className: "grid-3"
+  }, lang === "en" ? "Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents." : "不止於傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。")), /*#__PURE__*/React.createElement("div", {
+    className: "grid-4"
   }, [{
     t: lang === "en" ? "Real Estate Sales" : "房產銷售",
     d: lang === "en" ? "Single-family homes and commercial property — Jean's primary specialty." : "獨立住宅與商業地產 —— Jean 的核心專長。"
@@ -172,12 +198,6 @@ function AboutPage({
   }, {
     t: lang === "en" ? "Investment Advisory" : "投資諮詢",
     d: lang === "en" ? "Portfolio strategy, 1031 exchange execution and replacement diligence." : "投資組合策略、1031 交換執行與替代房產盡調。"
-  }, {
-    t: lang === "en" ? "Legal Consultation" : "法律諮詢",
-    d: lang === "en" ? "In-house consultation on real estate contracts, disclosures and disputes." : "內部房地產合同、披露與爭議諮詢。"
-  }, {
-    t: lang === "en" ? "Real Estate School" : "地產學院",
-    d: lang === "en" ? "Licensing prep and career mentorship for the next generation of agents." : "執照培訓與新一代經紀人職業輔導。"
   }].map((s, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
@@ -250,7 +270,7 @@ function AboutPage({
     className: "test-stars"
   }, "\u2605 \u2605 \u2605 \u2605 \u2605"), /*#__PURE__*/React.createElement("div", {
     className: "test-quote"
-  }, "\"", tt.quote, "\""), /*#__PURE__*/React.createElement("div", {
+  }, "\"", lang === "zh" && tt.quoteZh ? tt.quoteZh : tt.quote, "\""), /*#__PURE__*/React.createElement("div", {
     className: "test-author"
   }, /*#__PURE__*/React.createElement("div", {
     className: "test-avatar"
@@ -260,9 +280,110 @@ function AboutPage({
     className: "test-meta"
   }, tt.area)))))))));
 }
+const ARTICLES = window.JR_ARTICLES || [];
+const bySlug = s => ARTICLES.find(a => a.slug === s);
 
-// ---------- GUIDES INDEX ----------
-function GuidesPage({
+// Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
+function articleDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+// One article card — used on the index and in the "related" strip.
+function ArticleCard({
+  a,
+  go
+}) {
+  return /*#__PURE__*/React.createElement("a", {
+    className: "article-card",
+    href: "#/articles/" + a.slug,
+    onClick: e => {
+      e.preventDefault();
+      go("articles/" + a.slug);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "article-img" + (a.image ? " has-image" : ""),
+    style: a.image ? {
+      backgroundImage: "url(" + encodeURI(a.image) + ")",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    } : null
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "article-meta"
+  }, a.category, " \xB7 ", a.read), /*#__PURE__*/React.createElement("h3", null, a.title), /*#__PURE__*/React.createElement("p", {
+    className: "article-dek"
+  }, a.dek), /*#__PURE__*/React.createElement("span", {
+    className: "btn-text arrow-right article-more"
+  }, "Read"));
+}
+
+// Download card for the seasonal PDF market guides.
+function MarketGuideCard({
+  g,
+  lang
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "mg-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mg-head"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow no-rule"
+  }, lang === "en" ? g.audience : g.audienceZh), /*#__PURE__*/React.createElement("span", {
+    className: "mg-edition"
+  }, lang === "en" ? g.edition : g.editionZh)), /*#__PURE__*/React.createElement("h3", null, lang === "en" ? g.title : g.titleZh), /*#__PURE__*/React.createElement("p", {
+    className: "mg-desc"
+  }, lang === "en" ? g.desc : g.descZh), /*#__PURE__*/React.createElement("ul", {
+    className: "mg-contents"
+  }, g.contents.map((c, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, c))), /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary arrow-right mg-btn",
+    href: g.file,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, lang === "en" ? "Download PDF" : "下載 PDF"), /*#__PURE__*/React.createElement("div", {
+    className: "mg-meta"
+  }, g.pages, " ", lang === "en" ? "pages" : "頁", " \xB7 PDF \xB7 ", g.size));
+}
+function MarketGuidesSection({
+  lang,
+  only
+}) {
+  const guides = only ? D3.marketGuides.filter(g => g.id === only) : D3.marketGuides;
+  if (!guides.length) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Seasonal Briefings" : "季度簡報"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? "Market guides, updated each season" : "每季更新的市場指南"), !only && /*#__PURE__*/React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 20,
+      maxWidth: '60ch'
+    }
+  }, lang === "en" ? "Twenty-page briefings on where the market actually stands this quarter — rates, inventory, equity and pricing, with the charts behind each claim. Free, no email required." : "二十頁的季度市場簡報 —— 利率、庫存、房屋淨值與定價，每項論點皆附圖表佐證。免費下載，無需填寫電郵。"))), /*#__PURE__*/React.createElement("div", {
+    className: only ? "grid-1" : "grid-2"
+  }, guides.map(g => /*#__PURE__*/React.createElement(MarketGuideCard, {
+    key: g.id,
+    g: g,
+    lang: lang
+  }))));
+}
+
+// ---------- ARTICLES INDEX ----------
+function ArticlesPage({
   lang,
   go
 }) {
@@ -280,15 +401,15 @@ function GuidesPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Guides"), /*#__PURE__*/React.createElement("span", {
+  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Articles"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Resources" : "資源中心"), /*#__PURE__*/React.createElement("h1", {
     style: {
       marginTop: 20
     }
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Guides for the ", /*#__PURE__*/React.createElement("em", null, "committed"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5C08\u696D ", /*#__PURE__*/React.createElement("em", null, "\u6307\u5357"))), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Written for the ", /*#__PURE__*/React.createElement("em", null, "committed"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5C08\u696D ", /*#__PURE__*/React.createElement("em", null, "\u5C08\u6B04"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Working playbooks for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public." : "為買家、賣家與 1031 投資者準備的實操指南 —— 我服務私人客戶所用的同一套方法論。"))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public." : "為買家、賣家與 1031 投資者準備的實操指南與市場札記 —— 我服務私人客戶所用的同一套方法論。"))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -297,7 +418,7 @@ function GuidesPage({
   }, D3.guides.map(g => /*#__PURE__*/React.createElement("a", {
     key: g.num,
     className: "guide-card",
-    href: "#/guides/" + g.title.toLowerCase().split(" ")[1],
+    href: "#/guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"),
     onClick: e => {
       e.preventDefault();
       go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));
@@ -318,6 +439,10 @@ function GuidesPage({
     style: {
       background: 'var(--bg-elev)'
     }
+  }, /*#__PURE__*/React.createElement(MarketGuidesSection, {
+    lang: lang
+  })), /*#__PURE__*/React.createElement("section", {
+    className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
@@ -331,21 +456,168 @@ function GuidesPage({
       marginTop: 16
     }
   }, lang === "en" ? "Articles & briefings" : "文章與簡報"))), /*#__PURE__*/React.createElement("div", {
-    className: "grid-4"
-  }, D3.articles.map(a => /*#__PURE__*/React.createElement("div", {
-    key: a.id,
-    className: "article-card"
+    className: "grid-3"
+  }, ARTICLES.map(a => /*#__PURE__*/React.createElement(ArticleCard, {
+    key: a.slug,
+    a: a,
+    go: go
+  }))))));
+}
+
+// ---------- ARTICLE DETAIL ----------
+// Mirrors tools/build-articles.mjs, which renders the same blocks to static HTML.
+// If you add a block type, add it in both places.
+function ArticleBlock({
+  b
+}) {
+  switch (b.t) {
+    case "h":
+      return /*#__PURE__*/React.createElement("h2", {
+        className: "art-h",
+        id: slugifyHeading(b.x)
+      }, b.x);
+    case "ul":
+      return /*#__PURE__*/React.createElement("ul", {
+        className: "art-list"
+      }, b.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
+        key: i
+      }, li)));
+    case "ol":
+      return /*#__PURE__*/React.createElement("ol", {
+        className: "art-list art-list-num"
+      }, b.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
+        key: i
+      }, li)));
+    case "callout":
+      return /*#__PURE__*/React.createElement("aside", {
+        className: "art-callout"
+      }, b.x);
+    case "table":
+      return /*#__PURE__*/React.createElement("div", {
+        className: "art-table-wrap"
+      }, /*#__PURE__*/React.createElement("table", {
+        className: "art-table"
+      }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, b.head.map((h, i) => /*#__PURE__*/React.createElement("th", {
+        key: i
+      }, h)))), /*#__PURE__*/React.createElement("tbody", null, b.rows.map((r, i) => /*#__PURE__*/React.createElement("tr", {
+        key: i
+      }, r.map((c, j) => j === 0 ? /*#__PURE__*/React.createElement("th", {
+        key: j,
+        scope: "row"
+      }, c) : /*#__PURE__*/React.createElement("td", {
+        key: j
+      }, c)))))));
+    default:
+      return /*#__PURE__*/React.createElement("p", {
+        className: "art-p"
+      }, b.x);
+  }
+}
+function slugifyHeading(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+function ArticleDetail({
+  slug,
+  lang,
+  go
+}) {
+  const a = bySlug(slug);
+  uE3(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+  if (!a) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "page-fade"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "page-head"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "container"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "breadcrumbs"
+    }, /*#__PURE__*/React.createElement("a", {
+      href: "#/articles",
+      onClick: e => {
+        e.preventDefault();
+        go("articles");
+      }
+    }, "Articles")), /*#__PURE__*/React.createElement("h1", {
+      style: {
+        marginTop: 20
+      }
+    }, "Article not found"), /*#__PURE__*/React.createElement("p", {
+      className: "lede"
+    }, "That article may have been renamed. Everything currently published is on the articles page."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 24
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "btn btn-primary arrow-right",
+      href: "#/articles",
+      onClick: e => {
+        e.preventDefault();
+        go("articles");
+      }
+    }, "All articles")))));
+  }
+  const headings = a.sections.filter(s => s.t === "h");
+  const related = (a.related || []).map(bySlug).filter(Boolean);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "page-fade"
+  }, /*#__PURE__*/React.createElement("header", {
+    className: "page-head"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "article-img" + (a.image ? " has-image" : ""),
-    style: a.image ? {
-      backgroundImage: "url(" + encodeURI(a.image) + ")",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    } : null
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "article-meta"
-  }, a.category, " \xB7 ", a.read), /*#__PURE__*/React.createElement("h3", null, a.title), a.credit && /*#__PURE__*/React.createElement("div", {
-    className: "article-credit"
+    className: "container-tight"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "breadcrumbs"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#/home",
+    onClick: e => {
+      e.preventDefault();
+      go("home");
+    }
+  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), /*#__PURE__*/React.createElement("a", {
+    href: "#/articles",
+    onClick: e => {
+      e.preventDefault();
+      go("articles");
+    }
+  }, "Articles"), /*#__PURE__*/React.createElement("span", null, "/"), a.category), /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, a.category), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      marginTop: 20
+    }
+  }, a.title), /*#__PURE__*/React.createElement("p", {
+    className: "lede"
+  }, a.dek), /*#__PURE__*/React.createElement("div", {
+    className: "art-byline"
+  }, /*#__PURE__*/React.createElement("span", null, "By ", /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), " \xB7 ", D3.agent.license), /*#__PURE__*/React.createElement("span", null, articleDate(a.date), a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""), /*#__PURE__*/React.createElement("span", null, a.read, " read")))), /*#__PURE__*/React.createElement("article", {
+    className: "section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-tight"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "art-answer"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow no-rule"
+  }, lang === "en" ? "The short answer" : "重點摘要"), /*#__PURE__*/React.createElement("p", null, a.answer)), headings.length > 2 && /*#__PURE__*/React.createElement("nav", {
+    className: "art-toc",
+    "aria-label": "On this page"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow no-rule"
+  }, lang === "en" ? "On this page" : "本頁內容"), /*#__PURE__*/React.createElement("ol", null, headings.map((h, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#" + slugifyHeading(h.x)
+  }, h.x))))), /*#__PURE__*/React.createElement("div", {
+    className: "art-body"
+  }, a.sections.map((b, i) => /*#__PURE__*/React.createElement(ArticleBlock, {
+    key: i,
+    b: b
+  }))), a.credit && /*#__PURE__*/React.createElement("div", {
+    className: "article-credit",
+    style: {
+      marginTop: 32
+    }
   }, "Photo by ", /*#__PURE__*/React.createElement("a", {
     href: a.credit.url + "?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
@@ -354,7 +626,189 @@ function GuidesPage({
     href: "https://unsplash.com/?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Unsplash"))))))));
+  }, "Unsplash")))), a.faqs && a.faqs.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, "FAQ"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? "Frequently asked" : "常見問題"))), /*#__PURE__*/React.createElement(FAQList, {
+    items: a.faqs
+  }))), a.sources && a.sources.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section-sm"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-tight"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Sources" : "資料來源"), /*#__PURE__*/React.createElement("ul", {
+    className: "art-sources"
+  }, a.sources.map((s, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, /*#__PURE__*/React.createElement("a", {
+    href: s.url,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, s.name)))), /*#__PURE__*/React.createElement("p", {
+    className: "art-disclaimer"
+  }, lang === "en" ? "Market figures are current as of the date shown and change frequently. Nothing here is tax or legal advice — for your specific situation, consult a CPA or attorney." : "文中市場數據截至標示日期，並會持續變動。本文不構成稅務或法律建議，請就個人情況諮詢會計師或律師。"))), related.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Keep reading" : "延伸閱讀"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? "Related articles" : "相關文章"))), /*#__PURE__*/React.createElement("div", {
+    className: "grid-3"
+  }, related.map(r => /*#__PURE__*/React.createElement(ArticleCard, {
+    key: r.slug,
+    a: r,
+    go: go
+  }))))), /*#__PURE__*/React.createElement("section", {
+    className: "section-sm"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-tight",
+    style: {
+      padding: '48px 32px',
+      textAlign: 'center',
+      border: '1px solid var(--line)',
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow no-rule"
+  }, lang === "en" ? "Next Step" : "下一步"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '16px 0 24px'
+    }
+  }, lang === "en" ? "Questions about your own situation?" : "想討論您的個人情況？"), /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary arrow-right",
+    href: "#/contact",
+    onClick: e => {
+      e.preventDefault();
+      go("contact");
+    }
+  }, lang === "en" ? "Schedule a Consultation" : "預約諮詢"))));
+}
+
+// ---------- FAQ ----------
+const FAQ_GROUPS = [{
+  id: "working",
+  en: "Working with Jean",
+  zh: "與 Jean 合作"
+}, {
+  id: "buying",
+  en: "Buying",
+  zh: "購屋"
+}, {
+  id: "selling",
+  en: "Selling",
+  zh: "售屋"
+}, {
+  id: "investing",
+  en: "Investing & 1031",
+  zh: "投資與 1031"
+}];
+function FAQPage({
+  lang,
+  go
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "page-fade"
+  }, /*#__PURE__*/React.createElement("header", {
+    className: "page-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "breadcrumbs"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#/home",
+    onClick: e => {
+      e.preventDefault();
+      go("home");
+    }
+  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "FAQ"), /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Frequently Asked" : "常見問題"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      marginTop: 20
+    }
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "The questions I get ", /*#__PURE__*/React.createElement("em", null, "most"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u6700\u5E38\u88AB ", /*#__PURE__*/React.createElement("em", null, "\u554F\u5230"), " \u7684\u554F\u984C")), /*#__PURE__*/React.createElement("p", {
+    className: "lede"
+  }, lang === "en" ? "Straight answers on commission, timelines, Mello-Roos, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly." : "關於佣金、時程、Mello-Roos、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"))), FAQ_GROUPS.map((grp, gi) => {
+    const items = D3.faqs.filter(f => f.g === grp.id);
+    if (!items.length) return null;
+    return /*#__PURE__*/React.createElement("section", {
+      key: grp.id,
+      className: "section",
+      style: gi % 2 ? {
+        background: 'var(--bg-elev)'
+      } : null
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "container"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "sect-head"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "sect-head-title"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "eyebrow"
+    }, String(gi + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("h2", {
+      style: {
+        marginTop: 16
+      }
+    }, lang === "en" ? grp.en : grp.zh))), /*#__PURE__*/React.createElement(FAQList, {
+      items: items
+    })));
+  }), /*#__PURE__*/React.createElement("section", {
+    className: "section-sm"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-tight",
+    style: {
+      padding: '48px 32px',
+      textAlign: 'center',
+      border: '1px solid var(--line)',
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow no-rule"
+  }, lang === "en" ? "Still unanswered" : "仍有疑問"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '16px 0 24px'
+    }
+  }, lang === "en" ? "Ask me directly." : "歡迎直接詢問"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 16,
+      justifyContent: 'center',
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary arrow-right",
+    href: "#/contact",
+    onClick: e => {
+      e.preventDefault();
+      go("contact");
+    }
+  }, lang === "en" ? "Schedule a Consultation" : "預約諮詢"), /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-ghost",
+    href: "tel:" + D3.agent.phone.replace(/[^0-9+]/g, "")
+  }, D3.agent.phone)))));
 }
 
 // ---------- GUIDE DETAIL (buyer / seller / 1031) ----------
@@ -404,12 +858,12 @@ function GuideDetail({
   }, /*#__PURE__*/React.createElement("div", {
     className: "breadcrumbs"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "#/guides",
+    href: "#/articles",
     onClick: e => {
       e.preventDefault();
-      go("guides");
+      go("articles");
     }
-  }, "Guides"), /*#__PURE__*/React.createElement("span", null, "/"), meta.en), /*#__PURE__*/React.createElement("span", {
+  }, "Articles"), /*#__PURE__*/React.createElement("span", null, "/"), meta.en), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -474,7 +928,15 @@ function GuideDetail({
       e.preventDefault();
       go("contact");
     }
-  }, lang === "en" ? "Schedule a Consultation" : "預約諮詢")))));
+  }, lang === "en" ? "Schedule a Consultation" : "預約諮詢")))), (kind === "buyer" || kind === "seller") && /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
+  }, /*#__PURE__*/React.createElement(MarketGuidesSection, {
+    lang: lang,
+    only: kind
+  })));
 }
 
 // ---------- 1031 EXCHANGE landing ----------
@@ -569,7 +1031,7 @@ function ExchangePage({
       marginTop: 16
     }
   }, lang === "en" ? "Frequently asked" : "常見問題"))), /*#__PURE__*/React.createElement(FAQList, {
-    items: D3.faqs.slice(2, 5)
+    items: D3.faqs.filter(f => f.g === "investing")
   }))));
 }
 function FAQList({
@@ -595,9 +1057,12 @@ function FAQList({
 }
 window.JR_PAGES = {
   AboutPage,
-  GuidesPage,
+  ArticlesPage,
+  ArticleDetail,
+  ArticleCard,
   GuideDetail,
   ExchangePage,
+  FAQPage,
   FAQList
 };
 })();

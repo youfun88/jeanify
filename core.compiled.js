@@ -88,21 +88,21 @@ function Nav({
     setOpen(false);
   }, [route]);
   const t = D.i18n[lang].nav;
+  // Listings and Videos are deliberately absent — both are sections on the home
+  // page, each with a "view all" link into their still-live /listings and /videos
+  // routes. Keeps the bar to six items without orphaning any content.
   const links = [{
     id: "home",
     label: t.home
   }, {
-    id: "listings",
-    label: t.listings
-  }, {
-    id: "videos",
-    label: t.videos
-  }, {
     id: "about",
     label: t.about
   }, {
-    id: "guides",
-    label: t.guides
+    id: "articles",
+    label: t.articles
+  }, {
+    id: "faq",
+    label: t.faq
   }, {
     id: "exchange",
     label: t.exchange
@@ -136,8 +136,9 @@ function Nav({
     className: "nav-link" + (route.split("/")[0] === l.id ? " active" : "")
   }, l.label))), /*#__PURE__*/React.createElement("div", {
     className: "nav-right"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "nav-phone"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "nav-phone",
+    href: "tel:" + D.agent.phone.replace(/[^0-9+]/g, "")
   }, D.agent.phone), /*#__PURE__*/React.createElement("div", {
     className: "lang-toggle"
   }, /*#__PURE__*/React.createElement("button", {
@@ -195,6 +196,74 @@ function Nav({
   }, D.agent.email)))));
 }
 
+// ---------- Newsletter ----------
+// This used to be a bare input + button with no handler — it accepted an email
+// address and did nothing with it. It now posts to the same inbox as the contact form.
+function NewsletterSignup({
+  lang
+}) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setStatus("error");
+      return;
+    }
+    setStatus("sending");
+    try {
+      const body = new FormData();
+      body.set("access_key", "b5f6ae82-dc56-42c1-b3a0-79ee29d3586d");
+      body.set("email", email);
+      body.set("subject", "JeanRiley.com — Market briefing signup: " + email);
+      body.set("from_name", "JeanRiley.com Newsletter");
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json"
+        },
+        body
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        setStatus("sent");
+        setEmail("");
+      } else setStatus("error");
+    } catch {
+      setStatus("error");
+    }
+  };
+  if (status === "sent") {
+    return /*#__PURE__*/React.createElement("p", {
+      className: "footer-newsletter-done"
+    }, lang === "en" ? "You're on the list — the next quarterly briefing will come straight from Jean." : "已完成訂閱 —— 下一期季度市場簡報將由 Jean 直接寄給您。");
+  }
+  return /*#__PURE__*/React.createElement("form", {
+    className: "footer-newsletter",
+    onSubmit: onSubmit
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: "nl-email"
+  }, lang === "en" ? "Email address for quarterly market briefings" : "訂閱季度市場簡報的電子郵件"), /*#__PURE__*/React.createElement("input", {
+    id: "nl-email",
+    type: "email",
+    value: email,
+    onChange: e => {
+      setEmail(e.target.value);
+      if (status === "error") setStatus("idle");
+    },
+    placeholder: lang === "en" ? "Quarterly market briefings" : "季度市場簡報",
+    "aria-invalid": status === "error"
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    disabled: status === "sending"
+  }, status === "sending" ? lang === "en" ? "…" : "…" : lang === "en" ? "Subscribe" : "訂閱"), status === "error" && /*#__PURE__*/React.createElement("span", {
+    className: "footer-newsletter-err",
+    role: "alert"
+  }, lang === "en" ? "Please check that email address." : "請確認電子郵件是否正確。"));
+}
+
 // ---------- Footer ----------
 function Footer({
   lang,
@@ -227,11 +296,9 @@ function Footer({
       maxWidth: 36 + "ch",
       lineHeight: 1.7
     }
-  }, lang === "en" ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand." : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"), /*#__PURE__*/React.createElement("div", {
-    className: "footer-newsletter"
-  }, /*#__PURE__*/React.createElement("input", {
-    placeholder: lang === "en" ? "Quarterly market briefings" : "季度市場簡報"
-  }), /*#__PURE__*/React.createElement("button", null, lang === "en" ? "Subscribe" : "訂閱"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Explore" : "探索"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand." : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"), /*#__PURE__*/React.createElement(NewsletterSignup, {
+    lang: lang
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Explore" : "探索"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/listings",
     onClick: e => {
       e.preventDefault();
@@ -250,6 +317,12 @@ function Footer({
       go("estimator");
     }
   }, lang === "en" ? "Home Valuation" : "房價評估")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#/articles",
+    onClick: e => {
+      e.preventDefault();
+      go("articles");
+    }
+  }, lang === "en" ? "Articles" : "專欄文章")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/guides/buyer",
     onClick: e => {
       e.preventDefault();
@@ -262,6 +335,12 @@ function Footer({
       go("guides/seller");
     }
   }, lang === "en" ? "Seller Guide" : "賣家指南")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#/faq",
+    onClick: e => {
+      e.preventDefault();
+      go("faq");
+    }
+  }, lang === "en" ? "FAQ" : "常見問題")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/exchange",
     onClick: e => {
       e.preventDefault();

@@ -6,6 +6,11 @@ const { D, ListingCard, VideoCard } = window.JR_CORE;
 function HomePage({ lang, go }) {
   const t = D.i18n[lang];
   const sold = D.listings.filter(l => l.status === "sold").slice(0, 3);
+  const songs = D.videos.filter(v => v.group === "song");
+  const reel = D.videos.filter(v => v.group !== "song").slice(0, 5);
+  const articles = (window.JR_ARTICLES || []).slice(0, 3);
+  // pages.jsx loads after this file, so resolve at render time rather than import time.
+  const { ArticleCard } = window.JR_PAGES;
 
   return (
     <div className="page-fade">
@@ -131,7 +136,7 @@ function HomePage({ lang, go }) {
             {D.testimonials.slice(0, 3).map((tt, i) => (
               <div key={i} className="test-card">
                 <div className="test-stars">★ ★ ★ ★ ★</div>
-                <div className="test-quote">"{tt.quote}"</div>
+                <div className="test-quote">"{lang === "zh" && tt.quoteZh ? tt.quoteZh : tt.quote}"</div>
                 <div className="test-author">
                   <div className="test-avatar">{tt.initials}</div>
                   <div>
@@ -145,6 +150,37 @@ function HomePage({ lang, go }) {
         </div>
       </section>
 
+      {/* Listing songs — the differentiator, so it gets its own section rather than
+          being one card among many in the reel below. */}
+      {songs.length > 0 && (
+        <section className="section" style={{ background:'var(--bg-elev)' }}>
+          <div className="container">
+            <div className="sect-head">
+              <div className="sect-head-title">
+                <span className="eyebrow">{lang==="en"?"Signature Marketing":"獨家行銷"}</span>
+                <h2 style={{ marginTop: 16 }}>{lang==="en"?<>Every listing gets its <em>own song</em>.</>:<>每套房源，都有 <em>專屬歌曲</em></>}</h2>
+                <p className="lede" style={{ marginTop: 20, maxWidth: '58ch' }}>
+                  {lang==="en"
+                    ? "Not a stock music bed under a slideshow. An original song written about your property — its street, its setting, what it feels like to live there. It is the listing video people actually watch to the end, and send to a friend."
+                    : "不是套用罐頭配樂的幻燈片，而是為您的物業量身創作的原創歌曲——關於它的街道、它的環境、住在那裡的感覺。這是真正會被看完、會被轉發給朋友的房源影片。"}
+                </p>
+              </div>
+              <a className="btn-text arrow-right" href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>
+                {lang==="en"?"All Videos":"完整影片"}
+              </a>
+            </div>
+            <div className="video-grid">
+              {songs.map(v => <VideoCard key={v.id} v={v} feature={v.feature} />)}
+            </div>
+            <div style={{ marginTop: 36, display:'flex', justifyContent:'center' }}>
+              <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+                {lang==="en"?"Get a song for your listing":"為您的房源製作專屬歌曲"}
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Video reel */}
       <section className="section">
         <div className="container">
@@ -156,7 +192,7 @@ function HomePage({ lang, go }) {
             <a className="btn-text arrow-right" href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>{lang==="en"?"Full Library":"完整影片"}</a>
           </div>
           <div className="video-grid">
-            {D.videos.slice(0, 5).map(v => (
+            {reel.map(v => (
               <VideoCard key={v.id} v={v} />
             ))}
           </div>
@@ -167,6 +203,26 @@ function HomePage({ lang, go }) {
           </div>
         </div>
       </section>
+
+      {/* Articles */}
+      {articles.length > 0 && (
+        <section className="section" style={{ background:'var(--bg-elev)' }}>
+          <div className="container">
+            <div className="sect-head">
+              <div className="sect-head-title">
+                <span className="eyebrow">{lang==="en"?"Field Notes":"札記"}</span>
+                <h2 style={{ marginTop: 16 }}>{lang==="en"?"Reading for buyers, sellers and investors":"買家、賣家與投資人的閱讀清單"}</h2>
+              </div>
+              <a className="btn-text arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>
+                {lang==="en"?"All Articles":"全部文章"}
+              </a>
+            </div>
+            <div className="grid-3">
+              {articles.map(a => <ArticleCard key={a.slug} a={a} go={go} />)}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Estimator CTA */}
       <section className="section">

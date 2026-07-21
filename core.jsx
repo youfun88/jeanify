@@ -58,12 +58,14 @@ function Nav({ route, go, lang, setLang }) {
   }, [open]);
   useEffect(() => { setOpen(false); }, [route]);
   const t = D.i18n[lang].nav;
+  // Listings and Videos are deliberately absent — both are sections on the home
+  // page, each with a "view all" link into their still-live /listings and /videos
+  // routes. Keeps the bar to six items without orphaning any content.
   const links = [
     { id: "home", label: t.home },
-    { id: "listings", label: t.listings },
-    { id: "videos", label: t.videos },
     { id: "about", label: t.about },
-    { id: "guides", label: t.guides },
+    { id: "articles", label: t.articles },
+    { id: "faq", label: t.faq },
     { id: "exchange", label: t.exchange },
     { id: "contact", label: t.contact },
   ];
@@ -83,7 +85,7 @@ function Nav({ route, go, lang, setLang }) {
           ))}
         </div>
         <div className="nav-right">
-          <span className="nav-phone">{D.agent.phone}</span>
+          <a className="nav-phone" href={"tel:" + D.agent.phone.replace(/[^0-9+]/g, "")}>{D.agent.phone}</a>
           <div className="lang-toggle">
             <button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button>
             <button className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")}>中文</button>
@@ -135,6 +137,69 @@ function Nav({ route, go, lang, setLang }) {
   );
 }
 
+// ---------- Newsletter ----------
+// This used to be a bare input + button with no handler — it accepted an email
+// address and did nothing with it. It now posts to the same inbox as the contact form.
+function NewsletterSignup({ lang }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setStatus("error"); return; }
+    setStatus("sending");
+    try {
+      const body = new FormData();
+      body.set("access_key", "b5f6ae82-dc56-42c1-b3a0-79ee29d3586d");
+      body.set("email", email);
+      body.set("subject", "JeanRiley.com — Market briefing signup: " + email);
+      body.set("from_name", "JeanRiley.com Newsletter");
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { Accept: "application/json" }, body,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) { setStatus("sent"); setEmail(""); }
+      else setStatus("error");
+    } catch { setStatus("error"); }
+  };
+
+  if (status === "sent") {
+    return (
+      <p className="footer-newsletter-done">
+        {lang === "en"
+          ? "You're on the list — the next quarterly briefing will come straight from Jean."
+          : "已完成訂閱 —— 下一期季度市場簡報將由 Jean 直接寄給您。"}
+      </p>
+    );
+  }
+
+  return (
+    <form className="footer-newsletter" onSubmit={onSubmit}>
+      <label className="sr-only" htmlFor="nl-email">
+        {lang === "en" ? "Email address for quarterly market briefings" : "訂閱季度市場簡報的電子郵件"}
+      </label>
+      <input
+        id="nl-email"
+        type="email"
+        value={email}
+        onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+        placeholder={lang === "en" ? "Quarterly market briefings" : "季度市場簡報"}
+        aria-invalid={status === "error"}
+      />
+      <button type="submit" disabled={status === "sending"}>
+        {status === "sending"
+          ? (lang === "en" ? "…" : "…")
+          : (lang === "en" ? "Subscribe" : "訂閱")}
+      </button>
+      {status === "error" && (
+        <span className="footer-newsletter-err" role="alert">
+          {lang === "en" ? "Please check that email address." : "請確認電子郵件是否正確。"}
+        </span>
+      )}
+    </form>
+  );
+}
+
 // ---------- Footer ----------
 function Footer({ lang, go }) {
   return (
@@ -150,10 +215,7 @@ function Footer({ lang, go }) {
                 ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand."
                 : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"}
             </p>
-            <div className="footer-newsletter">
-              <input placeholder={lang === "en" ? "Quarterly market briefings" : "季度市場簡報"} />
-              <button>{lang === "en" ? "Subscribe" : "訂閱"}</button>
-            </div>
+            <NewsletterSignup lang={lang} />
           </div>
           <div>
             <h5>{lang === "en" ? "Explore" : "探索"}</h5>
@@ -166,8 +228,10 @@ function Footer({ lang, go }) {
           <div>
             <h5>{lang === "en" ? "Resources" : "資源"}</h5>
             <ul>
+              <li><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang === "en" ? "Articles" : "專欄文章"}</a></li>
               <li><a href="#/guides/buyer" onClick={(e)=>{e.preventDefault();go("guides/buyer");}}>{lang === "en" ? "Buyer Guide" : "買家指南"}</a></li>
               <li><a href="#/guides/seller" onClick={(e)=>{e.preventDefault();go("guides/seller");}}>{lang === "en" ? "Seller Guide" : "賣家指南"}</a></li>
+              <li><a href="#/faq" onClick={(e)=>{e.preventDefault();go("faq");}}>{lang === "en" ? "FAQ" : "常見問題"}</a></li>
               <li><a href="#/exchange" onClick={(e)=>{e.preventDefault();go("exchange");}}>{lang === "en" ? "1031 Exchange" : "1031 交換"}</a></li>
               <li><a href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>{lang === "en" ? "Video Library" : "影片中心"}</a></li>
               <li><a href={D.agent.youtube} target="_blank" rel="noopener noreferrer">{lang === "en" ? "YouTube — " : "YouTube · "}{D.agent.youtubeHandle}</a></li>

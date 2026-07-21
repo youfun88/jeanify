@@ -1,5 +1,5 @@
 /* global React */
-const { useState: uS3 } = React;
+const { useState: uS3, useEffect: uE3 } = React;
 const { D: D3 } = window.JR_CORE;
 
 // ---------- ABOUT ----------
@@ -11,7 +11,7 @@ function AboutPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>About</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>視客戶 <em>如皇室</em></>}</h1>
-          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Centermac SD, Inc. · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Centermac SD, Inc. · 聖地亞哥新星地產經紀。</>}</p>
+          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · 聖地亞哥新星地產經紀。</>}</p>
         </div>
       </header>
       <section className="section">
@@ -26,8 +26,8 @@ function AboutPage({ lang, go }) {
               </p>
               <p style={{ color:'var(--ink-dim)', marginTop: 28, lineHeight: 1.8 }}>
                 {lang==="en"
-                  ? <>At <strong style={{color:'var(--ink)'}}>Centermac SD, Inc.</strong> — one of the most trusted real estate groups in California — we consult, negotiate, and handle every detail so our clients successfully buy or sell what is, for most of them, the largest asset they will ever own. That orientation guides everything I do.</>
-                  : <>在 <strong style={{color:'var(--ink)'}}>Centermac SD, Inc.</strong> —— 加州最受信賴的房地產團隊之一 —— 我們提供諮詢、談判，並處理每一個細節，確保客戶成功買賣他們一生中最重要的資產。這一理念指引著我的每一項工作。</>}
+                  ? <>At <strong style={{color:'var(--ink)'}}>Jeanify</strong> — one of the most trusted real estate groups in California — we consult, negotiate, and handle every detail so our clients successfully buy or sell what is, for most of them, the largest asset they will ever own. That orientation guides everything I do.</>
+                  : <>在 <strong style={{color:'var(--ink)'}}>Jeanify</strong> —— 加州最受信賴的房地產團隊之一 —— 我們提供諮詢、談判，並處理每一個細節，確保客戶成功買賣他們一生中最重要的資產。這一理念指引著我的每一項工作。</>}
               </p>
               <p style={{ color:'var(--ink-dim)', marginTop: 20, lineHeight: 1.8 }}>
                 {lang==="en"
@@ -44,6 +44,68 @@ function AboutPage({ lang, go }) {
         </div>
       </section>
 
+      {/* The name — what "-ify" means and why the brand is a verb */}
+      <section className="section" style={{ background:'var(--bg-elev)' }}>
+        <div className="container-tight brand-story">
+          <img className="brand-story-mark" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+          <span className="eyebrow">{lang==="en"?"The Name":"品牌命名"}</span>
+          <h2 style={{ marginTop: 16 }}>
+            {lang==="en"
+              ? <>Jeanify is a <em>verb</em>, not a noun.</>
+              : <>Jeanify 是一個 <em>動詞</em></>}
+          </h2>
+
+          {lang==="en" ? (
+            <>
+              <p className="brand-story-lede">Every other name on a For Sale sign is a noun. Ours is something you do.</p>
+              <p>
+                The suffix <em>-ify</em> means to bring into a state — to make something so.
+                <strong> Clarify</strong>, to make clear. <strong>Simplify</strong>, to make simple.
+                It is the grammar of transformation, and it never describes a moment. It always
+                describes a passage from one condition to another.
+              </p>
+              <p>
+                That is the whole idea. A house does not become a home at the closing table. It becomes
+                one across every conversation, every walkthrough and every negotiation that leads there.
+                <strong> Jeanify</strong> is the name for that passage — the work of turning what you are
+                looking for into where you actually live.
+              </p>
+              <p>
+                Through Jean, a listing becomes a shortlist. A shortlist becomes an offer. An offer
+                becomes keys in your hand. Not a transaction you have to survive, but a process someone
+                walks you through — which is precisely why the name ends the way it does.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="brand-story-lede">別人的招牌上是名詞，我們的是一件正在進行的事。</p>
+              <p>
+                英文後綴 <em>-ify</em> 意為「使之成為」——<strong>clarify</strong> 是使之清晰，
+                <strong>simplify</strong> 是使之簡單。它描述的從來不是某個瞬間，
+                而是從一種狀態通往另一種狀態的過程。
+              </p>
+              <p>
+                這正是品牌的核心。房子不是在簽約桌上成為家的，而是在通往那一刻的每一次對話、
+                每一次看屋、每一次議價之中，一點一點成為家的。<strong>Jeanify</strong>，
+                就是這段路程的名字——把您所尋找的，變成您真正居住的地方。
+              </p>
+              <p>
+                透過 Jean，一則房源成為候選，候選成為出價，出價成為您手中的鑰匙。
+                不是一場必須熬過去的交易，而是一段有人全程陪伴引導的過程——
+                這正是這個名字如此結尾的原因。
+              </p>
+            </>
+          )}
+
+          <div className="brand-story-rule"></div>
+          <p className="brand-story-kicker">
+            {lang==="en"
+              ? <>house <span>→</span> shortlist <span>→</span> offer <span>→</span> <em>home</em></>
+              : <>房源 <span>→</span> 候選 <span>→</span> 出價 <span>→</span> <em>家</em></>}
+          </p>
+        </div>
+      </section>
+
       {/* Pull-quote / mission */}
       <section className="section-sm">
         <div className="container-tight" style={{textAlign:'center', padding:'48px 32px'}}>
@@ -57,22 +119,20 @@ function AboutPage({ lang, go }) {
         </div>
       </section>
 
-      {/* Centermac services */}
+      {/* Jeanify services */}
       <section className="section" style={{ background:'var(--bg-elev)' }}>
         <div className="container">
           <div style={{ marginBottom: 56 }}>
-            <span className="eyebrow">{lang==="en"?"The Centermac Practice":"Centermac 業務"}</span>
+            <span className="eyebrow">{lang==="en"?"The Jeanify Practice":"Jeanify 業務"}</span>
             <h2 style={{ marginTop: 16 }}>{lang==="en"?"A full-service real estate group.":"全方位房地產服務團隊"}</h2>
-            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Centermac SD offers a complete suite of services for owners, investors and aspiring agents.":"不止於傳統交易 —— Centermac SD 為業主、投資人與有志經紀人提供完整的服務體系。"}</p>
+            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents.":"不止於傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。"}</p>
           </div>
-          <div className="grid-3">
+          <div className="grid-4">
             {[
               { t: lang==="en"?"Real Estate Sales":"房產銷售", d: lang==="en"?"Single-family homes and commercial property — Jean's primary specialty.":"獨立住宅與商業地產 —— Jean 的核心專長。" },
               { t: lang==="en"?"Business Sales":"企業出售", d: lang==="en"?"Confidential business brokerage with valuation and buyer vetting.":"機密企業經紀服務，含估值與買方稽核。" },
               { t: lang==="en"?"Property Management":"物業管理", d: lang==="en"?"Tenant placement, maintenance coordination and financial reporting.":"租客匹配、維護協調與財務報告。" },
               { t: lang==="en"?"Investment Advisory":"投資諮詢", d: lang==="en"?"Portfolio strategy, 1031 exchange execution and replacement diligence.":"投資組合策略、1031 交換執行與替代房產盡調。" },
-              { t: lang==="en"?"Legal Consultation":"法律諮詢", d: lang==="en"?"In-house consultation on real estate contracts, disclosures and disputes.":"內部房地產合同、披露與爭議諮詢。" },
-              { t: lang==="en"?"Real Estate School":"地產學院", d: lang==="en"?"Licensing prep and career mentorship for the next generation of agents.":"執照培訓與新一代經紀人職業輔導。" },
             ].map((s, i) => (
               <div key={i} style={{padding:32, border:'1px solid var(--line)', background:'var(--bg-deep)'}}>
                 <div style={{fontFamily:'var(--font-display)', fontStyle:'italic', fontSize:32, color:'var(--brass)', marginBottom:8}}>{String(i+1).padStart(2,'0')}</div>
@@ -118,7 +178,7 @@ function AboutPage({ lang, go }) {
             {D3.testimonials.map((tt, i) => (
               <div key={i} className="test-card">
                 <div className="test-stars">★ ★ ★ ★ ★</div>
-                <div className="test-quote">"{tt.quote}"</div>
+                <div className="test-quote">"{lang === "zh" && tt.quoteZh ? tt.quoteZh : tt.quote}"</div>
                 <div className="test-author">
                   <div className="test-avatar">{tt.initials}</div>
                   <div>
@@ -135,23 +195,97 @@ function AboutPage({ lang, go }) {
   );
 }
 
-// ---------- GUIDES INDEX ----------
-function GuidesPage({ lang, go }) {
+const ARTICLES = window.JR_ARTICLES || [];
+const bySlug = (s) => ARTICLES.find(a => a.slug === s);
+
+// Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
+function articleDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+// One article card — used on the index and in the "related" strip.
+function ArticleCard({ a, go }) {
+  return (
+    <a className="article-card" href={"#/articles/" + a.slug}
+       onClick={(e) => { e.preventDefault(); go("articles/" + a.slug); }}>
+      <div
+        className={"article-img" + (a.image ? " has-image" : "")}
+        style={a.image ? { backgroundImage: "url(" + encodeURI(a.image) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
+      ></div>
+      <div className="article-meta">{a.category} · {a.read}</div>
+      <h3>{a.title}</h3>
+      <p className="article-dek">{a.dek}</p>
+      <span className="btn-text arrow-right article-more">Read</span>
+    </a>
+  );
+}
+
+// Download card for the seasonal PDF market guides.
+function MarketGuideCard({ g, lang }) {
+  return (
+    <div className="mg-card">
+      <div className="mg-head">
+        <span className="eyebrow no-rule">{lang==="en" ? g.audience : g.audienceZh}</span>
+        <span className="mg-edition">{lang==="en" ? g.edition : g.editionZh}</span>
+      </div>
+      <h3>{lang==="en" ? g.title : g.titleZh}</h3>
+      <p className="mg-desc">{lang==="en" ? g.desc : g.descZh}</p>
+      <ul className="mg-contents">
+        {g.contents.map((c, i) => <li key={i}>{c}</li>)}
+      </ul>
+      <a className="btn btn-primary arrow-right mg-btn" href={g.file} target="_blank" rel="noopener noreferrer">
+        {lang==="en" ? "Download PDF" : "下載 PDF"}
+      </a>
+      <div className="mg-meta">{g.pages} {lang==="en"?"pages":"頁"} · PDF · {g.size}</div>
+    </div>
+  );
+}
+
+function MarketGuidesSection({ lang, only }) {
+  const guides = only ? D3.marketGuides.filter(g => g.id === only) : D3.marketGuides;
+  if (!guides.length) return null;
+  return (
+    <div className="container">
+      <div className="sect-head">
+        <div className="sect-head-title">
+          <span className="eyebrow">{lang==="en"?"Seasonal Briefings":"季度簡報"}</span>
+          <h2 style={{ marginTop: 16 }}>{lang==="en"?"Market guides, updated each season":"每季更新的市場指南"}</h2>
+          {!only && (
+            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>
+              {lang==="en"
+                ? "Twenty-page briefings on where the market actually stands this quarter — rates, inventory, equity and pricing, with the charts behind each claim. Free, no email required."
+                : "二十頁的季度市場簡報 —— 利率、庫存、房屋淨值與定價，每項論點皆附圖表佐證。免費下載，無需填寫電郵。"}
+            </p>
+          )}
+        </div>
+      </div>
+      <div className={only ? "grid-1" : "grid-2"}>
+        {guides.map(g => <MarketGuideCard key={g.id} g={g} lang={lang} />)}
+      </div>
+    </div>
+  );
+}
+
+// ---------- ARTICLES INDEX ----------
+function ArticlesPage({ lang, go }) {
   return (
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Guides</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Articles</div>
           <span className="eyebrow">{lang==="en"?"Resources":"資源中心"}</span>
-          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Guides for the <em>committed</em>.</> : <>專業 <em>指南</em></>}</h1>
-          <p className="lede">{lang==="en"?"Working playbooks for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資者準備的實操指南 —— 我服務私人客戶所用的同一套方法論。"}</p>
+          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Written for the <em>committed</em>.</> : <>專業 <em>專欄</em></>}</h1>
+          <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資者準備的實操指南與市場札記 —— 我服務私人客戶所用的同一套方法論。"}</p>
         </div>
       </header>
+
+      {/* The three long-form guides stay featured at the top */}
       <section className="section">
         <div className="container">
           <div className="grid-3">
             {D3.guides.map(g => (
-              <a key={g.num} className="guide-card" href={"#/guides/" + g.title.toLowerCase().split(" ")[1]} onClick={(e)=>{e.preventDefault(); go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));}}>
+              <a key={g.num} className="guide-card" href={"#/guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031")} onClick={(e)=>{e.preventDefault(); go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));}}>
                 <div className="num">{g.num}</div>
                 <span className="eyebrow no-rule">{lang==="en"?"Guide":"指南"}</span>
                 <h3>{g.title}</h3>
@@ -163,8 +297,13 @@ function GuidesPage({ lang, go }) {
         </div>
       </section>
 
-      {/* Articles */}
+      {/* Downloadable seasonal PDF guides */}
       <section className="section" style={{ background:'var(--bg-elev)' }}>
+        <MarketGuidesSection lang={lang} />
+      </section>
+
+      {/* Articles */}
+      <section className="section">
         <div className="container">
           <div className="sect-head">
             <div className="sect-head-title">
@@ -172,23 +311,225 @@ function GuidesPage({ lang, go }) {
               <h2 style={{ marginTop: 16 }}>{lang==="en"?"Articles & briefings":"文章與簡報"}</h2>
             </div>
           </div>
-          <div className="grid-4">
-            {D3.articles.map(a => (
-              <div key={a.id} className="article-card">
-                <div
-                  className={"article-img" + (a.image ? " has-image" : "")}
-                  style={a.image ? { backgroundImage: "url(" + encodeURI(a.image) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
-                ></div>
-                <div className="article-meta">{a.category} · {a.read}</div>
-                <h3>{a.title}</h3>
-                {a.credit && (
-                  <div className="article-credit">
-                    Photo by <a href={a.credit.url + "?utm_source=jean_riley&utm_medium=referral"} target="_blank" rel="noopener noreferrer">{a.credit.name}</a>{" "}
-                    on <a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
-                  </div>
-                )}
+          <div className="grid-3">
+            {ARTICLES.map(a => <ArticleCard key={a.slug} a={a} go={go} />)}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ---------- ARTICLE DETAIL ----------
+// Mirrors tools/build-articles.mjs, which renders the same blocks to static HTML.
+// If you add a block type, add it in both places.
+function ArticleBlock({ b }) {
+  switch (b.t) {
+    case "h":
+      return <h2 className="art-h" id={slugifyHeading(b.x)}>{b.x}</h2>;
+    case "ul":
+      return <ul className="art-list">{b.x.map((li, i) => <li key={i}>{li}</li>)}</ul>;
+    case "ol":
+      return <ol className="art-list art-list-num">{b.x.map((li, i) => <li key={i}>{li}</li>)}</ol>;
+    case "callout":
+      return <aside className="art-callout">{b.x}</aside>;
+    case "table":
+      return (
+        <div className="art-table-wrap">
+          <table className="art-table">
+            <thead><tr>{b.head.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>
+            <tbody>{b.rows.map((r, i) => <tr key={i}>{r.map((c, j) => j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      );
+    default:
+      return <p className="art-p">{b.x}</p>;
+  }
+}
+
+function slugifyHeading(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function ArticleDetail({ slug, lang, go }) {
+  const a = bySlug(slug);
+  uE3(() => { window.scrollTo(0, 0); }, [slug]);
+
+  if (!a) {
+    return (
+      <div className="page-fade">
+        <header className="page-head">
+          <div className="container">
+            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a></div>
+            <h1 style={{ marginTop: 20 }}>Article not found</h1>
+            <p className="lede">That article may have been renamed. Everything currently published is on the articles page.</p>
+            <div style={{ marginTop: 24 }}>
+              <a className="btn btn-primary arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>All articles</a>
+            </div>
+          </div>
+        </header>
+      </div>
+    );
+  }
+
+  const headings = a.sections.filter(s => s.t === "h");
+  const related = (a.related || []).map(bySlug).filter(Boolean);
+
+  return (
+    <div className="page-fade">
+      <header className="page-head">
+        <div className="container-tight">
+          <div className="breadcrumbs">
+            <a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>
+            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a><span>/</span>{a.category}
+          </div>
+          <span className="eyebrow">{a.category}</span>
+          <h1 style={{ marginTop: 20 }}>{a.title}</h1>
+          <p className="lede">{a.dek}</p>
+          <div className="art-byline">
+            <span>By <strong>Jean Riley</strong> · {D3.agent.license}</span>
+            <span>{articleDate(a.date)}{a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""}</span>
+            <span>{a.read} read</span>
+          </div>
+        </div>
+      </header>
+
+      <article className="section">
+        <div className="container-tight">
+          {/* Quick answer — the block an AI overview is most likely to lift */}
+          <div className="art-answer">
+            <span className="eyebrow no-rule">{lang==="en"?"The short answer":"重點摘要"}</span>
+            <p>{a.answer}</p>
+          </div>
+
+          {headings.length > 2 && (
+            <nav className="art-toc" aria-label="On this page">
+              <span className="eyebrow no-rule">{lang==="en"?"On this page":"本頁內容"}</span>
+              <ol>
+                {headings.map((h, i) => (
+                  <li key={i}><a href={"#" + slugifyHeading(h.x)}>{h.x}</a></li>
+                ))}
+              </ol>
+            </nav>
+          )}
+
+          <div className="art-body">
+            {a.sections.map((b, i) => <ArticleBlock key={i} b={b} />)}
+          </div>
+
+          {a.credit && (
+            <div className="article-credit" style={{ marginTop: 32 }}>
+              Photo by <a href={a.credit.url + "?utm_source=jean_riley&utm_medium=referral"} target="_blank" rel="noopener noreferrer">{a.credit.name}</a>{" "}
+              on <a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+            </div>
+          )}
+        </div>
+      </article>
+
+      {a.faqs && a.faqs.length > 0 && (
+        <section className="section" style={{ background:'var(--bg-elev)' }}>
+          <div className="container">
+            <div className="sect-head">
+              <div className="sect-head-title">
+                <span className="eyebrow">FAQ</span>
+                <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
               </div>
-            ))}
+            </div>
+            <FAQList items={a.faqs} />
+          </div>
+        </section>
+      )}
+
+      {a.sources && a.sources.length > 0 && (
+        <section className="section-sm">
+          <div className="container-tight">
+            <span className="eyebrow">{lang==="en"?"Sources":"資料來源"}</span>
+            <ul className="art-sources">
+              {a.sources.map((s, i) => (
+                <li key={i}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a></li>
+              ))}
+            </ul>
+            <p className="art-disclaimer">
+              {lang==="en"
+                ? "Market figures are current as of the date shown and change frequently. Nothing here is tax or legal advice — for your specific situation, consult a CPA or attorney."
+                : "文中市場數據截至標示日期，並會持續變動。本文不構成稅務或法律建議，請就個人情況諮詢會計師或律師。"}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="sect-head">
+              <div className="sect-head-title">
+                <span className="eyebrow">{lang==="en"?"Keep reading":"延伸閱讀"}</span>
+                <h2 style={{ marginTop: 16 }}>{lang==="en"?"Related articles":"相關文章"}</h2>
+              </div>
+            </div>
+            <div className="grid-3">
+              {related.map(r => <ArticleCard key={r.slug} a={r} go={go} />)}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="section-sm">
+        <div className="container-tight" style={{ padding:'48px 32px', textAlign:'center', border:'1px solid var(--line)', background:'var(--bg-elev)' }}>
+          <span className="eyebrow no-rule">{lang==="en"?"Next Step":"下一步"}</span>
+          <h2 style={{ margin:'16px 0 24px' }}>{lang==="en"?"Questions about your own situation?":"想討論您的個人情況？"}</h2>
+          <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ---------- FAQ ----------
+const FAQ_GROUPS = [
+  { id: "working", en: "Working with Jean", zh: "與 Jean 合作" },
+  { id: "buying",  en: "Buying",            zh: "購屋" },
+  { id: "selling", en: "Selling",           zh: "售屋" },
+  { id: "investing", en: "Investing & 1031", zh: "投資與 1031" },
+];
+
+function FAQPage({ lang, go }) {
+  return (
+    <div className="page-fade">
+      <header className="page-head">
+        <div className="container">
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>FAQ</div>
+          <span className="eyebrow">{lang==="en"?"Frequently Asked":"常見問題"}</span>
+          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The questions I get <em>most</em>.</> : <>最常被 <em>問到</em> 的問題</>}</h1>
+          <p className="lede">{lang==="en"?"Straight answers on commission, timelines, Mello-Roos, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly.":"關於佣金、時程、Mello-Roos、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"}</p>
+        </div>
+      </header>
+
+      {FAQ_GROUPS.map((grp, gi) => {
+        const items = D3.faqs.filter(f => f.g === grp.id);
+        if (!items.length) return null;
+        return (
+          <section key={grp.id} className="section" style={gi % 2 ? { background:'var(--bg-elev)' } : null}>
+            <div className="container">
+              <div className="sect-head">
+                <div className="sect-head-title">
+                  <span className="eyebrow">{String(gi + 1).padStart(2, "0")}</span>
+                  <h2 style={{ marginTop: 16 }}>{lang==="en" ? grp.en : grp.zh}</h2>
+                </div>
+              </div>
+              <FAQList items={items} />
+            </div>
+          </section>
+        );
+      })}
+
+      <section className="section-sm">
+        <div className="container-tight" style={{ padding:'48px 32px', textAlign:'center', border:'1px solid var(--line)', background:'var(--bg-elev)' }}>
+          <span className="eyebrow no-rule">{lang==="en"?"Still unanswered":"仍有疑問"}</span>
+          <h2 style={{ margin:'16px 0 24px' }}>{lang==="en"?"Ask me directly.":"歡迎直接詢問"}</h2>
+          <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
+            <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
+            <a className="btn btn-ghost" href={"tel:" + D3.agent.phone.replace(/[^0-9+]/g, "")}>{D3.agent.phone}</a>
           </div>
         </div>
       </section>
@@ -241,7 +582,7 @@ function GuideDetail({ kind, lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/guides" onClick={(e)=>{e.preventDefault();go("guides");}}>Guides</a><span>/</span>{meta.en}</div>
+          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a><span>/</span>{meta.en}</div>
           <span className="eyebrow">{lang==="en"?"Guide":"指南"}</span>
           <h1 style={{ marginTop: 20 }}><em>{lang==="en" ? meta.en : meta.zh}</em></h1>
           <p className="lede">{lang==="en" ? meta.sub.en : meta.sub.zh}</p>
@@ -267,6 +608,13 @@ function GuideDetail({ kind, lang, go }) {
           </div>
         </div>
       </section>
+
+      {/* The matching seasonal PDF, where one exists for this guide */}
+      {(kind === "buyer" || kind === "seller") && (
+        <section className="section" style={{ background:'var(--bg-elev)' }}>
+          <MarketGuidesSection lang={lang} only={kind} />
+        </section>
+      )}
     </div>
   );
 }
@@ -308,7 +656,7 @@ function ExchangePage({ lang, go }) {
               <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
             </div>
           </div>
-          <FAQList items={D3.faqs.slice(2, 5)} />
+          <FAQList items={D3.faqs.filter(f => f.g === "investing")} />
         </div>
       </section>
     </div>
@@ -329,4 +677,4 @@ function FAQList({ items }) {
   );
 }
 
-window.JR_PAGES = { AboutPage, GuidesPage, GuideDetail, ExchangePage, FAQList };
+window.JR_PAGES = { AboutPage, ArticlesPage, ArticleDetail, ArticleCard, GuideDetail, ExchangePage, FAQPage, FAQList };

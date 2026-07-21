@@ -1,4 +1,5 @@
 (function(){
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* global React */
 const {
   useState: uS4
@@ -8,12 +9,41 @@ const {
   VideoCard: VC4
 } = window.JR_CORE;
 
+// Web3Forms relays submissions to Jean's inbox. The key is a public submission
+// token, not a secret — it only permits posting to this one destination address.
+const WEB3FORMS_KEY = "b5f6ae82-dc56-42c1-b3a0-79ee29d3586d";
+
+// Shared submit helper. Every form on the site goes through this so that a lead can
+// never be silently dropped — the caller must render the returned status.
+async function submitLead(fields, {
+  subject,
+  formName
+}) {
+  const body = new FormData();
+  Object.entries(fields).forEach(([k, v]) => body.set(k, v == null ? "" : String(v)));
+  body.set("access_key", WEB3FORMS_KEY);
+  body.set("subject", subject);
+  body.set("from_name", formName);
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      Accept: "application/json"
+    },
+    body
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!(res.ok && data.success)) throw new Error(data.message || "submit failed");
+  return data;
+}
+
 // ---------- ESTIMATOR (3-step lead capture) ----------
 function EstimatorPage({
   lang,
   go
 }) {
   const [step, setStep] = uS4(1);
+  const [status, setStatus] = uS4("idle"); // idle | sending | sent | error
+  const [errorMsg, setErrorMsg] = uS4("");
   const [data, setData] = uS4({
     address: "",
     beds: "",
@@ -29,6 +59,87 @@ function EstimatorPage({
     ...d,
     [k]: v
   }));
+
+  // Previously this fired an alert() and navigated home without sending anything —
+  // every valuation request was silently discarded. It now posts to Jean's inbox.
+  const submit = async () => {
+    if (!data.name.trim() || !(data.email.trim() || data.phone.trim())) {
+      setStatus("error");
+      setErrorMsg(lang === "en" ? "Please add your name and either an email or a phone number so Jean can reach you." : "請填寫姓名，以及電子郵件或電話其中一項，以便 Jean 與您聯絡。");
+      return;
+    }
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      await submitLead({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        beds: data.beds,
+        baths: data.baths,
+        sqft: data.sqft,
+        condition: data.condition,
+        features: data.notes || "",
+        best_time_to_contact: data.time
+      }, {
+        subject: "JeanRiley.com — Home valuation request: " + (data.address || data.name || "no address given"),
+        formName: "JeanRiley.com Home Valuation"
+      });
+      setStatus("sent");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(lang === "en" ? "That didn't send. Please call (858) 598-3888 or email Jean@CentermacSD.com and your request will be handled right away." : "傳送失敗。請致電 (858) 598-3888 或來信 Jean@CentermacSD.com，我們將立即為您處理。");
+    }
+  };
+  if (status === "sent") {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "page-fade"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "page-head"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "container-tight"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "eyebrow"
+    }, lang === "en" ? "Request Received" : "已收到請求"), /*#__PURE__*/React.createElement("h1", {
+      style: {
+        marginTop: 20
+      }
+    }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Thank you \u2014 it's ", /*#__PURE__*/React.createElement("em", null, "with Jean"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5DF2\u9001\u9054 ", /*#__PURE__*/React.createElement("em", null, "Jean"))), /*#__PURE__*/React.createElement("p", {
+      className: "lede"
+    }, lang === "en" ? "Your valuation request has been sent. Jean reviews each one personally and returns a written CMA, usually within 48 hours." : "您的估值請求已送出。Jean 會親自審閱每一份請求，通常於 48 小時內提供書面 CMA。"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        color: 'var(--ink-dim)',
+        marginTop: 20
+      }
+    }, lang === "en" ? "Need it sooner? Call " : "需要更快回覆？請致電 ", /*#__PURE__*/React.createElement("a", {
+      href: "tel:" + D4.agent.phone.replace(/[^0-9+]/g, ""),
+      style: {
+        color: 'var(--brass)'
+      }
+    }, D4.agent.phone), "."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 32,
+        display: 'flex',
+        gap: 16,
+        flexWrap: 'wrap'
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "btn btn-primary arrow-right",
+      href: "#/articles",
+      onClick: e => {
+        e.preventDefault();
+        go("articles");
+      }
+    }, lang === "en" ? "Read the seller guide" : "閱讀賣家指南"), /*#__PURE__*/React.createElement("a", {
+      className: "btn btn-ghost",
+      href: "#/home",
+      onClick: e => {
+        e.preventDefault();
+        go("home");
+      }
+    }, lang === "en" ? "Back to home" : "返回首頁")))));
+  }
   return /*#__PURE__*/React.createElement("div", {
     className: "page-fade"
   }, /*#__PURE__*/React.createElement("header", {
@@ -152,7 +263,10 @@ function EstimatorPage({
     onChange: e => update("time", e.target.value)
   }, /*#__PURE__*/React.createElement("option", null, "Anytime"), /*#__PURE__*/React.createElement("option", null, "Morning (8am \u2013 12pm)"), /*#__PURE__*/React.createElement("option", null, "Afternoon (12pm \u2013 5pm)"), /*#__PURE__*/React.createElement("option", null, "Evening (5pm \u2013 8pm)"))), /*#__PURE__*/React.createElement("p", {
     className: "est-note"
-  }, "A written CMA is prepared personally and delivered within 48 hours. No public listing exposure.")), /*#__PURE__*/React.createElement("div", {
+  }, "A written CMA is prepared personally and delivered within 48 hours. No public listing exposure.")), status === "error" && /*#__PURE__*/React.createElement("div", {
+    className: "form-status error",
+    role: "alert"
+  }, errorMsg), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -162,7 +276,7 @@ function EstimatorPage({
     }
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn btn-ghost",
-    disabled: step === 1,
+    disabled: step === 1 || status === "sending",
     onClick: () => setStep(s => Math.max(1, s - 1)),
     style: {
       opacity: step === 1 ? 0.4 : 1
@@ -170,17 +284,14 @@ function EstimatorPage({
   }, "\u2190 Back"), step < 3 ? /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary arrow-right",
     onClick: () => setStep(s => s + 1)
-  }, "Continue") : /*#__PURE__*/React.createElement("button", {
+  }, lang === "en" ? "Continue" : "繼續") : /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary arrow-right",
-    onClick: () => {
-      alert(lang === "en" ? "Thank you. Jean will follow up within 48 hours." : "已收到，Jean 將在 48 小時內聯絡您。");
-      go("home");
-    }
-  }, "Submit Request"))))));
+    onClick: submit,
+    disabled: status === "sending"
+  }, status === "sending" ? lang === "en" ? "Sending…" : "傳送中…" : lang === "en" ? "Submit Request" : "送出請求"))))));
 }
 
 // ---------- CONTACT ----------
-const WEB3FORMS_KEY = "b5f6ae82-dc56-42c1-b3a0-79ee29d3586d";
 function ContactPage({
   lang,
   go
@@ -253,7 +364,7 @@ function ContactPage({
       flexDirection: 'column',
       gap: 32
     }
-  }, [["Phone", D4.agent.phone, lang === "en" ? "Direct line, 9am – 7pm PT" : "直線，太平洋時間 9 - 19 時"], ["Email", D4.agent.email, lang === "en" ? "Replies within one business day" : "一個工作日內回覆"], ["Office", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126"], ["Languages", "English · 中文 (Mandarin) · 台語 (Taiwanese)", lang === "en" ? "All documents reviewable in either language" : "所有檔案支援中英雙語審閱"]].map(([k, v, d]) => /*#__PURE__*/React.createElement("div", {
+  }, [["Phone", D4.agent.phone, lang === "en" ? "Direct line, 9am – 7pm PT" : "直線，太平洋時間 9 - 19 時", "tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")], ["Email", D4.agent.email, lang === "en" ? "Replies within one business day" : "一個工作日內回覆", "mailto:" + D4.agent.email], ["Office", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126", "https://maps.google.com/?q=9888+Carroll+Centre+Rd+Ste+200+San+Diego+CA+92126"], ["Languages", "English · 中文 (Mandarin) · 台語 (Taiwanese)", lang === "en" ? "All documents reviewable in either language" : "所有檔案支援中英雙語審閱", null]].map(([k, v, d, href]) => /*#__PURE__*/React.createElement("div", {
     key: k,
     style: {
       paddingBottom: 24,
@@ -270,7 +381,13 @@ function ContactPage({
       fontSize: 26,
       color: 'var(--ink)'
     }
-  }, v), /*#__PURE__*/React.createElement("div", {
+  }, href ? /*#__PURE__*/React.createElement("a", _extends({
+    className: "contact-link",
+    href: href
+  }, href.startsWith("http") ? {
+    target: "_blank",
+    rel: "noopener noreferrer"
+  } : {}), v) : v), /*#__PURE__*/React.createElement("div", {
     style: {
       color: 'var(--ink-dim)',
       fontSize: 14,
@@ -381,6 +498,7 @@ function VideosPage({
   lang,
   go
 }) {
+  const songs = D4.videos.filter(v => v.group === "song");
   const tours = D4.videos.filter(v => v.group === "tour");
   const voiceovers = D4.videos.filter(v => v.group === "voiceover");
   const testimonials = D4.videos.filter(v => v.group === "testimonial");
@@ -423,7 +541,7 @@ function VideosPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "From the ", /*#__PURE__*/React.createElement("em", null, "field"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5E02\u5834 ", /*#__PURE__*/React.createElement("em", null, "\u5BE6\u9304"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "房源實地走訪、社群導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "為個別房源創作的原創歌曲、房源實地走訪、社群導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 24
     }
@@ -432,8 +550,33 @@ function VideosPage({
     href: D4.agent.youtube,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, lang === "en" ? "Visit YouTube Channel — " : "訪問 YouTube 頻道 · ", D4.agent.youtubeHandle)))), voiceovers.length > 0 && /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Visit YouTube Channel — " : "訪問 YouTube 頻道 · ", D4.agent.youtubeHandle)))), songs.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, sectionHeader(lang === "en" ? "Listing Songs" : "房源主題曲", lang === "en" ? "Every listing gets its own song" : "每套房源，都有專屬歌曲", lang === "en" ? "Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take." : "不是套用罐頭配樂的幻燈片 —— 而是為該物業、街道與環境量身創作的原創歌曲。這是真正會被看完、被轉發的行銷內容，且我接下的每一套房源都包含此服務。"), /*#__PURE__*/React.createElement("div", {
+    className: "video-grid"
+  }, songs.map(v => /*#__PURE__*/React.createElement(VC4, {
+    key: v.id,
+    v: v,
+    feature: v.feature
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 40,
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary arrow-right",
+    href: "#/contact",
+    onClick: e => {
+      e.preventDefault();
+      go("contact");
+    }
+  }, lang === "en" ? "Get a song for your listing" : "為您的房源製作專屬歌曲")))), voiceovers.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, sectionHeader(lang === "en" ? "Client Voice-Overs" : "客戶配音", lang === "en" ? "Heard from the people who lived it" : "由親歷者講述", lang === "en" ? "Property tours narrated by Jean's actual clients — about the homes and communities they came to love." : "由 Jean 的真實客戶配音介紹 —— 講述他們所喜愛的家與社群。"), /*#__PURE__*/React.createElement("div", {
@@ -443,10 +586,7 @@ function VideosPage({
     v: v,
     feature: v === voiceovers[0]
   }))))), tours.length > 0 && /*#__PURE__*/React.createElement("section", {
-    className: "section",
-    style: {
-      background: 'var(--bg-elev)'
-    }
+    className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, sectionHeader(lang === "en" ? "Property & Neighborhood Tours" : "房源與社群導覽", lang === "en" ? "Inside San Diego's homes, from Jean" : "聖地亞哥家居實景，由 Jean 親自介紹", lang === "en" ? "Walkthroughs of recent listings and the neighborhoods that surround them." : "近期房源走訪與周邊社群導覽。"), /*#__PURE__*/React.createElement("div", {
@@ -455,7 +595,10 @@ function VideosPage({
     key: v.id,
     v: v
   }))))), testimonials.length > 0 && /*#__PURE__*/React.createElement("section", {
-    className: "section"
+    className: "section",
+    style: {
+      background: 'var(--bg-elev)'
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, sectionHeader(lang === "en" ? "Agent Testimonials" : "同業推薦", lang === "en" ? "What other agents say about working with Jean" : "同業經紀人對與 Jean 合作的評價", lang === "en" ? "Fellow agents on what it's like to be on the other side of the table from Jean." : "同業經紀人講述與 Jean 在談判桌兩端共事的體驗。"), /*#__PURE__*/React.createElement("div", {

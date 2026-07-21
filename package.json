@@ -1,0 +1,18 @@
+{
+  "name": "jeanify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing site for Jean Riley — San Diego Realtor®.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs && node tools/build-articles.mjs",
+    "build:js": "node tools/build.mjs",
+    "build:articles": "node tools/build-articles.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.0",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-react": "^7.24.0"
+  }
+}

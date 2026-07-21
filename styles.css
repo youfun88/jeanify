@@ -230,14 +230,24 @@ p { margin: 0; }
   background: var(--brass);
   color: #1a1611;
 }
+/* The phone number is the primary conversion in the bar — sized up from the old 12px
+   so it reads as a call to action rather than metadata, and made tappable. */
 .nav-phone {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: var(--brass);
   display: flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease), text-shadow 0.2s var(--ease);
+}
+.nav-phone:hover {
+  color: var(--brass-bright, var(--brass));
+  text-shadow: 0 0 18px rgba(201, 165, 103, 0.45);
 }
 
 /* Buttons */
@@ -509,6 +519,218 @@ p { margin: 0; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+}
+.grid-1 { display: grid; grid-template-columns: 1fr; gap: 32px; }
+
+/* ---------- Accessibility ---------- */
+
+/* Visually hidden, still announced by screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* There was no visible focus indicator anywhere on the site, which made keyboard
+   navigation effectively impossible to follow. :focus-visible keeps it off for
+   mouse users while restoring it for keyboard and assistive tech. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link — first tab stop, lets keyboard users jump past the nav. */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 2000;
+  background: var(--brass);
+  color: #0b0d10;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 22px;
+  transition: transform 0.18s var(--ease);
+}
+.skip-link:focus { transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Form status ---------- */
+.form-status {
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-left: 2px solid var(--brass);
+  background: var(--bg-deep);
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.form-status.error { border-left-color: #d9534f; }
+
+.footer-newsletter-done {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-left: 2px solid var(--brass);
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.footer-newsletter { flex-wrap: wrap; }
+.footer-newsletter-err {
+  flex-basis: 100%;
+  margin-top: 8px;
+  color: #d9534f;
+  font-size: 12px;
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.contact-link:hover { color: var(--brass); border-bottom-color: var(--brass); }
+
+/* About → the name / brand story */
+.brand-story { text-align: center; }
+.brand-story-mark {
+  height: 64px;
+  width: auto;
+  margin: 0 auto 32px;
+  display: block;
+  opacity: 0.95;
+}
+.brand-story p {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.85;
+  margin: 0 auto 22px;
+  max-width: 62ch;
+  text-align: left;
+}
+.brand-story p strong { color: var(--ink); font-weight: 500; }
+.brand-story p em { color: var(--brass); font-style: italic; }
+.brand-story-lede {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(21px, 2.4vw, 27px) !important;
+  line-height: 1.5 !important;
+  color: var(--ink) !important;
+  text-align: center !important;
+  margin: 28px auto 36px !important;
+  max-width: 30ch !important;
+}
+.brand-story-rule {
+  width: 64px;
+  height: 1px;
+  background: var(--brass);
+  margin: 44px auto 32px;
+  opacity: 0.6;
+}
+.brand-story-kicker {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase;
+  color: var(--ink-faint) !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+.brand-story-kicker span { color: var(--brass); margin: 0 6px; }
+.brand-story-kicker em {
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--brass);
+  vertical-align: -1px;
+}
+
+/* Downloadable seasonal PDF guides */
+.mg-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s var(--ease);
+}
+.mg-card:hover { border-color: var(--brass); }
+.mg-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.mg-edition {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.mg-card h3 { font-size: 30px; margin-bottom: 14px; }
+.mg-desc { color: var(--ink-dim); line-height: 1.7; margin-bottom: 26px; }
+.mg-contents {
+  margin: 0 0 32px;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+.mg-contents li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.mg-contents li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--brass);
+}
+.mg-btn { align-self: flex-start; }
+.mg-meta {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+@media (max-width: 900px) {
+  .mg-card { padding: 28px; }
+  .mg-card h3 { font-size: 25px; }
 }
 
 .listing-card {
@@ -1337,6 +1559,166 @@ p { margin: 0; }
 .article-credit a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s var(--ease); }
 .article-credit a:hover { border-bottom-color: var(--ink-dim); }
 
+/* Article cards became links when detail pages landed — strip the anchor defaults. */
+a.article-card { text-decoration: none; color: inherit; }
+.article-dek {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-top: -6px;
+}
+.article-more { margin-top: auto; font-size: 12px; }
+
+/* ---------- Article detail ---------- */
+.art-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.art-byline strong { color: var(--ink-dim); font-weight: 500; }
+
+/* Quick-answer block. Deliberately first and self-contained — this is the passage
+   an AI overview or featured snippet is most likely to lift verbatim. */
+.art-answer {
+  padding: 32px 36px;
+  background: var(--bg-elev);
+  border-left: 2px solid var(--brass);
+  margin-bottom: 56px;
+}
+.art-answer p {
+  margin-top: 14px;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.art-toc {
+  margin-bottom: 56px;
+  padding: 28px 32px;
+  border: 1px solid var(--line);
+}
+.art-toc ol {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.art-toc li { color: var(--ink-faint); font-size: 14px; }
+.art-toc a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.art-toc a:hover { color: var(--brass); border-bottom-color: var(--brass); }
+
+.art-body { max-width: 72ch; }
+.art-h {
+  font-size: clamp(26px, 3vw, 34px);
+  margin: 64px 0 20px;
+  scroll-margin-top: 100px;
+}
+.art-h:first-child { margin-top: 0; }
+.art-p {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.art-list {
+  margin: 0 0 26px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.art-list li {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.75;
+  padding-left: 6px;
+}
+.art-list li::marker { color: var(--brass); }
+.art-list-num li::marker { font-family: var(--font-mono); font-size: 14px; }
+
+.art-callout {
+  margin: 36px 0;
+  padding: 28px 32px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--brass);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Tables carry the comparative facts. Answer engines extract tabular data far more
+   reliably than the equivalent prose, so several articles lead with one. */
+.art-table-wrap { margin: 32px 0 36px; overflow-x: auto; }
+.art-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.art-table th,
+.art-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.art-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border-bottom-color: var(--brass);
+  white-space: nowrap;
+}
+.art-table tbody th { color: var(--ink); font-weight: 500; }
+.art-table td { color: var(--ink-dim); }
+.art-table tbody tr:last-child th,
+.art-table tbody tr:last-child td { border-bottom: none; }
+
+.art-sources {
+  margin: 18px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.art-sources li { color: var(--ink-faint); font-size: 14px; }
+.art-sources a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--line); }
+.art-sources a:hover { color: var(--brass); border-bottom-color: var(--brass); }
+.art-disclaimer {
+  margin-top: 28px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-faint);
+  max-width: 68ch;
+}
+
+@media (max-width: 700px) {
+  .art-answer { padding: 24px; }
+  .art-answer p { font-size: 17px; }
+  .art-callout { padding: 22px 24px; font-size: 18px; }
+  .art-toc { padding: 22px 24px; }
+}
+
 /* Listing detail row (specialty layout) */
 .detail-hero {
   position: relative;
@@ -1502,7 +1884,7 @@ p { margin: 0; }
   .process::before { display: none; }
 }
 @media (max-width: 640px) {
-  .grid-3, .grid-4, .test-grid, .video-grid { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4, .test-grid, .video-grid { grid-template-columns: 1fr; }
   .hero-stats { display: none; }
   .footer { padding: 56px 0 32px; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; margin-bottom: 40px; }

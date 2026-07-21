@@ -6,7 +6,7 @@ window.JR_DATA = {
     phone: "(858) 598-3888",
     email: "Jean@CentermacSD.com",
     license: "DRE# 02004228",
-    brokerage: "Pacific Crest Realty",
+    brokerage: "Jeanify",
     years: 10,
     youtube: "https://www.youtube.com/@soldbyjean",
     youtubeHandle: "@soldbyjean",
@@ -16,7 +16,9 @@ window.JR_DATA = {
 
   i18n: {
     en: {
-      nav: { home: "Home", listings: "Listings", videos: "Videos", about: "About", guides: "Guides", exchange: "1031 Exchange", contact: "Contact" },
+      // `listings` / `videos` are no longer top-nav items — both live as sections on
+      // the home page — but the labels are still used by the footer and breadcrumbs.
+      nav: { home: "Home", listings: "Listings", videos: "Videos", about: "About", articles: "Articles", guides: "Guides", faq: "FAQ", exchange: "1031 Exchange", contact: "Contact" },
       hero: {
         eyebrow: "San Diego · Established 2015",
         h1: ["A discerning approach to", "California coastal living."],
@@ -42,7 +44,7 @@ window.JR_DATA = {
       },
     },
     zh: {
-      nav: { home: "首頁", listings: "房源", videos: "影片", about: "關於", guides: "指南", exchange: "1031 交換", contact: "聯絡" },
+      nav: { home: "首頁", listings: "房源", videos: "影片", about: "關於", articles: "專欄", guides: "指南", faq: "常見問題", exchange: "1031 交換", contact: "聯絡" },
       hero: {
         eyebrow: "聖地亞哥 · 始於 2015",
         h1: ["以專業態度", "服務加州海岸生活"],
@@ -124,12 +126,33 @@ window.JR_DATA = {
       quote: "Jean is absolutely amazing — extraordinarily knowledgeable, kind, and helpful. My condo has been managed by her for five years. She's always honest about the situation, and she takes care of my place as if it were her own." },
     { name: "Carmel Valley Landlord", area: "Property management since 2011", initials: "CV", rating: 5,
       quote: "Jean has managed our property since 2011 and has been a delight to work with. She's deeply knowledgeable and professional in the real estate market. We're thinking about buying more properties just so she can manage them too." },
+
+    // Written in Chinese — `quoteZh` holds the original, `quote` the English rendering.
+    // Attributed by initials, matching the convention above. These are unsolicited written
+    // recommendations rather than collected star ratings, so they are deliberately NOT
+    // counted in the aggregateRating JSON-LD in index.html.
+    { name: "Joanna L.", area: "Buyer & Seller · San Diego", initials: "JL", rating: 5,
+      quote: "Jean is genuinely outstanding — we go to her for both buying and selling. She replies quickly and she knows her work. When we were buying, she asked whether I absolutely had to have that particular house; once I said yes, she told me not to worry and that she would deal with every complication herself. From offer accepted to closing was only 12 days, and that included a weekend. She cleared every obstacle to get us that home. An agent you can genuinely trust.",
+      quoteZh: "Jean 真的很厲害，我們買房賣房都找她，回覆速度快而且專業。當初買房時，她問我是不是一定要買到那間房子，只要我回答說是，那所有的疑難雜症她都會幫我解決，要我不用擔心。我們從 offer 被接受到成交只有 12 天，這 12 天還包括週末兩天，她真的幫我們很快速排除萬難買到房子。很值得信賴的房仲。" },
+
+    { name: "Richard L.", area: "Community recommendation · San Diego", initials: "RL", rating: 5,
+      quote: "I genuinely believe Jean is an outstanding agent — full of passion for her work, and someone who always puts the client's real, practical needs first.",
+      quoteZh: "我真心覺得 Jean 是一位對工作充滿熱情，而且永遠以顧客實用需求為最優先考量的優秀房屋仲介。" },
+
+    { name: "Karen", area: "Buyer & Seller · San Diego", initials: "K", rating: 5,
+      quote: "Buying and selling a home is one of life's major decisions, and I was fortunate to find an agent who is professional, honest and genuinely invested. From understanding what we needed, arranging showings and analysing the market, through negotiation, contract and closing — every stage showed real expertise. Whatever came up, she answered patiently and advised from our side of the table rather than simply pushing for a deal. What moved me most was her care: she had me prepare the necessary documents well in advance so nothing was left to the last minute. Her guidance gave me confidence in my decisions and took away a great deal of worry.",
+      quoteZh: "買房、賣房是一件人生大事，而我很幸運遇到一位專業、誠信又用心的房屋仲介。從一開始了解需求、安排看屋、分析市場行情，到議價、簽約以及交屋，每一個環節都展現出高度的專業與豐富的經驗。無論遇到任何問題，都能耐心解答，並站在客戶的角度提供最合適的建議，而不是一味追求成交。最讓我感動的是，整個過程中 Jean 始終保持真誠、細心與負責任的態度，會讓我先把需要的文件提前準備好，才不會在最後一分鐘才處理。她的建議讓我的決定充滿信心，也減少了許多擔心與壓力。" },
   ],
 
   // Real videos from Jean's YouTube channel (@soldbyjean)
   // group: "tour" = listing/property tours, "voiceover" = client voice-over,
   // "testimonial" = agent testimonial. `start` = optional start-time in seconds.
   videos: [
+    // Listing songs — an original song written for each listing, produced as a short
+    // video. Jean's signature marketing piece; `vertical` marks YouTube Shorts.
+    { id: "UautKSZDMUY", title: "Song for 3009 Union Street, #7", category: "Listing Song", group: "song", feature: true },
+    { id: "5gXJIrhAGag", title: "Song for 12678 Carmel Country Rd, #27", category: "Listing Song", group: "song", vertical: true },
+
     { id: "HiFBssXmPUY", title: "Torrey Highlands — One of San Diego's Best Communities", category: "Client Voice-Over", group: "voiceover", start: 14, feature: true },
     { id: "mtOfVFMWAA4", title: "Tuscany Place — Rolando / College Area", category: "Client Voice-Over", group: "voiceover", start: 13 },
     { id: "xig-8fQ3AjM", title: "Dream Home in UTC — 7155 Calabria Ct, Unit D", category: "Listing Tour", group: "tour" },
@@ -140,18 +163,72 @@ window.JR_DATA = {
     { id: "x0SCTO79CTY", title: "Why You Should Hire Jean as your Agent", category: "Agent Testimonial", group: "testimonial" },
   ],
 
-  // `credit` is required by the Unsplash license (CC-style) — display photographer name + link.
-  articles: [
-    { id: "a1", category: "Buyer Guide", title: "What to expect when buying in La Jolla", read: "8 min", image: "hero-la-jolla.jpg" },
-    { id: "a2", category: "Seller Guide", title: "Pre-listing essentials: the seven-point preparation", read: "6 min", image: "uploads/articles/pre-listing.jpg", credit: { name: "Zac Gudakov", url: "https://unsplash.com/@zacgudakov" } },
-    { id: "a3", category: "Investor", title: "1031 Exchange timing — what trips up most investors", read: "10 min", image: "uploads/articles/1031-exchange.jpg", credit: { name: "Clemens van Lay", url: "https://unsplash.com/@clemensvanlay" } },
-    { id: "a4", category: "Market", title: "Reading a comparative market analysis", read: "5 min", image: "uploads/articles/cma.jpg", credit: { name: "Jakub Żerdzicki", url: "https://unsplash.com/@jakubzerdzicki" } },
-  ],
+  // Articles now live in articles-content.js (window.JR_ARTICLES) so that the SPA
+  // route and the generated static /articles/*.html pages share one source of truth.
+  // `credit` is required by the Unsplash license — display photographer name + link.
 
   guides: [
     { num: "01", title: "The Buyer's Guide", desc: "From pre-approval to keys in hand — a measured, twelve-step framework for buying in San Diego's competitive coastal market.", cta: "Open Buyer Guide" },
     { num: "02", title: "The Seller's Guide", desc: "Pricing, preparation, photography, marketing and negotiation. The full seller playbook, refined over a decade and 240+ closed listings.", cta: "Open Seller Guide" },
     { num: "03", title: "1031 Exchange Primer", desc: "Identification windows, qualified intermediaries and replacement property strategy for investors looking to defer capital gains.", cta: "Open 1031 Guide" },
+  ],
+
+  // Seasonal PDF guides, personalised with Jean's branding and hosted for download.
+  // These are licensed market reports — we link the file and list its contents, but the
+  // copy inside them is not reproduced as site content. Replace each quarter: drop the
+  // new PDF in uploads/guides/, update `file`, `edition`, `size` and `updated`.
+  marketGuides: [
+    {
+      id: "buyer",
+      audience: "For Buyers",
+      audienceZh: "買家專用",
+      title: "Things to Consider When Buying a Home",
+      titleZh: "購屋前該考慮的事",
+      edition: "Summer 2026 Edition",
+      editionZh: "2026 夏季版",
+      file: "uploads/guides/things-to-consider-when-buying-a-home-summer-2026.pdf",
+      pages: 20,
+      size: "3.0 MB",
+      updated: "2026-07",
+      desc: "A seasonal briefing on rates, inventory and new construction — what is actually moving the market you're about to buy in, with the numbers behind it.",
+      descZh: "針對利率、庫存與新建案的季度市場簡報 —— 用數據說明您即將進入的市場正在發生什麼。",
+      contents: [
+        "You Can't Control Mortgage Rates, But You Can Control This",
+        "How Changing Mortgage Rates Affect Your Future Monthly Payment",
+        "More Options for Your Search",
+        "Newly Built Home Prices Hit a 5-Year Low",
+        "Should You Buy an Existing Home or a Newly Built One?",
+        "3 Things That Are Not Going To Happen in Today's Market",
+        "The Top Two Buyer Mistakes Today",
+        "Things To Avoid After Applying for a Mortgage",
+        "Why You Need To Work with a Real Estate Agent",
+      ],
+    },
+    {
+      id: "seller",
+      audience: "For Sellers",
+      audienceZh: "賣家專用",
+      title: "Things to Consider When Selling Your House",
+      titleZh: "售屋前該考慮的事",
+      edition: "Summer 2026 Edition",
+      editionZh: "2026 夏季版",
+      file: "uploads/guides/things-to-consider-when-selling-your-house-summer-2026.pdf",
+      pages: 20,
+      size: "5.0 MB",
+      updated: "2026-07",
+      desc: "Pricing, staging, equity and the upgrades that actually return their cost — the seller-side briefing for this season's market.",
+      descZh: "定價、佈置、房屋淨值，以及真正能回收成本的翻修項目 —— 本季市場的賣方簡報。",
+      contents: [
+        "What Every Homeowner Needs To Know About Selling Now",
+        "The Secret To Selling Fast, No Matter the Market",
+        "Why Staging Your House Could Pay Off This Summer",
+        "Home Upgrades That Actually Pay You Back When You Sell",
+        "How Home Equity Could Change Everything About Your Move",
+        "Your Equity Could Turn You into an All-Cash Buyer",
+        "A Checklist for Selling Your House",
+        "The #1 Regret Sellers Have When They Don't Use an Agent",
+      ],
+    },
   ],
 
   process: [
@@ -161,11 +238,23 @@ window.JR_DATA = {
     { n: "IV", t: "Close", d: "Inspection orchestration, financing oversight, contract negotiation, and a personal escrow handoff." },
   ],
 
+  // Grouped for the /faq page. `g` maps to a section heading there; the first four
+  // entries are mirrored into the FAQPage JSON-LD in index.html — keep them in sync.
   faqs: [
-    { q: "What areas of San Diego do you focus on?", a: "I work the coastal corridor primarily — La Jolla, Bird Rock, Pacific Beach, Mission Beach, Point Loma, Del Mar — along with the inner urban neighborhoods of Mission Hills, Hillcrest, North Park and South Park. If you're looking outside this footprint, I'm happy to refer you to a vetted colleague rather than stretch beyond my expertise." },
-    { q: "Do you work with first-time buyers?", a: "Frequently. About a third of my buyer clients are buying their first home. I budget extra time for education, lender introductions, and walking you through every contingency without jargon." },
-    { q: "I'm an investor considering a 1031 exchange. Can you help?", a: "Yes — this is a focus of my practice. I've closed exchanges across single-family, small multifamily and DST replacement structures, and I work closely with several trusted qualified intermediaries who can step in within 24 hours." },
-    { q: "Do you offer services in Mandarin?", a: "I do. About 40% of my clients prefer to conduct business in Mandarin. All documents can be reviewed in either language." },
-    { q: "Why is the property estimator a form rather than an instant number?", a: "Automated valuation models (Zillow, Redfin) routinely miss San Diego's micro-markets by 8–15%. Rather than give you a number that may mislead, I'll prepare a personal CMA — usually within 48 hours — based on the actual condition, view and finishes of your home." },
+    { g: "working", q: "What areas of San Diego do you focus on?", a: "I work the coastal corridor primarily — La Jolla, Bird Rock, Pacific Beach, Mission Beach, Point Loma, Del Mar — along with the inner urban neighborhoods of Mission Hills, Hillcrest, North Park and South Park. I also work the North County master-planned communities: Carmel Valley, Pacific Highlands Ranch, 4S Ranch, Del Sur, Carlsbad and Rancho Santa Fe. If you're looking outside this footprint, I'm happy to refer you to a vetted colleague rather than stretch beyond my expertise." },
+    { g: "working", q: "Do you work with first-time buyers?", a: "Frequently. About a third of my buyer clients are buying their first home. I budget extra time for education, lender introductions, and walking you through every contingency without jargon." },
+    { g: "working", q: "Do you offer services in Mandarin?", a: "I do. About 40% of my clients prefer to conduct business in Mandarin. I work in English, Mandarin and Taiwanese, and all documents can be reviewed in either language." },
+    { g: "working", q: "How do you charge, and who pays your commission?", a: "Commission is negotiable and always set out in writing before I do any work — there is no standard or fixed rate. Following the 2024 industry settlement, buyer representation is agreed directly between you and me in a written buyer agreement, and compensation may be paid by the seller, by you, or split, depending on what we negotiate in the transaction. I'll walk you through the specific numbers on your deal before you sign anything." },
+
+    { g: "selling", q: "Why is the property estimator a form rather than an instant number?", a: "Automated valuation models routinely miss San Diego's micro-markets. Zillow's own published median error rate is about 7.5% for off-market homes — roughly $150,000 on a $2 million property. Rather than give you a number that may mislead, I'll prepare a personal CMA, usually within 48 hours, based on the actual condition, view and finishes of your home." },
+    { g: "selling", q: "How long does it take to sell a home in San Diego?", a: "As of June 2026 the county median was 18 days on market, though that varies enormously by submarket — La Jolla has been running closer to 37 days. Add about four weeks of preparation before listing, and roughly 30 days of escrow after you accept an offer. A realistic end-to-end plan is eight to ten weeks from first conversation to closing." },
+    { g: "selling", q: "What is a listing song?", a: "For every listing I take, I commission an original song written specifically about that property and produce it as a short video for YouTube and social media. Not a stock music bed under a slideshow — an actual song about your actual house. It is included in my listing package at no extra cost, and it earns the kind of attention and sharing that ordinary listing video does not." },
+    { g: "selling", q: "Should I make repairs before listing?", a: "Small ones, yes; large renovations, usually not. Plan on 1–3% of the home's value, weighted toward paint, deep cleaning, landscaping and staging. A pre-listing inspection is worth doing so that surprises become decisions you make on your own timeline rather than repair requests made under mid-escrow pressure." },
+
+    { g: "buying", q: "What is Mello-Roos and will I have to pay it?", a: "Mello-Roos is a special tax funding infrastructure in newer California developments. In San Diego's newer master-planned communities — 4S Ranch, Del Sur, Pacific Highlands Ranch — it commonly runs $1,000 to $5,000+ per year, while older Carmel Valley tracts often have none. It is parcel-specific, it is escrowed with your property tax, and it directly reduces how much home you qualify for, so check it before you write an offer." },
+    { g: "buying", q: "Can I buy in San Diego from overseas?", a: "Yes. There is no citizenship, residency or visa requirement to buy US property, and financing is available without a US credit history or Social Security number through foreign national and DSCR loan programs, typically at 20–30% down. Plan ahead for FIRPTA withholding when you eventually sell, and for US estate tax exposure, which for non-residents begins above just $60,000 of US assets." },
+
+    { g: "investing", q: "I'm an investor considering a 1031 exchange. Can you help?", a: "Yes — this is a focus of my practice. I've closed exchanges across single-family, small multifamily and DST replacement structures, and I work closely with several trusted qualified intermediaries who can step in within 24 hours. The critical thing is engaging the intermediary before your sale closes: if the proceeds touch your hands, the exchange cannot be repaired." },
+    { g: "investing", q: "Is Section 1031 still available in 2026?", a: "Yes. The One Big Beautiful Bill Act, signed 4 July 2025, left Section 1031 fully intact — the proposed $500,000 deferral cap did not become law. The 45-day identification period, the 180-day exchange period and the qualified intermediary requirement are all unchanged." },
   ],
 };

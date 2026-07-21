@@ -1,4 +1,5 @@
 (function(){
+/* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect */
 const {
   useHashRoute,
   TWEAK_DEFAULTS,
@@ -16,9 +17,11 @@ const {
 } = window.JR_LISTINGS;
 const {
   AboutPage,
-  GuidesPage,
+  ArticlesPage,
+  ArticleDetail,
   GuideDetail,
-  ExchangePage
+  ExchangePage,
+  FAQPage
 } = window.JR_PAGES;
 const {
   EstimatorPage,
@@ -74,12 +77,30 @@ function App() {
         go: go
       });
       break;
+    case "articles":
+      page = sub ? /*#__PURE__*/React.createElement(ArticleDetail, {
+        slug: sub,
+        lang: lang,
+        go: go
+      }) : /*#__PURE__*/React.createElement(ArticlesPage, {
+        lang: lang,
+        go: go
+      });
+      break;
+    // #/guides is the old index URL — keep it resolving to the articles page so
+    // existing links and bookmarks don't 404. #/guides/<kind> still opens the guide.
     case "guides":
       page = sub ? /*#__PURE__*/React.createElement(GuideDetail, {
         kind: sub,
         lang: lang,
         go: go
-      }) : /*#__PURE__*/React.createElement(GuidesPage, {
+      }) : /*#__PURE__*/React.createElement(ArticlesPage, {
+        lang: lang,
+        go: go
+      });
+      break;
+    case "faq":
+      page = /*#__PURE__*/React.createElement(FAQPage, {
         lang: lang,
         go: go
       });
@@ -116,12 +137,16 @@ function App() {
   }
   return /*#__PURE__*/React.createElement("div", {
     "data-screen-label": "Page · " + (main || "home")
-  }, /*#__PURE__*/React.createElement(Nav, {
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "skip-link",
+    href: "#main"
+  }, lang === "en" ? "Skip to content" : "跳至主要內容"), /*#__PURE__*/React.createElement(Nav, {
     route: route,
     go: go,
     lang: lang,
     setLang: setLang
   }), /*#__PURE__*/React.createElement("main", {
+    id: "main",
     key: route
   }, page), /*#__PURE__*/React.createElement(Footer, {
     lang: lang,
