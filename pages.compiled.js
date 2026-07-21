@@ -262,7 +262,7 @@ function AboutPage({
     style: {
       marginTop: 16
     }
-  }, lang === "en" ? "In their words" : "客戶原聲"))), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Client Testimonials — In their words" : "客戶推薦 —— 客戶原聲"))), /*#__PURE__*/React.createElement("div", {
     className: "test-grid"
   }, D3.testimonials.map((tt, i) => /*#__PURE__*/React.createElement("div", {
     key: i,

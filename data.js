@@ -126,7 +126,7 @@ window.JR_DATA = {
       quoteZh: "Jean 真的很厲害，我們買房賣房都找她，回覆速度快而且專業。當初買房時，她問我是不是一定要買到那間房子，只要我回答說是，那所有的疑難雜症她都會幫我解決，要我不用擔心。我們從 offer 被接受到成交只有 12 天，這 12 天還包括週末兩天，她真的幫我們很快速排除萬難買到房子。很值得信賴的房仲。" },
 
     { name: "Yufan C.", area: "Buyer & Commercial Investor · National City + Sorrento Valley", initials: "YC", rating: 5,
-      quote: "Jean helped me buy a home in National City and then guided me through both the purchase and sale of my commercial office space in Sorrento Valley. She is meticulous, easy to work with, and fights for the best deal — whether I'm on the buyer or the seller side. I've recommended her to many friends, and every one of them has loved working with her too." },
+      quote: "Jean helped me buy a home in National City and then guided me through both the purchase and sale of my commercial office space in Sorrento Valley. She is a real detail person, and she consistently puts her client's interests first. She is also an excellent negotiator — she got me the best deal possible, below asking price. Easy to work with, and she fights just as hard whether I'm on the buyer or the seller side. I love working with her, and I've recommended her to many friends — every one of them has loved working with her too." },
     { name: "Y. Family", area: "Five-time client · Rancho Peñasquitos", initials: "YF", rating: 5,
       quote: "Jean is incredibly knowledgeable and endlessly patient. She has personally handled five real estate transactions for my family — and thanks to her expertise and strong negotiation, we've reached every goal we set. She's the only agent I trust." },
     { name: "ShianRu K.", area: "Seller · Kearny Mesa", initials: "SK", rating: 5,

@@ -171,7 +171,7 @@ function AboutPage({ lang, go }) {
           <div className="sect-head">
             <div className="sect-head-title">
               <span className="eyebrow">{lang==="en"?"Client Voices":"客戶心聲"}</span>
-              <h2 style={{ marginTop: 16 }}>{lang==="en"?"In their words":"客戶原聲"}</h2>
+              <h2 style={{ marginTop: 16 }}>{lang==="en"?"Client Testimonials — In their words":"客戶推薦 —— 客戶原聲"}</h2>
             </div>
           </div>
           <div className="test-grid">
