@@ -1,0 +1,12 @@
+# vCard requires CRLF line endings (RFC 2426). Git's autocrlf normalisation
+# rewrites them to LF on commit, which breaks the folded base64 PHOTO property and
+# can stop the card importing on iOS. Store these byte-for-byte.
+*.vcf -text
+
+# Generated artefacts — keep them out of diffs and language stats. They are
+# committed because CI does not build; regenerate with `npm run build`.
+*.compiled.js linguist-generated=true
+articles/*.html linguist-generated=true
+card/index.html linguist-generated=true
+sitemap.xml linguist-generated=true
+uploads/card-qr.svg linguist-generated=true
