@@ -1,6 +1,6 @@
 /* global React */
 const { useState: uS3, useEffect: uE3 } = React;
-const { D: D3 } = window.JR_CORE;
+const { D: D3, scrollToId } = window.JR_CORE;
 
 // ---------- ABOUT ----------
 function AboutPage({ lang, go }) {
@@ -10,7 +10,7 @@ function AboutPage({ lang, go }) {
         <div className="container">
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>About</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
-          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>視客戶 <em>如皇室</em></>}</h1>
+          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>視客戶 <em>為上賓</em></>}</h1>
           <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · 聖地亞哥新星地產經紀。</>}</p>
         </div>
       </header>
@@ -22,7 +22,7 @@ function AboutPage({ lang, go }) {
               <p className="lede" style={{ fontSize: 22, fontFamily: 'var(--font-display)', fontStyle:'italic', color:'var(--ink)' }}>
                 {lang==="en"
                   ? "Buying or selling a home can be overwhelming — my work is to relieve that, and to make sure my clients feel like royalty from the first conversation through the last signature."
-                  : "買房或賣房可能令人不堪重負 —— 我的工作是消除這份壓力，讓我的客戶從第一次對話到最後一次簽字，全程感受到皇室般的禮遇。"}
+                  : "買房或賣房，常令人不知所措。我的工作就是化解這份壓力，讓客戶從第一次洽談到最後簽約，全程備受尊重與禮遇。"}
               </p>
               <p style={{ color:'var(--ink-dim)', marginTop: 28, lineHeight: 1.8 }}>
                 {lang==="en"
@@ -32,7 +32,7 @@ function AboutPage({ lang, go }) {
               <p style={{ color:'var(--ink-dim)', marginTop: 20, lineHeight: 1.8 }}>
                 {lang==="en"
                   ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego."
-                  : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我精通英語、普通話與臺語 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"}
+                  : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我能以英語、國語與台語溝通 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"}
               </p>
               <div className="bio-credits">
                 <div className="bio-credit"><div className="num" style={{fontSize:28, lineHeight:1.1}}>{lang==="en"?<>Rising<br/>Star</>:<>新星<br/>獎</>}</div><div className="lbl">{lang==="en"?"San Diego Award":"聖地亞哥獎項"}</div></div>
@@ -125,7 +125,7 @@ function AboutPage({ lang, go }) {
           <div style={{ marginBottom: 56 }}>
             <span className="eyebrow">{lang==="en"?"The Jeanify Practice":"Jeanify 業務"}</span>
             <h2 style={{ marginTop: 16 }}>{lang==="en"?"A full-service real estate group.":"全方位房地產服務團隊"}</h2>
-            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents.":"不止於傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。"}</p>
+            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents.":"不只是傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。"}</p>
           </div>
           <div className="grid-4">
             {[
@@ -407,7 +407,10 @@ function ArticleDetail({ slug, lang, go }) {
               <span className="eyebrow no-rule">{lang==="en"?"On this page":"本頁內容"}</span>
               <ol>
                 {headings.map((h, i) => (
-                  <li key={i}><a href={"#" + slugifyHeading(h.x)}>{h.x}</a></li>
+                  <li key={i}>
+                    <a href={"#" + slugifyHeading(h.x)}
+                       onClick={(e) => scrollToId(e, slugifyHeading(h.x))}>{h.x}</a>
+                  </li>
                 ))}
               </ol>
             </nav>

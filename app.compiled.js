@@ -6,7 +6,8 @@ const {
   FONT_PAIRS,
   ACCENT_OPTIONS,
   Nav,
-  Footer
+  Footer,
+  scrollToId
 } = window.JR_CORE;
 const {
   HomePage
@@ -139,7 +140,8 @@ function App() {
     "data-screen-label": "Page · " + (main || "home")
   }, /*#__PURE__*/React.createElement("a", {
     className: "skip-link",
-    href: "#main"
+    href: "#main",
+    onClick: e => scrollToId(e, "main")
   }, lang === "en" ? "Skip to content" : "跳至主要內容"), /*#__PURE__*/React.createElement(Nav, {
     route: route,
     go: go,

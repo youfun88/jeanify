@@ -1,5 +1,5 @@
 /* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect */
-const { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer } = window.JR_CORE;
+const { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, scrollToId } = window.JR_CORE;
 const { HomePage } = window.JR_HOME;
 const { ListingsPage, ListingDetail } = window.JR_LISTINGS;
 const { AboutPage, ArticlesPage, ArticleDetail, GuideDetail, ExchangePage, FAQPage } = window.JR_PAGES;
@@ -48,7 +48,9 @@ function App() {
 
   return (
     <div data-screen-label={"Page · " + (main || "home")}>
-      <a className="skip-link" href="#main">{lang === "en" ? "Skip to content" : "跳至主要內容"}</a>
+      <a className="skip-link" href="#main" onClick={(e) => scrollToId(e, "main")}>
+        {lang === "en" ? "Skip to content" : "跳至主要內容"}
+      </a>
       <Nav route={route} go={go} lang={lang} setLang={setLang} />
       <main id="main" key={route}>{page}</main>
       <Footer lang={lang} go={go} />

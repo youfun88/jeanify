@@ -102,7 +102,7 @@ function EstimatorPage({ lang, go }) {
       <header className="page-head">
         <div className="container">
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Home Valuation</div>
-          <span className="eyebrow">{lang==="en"?"Personal Valuation":"個性化估值"}</span>
+          <span className="eyebrow">{lang==="en"?"Personal Valuation":"客製化估值"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>What's your <em>home</em> worth?</> : <>您的 <em>房產</em> 價值幾何？</>}</h1>
           <p className="lede">{lang==="en"?"No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours.":"不提供自動估值 —— Jean 親自審閱每份請求，通常 48 小時內提供書面 CMA。"}</p>
         </div>
@@ -235,6 +235,21 @@ function ContactPage({ lang, go }) {
                     <div style={{ color:'var(--ink-dim)', fontSize: 14, marginTop: 4 }}>{d}</div>
                   </div>
                 ))}
+
+                {/* Scan-to-save digital card. The QR encodes the /card page, which
+                    serves a vCard — so a phone camera gets Jean into contacts in
+                    two taps, without anyone typing a number. */}
+                <div className="contact-qr">
+                  <img src="uploads/card-qr.svg" alt={lang==="en"?"QR code linking to Jean Riley's digital business card":"掃描開啟 Jean Riley 的電子名片"} width="116" height="116" />
+                  <div>
+                    <h4>{lang==="en"?"Save Jean to your phone":"將 Jean 存入手機通訊錄"}</h4>
+                    <p>
+                      {lang==="en"
+                        ? <>Point your camera at the code to open Jean's digital card, then tap <strong style={{color:'var(--ink)'}}>Save to Contacts</strong>. Or <a href="card/" target="_blank" rel="noopener noreferrer">open the card</a> directly.</>
+                        : <>用手機相機掃描此碼即可開啟電子名片，點選 <strong style={{color:'var(--ink)'}}>存入通訊錄</strong> 即可儲存。也可 <a href="card/" target="_blank" rel="noopener noreferrer">直接開啟名片</a>。</>}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             <form style={{ background:'var(--bg-elev)', padding: 48, border:'1px solid var(--line)' }} onSubmit={onSubmit}>
@@ -314,7 +329,7 @@ function VideosPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Videos</div>
           <span className="eyebrow">{lang==="en"?"Video Library":"影片中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>From the <em>field</em>.</> : <>市場 <em>實錄</em></>}</h1>
-          <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社群導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"}</p>
+          <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"}</p>
           <div style={{ marginTop: 24 }}>
             <a className="btn btn-primary arrow-right" href={D4.agent.youtube} target="_blank" rel="noopener noreferrer">
               {lang==="en"?"Visit YouTube Channel — ":"訪問 YouTube 頻道 · "}{D4.agent.youtubeHandle}
@@ -349,7 +364,7 @@ function VideosPage({ lang, go }) {
             {sectionHeader(
               lang==="en"?"Client Voice-Overs":"客戶配音",
               lang==="en"?"Heard from the people who lived it":"由親歷者講述",
-              lang==="en"?"Property tours narrated by Jean's actual clients — about the homes and communities they came to love.":"由 Jean 的真實客戶配音介紹 —— 講述他們所喜愛的家與社群。"
+              lang==="en"?"Property tours narrated by Jean's actual clients — about the homes and communities they came to love.":"由 Jean 的真實客戶親自配音 —— 講述他們所喜愛的家與社區。"
             )}
             <div className="video-grid">
               {voiceovers.map(v => <VC4 key={v.id} v={v} feature={v === voiceovers[0]} />)}
@@ -362,9 +377,9 @@ function VideosPage({ lang, go }) {
         <section className="section">
           <div className="container">
             {sectionHeader(
-              lang==="en"?"Property & Neighborhood Tours":"房源與社群導覽",
+              lang==="en"?"Property & Neighborhood Tours":"房源與社區導覽",
               lang==="en"?"Inside San Diego's homes, from Jean":"聖地亞哥家居實景，由 Jean 親自介紹",
-              lang==="en"?"Walkthroughs of recent listings and the neighborhoods that surround them.":"近期房源走訪與周邊社群導覽。"
+              lang==="en"?"Walkthroughs of recent listings and the neighborhoods that surround them.":"近期房源走訪與周邊社區導覽。"
             )}
             <div className="video-grid">
               {tours.map(v => <VC4 key={v.id} v={v} />)}

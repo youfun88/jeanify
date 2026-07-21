@@ -432,7 +432,7 @@ function HomePage({
       lineHeight: 1.7,
       maxWidth: '40ch'
     }
-  }, lang === "en" ? "Automated estimates routinely miss San Diego's coastal micro-markets. Share a few details and I'll prepare a personal CMA — usually within 48 hours." : "自動估值常忽略聖地亞哥沿海微市場的真實價值。請填寫以下資訊，我將在 48 小時內為您準備個性化市場分析（CMA）。")), /*#__PURE__*/React.createElement("form", {
+  }, lang === "en" ? "Automated estimates routinely miss San Diego's coastal micro-markets. Share a few details and I'll prepare a personal CMA — usually within 48 hours." : "自動估值常忽略聖地亞哥沿海微市場的真實價值。請填寫以下資訊，我將在 48 小時內為您準備客製化市場分析（CMA）。")), /*#__PURE__*/React.createElement("form", {
     className: "est-form",
     onSubmit: e => {
       e.preventDefault();

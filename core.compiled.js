@@ -196,6 +196,29 @@ function Nav({
   }, D.agent.email)))));
 }
 
+// In-page anchors, without breaking the router.
+//
+// A bare href="#some-heading" replaces the whole location hash, so the hash router
+// reads "some-heading" as a route, finds nothing, and falls through to the home
+// page. Anchors therefore scroll manually and never touch the URL. (The generated
+// static article pages have no router, so their plain #anchors are fine as-is.)
+function scrollToId(e, id) {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  // Focus first: moving focus can abort an in-flight smooth scroll, and the skip
+  // link is useless if focus doesn't travel with the viewport.
+  if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+  el.focus({
+    preventScroll: true
+  });
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({
+    behavior: reduce ? "auto" : "smooth",
+    block: "start"
+  });
+}
+
 // ---------- Newsletter ----------
 // This used to be a bare input + button with no handler — it accepted an email
 // address and did nothing with it. It now posts to the same inbox as the contact form.
@@ -513,6 +536,7 @@ window.JR_CORE = {
   ytThumb,
   ytEmbed,
   ytWatch,
+  scrollToId,
   D
 };
 })();

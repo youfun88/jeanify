@@ -412,6 +412,9 @@ const urls = [
   ...hashRoutes.map(([p, cf, pr]) =>
     `  <url>\n    <loc>${SITE}/${p}</loc>\n    <changefreq>${cf}</changefreq>\n    <priority>${pr}</priority>\n  </url>`),
   `  <url>\n    <loc>${SITE}/articles/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
+  // Listed under SITE because a sitemap may only contain URLs on its own host.
+  // The QR code deliberately encodes CARD_URL instead — see tools/agent.mjs.
+  `  <url>\n    <loc>${SITE}/card/</loc>\n    <changefreq>yearly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
   ...ARTICLES.map((a) =>
     `  <url>\n    <loc>${SITE}/articles/${a.slug}.html</loc>\n    <lastmod>${a.updated || a.date}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`),
 ];

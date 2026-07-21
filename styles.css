@@ -306,6 +306,9 @@ p { margin: 0; }
   min-height: 100vh;
   display: flex;
   align-items: flex-end;
+  /* The nav is position:fixed, so without top padding the headline's first line
+     sits underneath it once the content is taller than the viewport. */
+  padding-top: 136px;
   padding-bottom: 80px;
   overflow: hidden;
 }
@@ -353,6 +356,25 @@ p { margin: 0; }
   font-style: italic;
   max-width: 14ch;
   line-height: 1.15;
+}
+
+/* h1 scales on viewport WIDTH, but in a short, wide window the binding constraint
+   is height — four lines of 104px type plus sub-copy, buttons and stats overflow,
+   and the top line gets pushed under the nav. Step the type down by height too. */
+@media (max-height: 900px) {
+  .hero-headline { font-size: clamp(40px, 5.4vw, 78px); }
+  .hero-meta { margin-top: 40px; }
+}
+@media (max-height: 760px) {
+  .hero { padding-top: 118px; padding-bottom: 56px; }
+  .hero-headline { font-size: clamp(34px, 4.4vw, 60px); max-width: 18ch; }
+  .hero-meta { margin-top: 28px; }
+  .hero-sub { font-size: 16px; }
+}
+@media (max-height: 620px) {
+  .hero { padding-top: 104px; padding-bottom: 40px; }
+  .hero-headline { font-size: clamp(30px, 3.6vw, 46px); }
+  .hero-sub { font-size: 15px; }
 }
 .hero-headline em {
   font-style: italic;
@@ -613,6 +635,167 @@ textarea:focus-visible,
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .contact-link:hover { color: var(--brass); border-bottom-color: var(--brass); }
+
+/* ---------- Digital business card (/card) ---------- */
+/* Standalone page, mostly reached by scanning a QR on a phone — so it is built
+   mobile-first and every row is a tap target. */
+.card-body { background: var(--bg-deep); }
+.card-wrap {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 40px 20px 56px;
+}
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 40px 28px 32px;
+  text-align: center;
+}
+.card-top { display: flex; flex-direction: column; align-items: center; }
+.card-logo { height: 40px; width: auto; margin-bottom: 28px; }
+.card-portrait {
+  width: 128px; height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--brass);
+  margin-bottom: 22px;
+}
+.card-name {
+  font-family: var(--font-display);
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
+}
+.card-title { color: var(--brass); font-size: 15px; margin-top: 10px; }
+.card-license {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  margin-top: 8px;
+}
+.card-tagline {
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 18px;
+  max-width: 34ch;
+}
+
+.card-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 18px 20px;
+  background: var(--brass);
+  color: #0b0d10;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.2s var(--ease);
+}
+.card-save:hover { filter: brightness(1.08); }
+.card-save-icon { font-size: 15px; }
+.card-save-note {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 10px;
+}
+
+.card-rows { margin-top: 30px; text-align: left; }
+.card-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.card-row:last-child { border-bottom: 1px solid var(--line); }
+.card-row-k {
+  flex: 0 0 78px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.card-row-v { color: var(--ink); font-size: 15px; line-height: 1.55; }
+a.card-row .card-row-v { color: var(--brass); }
+a.card-row:hover .card-row-v { text-decoration: underline; }
+.card-row-static .card-row-v { color: var(--ink-dim); }
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-top: 26px;
+}
+.card-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 3px;
+}
+.card-links a:hover { color: var(--brass); border-bottom-color: var(--brass); }
+
+.card-qr-block { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); }
+.card-qr {
+  width: 132px; height: 132px;
+  background: #fff;
+  padding: 8px;
+  display: block;
+  margin: 0 auto 12px;
+}
+.card-qr-block p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.card-foot {
+  margin-top: 26px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+/* QR block on the contact page */
+.contact-qr {
+  margin-top: 40px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.contact-qr img {
+  width: 116px; height: 116px;
+  flex: 0 0 116px;
+  background: #fff;
+  padding: 7px;
+}
+.contact-qr h4 { margin-bottom: 8px; }
+.contact-qr p { color: var(--ink-dim); font-size: 14px; line-height: 1.65; }
+.contact-qr a { color: var(--brass); }
+@media (max-width: 520px) {
+  .contact-qr { flex-direction: column; text-align: center; gap: 18px; }
+}
 
 /* About → the name / brand story */
 .brand-story { text-align: center; }
@@ -1680,14 +1863,19 @@ a.article-card { text-decoration: none; color: inherit; }
   vertical-align: top;
   line-height: 1.6;
 }
+/* Column headers label the data, so they need to survive a scan — 10px mono read
+   as decoration next to 15px body cells. */
 .art-table thead th {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass);
   border-bottom-color: var(--brass);
   white-space: nowrap;
+  padding-top: 10px;
+  padding-bottom: 16px;
 }
 .art-table tbody th { color: var(--ink); font-weight: 500; }
 .art-table td { color: var(--ink-dim); }

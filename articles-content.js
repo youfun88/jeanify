@@ -349,9 +349,9 @@ window.JR_ARTICLES = [
     read: "8 min",
     date: "2026-07-08",
     updated: "2026-07-20",
-    // No photo yet — the card falls back to the typographic gradient placeholder.
-    // Drop a file at uploads/articles/mello-roos.jpg and set `image` to use it.
-    image: null,
+    // 17134 Monterey Ridge Way — one of Jean's own 92127 closings, and exactly the
+    // master-planned housing stock this article is about. No stock photo needed.
+    image: "uploads/articles/mello-roos.jpg",
     metaTitle: "Mello-Roos in San Diego (92127, 92130, 92131): 2026 Buyer's Guide",
     metaDesc: "What Mello-Roos costs San Diego buyers in 4S Ranch, Del Sur, Carmel Valley and Pacific Highlands Ranch — typical annual amounts, how it affects mortgage qualification, when it expires, and how to verify a specific parcel before offering.",
     answer:
@@ -430,8 +430,9 @@ window.JR_ARTICLES = [
     read: "10 min",
     date: "2026-07-02",
     updated: "2026-07-20",
-    // No photo yet — see the note on mello-roos-san-diego.
-    image: null,
+    // Coastal San Diego from the air — the view an overseas buyer forms of the
+    // market before they ever stand in it. Cropped from uploads/coastline-aerial.jpg.
+    image: "uploads/articles/international.jpg",
     metaTitle: "Buying San Diego Real Estate as a Foreign National (2026 Guide)",
     metaDesc: "A 2026 guide for international buyers of San Diego property — foreign national mortgages without US credit, FIRPTA withholding on resale, the $60,000 non-resident estate tax threshold, and the documents to prepare before you offer.",
     answer:

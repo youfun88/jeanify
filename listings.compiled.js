@@ -44,7 +44,7 @@ function ListingsPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "The ", /*#__PURE__*/React.createElement("em", null, "Listings")) : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5168\u90E8 ", /*#__PURE__*/React.createElement("em", null, "\u623F\u6E90"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods." : "涵蓋聖地亞哥沿海與都市核心社群的在售、近期成交與出租房源。"))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods." : "涵蓋聖地亞哥沿海與都市核心社區的在售、近期成交與出租房源。"))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"

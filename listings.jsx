@@ -16,7 +16,7 @@ function ListingsPage({ lang, go, sub }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Listings":"房源"}</div>
           <span className="eyebrow">{lang==="en"?"Curated Portfolio · San Diego":"精選房源 · 聖地亞哥"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>Listings</em></> : <>全部 <em>房源</em></>}</h1>
-          <p className="lede">{lang==="en"?"Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods.":"涵蓋聖地亞哥沿海與都市核心社群的在售、近期成交與出租房源。"}</p>
+          <p className="lede">{lang==="en"?"Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods.":"涵蓋聖地亞哥沿海與都市核心社區的在售、近期成交與出租房源。"}</p>
         </div>
       </header>
       <section className="section">

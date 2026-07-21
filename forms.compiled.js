@@ -156,7 +156,7 @@ function EstimatorPage({
     }
   }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Home Valuation"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, lang === "en" ? "Personal Valuation" : "個性化估值"), /*#__PURE__*/React.createElement("h1", {
+  }, lang === "en" ? "Personal Valuation" : "客製化估值"), /*#__PURE__*/React.createElement("h1", {
     style: {
       marginTop: 20
     }
@@ -393,7 +393,30 @@ function ContactPage({
       fontSize: 14,
       marginTop: 4
     }
-  }, d))))), /*#__PURE__*/React.createElement("form", {
+  }, d))), /*#__PURE__*/React.createElement("div", {
+    className: "contact-qr"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "uploads/card-qr.svg",
+    alt: lang === "en" ? "QR code linking to Jean Riley's digital business card" : "掃描開啟 Jean Riley 的電子名片",
+    width: "116",
+    height: "116"
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, lang === "en" ? "Save Jean to your phone" : "將 Jean 存入手機通訊錄"), /*#__PURE__*/React.createElement("p", null, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Point your camera at the code to open Jean's digital card, then tap ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--ink)'
+    }
+  }, "Save to Contacts"), ". Or ", /*#__PURE__*/React.createElement("a", {
+    href: "card/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "open the card"), " directly.") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u7528\u624B\u6A5F\u76F8\u6A5F\u6383\u63CF\u6B64\u78BC\u5373\u53EF\u958B\u555F\u96FB\u5B50\u540D\u7247\uFF0C\u9EDE\u9078 ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--ink)'
+    }
+  }, "\u5B58\u5165\u901A\u8A0A\u9304"), " \u5373\u53EF\u5132\u5B58\u3002\u4E5F\u53EF ", /*#__PURE__*/React.createElement("a", {
+    href: "card/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "\u76F4\u63A5\u958B\u555F\u540D\u7247"), "\u3002")))))), /*#__PURE__*/React.createElement("form", {
     style: {
       background: 'var(--bg-elev)',
       padding: 48,
@@ -541,7 +564,7 @@ function VideosPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "From the ", /*#__PURE__*/React.createElement("em", null, "field"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5E02\u5834 ", /*#__PURE__*/React.createElement("em", null, "\u5BE6\u9304"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "為個別房源創作的原創歌曲、房源實地走訪、社群導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 24
     }
@@ -579,7 +602,7 @@ function VideosPage({
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, sectionHeader(lang === "en" ? "Client Voice-Overs" : "客戶配音", lang === "en" ? "Heard from the people who lived it" : "由親歷者講述", lang === "en" ? "Property tours narrated by Jean's actual clients — about the homes and communities they came to love." : "由 Jean 的真實客戶配音介紹 —— 講述他們所喜愛的家與社群。"), /*#__PURE__*/React.createElement("div", {
+  }, sectionHeader(lang === "en" ? "Client Voice-Overs" : "客戶配音", lang === "en" ? "Heard from the people who lived it" : "由親歷者講述", lang === "en" ? "Property tours narrated by Jean's actual clients — about the homes and communities they came to love." : "由 Jean 的真實客戶親自配音 —— 講述他們所喜愛的家與社區。"), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
   }, voiceovers.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
@@ -589,7 +612,7 @@ function VideosPage({
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, sectionHeader(lang === "en" ? "Property & Neighborhood Tours" : "房源與社群導覽", lang === "en" ? "Inside San Diego's homes, from Jean" : "聖地亞哥家居實景，由 Jean 親自介紹", lang === "en" ? "Walkthroughs of recent listings and the neighborhoods that surround them." : "近期房源走訪與周邊社群導覽。"), /*#__PURE__*/React.createElement("div", {
+  }, sectionHeader(lang === "en" ? "Property & Neighborhood Tours" : "房源與社區導覽", lang === "en" ? "Inside San Diego's homes, from Jean" : "聖地亞哥家居實景，由 Jean 親自介紹", lang === "en" ? "Walkthroughs of recent listings and the neighborhoods that surround them." : "近期房源走訪與周邊社區導覽。"), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
   }, tours.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,

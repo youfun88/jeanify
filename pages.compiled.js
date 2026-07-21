@@ -5,7 +5,8 @@ const {
   useEffect: uE3
 } = React;
 const {
-  D: D3
+  D: D3,
+  scrollToId
 } = window.JR_CORE;
 
 // ---------- ABOUT ----------
@@ -33,7 +34,7 @@ function AboutPage({
     style: {
       marginTop: 20
     }
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8996\u5BA2\u6236 ", /*#__PURE__*/React.createElement("em", null, "\u5982\u7687\u5BA4"))), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8996\u5BA2\u6236 ", /*#__PURE__*/React.createElement("em", null, "\u70BA\u4E0A\u8CD3"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 \u8056\u5730\u4E9E\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
     className: "section"
@@ -56,7 +57,7 @@ function AboutPage({
       fontStyle: 'italic',
       color: 'var(--ink)'
     }
-  }, lang === "en" ? "Buying or selling a home can be overwhelming — my work is to relieve that, and to make sure my clients feel like royalty from the first conversation through the last signature." : "買房或賣房可能令人不堪重負 —— 我的工作是消除這份壓力，讓我的客戶從第一次對話到最後一次簽字，全程感受到皇室般的禮遇。"), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? "Buying or selling a home can be overwhelming — my work is to relieve that, and to make sure my clients feel like royalty from the first conversation through the last signature." : "買房或賣房，常令人不知所措。我的工作就是化解這份壓力，讓客戶從第一次洽談到最後簽約，全程備受尊重與禮遇。"), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--ink-dim)',
       marginTop: 28,
@@ -76,7 +77,7 @@ function AboutPage({
       marginTop: 20,
       lineHeight: 1.8
     }
-  }, lang === "en" ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego." : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我精通英語、普通話與臺語 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego." : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我能以英語、國語與台語溝通 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"), /*#__PURE__*/React.createElement("div", {
     className: "bio-credits"
   }, /*#__PURE__*/React.createElement("div", {
     className: "bio-credit"
@@ -184,7 +185,7 @@ function AboutPage({
       marginTop: 20,
       maxWidth: '60ch'
     }
-  }, lang === "en" ? "Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents." : "不止於傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。")), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents." : "不只是傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。")), /*#__PURE__*/React.createElement("div", {
     className: "grid-4"
   }, [{
     t: lang === "en" ? "Real Estate Sales" : "房產銷售",
@@ -607,7 +608,8 @@ function ArticleDetail({
   }, lang === "en" ? "On this page" : "本頁內容"), /*#__PURE__*/React.createElement("ol", null, headings.map((h, i) => /*#__PURE__*/React.createElement("li", {
     key: i
   }, /*#__PURE__*/React.createElement("a", {
-    href: "#" + slugifyHeading(h.x)
+    href: "#" + slugifyHeading(h.x),
+    onClick: e => scrollToId(e, slugifyHeading(h.x))
   }, h.x))))), /*#__PURE__*/React.createElement("div", {
     className: "art-body"
   }, a.sections.map((b, i) => /*#__PURE__*/React.createElement(ArticleBlock, {
