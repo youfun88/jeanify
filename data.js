@@ -111,7 +111,20 @@ window.JR_DATA = {
 
   // Real client voices — first one (Yufan) is the homeowner; the rest are
   // verbatim Zillow reviews, lightly edited for grammar / length only.
+  // Order matters: the home page shows the first three. Karen and Joanna L. lead.
   testimonials: [
+    // Written in Chinese — `quoteZh` holds the original, `quote` the English
+    // rendering. Attributed by initials, matching the convention below. These are
+    // unsolicited written recommendations rather than collected star ratings, so
+    // they are deliberately NOT counted in the aggregateRating JSON-LD in index.html.
+    { name: "Karen", area: "Buyer & Seller · San Diego", initials: "K", rating: 5,
+      quote: "Buying and selling a home is one of life's major decisions, and I was fortunate to find an agent who is professional, honest and genuinely invested. From understanding what we needed, arranging showings and analysing the market, through negotiation, contract and closing — every stage showed real expertise. Whatever came up, she answered patiently and advised from our side of the table rather than simply pushing for a deal. What moved me most was her care: she had me prepare the necessary documents well in advance so nothing was left to the last minute. Her guidance gave me confidence in my decisions and took away a great deal of worry.",
+      quoteZh: "買房、賣房是一件人生大事，而我很幸運遇到一位專業、誠信又用心的房屋仲介。從一開始了解需求、安排看屋、分析市場行情，到議價、簽約以及交屋，每一個環節都展現出高度的專業與豐富的經驗。無論遇到任何問題，都能耐心解答，並站在客戶的角度提供最合適的建議，而不是一味追求成交。最讓我感動的是，整個過程中 Jean 始終保持真誠、細心與負責任的態度，會讓我先把需要的文件提前準備好，才不會在最後一分鐘才處理。她的建議讓我的決定充滿信心，也減少了許多擔心與壓力。" },
+
+    { name: "Joanna L.", area: "Buyer & Seller · San Diego", initials: "JL", rating: 5,
+      quote: "Jean is genuinely outstanding — we go to her for both buying and selling. She replies quickly and she knows her work. When we were buying, she asked whether I absolutely had to have that particular house; once I said yes, she told me not to worry and that she would deal with every complication herself. From offer accepted to closing was only 12 days, and that included a weekend. She cleared every obstacle to get us that home. An agent you can genuinely trust.",
+      quoteZh: "Jean 真的很厲害，我們買房賣房都找她，回覆速度快而且專業。當初買房時，她問我是不是一定要買到那間房子，只要我回答說是，那所有的疑難雜症她都會幫我解決，要我不用擔心。我們從 offer 被接受到成交只有 12 天，這 12 天還包括週末兩天，她真的幫我們很快速排除萬難買到房子。很值得信賴的房仲。" },
+
     { name: "Yufan C.", area: "Buyer & Commercial Investor · National City + Sorrento Valley", initials: "YC", rating: 5,
       quote: "Jean helped me buy a home in National City and then guided me through both the purchase and sale of my commercial office space in Sorrento Valley. She is meticulous, easy to work with, and fights for the best deal — whether I'm on the buyer or the seller side. I've recommended her to many friends, and every one of them has loved working with her too." },
     { name: "Y. Family", area: "Five-time client · Rancho Peñasquitos", initials: "YF", rating: 5,
@@ -127,21 +140,9 @@ window.JR_DATA = {
     { name: "Carmel Valley Landlord", area: "Property management since 2011", initials: "CV", rating: 5,
       quote: "Jean has managed our property since 2011 and has been a delight to work with. She's deeply knowledgeable and professional in the real estate market. We're thinking about buying more properties just so she can manage them too." },
 
-    // Written in Chinese — `quoteZh` holds the original, `quote` the English rendering.
-    // Attributed by initials, matching the convention above. These are unsolicited written
-    // recommendations rather than collected star ratings, so they are deliberately NOT
-    // counted in the aggregateRating JSON-LD in index.html.
-    { name: "Joanna L.", area: "Buyer & Seller · San Diego", initials: "JL", rating: 5,
-      quote: "Jean is genuinely outstanding — we go to her for both buying and selling. She replies quickly and she knows her work. When we were buying, she asked whether I absolutely had to have that particular house; once I said yes, she told me not to worry and that she would deal with every complication herself. From offer accepted to closing was only 12 days, and that included a weekend. She cleared every obstacle to get us that home. An agent you can genuinely trust.",
-      quoteZh: "Jean 真的很厲害，我們買房賣房都找她，回覆速度快而且專業。當初買房時，她問我是不是一定要買到那間房子，只要我回答說是，那所有的疑難雜症她都會幫我解決，要我不用擔心。我們從 offer 被接受到成交只有 12 天，這 12 天還包括週末兩天，她真的幫我們很快速排除萬難買到房子。很值得信賴的房仲。" },
-
     { name: "Richard L.", area: "Community recommendation · San Diego", initials: "RL", rating: 5,
       quote: "I genuinely believe Jean is an outstanding agent — full of passion for her work, and someone who always puts the client's real, practical needs first.",
       quoteZh: "我真心覺得 Jean 是一位對工作充滿熱情，而且永遠以顧客實用需求為最優先考量的優秀房屋仲介。" },
-
-    { name: "Karen", area: "Buyer & Seller · San Diego", initials: "K", rating: 5,
-      quote: "Buying and selling a home is one of life's major decisions, and I was fortunate to find an agent who is professional, honest and genuinely invested. From understanding what we needed, arranging showings and analysing the market, through negotiation, contract and closing — every stage showed real expertise. Whatever came up, she answered patiently and advised from our side of the table rather than simply pushing for a deal. What moved me most was her care: she had me prepare the necessary documents well in advance so nothing was left to the last minute. Her guidance gave me confidence in my decisions and took away a great deal of worry.",
-      quoteZh: "買房、賣房是一件人生大事，而我很幸運遇到一位專業、誠信又用心的房屋仲介。從一開始了解需求、安排看屋、分析市場行情，到議價、簽約以及交屋，每一個環節都展現出高度的專業與豐富的經驗。無論遇到任何問題，都能耐心解答，並站在客戶的角度提供最合適的建議，而不是一味追求成交。最讓我感動的是，整個過程中 Jean 始終保持真誠、細心與負責任的態度，會讓我先把需要的文件提前準備好，才不會在最後一分鐘才處理。她的建議讓我的決定充滿信心，也減少了許多擔心與壓力。" },
   ],
 
   // Real videos from Jean's YouTube channel (@soldbyjean)
