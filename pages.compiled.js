@@ -34,7 +34,7 @@ function AboutPage({
     style: {
       marginTop: 20
     }
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8996\u5BA2\u6236 ", /*#__PURE__*/React.createElement("em", null, "\u70BA\u4E0A\u8CD3"))), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u59CB\u7D42 ", /*#__PURE__*/React.createElement("em", null, "\u4EE5\u5BA2\u70BA\u5C0A"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 \u8056\u5730\u7259\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
     className: "section"

@@ -10,7 +10,10 @@ function AboutPage({ lang, go }) {
         <div className="container">
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>About</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
-          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>視客戶 <em>為上賓</em></>}</h1>
+          {/* 以客為尊 is the established phrase; 視客戶為上賓 was grammatical but
+              constructed. 始終 stays in ink so the brass accent lands on the idiom
+              intact rather than splitting it. */}
+          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>始終 <em>以客為尊</em></>}</h1>
           <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · 聖地牙哥新星地產經紀。</>}</p>
         </div>
       </header>
