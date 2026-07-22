@@ -29,17 +29,43 @@ const {
   ContactPage,
   VideosPage
 } = window.JR_FORMS;
+
+// useTweaks persists through the design-tool host, not through the browser, and it
+// always initialises from TWEAK_DEFAULTS — so a visitor who picked 中文 was dropped
+// back to English by any full page load: a refresh, a return visit, or following a
+// link out to /articles/*.html and back. Language is a visitor preference, so it is
+// stored here instead.
+const LANG_KEY = "jeanify.lang";
+const storedLang = (() => {
+  try {
+    const v = localStorage.getItem(LANG_KEY);
+    return v === "en" || v === "zh" ? v : null;
+  } catch {
+    return null;
+  } // private mode / storage disabled
+})();
 function App() {
   const [route, go] = useHashRoute();
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [lang, setLangLocal] = React.useState(tweaks.lang || "en");
+  const [lang, setLangLocal] = React.useState(storedLang || tweaks.lang || "en");
+  // Only follow the tweaks panel when the visitor has no stored preference of
+  // their own, or the panel's default would clobber their choice on mount.
   React.useEffect(() => {
-    setLangLocal(tweaks.lang);
+    if (!storedLang) setLangLocal(tweaks.lang);
   }, [tweaks.lang]);
   const setLang = l => {
     setLangLocal(l);
     setTweak("lang", l);
+    try {
+      localStorage.setItem(LANG_KEY, l);
+    } catch {/* storage unavailable */}
   };
+
+  // Keep <html lang> in step so screen readers pronounce the page correctly and
+  // search engines see the right language.
+  React.useEffect(() => {
+    document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+  }, [lang]);
   React.useEffect(() => {
     const r = document.documentElement;
     r.style.setProperty("--brass", tweaks.accent);
