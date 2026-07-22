@@ -119,12 +119,14 @@ function Nav({
       e.preventDefault();
       go("home");
     },
-    "aria-label": "Jeanify \u2014 Home"
+    "aria-label": "Jeanify \u2014 Jean Riley, San Diego Realtor \u2014 Home"
   }, /*#__PURE__*/React.createElement("img", {
     className: "nav-brand-img",
     src: "uploads/jeanify-logo-brass.png",
     alt: "Jeanify"
-  })), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "nav-brand-name"
+  }, /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), /*#__PURE__*/React.createElement("small", null, lang === "en" ? "Realtor® · " : "地產經紀 · ", D.agent.license))), /*#__PURE__*/React.createElement("div", {
     className: "nav-links"
   }, links.map(l => /*#__PURE__*/React.createElement("a", {
     key: l.id,

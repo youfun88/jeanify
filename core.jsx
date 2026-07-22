@@ -72,8 +72,15 @@ function Nav({ route, go, lang, setLang }) {
   return (
     <>
       <nav className={"nav" + (scrolled ? " scrolled" : "")}>
-        <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label="Jeanify — Home">
+        {/* The wordmark alone never says whose practice this is. The name sits beside
+            it as a lockup — visible on mobile too, where the links and phone are
+            hidden and the bar is mostly empty anyway. */}
+        <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label="Jeanify — Jean Riley, San Diego Realtor — Home">
           <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+          <span className="nav-brand-name">
+            <strong>Jean Riley</strong>
+            <small>{lang === "en" ? "Realtor® · " : "地產經紀 · "}{D.agent.license}</small>
+          </span>
         </a>
         <div className="nav-links">
           {links.map((l) => (

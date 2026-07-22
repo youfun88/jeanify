@@ -504,7 +504,7 @@ function FAQPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>FAQ</div>
           <span className="eyebrow">{lang==="en"?"Frequently Asked":"常見問題"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The questions I get <em>most</em>.</> : <>最常被 <em>問到</em> 的問題</>}</h1>
-          <p className="lede">{lang==="en"?"Straight answers on commission, timelines, Mello-Roos, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly.":"關於佣金、時程、Mello-Roos、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"}</p>
+          <p className="lede">{lang==="en"?"Straight answers on commission, closing costs, down payments, insurance, Mello-Roos, Prop 19, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly.":"關於佣金、過戶費用、頭期款、房屋保險、Mello-Roos、Prop 19、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"}</p>
         </div>
       </header>
 

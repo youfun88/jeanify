@@ -753,7 +753,7 @@ function FAQPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "The questions I get ", /*#__PURE__*/React.createElement("em", null, "most"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u6700\u5E38\u88AB ", /*#__PURE__*/React.createElement("em", null, "\u554F\u5230"), " \u7684\u554F\u984C")), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Straight answers on commission, timelines, Mello-Roos, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly." : "關於佣金、時程、Mello-Roos、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"))), FAQ_GROUPS.map((grp, gi) => {
+  }, lang === "en" ? "Straight answers on commission, closing costs, down payments, insurance, Mello-Roos, Prop 19, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly." : "關於佣金、過戶費用、頭期款、房屋保險、Mello-Roos、Prop 19、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"))), FAQ_GROUPS.map((grp, gi) => {
     const items = D3.faqs.filter(f => f.g === grp.id);
     if (!items.length) return null;
     return /*#__PURE__*/React.createElement("section", {

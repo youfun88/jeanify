@@ -168,6 +168,45 @@ p { margin: 0; }
   color: var(--brass);
   font-style: italic;
 }
+/* Name lockup beside the wordmark. Separated by a hairline so the logo stays the
+   primary mark and the name reads as attribution rather than part of the logotype. */
+.nav-brand-name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 15px;
+  border-left: 1px solid rgba(201,165,103,0.28);
+}
+.nav-brand-name strong {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.nav-brand-name small {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.nav-brand:hover .nav-brand-name strong { color: var(--brass); }
+/* Between the burger breakpoint and roomy desktop the bar is tightest — six links
+   plus phone plus the language toggle — so drop the credential line there only. */
+@media (min-width: 1025px) and (max-width: 1260px) {
+  .nav-brand-name small { display: none; }
+}
+@media (max-width: 420px) {
+  .nav-brand-name small { display: none; }
+  .nav-brand-name strong { font-size: 16px; }
+  .nav-brand-name { padding-left: 12px; }
+}
+
 .nav-brand-text { line-height: 1; }
 .nav-brand-text small {
   display: block;
