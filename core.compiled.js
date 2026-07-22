@@ -119,7 +119,7 @@ function Nav({
       e.preventDefault();
       go("home");
     },
-    "aria-label": "Jeanify \u2014 Jean Riley, San Diego Realtor \u2014 Home"
+    "aria-label": lang === "zh" ? "Jeanify — Jean Riley，聖地牙哥地產經紀 — 首頁" : "Jeanify — Jean Riley, San Diego Realtor — Home"
   }, /*#__PURE__*/React.createElement("img", {
     className: "nav-brand-img",
     src: "uploads/jeanify-logo-brass.png",
@@ -396,6 +396,13 @@ function Footer({
 }
 
 // ---------- Video card + YouTube lightbox ----------
+const VIDEO_CAT_ZH = {
+  "Listing Song": "房源主題曲",
+  "Client Voice-Over": "客戶配音",
+  "Listing Tour": "房源導覽",
+  "Neighborhood": "社區介紹",
+  "Agent Testimonial": "同業推薦"
+};
 function ytThumb(id) {
   return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
 }
@@ -407,7 +414,8 @@ function ytWatch(id, start) {
 }
 function VideoCard({
   v,
-  feature
+  feature,
+  lang
 }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -431,7 +439,7 @@ function VideoCard({
     style: {
       backgroundImage: "url(" + ytThumb(v.id) + ")"
     },
-    "aria-label": "Play video: " + v.title
+    "aria-label": (lang === "zh" ? "播放影片：" : "Play video: ") + v.title
   }, /*#__PURE__*/React.createElement("span", {
     className: "play"
   }, "\u25B6"), /*#__PURE__*/React.createElement("span", {
@@ -440,7 +448,7 @@ function VideoCard({
     className: "ttl"
   }, v.title), /*#__PURE__*/React.createElement("span", {
     className: "meta"
-  }, v.category))), open && /*#__PURE__*/React.createElement("div", {
+  }, lang === "zh" ? VIDEO_CAT_ZH[v.category] || v.category : v.category))), open && /*#__PURE__*/React.createElement("div", {
     className: "video-modal",
     onClick: () => setOpen(false),
     role: "dialog",
@@ -467,9 +475,15 @@ const SIDE_LABEL = {
   buy: "Buy Side",
   both: "Both Sides"
 };
+const SIDE_LABEL_ZH = {
+  list: "賣方",
+  buy: "買方",
+  both: "買賣雙方"
+};
 function ListingCard({
   l,
-  go
+  go,
+  lang
 }) {
   const hasSpecs = l.beds || l.baths || l.sqft;
   // Photo source: explicit image > YouTube tour thumbnail > none (typographic placeholder).
@@ -495,7 +509,7 @@ function ListingCard({
     style: photoStyle
   }, /*#__PURE__*/React.createElement("div", {
     className: "listing-status " + (l.status === "sold" ? "sold" : l.status === "rent" ? "rent" : "")
-  }, l.status === "sold" ? "Sold" : l.status === "rent" ? "For Rent" : "Active"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "zh" ? l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售" : l.status === "sold" ? "Sold" : l.status === "rent" ? "For Rent" : "Active"), /*#__PURE__*/React.createElement("div", {
     className: "listing-fav"
   }, "\u2661"), !photoSrc && (l.ph ? /*#__PURE__*/React.createElement("div", {
     className: "ph-label"
@@ -509,7 +523,7 @@ function ListingCard({
     className: "ph-label"
   }, l.type || "Property")), l.videoId && /*#__PURE__*/React.createElement("div", {
     className: "listing-video-pill"
-  }, "\u25B6 Video Tour")), /*#__PURE__*/React.createElement("div", {
+  }, "\u25B6 ", lang === "zh" ? "影片導覽" : "Video Tour")), /*#__PURE__*/React.createElement("div", {
     className: "listing-body"
   }, /*#__PURE__*/React.createElement("div", {
     className: "listing-price"
@@ -519,7 +533,7 @@ function ListingCard({
     className: "listing-meta"
   }, hasSpecs ? /*#__PURE__*/React.createElement(React.Fragment, null, l.beds && /*#__PURE__*/React.createElement("span", null, l.beds, " BD"), l.baths && /*#__PURE__*/React.createElement("span", null, l.baths, " BA"), l.sqft && /*#__PURE__*/React.createElement("span", null, l.sqft, " SF")) : l.side && /*#__PURE__*/React.createElement("span", {
     className: "listing-side"
-  }, SIDE_LABEL[l.side] || l.side), l.overAsk && /*#__PURE__*/React.createElement("span", {
+  }, (lang === "zh" ? SIDE_LABEL_ZH[l.side] : SIDE_LABEL[l.side]) || l.side), l.overAsk && /*#__PURE__*/React.createElement("span", {
     style: {
       marginLeft: 'auto',
       color: 'var(--brass)'

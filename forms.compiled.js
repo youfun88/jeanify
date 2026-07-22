@@ -154,7 +154,7 @@ function EstimatorPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Home Valuation"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "Home Valuation" : "房屋估價"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Personal Valuation" : "客製化估價"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -173,7 +173,7 @@ function EstimatorPage({
       marginBottom: 40,
       borderBottom: '1px solid var(--line)'
     }
-  }, ["Property", "Condition", "Contact"].map((s, i) => /*#__PURE__*/React.createElement("div", {
+  }, (lang === "en" ? ["Property", "Condition", "Contact"] : ["房產", "屋況", "聯絡方式"]).map((s, i) => /*#__PURE__*/React.createElement("div", {
     key: s,
     style: {
       flex: 1,
@@ -186,7 +186,7 @@ function EstimatorPage({
       letterSpacing: '.2em',
       textTransform: 'uppercase'
     }
-  }, "\u2014 Step ", i + 1, " \xB7 ", s))), /*#__PURE__*/React.createElement("div", {
+  }, "\u2014 ", lang === "en" ? "Step" : "第", " ", i + 1, " ", lang === "en" ? "·" : "步 ·", " ", s))), /*#__PURE__*/React.createElement("div", {
     style: {
       background: 'var(--bg-elev)',
       padding: 56,
@@ -198,7 +198,7 @@ function EstimatorPage({
     }
   }, lang === "en" ? "Where is your property?" : "您的房產位於哪裡？"), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Street Address"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Street Address" : "街道地址"), /*#__PURE__*/React.createElement("input", {
     value: data.address,
     onChange: e => update("address", e.target.value),
     placeholder: "1247 Coast Boulevard, La Jolla CA 92037"
@@ -206,17 +206,17 @@ function EstimatorPage({
     className: "form-row-3"
   }, /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Beds"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Beds" : "臥室"), /*#__PURE__*/React.createElement("select", {
     value: data.beds,
     onChange: e => update("beds", e.target.value)
   }, /*#__PURE__*/React.createElement("option", null, "\u2014"), /*#__PURE__*/React.createElement("option", null, "1"), /*#__PURE__*/React.createElement("option", null, "2"), /*#__PURE__*/React.createElement("option", null, "3"), /*#__PURE__*/React.createElement("option", null, "4"), /*#__PURE__*/React.createElement("option", null, "5+"))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Baths"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Baths" : "衛浴"), /*#__PURE__*/React.createElement("select", {
     value: data.baths,
     onChange: e => update("baths", e.target.value)
   }, /*#__PURE__*/React.createElement("option", null, "\u2014"), /*#__PURE__*/React.createElement("option", null, "1"), /*#__PURE__*/React.createElement("option", null, "1.5"), /*#__PURE__*/React.createElement("option", null, "2"), /*#__PURE__*/React.createElement("option", null, "2.5"), /*#__PURE__*/React.createElement("option", null, "3+"))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Sq Ft"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Sq Ft" : "室內面積"), /*#__PURE__*/React.createElement("input", {
     value: data.sqft,
     onChange: e => update("sqft", e.target.value),
     placeholder: "2,400"
@@ -226,15 +226,23 @@ function EstimatorPage({
     }
   }, lang === "en" ? "How would you describe its condition?" : "房產狀況如何？"), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Overall Condition"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Overall Condition" : "房屋整體狀況"), /*#__PURE__*/React.createElement("select", {
     value: data.condition,
     onChange: e => update("condition", e.target.value)
-  }, /*#__PURE__*/React.createElement("option", null, "Excellent \u2014 recently renovated"), /*#__PURE__*/React.createElement("option", null, "Good \u2014 well maintained"), /*#__PURE__*/React.createElement("option", null, "Fair \u2014 some updates needed"), /*#__PURE__*/React.createElement("option", null, "Needs work"))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "Excellent \u2014 recently renovated"
+  }, lang === "en" ? "Excellent — recently renovated" : "極佳 — 近期整修過"), /*#__PURE__*/React.createElement("option", {
+    value: "Good \u2014 well maintained"
+  }, lang === "en" ? "Good — well maintained" : "良好 — 維護得宜"), /*#__PURE__*/React.createElement("option", {
+    value: "Fair \u2014 some updates needed"
+  }, lang === "en" ? "Fair — some updates needed" : "尚可 — 需要部分更新"), /*#__PURE__*/React.createElement("option", {
+    value: "Needs work"
+  }, lang === "en" ? "Needs work" : "需要整修"))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Notable features (views, finishes, recent improvements)"), /*#__PURE__*/React.createElement("textarea", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Notable features (views, finishes, recent improvements)" : "房屋特色（景觀、裝修、近期改善）"), /*#__PURE__*/React.createElement("textarea", {
     value: data.notes || "",
     onChange: e => update("notes", e.target.value),
-    placeholder: "Pacific view, kitchen renovated 2023, primary bath 2024..."
+    placeholder: lang === "en" ? "Pacific view, kitchen renovated 2023, primary bath 2024..." : "太平洋景觀、廚房 2023 年翻新、主浴 2024 年整修…"
   }))), step === 3 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     style: {
       marginBottom: 32
@@ -243,27 +251,35 @@ function EstimatorPage({
     className: "form-row-2"
   }, /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Name"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Name" : "姓名"), /*#__PURE__*/React.createElement("input", {
     value: data.name,
     onChange: e => update("name", e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Phone"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Phone" : "電話"), /*#__PURE__*/React.createElement("input", {
     value: data.phone,
     onChange: e => update("phone", e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Email"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Email" : "電子郵件"), /*#__PURE__*/React.createElement("input", {
     value: data.email,
     onChange: e => update("email", e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Best Time to Contact"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Best Time to Contact" : "方便聯絡的時段"), /*#__PURE__*/React.createElement("select", {
     value: data.time,
     onChange: e => update("time", e.target.value)
-  }, /*#__PURE__*/React.createElement("option", null, "Anytime"), /*#__PURE__*/React.createElement("option", null, "Morning (8am \u2013 12pm)"), /*#__PURE__*/React.createElement("option", null, "Afternoon (12pm \u2013 5pm)"), /*#__PURE__*/React.createElement("option", null, "Evening (5pm \u2013 8pm)"))), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "Anytime"
+  }, lang === "en" ? "Anytime" : "任何時間"), /*#__PURE__*/React.createElement("option", {
+    value: "Morning (8am \u2013 12pm)"
+  }, lang === "en" ? "Morning (8am – 12pm)" : "上午（8:00–12:00）"), /*#__PURE__*/React.createElement("option", {
+    value: "Afternoon (12pm \u2013 5pm)"
+  }, lang === "en" ? "Afternoon (12pm – 5pm)" : "下午（12:00–17:00）"), /*#__PURE__*/React.createElement("option", {
+    value: "Evening (5pm \u2013 8pm)"
+  }, lang === "en" ? "Evening (5pm – 8pm)" : "晚上（17:00–20:00）"))), /*#__PURE__*/React.createElement("p", {
     className: "est-note"
-  }, "A written CMA is prepared personally and delivered within 48 hours. No public listing exposure.")), status === "error" && /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "A written CMA is prepared personally and delivered within 48 hours. No public listing exposure." : "書面 CMA 由 Jean 親自製作，48 小時內送達。不會對外公開您的房屋資訊。")), status === "error" && /*#__PURE__*/React.createElement("div", {
     className: "form-status error",
     role: "alert"
   }, errorMsg), /*#__PURE__*/React.createElement("div", {
@@ -281,7 +297,7 @@ function EstimatorPage({
     style: {
       opacity: step === 1 ? 0.4 : 1
     }
-  }, "\u2190 Back"), step < 3 ? /*#__PURE__*/React.createElement("button", {
+  }, "\u2190 ", lang === "en" ? "Back" : "上一步"), step < 3 ? /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary arrow-right",
     onClick: () => setStep(s => s + 1)
   }, lang === "en" ? "Continue" : "繼續") : /*#__PURE__*/React.createElement("button", {
@@ -341,7 +357,7 @@ function ContactPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Contact"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "Contact" : "聯絡"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Get in Touch" : "聯絡"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -364,7 +380,7 @@ function ContactPage({
       flexDirection: 'column',
       gap: 32
     }
-  }, [["Phone", D4.agent.phone, lang === "en" ? "Direct line, 9am – 7pm PT" : "直線，太平洋時間 9 - 19 時", "tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")], ["Email", D4.agent.email, lang === "en" ? "Replies within one business day" : "一個工作日內回覆", "mailto:" + D4.agent.email], ["Office", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126", "https://maps.google.com/?q=9888+Carroll+Centre+Rd+Ste+200+San+Diego+CA+92126"], ["Languages", "English · 中文 (Mandarin) · 台語 (Taiwanese)", lang === "en" ? "All documents reviewable in either language" : "所有檔案支援中英雙語審閱", null]].map(([k, v, d, href]) => /*#__PURE__*/React.createElement("div", {
+  }, [[lang === "en" ? "Phone" : "電話", D4.agent.phone, lang === "en" ? "Direct line, 9am – 7pm PT" : "直線，太平洋時間 9 - 19 時", "tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")], [lang === "en" ? "Email" : "電子郵件", D4.agent.email, lang === "en" ? "Replies within one business day" : "一個工作日內回覆", "mailto:" + D4.agent.email], [lang === "en" ? "Office" : "辦公室", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126", "https://maps.google.com/?q=9888+Carroll+Centre+Rd+Ste+200+San+Diego+CA+92126"], [lang === "en" ? "Languages" : "語言", "English · 中文 · 台語", lang === "en" ? "All documents reviewable in either language" : "所有檔案支援中英雙語審閱", null]].map(([k, v, d, href]) => /*#__PURE__*/React.createElement("div", {
     key: k,
     style: {
       paddingBottom: 24,
@@ -459,33 +475,43 @@ function ContactPage({
     className: "form-row-2"
   }, /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Name"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Name" : "姓名"), /*#__PURE__*/React.createElement("input", {
     name: "name",
     required: true,
     autoComplete: "name"
   })), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Phone"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Phone" : "電話"), /*#__PURE__*/React.createElement("input", {
     name: "phone",
     type: "tel",
     autoComplete: "tel"
   }))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Email"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Email" : "電子郵件"), /*#__PURE__*/React.createElement("input", {
     name: "email",
     type: "email",
     required: true,
     autoComplete: "email"
   })), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "I'm interested in"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "I'm interested in" : "我想諮詢"), /*#__PURE__*/React.createElement("select", {
     name: "interest",
     defaultValue: "Buying in San Diego"
-  }, /*#__PURE__*/React.createElement("option", null, "Buying in San Diego"), /*#__PURE__*/React.createElement("option", null, "Selling my home"), /*#__PURE__*/React.createElement("option", null, "1031 Exchange"), /*#__PURE__*/React.createElement("option", null, "Home valuation"), /*#__PURE__*/React.createElement("option", null, "Just exploring"))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "Buying in San Diego"
+  }, lang === "en" ? "Buying in San Diego" : "在聖地牙哥購屋"), /*#__PURE__*/React.createElement("option", {
+    value: "Selling my home"
+  }, lang === "en" ? "Selling my home" : "出售我的房子"), /*#__PURE__*/React.createElement("option", {
+    value: "1031 Exchange"
+  }, lang === "en" ? "1031 Exchange" : "1031 交換"), /*#__PURE__*/React.createElement("option", {
+    value: "Home valuation"
+  }, lang === "en" ? "Home valuation" : "房屋估價"), /*#__PURE__*/React.createElement("option", {
+    value: "Just exploring"
+  }, lang === "en" ? "Just exploring" : "目前只是先了解"))), /*#__PURE__*/React.createElement("div", {
     className: "input-row"
-  }, /*#__PURE__*/React.createElement("label", null, "Message"), /*#__PURE__*/React.createElement("textarea", {
+  }, /*#__PURE__*/React.createElement("label", null, lang === "en" ? "Message" : "訊息"), /*#__PURE__*/React.createElement("textarea", {
     name: "message",
-    placeholder: "Tell me a little about your timeline, neighborhoods, or anything else helpful..."
+    placeholder: lang === "en" ? "Tell me a little about your timeline, neighborhoods, or anything else helpful..." : "請簡單說明您的時程、想找的區域，或其他任何有幫助的資訊…"
   })), /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     name: "botcheck",
@@ -556,7 +582,7 @@ function VideosPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Videos"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "Videos" : "影片"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Video Library" : "影片中心"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -582,7 +608,8 @@ function VideosPage({
   }, songs.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
     v: v,
-    feature: v.feature
+    feature: v.feature,
+    lang: lang
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 40,
@@ -607,7 +634,8 @@ function VideosPage({
   }, voiceovers.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
     v: v,
-    feature: v === voiceovers[0]
+    feature: v === voiceovers[0],
+    lang: lang
   }))))), tours.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -616,7 +644,8 @@ function VideosPage({
     className: "video-grid"
   }, tours.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
-    v: v
+    v: v,
+    lang: lang
   }))))), testimonials.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section",
     style: {
@@ -628,7 +657,8 @@ function VideosPage({
     className: "video-grid"
   }, testimonials.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
-    v: v
+    v: v,
+    lang: lang
   }))))), /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
   }, /*#__PURE__*/React.createElement("div", {

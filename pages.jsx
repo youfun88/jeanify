@@ -8,7 +8,7 @@ function AboutPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>About</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"About":"關於"}</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
           {/* 以客為尊 is the established phrase; 視客戶為上賓 was grammatical but
               constructed. 始終 stays in ink so the brass accent lands on the idiom
@@ -203,11 +203,21 @@ const ARTICLES = window.JR_ARTICLES || [];
 // Prefer the Chinese field, fall back to English — a missing translation degrades
 // to readable rather than blank.
 const zh = (lang, cn, en) => (lang === "zh" && cn) ? cn : en;
+
+const CAT_ZH = {
+  "Buyer Guide": "買家指南",
+  "Seller Guide": "賣家指南",
+  "Investor": "投資人",
+  "Market": "市場分析",
+  "International": "海外買家",
+};
+const readZh = (lang, r) => lang === "zh" ? r.replace(/\s*min$/, " 分鐘") : r;
 const bySlug = (s) => ARTICLES.find(a => a.slug === s);
 
 // Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
-function articleDate(iso) {
+function articleDate(iso, lang) {
   const [y, m, d] = iso.split("-").map(Number);
+  if (lang === "zh") return `${y} 年 ${m} 月 ${d} 日`;
   return new Date(y, m - 1, d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
@@ -220,10 +230,10 @@ function ArticleCard({ a, go, lang }) {
         className={"article-img" + (a.image ? " has-image" : "")}
         style={a.image ? { backgroundImage: "url(" + encodeURI(a.image) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
       ></div>
-      <div className="article-meta">{a.category} · {a.read}</div>
+      <div className="article-meta">{zh(lang, CAT_ZH[a.category], a.category)} · {readZh(lang, a.read)}</div>
       <h3>{zh(lang, a.titleZh, a.title)}</h3>
       <p className="article-dek">{zh(lang, a.dekZh, a.dek)}</p>
-      <span className="btn-text arrow-right article-more">Read</span>
+      <span className="btn-text arrow-right article-more">{lang==="en"?"Read":"閱讀"}</span>
     </a>
   );
 }
@@ -280,7 +290,7 @@ function ArticlesPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Resources</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Resources":"資源"}</div>
           <span className="eyebrow">{lang==="en"?"Resources":"資源中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Written for the <em>committed</em>.</> : <>專業 <em>專欄</em></>}</h1>
           <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資人整理的實務指南與市場札記，與我服務私人客戶時所用的是同一套方法。"}</p>
@@ -367,7 +377,7 @@ function ArticleDetail({ slug, lang, go }) {
       <div className="page-fade">
         <header className="page-head">
           <div className="container">
-            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a></div>
+            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a></div>
             <h1 style={{ marginTop: 20 }}>Article not found</h1>
             <p className="lede">That article may have been renamed. Everything currently published is on the articles page.</p>
             <div style={{ marginTop: 24 }}>
@@ -387,16 +397,16 @@ function ArticleDetail({ slug, lang, go }) {
       <header className="page-head">
         <div className="container-tight">
           <div className="breadcrumbs">
-            <a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>
-            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a><span>/</span>{a.category}
+            <a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>
+            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{zh(lang, CAT_ZH[a.category], a.category)}
           </div>
-          <span className="eyebrow">{a.category}</span>
+          <span className="eyebrow">{zh(lang, CAT_ZH[a.category], a.category)}</span>
           <h1 style={{ marginTop: 20 }}>{zh(lang, a.titleZh, a.title)}</h1>
           <p className="lede">{zh(lang, a.dekZh, a.dek)}</p>
           <div className="art-byline">
-            <span>By <strong>Jean Riley</strong> · {D3.agent.license}</span>
-            <span>{articleDate(a.date)}{a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""}</span>
-            <span>{a.read} read</span>
+            <span>{lang==="en"?"By":"作者"} <strong>Jean Riley</strong> · {D3.agent.license}</span>
+            <span>{articleDate(a.date, lang)}{a.updated && a.updated !== a.date ? (lang==="en" ? " · Updated " : " · 更新於 ") + articleDate(a.updated, lang) : ""}</span>
+            <span>{lang==="en" ? a.read + " read" : readZh(lang, a.read) + "閱讀"}</span>
           </div>
         </div>
       </header>
@@ -438,8 +448,8 @@ function ArticleDetail({ slug, lang, go }) {
 
           {a.credit && (
             <div className="article-credit" style={{ marginTop: 32 }}>
-              Photo by <a href={a.credit.url + "?utm_source=jean_riley&utm_medium=referral"} target="_blank" rel="noopener noreferrer">{a.credit.name}</a>{" "}
-              on <a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+              {lang==="en"?"Photo by ":"照片："}<a href={a.credit.url + "?utm_source=jean_riley&utm_medium=referral"} target="_blank" rel="noopener noreferrer">{a.credit.name}</a>{" "}
+              {lang==="en"?"on ":"，來源 "}<a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
             </div>
           )}
         </div>
@@ -450,7 +460,7 @@ function ArticleDetail({ slug, lang, go }) {
           <div className="container">
             <div className="sect-head">
               <div className="sect-head-title">
-                <span className="eyebrow">FAQ</span>
+                <span className="eyebrow">{lang==="en"?"FAQ":"常見問題"}</span>
                 <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
               </div>
             </div>
@@ -517,7 +527,7 @@ function FAQPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>FAQ</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"FAQ":"常見問題"}</div>
           <span className="eyebrow">{lang==="en"?"Frequently Asked":"常見問題"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The questions I get <em>most</em>.</> : <>最常被 <em>問到</em> 的問題</>}</h1>
           <p className="lede">{lang==="en"?"Straight answers on commission, closing costs, down payments, insurance, Mello-Roos, Prop 19, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly.":"關於佣金、過戶費用、頭期款、房屋保險、Mello-Roos、Prop 19、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"}</p>
@@ -635,7 +645,7 @@ function GuideDetail({ kind, lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a><span>/</span>{meta.en}</div>
+          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{lang==="en" ? meta.en : meta.zh}</div>
           <span className="eyebrow">{lang==="en"?"Guide":"指南"}</span>
           <h1 style={{ marginTop: 20 }}><em>{lang==="en" ? meta.en : meta.zh}</em></h1>
           <p className="lede">{lang==="en" ? meta.sub.en : meta.sub.zh}</p>
@@ -678,7 +688,7 @@ function ExchangePage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>1031 Exchange</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"1031 Exchange":"1031 交換"}</div>
           <span className="eyebrow">{lang==="en"?"Investor Specialty":"投資專長"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>1031</em> Exchange.</> : <><em>1031</em> 交換</>}</h1>
           <p className="lede">{lang==="en"?"Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each.":"投資性房產的資本利得遞延，前提是時程、文件與中介架構都精確無誤。這些細節，交給我來掌握。"}</p>
@@ -705,7 +715,7 @@ function ExchangePage({ lang, go }) {
         <div className="container">
           <div className="sect-head">
             <div className="sect-head-title">
-              <span className="eyebrow">FAQ</span>
+              <span className="eyebrow">{lang==="en"?"FAQ":"常見問題"}</span>
               <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
             </div>
           </div>

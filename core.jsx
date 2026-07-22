@@ -75,7 +75,7 @@ function Nav({ route, go, lang, setLang }) {
         {/* The wordmark alone never says whose practice this is. The name sits beside
             it as a lockup — visible on mobile too, where the links and phone are
             hidden and the bar is mostly empty anyway. */}
-        <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label="Jeanify — Jean Riley, San Diego Realtor — Home">
+        <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label={lang === "zh" ? "Jeanify — Jean Riley，聖地牙哥地產經紀 — 首頁" : "Jeanify — Jean Riley, San Diego Realtor — Home"}>
           <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
           <span className="nav-brand-name">
             <strong>Jean Riley</strong>
@@ -281,6 +281,13 @@ function Footer({ lang, go }) {
 }
 
 // ---------- Video card + YouTube lightbox ----------
+const VIDEO_CAT_ZH = {
+  "Listing Song": "房源主題曲",
+  "Client Voice-Over": "客戶配音",
+  "Listing Tour": "房源導覽",
+  "Neighborhood": "社區介紹",
+  "Agent Testimonial": "同業推薦",
+};
 function ytThumb(id) { return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; }
 function ytEmbed(id, start) {
   return "https://www.youtube-nocookie.com/embed/" + id +
@@ -290,7 +297,7 @@ function ytWatch(id, start) {
   return "https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start + "s" : "");
 }
 
-function VideoCard({ v, feature }) {
+function VideoCard({ v, feature, lang }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     if (!open) return;
@@ -308,12 +315,12 @@ function VideoCard({ v, feature }) {
         className={"video-card" + (isFeature ? " feature" : "")}
         onClick={() => setOpen(true)}
         style={{ backgroundImage: "url(" + ytThumb(v.id) + ")" }}
-        aria-label={"Play video: " + v.title}
+        aria-label={(lang === "zh" ? "播放影片：" : "Play video: ") + v.title}
       >
         <span className="play">▶</span>
         <span className="video-overlay">
           <span className="ttl">{v.title}</span>
-          <span className="meta">{v.category}</span>
+          <span className="meta">{lang === "zh" ? (VIDEO_CAT_ZH[v.category] || v.category) : v.category}</span>
         </span>
       </button>
       {open && (
@@ -335,7 +342,8 @@ function VideoCard({ v, feature }) {
 
 // ---------- Listing card ----------
 const SIDE_LABEL = { list: "Listing Side", buy: "Buy Side", both: "Both Sides" };
-function ListingCard({ l, go }) {
+const SIDE_LABEL_ZH = { list: "賣方", buy: "買方", both: "買賣雙方" };
+function ListingCard({ l, go, lang }) {
   const hasSpecs = l.beds || l.baths || l.sqft;
   // Photo source: explicit image > YouTube tour thumbnail > none (typographic placeholder).
   const photoSrc = l.image ? encodeURI(l.image) : (l.videoId ? ytThumb(l.videoId) : null);
@@ -350,7 +358,9 @@ function ListingCard({ l, go }) {
     <a className="listing-card" href={"#/listing/" + l.id} onClick={(e) => { e.preventDefault(); go("listing/" + l.id); }}>
       <div className={"listing-photo" + (photoSrc ? " has-image" : "")} style={photoStyle}>
         <div className={"listing-status " + (l.status === "sold" ? "sold" : l.status === "rent" ? "rent" : "")}>
-          {l.status === "sold" ? "Sold" : l.status === "rent" ? "For Rent" : "Active"}
+          {lang === "zh"
+            ? (l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售")
+            : (l.status === "sold" ? "Sold" : l.status === "rent" ? "For Rent" : "Active")}
         </div>
         <div className="listing-fav">♡</div>
         {!photoSrc && (
@@ -360,7 +370,7 @@ function ListingCard({ l, go }) {
               ? <div className="ph-mark"><div className="ph-mark-city">{cityName}</div>{zipName && <div className="ph-mark-zip">{zipName}</div>}</div>
               : <div className="ph-label">{l.type || "Property"}</div>
         )}
-        {l.videoId && <div className="listing-video-pill">▶ Video Tour</div>}
+        {l.videoId && <div className="listing-video-pill">▶ {lang==="zh"?"影片導覽":"Video Tour"}</div>}
       </div>
       <div className="listing-body">
         <div className="listing-price">{l.price}</div>
@@ -373,7 +383,7 @@ function ListingCard({ l, go }) {
               {l.sqft && <span>{l.sqft} SF</span>}
             </>
           ) : (
-            l.side && <span className="listing-side">{SIDE_LABEL[l.side] || l.side}</span>
+            l.side && <span className="listing-side">{(lang==="zh" ? SIDE_LABEL_ZH[l.side] : SIDE_LABEL[l.side]) || l.side}</span>
           )}
           {l.overAsk && <span style={{marginLeft:'auto', color:'var(--brass)'}}>{l.overAsk}</span>}
         </div>

@@ -41,7 +41,7 @@ function ListingsPage({ lang, go, sub }) {
               </a>
             </div>
           ) : (
-            <div className="grid-3">{items.map(l => <LC key={l.id} l={l} go={go} />)}</div>
+            <div className="grid-3">{items.map(l => <LC key={l.id} l={l} go={go} lang={lang} />)}</div>
           )}
           {filter === "sold" && (
             <>
@@ -78,10 +78,10 @@ function ListingDetail({ id, lang, go }) {
       <div className={"detail-hero" + (heroImg ? " has-image" : "")} style={heroStyle}>
         <div className="detail-hero-overlay"></div>
         <div className="detail-hero-content container">
-          <div className="breadcrumbs"><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>Listings</a><span>/</span>{l.street}</div>
+          <div className="breadcrumbs"><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang==="en"?"Listings":"房源"}</a><span>/</span>{l.street}</div>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', gap: 40, flexWrap:'wrap' }}>
             <div>
-              <span className="eyebrow">{l.status === "sold" ? "Closed" : l.status === "rent" ? "For Rent" : "Active"} · {l.area.split(",")[0]}</span>
+              <span className="eyebrow">{lang==="zh" ? (l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售") : (l.status === "sold" ? "Closed" : l.status === "rent" ? "For Rent" : "Active")} · {l.area.split(",")[0]}</span>
               <h1 style={{ margin:'18px 0 10px', fontSize:'clamp(40px, 5vw, 64px)' }}>{l.street}</h1>
               <div style={{ color:'var(--ink-dim)', fontSize: 17 }}>{l.area}</div>
             </div>
@@ -98,13 +98,18 @@ function ListingDetail({ id, lang, go }) {
         <div className="container">
           <div className="listing-detail-layout">
             <div>
-              <span className="eyebrow">Property Description</span>
-              <h2 style={{ margin:'20px 0 32px' }}>{l.ph || "An exceptional offering in San Diego's coastal corridor"}</h2>
+              <span className="eyebrow">{lang==="en"?"Property Description":"房屋介紹"}</span>
+              <h2 style={{ margin:'20px 0 32px' }}>{l.ph || (lang==="en" ? "An exceptional offering in San Diego's coastal corridor" : "聖地牙哥沿海地帶的難得物件")}</h2>
               <p style={{ color:'var(--ink-dim)', fontSize: 17, lineHeight: 1.8 }}>
-                A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access.
+                {lang==="en"
+                  ? "A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access."
+                  : "一棟採光充足、比例得宜的住宅，為加州室內外相連的生活方式而設。主樓層以開放式公共空間為核心，配置專業級廚房與酒藏室，並可直接通往有頂露臺。主臥獨立成區，附私人陽台與磨光石灰岩打造的頂級衛浴。下層則有兩間附衛浴的臥室、視聽室，以及可直接進出的車庫。"}
               </p>
               <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 24, marginTop: 48, paddingTop: 32, borderTop:'1px solid var(--line)' }}>
-                {[["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]].map(([k, v]) => (
+                {(lang==="en"
+                  ? [["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]]
+                  : [["類型", l.type || "獨立住宅"], ["建造年份", "2018"], ["地坪", l.lot || "—"], ["車庫", "雙車位，與主屋相連"], ["樓層", "兩層"], ["管理費", "無"]]
+                 ).map(([k, v]) => (
                   <div key={k} style={{ display:'flex', justifyContent:'space-between', padding:'12px 0', borderBottom:'1px solid var(--line)' }}>
                     <span style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>{k}</span>
                     <span>{v}</span>
@@ -115,8 +120,8 @@ function ListingDetail({ id, lang, go }) {
             <aside style={{ background:'var(--bg-elev)', padding: 32, border:'1px solid var(--line)', alignSelf:'start' }}>
               <div className="test-avatar" style={{ width:64, height:64, fontSize:24, marginBottom:16 }}>JR</div>
               <h4>Jean Riley</h4>
-              <div style={{ color:'var(--ink-dim)', fontSize:13, marginBottom: 24 }}>Listing Agent · {D2.agent.brokerage}</div>
-              <a className="btn btn-primary arrow-right" style={{ width:'100%', justifyContent:'center', marginBottom: 12 }} href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>Schedule Tour</a>
+              <div style={{ color:'var(--ink-dim)', fontSize:13, marginBottom: 24 }}>{lang==="en"?"Listing Agent":"委託經紀"} · {D2.agent.brokerage}</div>
+              <a className="btn btn-primary arrow-right" style={{ width:'100%', justifyContent:'center', marginBottom: 12 }} href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule Tour":"預約看屋"}</a>
               <a className="btn btn-ghost" style={{ width:'100%', justifyContent:'center' }}>{D2.agent.phone}</a>
             </aside>
           </div>

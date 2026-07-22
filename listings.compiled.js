@@ -90,7 +90,8 @@ function ListingsPage({
   }, items.map(l => /*#__PURE__*/React.createElement(LC, {
     key: l.id,
     l: l,
-    go: go
+    go: go,
+    lang: lang
   }))), filter === "sold" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 32,
@@ -165,7 +166,7 @@ function ListingDetail({
       e.preventDefault();
       go("listings");
     }
-  }, "Listings"), /*#__PURE__*/React.createElement("span", null, "/"), l.street), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Listings" : "房源"), /*#__PURE__*/React.createElement("span", null, "/"), l.street), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -175,7 +176,7 @@ function ListingDetail({
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, l.status === "sold" ? "Closed" : l.status === "rent" ? "For Rent" : "Active", " \xB7 ", l.area.split(",")[0]), /*#__PURE__*/React.createElement("h1", {
+  }, lang === "zh" ? l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售" : l.status === "sold" ? "Closed" : l.status === "rent" ? "For Rent" : "Active", " \xB7 ", l.area.split(",")[0]), /*#__PURE__*/React.createElement("h1", {
     style: {
       margin: '18px 0 10px',
       fontSize: 'clamp(40px, 5vw, 64px)'
@@ -208,17 +209,17 @@ function ListingDetail({
     className: "listing-detail-layout"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "Property Description"), /*#__PURE__*/React.createElement("h2", {
+  }, lang === "en" ? "Property Description" : "房屋介紹"), /*#__PURE__*/React.createElement("h2", {
     style: {
       margin: '20px 0 32px'
     }
-  }, l.ph || "An exceptional offering in San Diego's coastal corridor"), /*#__PURE__*/React.createElement("p", {
+  }, l.ph || (lang === "en" ? "An exceptional offering in San Diego's coastal corridor" : "聖地牙哥沿海地帶的難得物件")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--ink-dim)',
       fontSize: 17,
       lineHeight: 1.8
     }
-  }, "A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access."), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access." : "一棟採光充足、比例得宜的住宅，為加州室內外相連的生活方式而設。主樓層以開放式公共空間為核心，配置專業級廚房與酒藏室，並可直接通往有頂露臺。主臥獨立成區，附私人陽台與磨光石灰岩打造的頂級衛浴。下層則有兩間附衛浴的臥室、視聽室，以及可直接進出的車庫。"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
@@ -227,7 +228,7 @@ function ListingDetail({
       paddingTop: 32,
       borderTop: '1px solid var(--line)'
     }
-  }, [["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]].map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+  }, (lang === "en" ? [["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]] : [["類型", l.type || "獨立住宅"], ["建造年份", "2018"], ["地坪", l.lot || "—"], ["車庫", "雙車位，與主屋相連"], ["樓層", "兩層"], ["管理費", "無"]]).map(([k, v]) => /*#__PURE__*/React.createElement("div", {
     key: k,
     style: {
       display: 'flex',
@@ -264,7 +265,7 @@ function ListingDetail({
       fontSize: 13,
       marginBottom: 24
     }
-  }, "Listing Agent \xB7 ", D2.agent.brokerage), /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Listing Agent" : "委託經紀", " \xB7 ", D2.agent.brokerage), /*#__PURE__*/React.createElement("a", {
     className: "btn btn-primary arrow-right",
     style: {
       width: '100%',
@@ -276,7 +277,7 @@ function ListingDetail({
       e.preventDefault();
       go("contact");
     }
-  }, "Schedule Tour"), /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Schedule Tour" : "預約看屋"), /*#__PURE__*/React.createElement("a", {
     className: "btn btn-ghost",
     style: {
       width: '100%',

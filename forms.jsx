@@ -101,7 +101,7 @@ function EstimatorPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Home Valuation</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Home Valuation":"房屋估價"}</div>
           <span className="eyebrow">{lang==="en"?"Personal Valuation":"客製化估價"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>What's your <em>home</em> worth?</> : <>您的房子 <em>值多少</em>？</>}</h1>
           <p className="lede">{lang==="en"?"No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours.":"不提供自動估價。每一份請求都由 Jean 親自審閱，通常在 48 小時內提供書面 CMA。"}</p>
@@ -110,9 +110,9 @@ function EstimatorPage({ lang, go }) {
       <section className="section">
         <div className="container-tight">
           <div style={{ display:'flex', gap: 0, marginBottom: 40, borderBottom:'1px solid var(--line)' }}>
-            {["Property", "Condition", "Contact"].map((s, i) => (
+            {(lang==="en" ? ["Property","Condition","Contact"] : ["房產","屋況","聯絡方式"]).map((s, i) => (
               <div key={s} style={{ flex: 1, padding:'20px 0', textAlign:'center', borderBottom: step===i+1 ? '2px solid var(--brass)' : '2px solid transparent', color: step===i+1 ? 'var(--brass)' : 'var(--ink-faint)', fontFamily:'var(--font-mono)', fontSize: 11, letterSpacing:'.2em', textTransform:'uppercase' }}>
-                — Step {i+1} · {s}
+                — {lang==="en"?"Step":"第"} {i+1} {lang==="en"?"·":"步 ·"} {s}
               </div>
             ))}
           </div>
@@ -120,47 +120,47 @@ function EstimatorPage({ lang, go }) {
             {step === 1 && (
               <div>
                 <h3 style={{ marginBottom: 32 }}>{lang==="en"?"Where is your property?":"您的房產位於哪裡？"}</h3>
-                <div className="input-row"><label>Street Address</label><input value={data.address} onChange={e=>update("address", e.target.value)} placeholder="1247 Coast Boulevard, La Jolla CA 92037" /></div>
+                <div className="input-row"><label>{lang==="en"?"Street Address":"街道地址"}</label><input value={data.address} onChange={e=>update("address", e.target.value)} placeholder="1247 Coast Boulevard, La Jolla CA 92037" /></div>
                 <div className="form-row-3">
-                  <div className="input-row"><label>Beds</label><select value={data.beds} onChange={e=>update("beds", e.target.value)}><option>—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
-                  <div className="input-row"><label>Baths</label><select value={data.baths} onChange={e=>update("baths", e.target.value)}><option>—</option><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option>3+</option></select></div>
-                  <div className="input-row"><label>Sq Ft</label><input value={data.sqft} onChange={e=>update("sqft", e.target.value)} placeholder="2,400" /></div>
+                  <div className="input-row"><label>{lang==="en"?"Beds":"臥室"}</label><select value={data.beds} onChange={e=>update("beds", e.target.value)}><option>—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+                  <div className="input-row"><label>{lang==="en"?"Baths":"衛浴"}</label><select value={data.baths} onChange={e=>update("baths", e.target.value)}><option>—</option><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option>3+</option></select></div>
+                  <div className="input-row"><label>{lang==="en"?"Sq Ft":"室內面積"}</label><input value={data.sqft} onChange={e=>update("sqft", e.target.value)} placeholder="2,400" /></div>
                 </div>
               </div>
             )}
             {step === 2 && (
               <div>
                 <h3 style={{ marginBottom: 32 }}>{lang==="en"?"How would you describe its condition?":"房產狀況如何？"}</h3>
-                <div className="input-row"><label>Overall Condition</label>
+                <div className="input-row"><label>{lang==="en"?"Overall Condition":"房屋整體狀況"}</label>
                   <select value={data.condition} onChange={e=>update("condition", e.target.value)}>
-                    <option>Excellent — recently renovated</option>
-                    <option>Good — well maintained</option>
-                    <option>Fair — some updates needed</option>
-                    <option>Needs work</option>
+                    <option value="Excellent — recently renovated">{lang==="en"?"Excellent — recently renovated":"極佳 — 近期整修過"}</option>
+                    <option value="Good — well maintained">{lang==="en"?"Good — well maintained":"良好 — 維護得宜"}</option>
+                    <option value="Fair — some updates needed">{lang==="en"?"Fair — some updates needed":"尚可 — 需要部分更新"}</option>
+                    <option value="Needs work">{lang==="en"?"Needs work":"需要整修"}</option>
                   </select>
                 </div>
-                <div className="input-row"><label>Notable features (views, finishes, recent improvements)</label><textarea value={data.notes||""} onChange={e=>update("notes", e.target.value)} placeholder="Pacific view, kitchen renovated 2023, primary bath 2024..." /></div>
+                <div className="input-row"><label>{lang==="en"?"Notable features (views, finishes, recent improvements)":"房屋特色（景觀、裝修、近期改善）"}</label><textarea value={data.notes||""} onChange={e=>update("notes", e.target.value)} placeholder={lang==="en"?"Pacific view, kitchen renovated 2023, primary bath 2024...":"太平洋景觀、廚房 2023 年翻新、主浴 2024 年整修…"} /></div>
               </div>
             )}
             {step === 3 && (
               <div>
                 <h3 style={{ marginBottom: 32 }}>{lang==="en"?"How should Jean reach you?":"Jean 該如何聯絡您？"}</h3>
                 <div className="form-row-2">
-                  <div className="input-row"><label>Name</label><input value={data.name} onChange={e=>update("name", e.target.value)} /></div>
-                  <div className="input-row"><label>Phone</label><input value={data.phone} onChange={e=>update("phone", e.target.value)} /></div>
+                  <div className="input-row"><label>{lang==="en"?"Name":"姓名"}</label><input value={data.name} onChange={e=>update("name", e.target.value)} /></div>
+                  <div className="input-row"><label>{lang==="en"?"Phone":"電話"}</label><input value={data.phone} onChange={e=>update("phone", e.target.value)} /></div>
                 </div>
-                <div className="input-row"><label>Email</label><input value={data.email} onChange={e=>update("email", e.target.value)} /></div>
-                <div className="input-row"><label>Best Time to Contact</label>
-                  <select value={data.time} onChange={e=>update("time", e.target.value)}><option>Anytime</option><option>Morning (8am – 12pm)</option><option>Afternoon (12pm – 5pm)</option><option>Evening (5pm – 8pm)</option></select>
+                <div className="input-row"><label>{lang==="en"?"Email":"電子郵件"}</label><input value={data.email} onChange={e=>update("email", e.target.value)} /></div>
+                <div className="input-row"><label>{lang==="en"?"Best Time to Contact":"方便聯絡的時段"}</label>
+                  <select value={data.time} onChange={e=>update("time", e.target.value)}><option value="Anytime">{lang==="en"?"Anytime":"任何時間"}</option><option value="Morning (8am – 12pm)">{lang==="en"?"Morning (8am – 12pm)":"上午（8:00–12:00）"}</option><option value="Afternoon (12pm – 5pm)">{lang==="en"?"Afternoon (12pm – 5pm)":"下午（12:00–17:00）"}</option><option value="Evening (5pm – 8pm)">{lang==="en"?"Evening (5pm – 8pm)":"晚上（17:00–20:00）"}</option></select>
                 </div>
-                <p className="est-note">A written CMA is prepared personally and delivered within 48 hours. No public listing exposure.</p>
+                <p className="est-note">{lang==="en"?"A written CMA is prepared personally and delivered within 48 hours. No public listing exposure.":"書面 CMA 由 Jean 親自製作，48 小時內送達。不會對外公開您的房屋資訊。"}</p>
               </div>
             )}
             {status === "error" && (
               <div className="form-status error" role="alert">{errorMsg}</div>
             )}
             <div style={{ display:'flex', justifyContent:'space-between', marginTop: 40, paddingTop: 32, borderTop:'1px solid var(--line)' }}>
-              <button className="btn btn-ghost" disabled={step===1 || status==="sending"} onClick={()=>setStep(s=>Math.max(1, s-1))} style={{ opacity: step===1 ? 0.4 : 1 }}>← Back</button>
+              <button className="btn btn-ghost" disabled={step===1 || status==="sending"} onClick={()=>setStep(s=>Math.max(1, s-1))} style={{ opacity: step===1 ? 0.4 : 1 }}>← {lang==="en"?"Back":"上一步"}</button>
               {step < 3 ? (
                 <button className="btn btn-primary arrow-right" onClick={()=>setStep(s=>s+1)}>{lang==="en"?"Continue":"繼續"}</button>
               ) : (
@@ -207,7 +207,7 @@ function ContactPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Contact</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Contact":"聯絡"}</div>
           <span className="eyebrow">{lang==="en"?"Get in Touch":"聯絡"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Begin a <em>conversation</em>.</> : <>開啟 <em>對話</em></>}</h1>
         </div>
@@ -220,10 +220,10 @@ function ContactPage({ lang, go }) {
               <div style={{ display:'flex', flexDirection:'column', gap: 32 }}>
                 {/* Phone and email are links — on mobile these are the primary conversion. */}
                 {[
-                  ["Phone", D4.agent.phone, lang==="en"?"Direct line, 9am – 7pm PT":"直線，太平洋時間 9 - 19 時", "tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")],
-                  ["Email", D4.agent.email, lang==="en"?"Replies within one business day":"一個工作日內回覆", "mailto:" + D4.agent.email],
-                  ["Office", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126", "https://maps.google.com/?q=9888+Carroll+Centre+Rd+Ste+200+San+Diego+CA+92126"],
-                  ["Languages", "English · 中文 (Mandarin) · 台語 (Taiwanese)", lang==="en"?"All documents reviewable in either language":"所有檔案支援中英雙語審閱", null],
+                  [lang==="en"?"Phone":"電話", D4.agent.phone, lang==="en"?"Direct line, 9am – 7pm PT":"直線，太平洋時間 9 - 19 時", "tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")],
+                  [lang==="en"?"Email":"電子郵件", D4.agent.email, lang==="en"?"Replies within one business day":"一個工作日內回覆", "mailto:" + D4.agent.email],
+                  [lang==="en"?"Office":"辦公室", "9888 Carroll Centre Rd, Ste 200", "San Diego, California 92126", "https://maps.google.com/?q=9888+Carroll+Centre+Rd+Ste+200+San+Diego+CA+92126"],
+                  [lang==="en"?"Languages":"語言", "English · 中文 · 台語", lang==="en"?"All documents reviewable in either language":"所有檔案支援中英雙語審閱", null],
                 ].map(([k, v, d, href]) => (
                   <div key={k} style={{ paddingBottom: 24, borderBottom:'1px solid var(--line)' }}>
                     <div className="eyebrow" style={{ marginBottom: 12 }}>{k}</div>
@@ -267,20 +267,20 @@ function ContactPage({ lang, go }) {
               ) : (
                 <>
                   <div className="form-row-2">
-                    <div className="input-row"><label>Name</label><input name="name" required autoComplete="name" /></div>
-                    <div className="input-row"><label>Phone</label><input name="phone" type="tel" autoComplete="tel" /></div>
+                    <div className="input-row"><label>{lang==="en"?"Name":"姓名"}</label><input name="name" required autoComplete="name" /></div>
+                    <div className="input-row"><label>{lang==="en"?"Phone":"電話"}</label><input name="phone" type="tel" autoComplete="tel" /></div>
                   </div>
-                  <div className="input-row"><label>Email</label><input name="email" type="email" required autoComplete="email" /></div>
-                  <div className="input-row"><label>I'm interested in</label>
+                  <div className="input-row"><label>{lang==="en"?"Email":"電子郵件"}</label><input name="email" type="email" required autoComplete="email" /></div>
+                  <div className="input-row"><label>{lang==="en"?"I'm interested in":"我想諮詢"}</label>
                     <select name="interest" defaultValue="Buying in San Diego">
-                      <option>Buying in San Diego</option>
-                      <option>Selling my home</option>
-                      <option>1031 Exchange</option>
-                      <option>Home valuation</option>
-                      <option>Just exploring</option>
+                      <option value="Buying in San Diego">{lang==="en"?"Buying in San Diego":"在聖地牙哥購屋"}</option>
+                      <option value="Selling my home">{lang==="en"?"Selling my home":"出售我的房子"}</option>
+                      <option value="1031 Exchange">{lang==="en"?"1031 Exchange":"1031 交換"}</option>
+                      <option value="Home valuation">{lang==="en"?"Home valuation":"房屋估價"}</option>
+                      <option value="Just exploring">{lang==="en"?"Just exploring":"目前只是先了解"}</option>
                     </select>
                   </div>
-                  <div className="input-row"><label>Message</label><textarea name="message" placeholder="Tell me a little about your timeline, neighborhoods, or anything else helpful..." /></div>
+                  <div className="input-row"><label>{lang==="en"?"Message":"訊息"}</label><textarea name="message" placeholder={lang==="en"?"Tell me a little about your timeline, neighborhoods, or anything else helpful...":"請簡單說明您的時程、想找的區域，或其他任何有幫助的資訊…"} /></div>
                   {/* Honeypot — hidden from real users; bots fill it and Web3Forms drops the submission */}
                   <input type="checkbox" name="botcheck" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
                   <button
@@ -326,7 +326,7 @@ function VideosPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Videos</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Videos":"影片"}</div>
           <span className="eyebrow">{lang==="en"?"Video Library":"影片中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>From the <em>field</em>.</> : <>市場 <em>實錄</em></>}</h1>
           <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及客戶與同業經紀人的真實分享，全部來自 Jean 的 YouTube 頻道。"}</p>
@@ -347,7 +347,7 @@ function VideosPage({ lang, go }) {
               lang==="en"?"Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take.":"不是配上罐頭音樂的幻燈片，而是為該物業、街道與周邊環境量身創作的一首歌。這樣的內容人們會看完、會轉發，而我接下的每一套房源都包含這項服務。"
             )}
             <div className="video-grid">
-              {songs.map(v => <VC4 key={v.id} v={v} feature={v.feature} />)}
+              {songs.map(v => <VC4 key={v.id} v={v} feature={v.feature} lang={lang} />)}
             </div>
             <div style={{ marginTop: 40, textAlign: 'center' }}>
               <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
@@ -367,7 +367,7 @@ function VideosPage({ lang, go }) {
               lang==="en"?"Property tours narrated by Jean's actual clients — about the homes and communities they came to love.":"由 Jean 的真實客戶親自配音，講述他們所喜愛的家與社區。"
             )}
             <div className="video-grid">
-              {voiceovers.map(v => <VC4 key={v.id} v={v} feature={v === voiceovers[0]} />)}
+              {voiceovers.map(v => <VC4 key={v.id} v={v} feature={v === voiceovers[0]} lang={lang} />)}
             </div>
           </div>
         </section>
@@ -382,7 +382,7 @@ function VideosPage({ lang, go }) {
               lang==="en"?"Walkthroughs of recent listings and the neighborhoods that surround them.":"近期房源走訪與周邊社區導覽。"
             )}
             <div className="video-grid">
-              {tours.map(v => <VC4 key={v.id} v={v} />)}
+              {tours.map(v => <VC4 key={v.id} v={v} lang={lang} />)}
             </div>
           </div>
         </section>
@@ -397,7 +397,7 @@ function VideosPage({ lang, go }) {
               lang==="en"?"Fellow agents on what it's like to be on the other side of the table from Jean.":"同業經紀人講述與 Jean 在談判桌兩端共事的體驗。"
             )}
             <div className="video-grid">
-              {testimonials.map(v => <VC4 key={v.id} v={v} />)}
+              {testimonials.map(v => <VC4 key={v.id} v={v} lang={lang} />)}
             </div>
           </div>
         </section>

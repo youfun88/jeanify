@@ -34,11 +34,11 @@ function HomePage({
     className: "hero-overlay"
   }), /*#__PURE__*/React.createElement("div", {
     className: "hero-credit"
-  }, "Photo by ", /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Photo by " : "照片：", /*#__PURE__*/React.createElement("a", {
     href: "https://unsplash.com/@chrismags0520?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Christopher Magat"), " ", "on ", /*#__PURE__*/React.createElement("a", {
+  }, "Christopher Magat"), " ", lang === "en" ? "on " : "，來源 ", /*#__PURE__*/React.createElement("a", {
     href: "https://unsplash.com/?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -216,7 +216,8 @@ function HomePage({
   }, sold.map(l => /*#__PURE__*/React.createElement(ListingCard, {
     key: l.id,
     l: l,
-    go: go
+    go: go,
+    lang: lang
   }))))), /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
   }, /*#__PURE__*/React.createElement("div", {
@@ -232,11 +233,11 @@ function HomePage({
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "specialty-credit"
-  }, "Photo by ", /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Photo by " : "照片：", /*#__PURE__*/React.createElement("a", {
     href: "https://unsplash.com/@aalolens?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Aalo Lens"), " ", "on ", /*#__PURE__*/React.createElement("a", {
+  }, "Aalo Lens"), " ", lang === "en" ? "on " : "，來源 ", /*#__PURE__*/React.createElement("a", {
     href: "https://unsplash.com/?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -332,7 +333,8 @@ function HomePage({
   }, songs.map(v => /*#__PURE__*/React.createElement(VideoCard, {
     key: v.id,
     v: v,
-    feature: v.feature
+    feature: v.feature,
+    lang: lang
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 36,
@@ -371,7 +373,8 @@ function HomePage({
     className: "video-grid"
   }, reel.map(v => /*#__PURE__*/React.createElement(VideoCard, {
     key: v.id,
-    v: v
+    v: v,
+    lang: lang
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 32,

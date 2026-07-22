@@ -19,8 +19,8 @@ function HomePage({ lang, go }) {
         <div className="hero-bg"></div>
         <div className="hero-overlay"></div>
         <div className="hero-credit">
-          Photo by <a href="https://unsplash.com/@chrismags0520?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Christopher Magat</a>{" "}
-          on <a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+          {lang==="en"?"Photo by ":"照片："}<a href="https://unsplash.com/@chrismags0520?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Christopher Magat</a>{" "}
+          {lang==="en"?"on ":"，來源 "}<a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
         </div>
         <div className="container hero-content">
           <span className="eyebrow">{t.hero.eyebrow}</span>
@@ -90,7 +90,7 @@ function HomePage({ lang, go }) {
             </a>
           </div>
           <div className="grid-3">
-            {sold.map(l => <ListingCard key={l.id} l={l} go={go} />)}
+            {sold.map(l => <ListingCard key={l.id} l={l} go={go} lang={lang} />)}
           </div>
         </div>
       </section>
@@ -101,8 +101,8 @@ function HomePage({ lang, go }) {
           <div className="specialty">
             <div className="specialty-img" style={{ backgroundImage: "url(uploads/1031-investment.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="specialty-credit">
-                Photo by <a href="https://unsplash.com/@aalolens?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Aalo Lens</a>{" "}
-                on <a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+                {lang==="en"?"Photo by ":"照片："}<a href="https://unsplash.com/@aalolens?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Aalo Lens</a>{" "}
+                {lang==="en"?"on ":"，來源 "}<a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
               </div>
             </div>
             <div className="specialty-body">
@@ -170,7 +170,7 @@ function HomePage({ lang, go }) {
               </a>
             </div>
             <div className="video-grid">
-              {songs.map(v => <VideoCard key={v.id} v={v} feature={v.feature} />)}
+              {songs.map(v => <VideoCard key={v.id} v={v} feature={v.feature} lang={lang} />)}
             </div>
             <div style={{ marginTop: 36, display:'flex', justifyContent:'center' }}>
               <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
@@ -193,7 +193,7 @@ function HomePage({ lang, go }) {
           </div>
           <div className="video-grid">
             {reel.map(v => (
-              <VideoCard key={v.id} v={v} />
+              <VideoCard key={v.id} v={v} lang={lang} />
             ))}
           </div>
           <div style={{ marginTop: 32, display:'flex', justifyContent:'center' }}>

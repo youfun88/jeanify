@@ -28,7 +28,7 @@ function AboutPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "About"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "About" : "關於"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Meet Jean" : "認識 Jean"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -286,11 +286,20 @@ const ARTICLES = window.JR_ARTICLES || [];
 // Prefer the Chinese field, fall back to English — a missing translation degrades
 // to readable rather than blank.
 const zh = (lang, cn, en) => lang === "zh" && cn ? cn : en;
+const CAT_ZH = {
+  "Buyer Guide": "買家指南",
+  "Seller Guide": "賣家指南",
+  "Investor": "投資人",
+  "Market": "市場分析",
+  "International": "海外買家"
+};
+const readZh = (lang, r) => lang === "zh" ? r.replace(/\s*min$/, " 分鐘") : r;
 const bySlug = s => ARTICLES.find(a => a.slug === s);
 
 // Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
-function articleDate(iso) {
+function articleDate(iso, lang) {
   const [y, m, d] = iso.split("-").map(Number);
+  if (lang === "zh") return `${y} 年 ${m} 月 ${d} 日`;
   return new Date(y, m - 1, d).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -320,11 +329,11 @@ function ArticleCard({
     } : null
   }), /*#__PURE__*/React.createElement("div", {
     className: "article-meta"
-  }, a.category, " \xB7 ", a.read), /*#__PURE__*/React.createElement("h3", null, zh(lang, a.titleZh, a.title)), /*#__PURE__*/React.createElement("p", {
+  }, zh(lang, CAT_ZH[a.category], a.category), " \xB7 ", readZh(lang, a.read)), /*#__PURE__*/React.createElement("h3", null, zh(lang, a.titleZh, a.title)), /*#__PURE__*/React.createElement("p", {
     className: "article-dek"
   }, zh(lang, a.dekZh, a.dek)), /*#__PURE__*/React.createElement("span", {
     className: "btn-text arrow-right article-more"
-  }, "Read"));
+  }, lang === "en" ? "Read" : "閱讀"));
 }
 
 // Download card for the seasonal PDF market guides.
@@ -407,7 +416,7 @@ function ArticlesPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Resources"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Resources" : "資源中心"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -548,7 +557,7 @@ function ArticleDetail({
         e.preventDefault();
         go("articles");
       }
-    }, "Resources")), /*#__PURE__*/React.createElement("h1", {
+    }, lang === "en" ? "Resources" : "資源")), /*#__PURE__*/React.createElement("h1", {
       style: {
         marginTop: 20
       }
@@ -583,15 +592,15 @@ function ArticleDetail({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), /*#__PURE__*/React.createElement("a", {
     href: "#/articles",
     onClick: e => {
       e.preventDefault();
       go("articles");
     }
-  }, "Resources"), /*#__PURE__*/React.createElement("span", null, "/"), a.category), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("span", null, "/"), zh(lang, CAT_ZH[a.category], a.category)), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, a.category), /*#__PURE__*/React.createElement("h1", {
+  }, zh(lang, CAT_ZH[a.category], a.category)), /*#__PURE__*/React.createElement("h1", {
     style: {
       marginTop: 20
     }
@@ -599,7 +608,7 @@ function ArticleDetail({
     className: "lede"
   }, zh(lang, a.dekZh, a.dek)), /*#__PURE__*/React.createElement("div", {
     className: "art-byline"
-  }, /*#__PURE__*/React.createElement("span", null, "By ", /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), " \xB7 ", D3.agent.license), /*#__PURE__*/React.createElement("span", null, articleDate(a.date), a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""), /*#__PURE__*/React.createElement("span", null, a.read, " read")))), /*#__PURE__*/React.createElement("article", {
+  }, /*#__PURE__*/React.createElement("span", null, lang === "en" ? "By" : "作者", " ", /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), " \xB7 ", D3.agent.license), /*#__PURE__*/React.createElement("span", null, articleDate(a.date, lang), a.updated && a.updated !== a.date ? (lang === "en" ? " · Updated " : " · 更新於 ") + articleDate(a.updated, lang) : ""), /*#__PURE__*/React.createElement("span", null, lang === "en" ? a.read + " read" : readZh(lang, a.read) + "閱讀")))), /*#__PURE__*/React.createElement("article", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container-tight"
@@ -629,11 +638,11 @@ function ArticleDetail({
     style: {
       marginTop: 32
     }
-  }, "Photo by ", /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Photo by " : "照片：", /*#__PURE__*/React.createElement("a", {
     href: a.credit.url + "?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, a.credit.name), " ", "on ", /*#__PURE__*/React.createElement("a", {
+  }, a.credit.name), " ", lang === "en" ? "on " : "，來源 ", /*#__PURE__*/React.createElement("a", {
     href: "https://unsplash.com/?utm_source=jean_riley&utm_medium=referral",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -650,7 +659,7 @@ function ArticleDetail({
     className: "sect-head-title"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "FAQ"), /*#__PURE__*/React.createElement("h2", {
+  }, lang === "en" ? "FAQ" : "常見問題"), /*#__PURE__*/React.createElement("h2", {
     style: {
       marginTop: 16
     }
@@ -756,7 +765,7 @@ function FAQPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "FAQ"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "FAQ" : "常見問題"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Frequently Asked" : "常見問題"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -883,7 +892,7 @@ function GuideDetail({
       e.preventDefault();
       go("articles");
     }
-  }, "Resources"), /*#__PURE__*/React.createElement("span", null, "/"), meta.en), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? meta.en : meta.zh), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -978,7 +987,7 @@ function ExchangePage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "1031 Exchange"), /*#__PURE__*/React.createElement("span", {
+  }, lang === "en" ? "Home" : "首頁"), /*#__PURE__*/React.createElement("span", null, "/"), lang === "en" ? "1031 Exchange" : "1031 交換"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Investor Specialty" : "投資專長"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -1046,7 +1055,7 @@ function ExchangePage({
     className: "sect-head-title"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "FAQ"), /*#__PURE__*/React.createElement("h2", {
+  }, lang === "en" ? "FAQ" : "常見問題"), /*#__PURE__*/React.createElement("h2", {
     style: {
       marginTop: 16
     }
