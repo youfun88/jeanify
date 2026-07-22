@@ -17,7 +17,11 @@
   /* Type colors */
   --ink: #ece6d8;              /* warm off-white */
   --ink-dim: #a39b8b;
-  --ink-faint: #6b6557;
+  /* Was #6b6557, which measured 2.82–3.36:1 on the site's three surfaces — under the
+     4.5:1 floor everywhere it was used, including form labels, breadcrumbs and the
+     footer. #918a79 clears it (4.76:1 on the lightest surface) and stays visibly
+     quieter than --ink-dim. */
+  --ink-faint: #918a79;
 
   /* Status */
   --green: #7fa67a;
@@ -188,7 +192,7 @@ p { margin: 0; }
 }
 .nav-brand-name small {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   line-height: 1;
@@ -366,9 +370,10 @@ p { margin: 0; }
   right: 18px;
   z-index: 4;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.72);
+  text-shadow: 0 1px 4px rgba(11,13,16,0.9);
 }
 .hero-credit a { color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid transparent; }
 .hero-credit a:hover { border-bottom-color: rgba(255,255,255,0.7); }
@@ -484,7 +489,7 @@ p { margin: 0; }
 }
 .hero-stat .lbl {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -556,7 +561,7 @@ p { margin: 0; }
 .search-field:last-of-type { border-right: none; }
 .search-field label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -786,7 +791,7 @@ textarea:focus-visible,
 .card-row-k {
   flex: 0 0 78px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -825,7 +830,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .card-qr-block p {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -936,7 +941,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .mg-edition {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -970,7 +975,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .mg-meta {
   margin-top: 16px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -1014,7 +1019,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   display: grid;
   place-items: center;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   color: rgba(255,255,255,0.25);
   text-transform: uppercase;
@@ -1062,7 +1067,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   border: 1px solid var(--brass);
   color: var(--brass);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -1123,7 +1128,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   border: 1px solid var(--brass);
   color: var(--brass);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 6px 10px;
@@ -1217,7 +1222,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .bio-credit .lbl {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -1314,7 +1319,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(11,13,16,0.9) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(11,13,16,0.94) 0%, rgba(11,13,16,0.72) 34%, transparent 72%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1353,9 +1358,9 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .video-card.feature .ttl { font-size: 28px; }
 .video-card .meta {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #cfc6b4;
   text-transform: uppercase;
   margin-top: 6px;
 }
@@ -1444,7 +1449,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .est-step-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   color: var(--brass);
   text-transform: uppercase;
@@ -1461,8 +1466,8 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .input-row label {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -1516,7 +1521,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   right: 14px;
   z-index: 2;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: rgba(255,255,255,0.55);
 }
@@ -1547,7 +1552,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   right: 32px;
   font-family: var(--font-display);
   font-size: 80px;
-  color: var(--brass-soft);
+  color: rgba(201, 165, 103, 0.2);
   line-height: 1;
 }
 .guide-card h3 { max-width: 12ch; }
@@ -1730,11 +1735,18 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   justify-content: space-between;
   align-items: center;
   gap: 24px;
+  padding-right: 2px;
   font-family: var(--font-display);
   font-size: 24px;
   color: var(--ink);
 }
 .faq-q .toggle {
+  flex: 0 0 24px;
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   font-family: var(--font-body);
   font-size: 24px;
   color: var(--brass);
@@ -1747,9 +1759,10 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   transition: max-height 0.4s var(--ease), margin-top 0.4s var(--ease);
   color: var(--ink-dim);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
+  max-width: 600px;
 }
-.faq-item.open .faq-a { max-height: 500px; margin-top: 16px; }
+.faq-item.open .faq-a { max-height: 1400px; margin-top: 16px; }
 
 /* Article cards */
 .article-card {
@@ -1787,8 +1800,8 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .article-meta {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brass);
 }
@@ -1798,7 +1811,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .article-credit {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--ink-faint);
   margin-top: -6px;
@@ -1845,6 +1858,7 @@ a.article-card { text-decoration: none; color: inherit; }
   font-size: 19px;
   line-height: 1.7;
   color: var(--ink);
+  max-width: 720px;
 }
 
 .art-toc {
@@ -2143,7 +2157,7 @@ a.article-card { text-decoration: none; color: inherit; }
   .footer-newsletter { flex-direction: column; border: none; gap: 12px; }
   .footer-newsletter input { border: 1px solid var(--line); padding: 14px 16px; }
   .footer-newsletter button { padding: 14px; width: 100%; }
-  .footer-bottom { font-size: 10px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .footer-bottom { font-size: 11px; flex-direction: column; align-items: flex-start; gap: 8px; }
   .nav { padding: 16px 20px; }
   .container { padding: 0 20px; }
   .specialty-body { padding: 32px 24px; }

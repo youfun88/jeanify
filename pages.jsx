@@ -286,7 +286,7 @@ function ArticlesPage({ lang, go }) {
           <div className="grid-3">
             {D3.guides.map(g => (
               <a key={g.num} className="guide-card" href={"#/guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031")} onClick={(e)=>{e.preventDefault(); go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));}}>
-                <div className="num">{g.num}</div>
+                <div className="num" aria-hidden="true">{g.num}</div>
                 <span className="eyebrow no-rule">{lang==="en"?"Guide":"指南"}</span>
                 <h3>{g.title}</h3>
                 <p className="desc">{g.desc}</p>

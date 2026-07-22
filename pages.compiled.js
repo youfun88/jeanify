@@ -425,7 +425,8 @@ function ArticlesPage({
       go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "num"
+    className: "num",
+    "aria-hidden": "true"
   }, g.num), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow no-rule"
   }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h3", null, g.title), /*#__PURE__*/React.createElement("p", {
