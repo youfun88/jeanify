@@ -88,7 +88,7 @@ function ListingDetail({ id, lang, go }) {
             <div style={{ textAlign:'right' }}>
               <div className="listing-price" style={{ fontSize: 48 }}>{l.price}</div>
               <div className="listing-meta" style={{ borderTop:'none', justifyContent:'flex-end' }}>
-                <span>{l.beds} BD</span><span>{l.baths} BA</span><span>{l.sqft} SF</span>
+                <span>{l.beds} {lang==="zh"?"房":"BD"}</span><span>{l.baths} {lang==="zh"?"衛":"BA"}</span><span>{l.sqft} {lang==="zh"?"平方英尺":"SF"}</span>
               </div>
             </div>
           </div>

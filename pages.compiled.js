@@ -353,7 +353,7 @@ function MarketGuideCard({
     className: "mg-desc"
   }, lang === "en" ? g.desc : g.descZh), /*#__PURE__*/React.createElement("ul", {
     className: "mg-contents"
-  }, g.contents.map((c, i) => /*#__PURE__*/React.createElement("li", {
+  }, (lang === "zh" && g.contentsZh ? g.contentsZh : g.contents).map((c, i) => /*#__PURE__*/React.createElement("li", {
     key: i
   }, c))), /*#__PURE__*/React.createElement("a", {
     className: "btn btn-primary arrow-right mg-btn",
@@ -362,7 +362,7 @@ function MarketGuideCard({
     rel: "noopener noreferrer"
   }, lang === "en" ? "Download PDF" : "下載 PDF"), /*#__PURE__*/React.createElement("div", {
     className: "mg-meta"
-  }, g.pages, " ", lang === "en" ? "pages" : "頁", " \xB7 PDF \xB7 ", g.size));
+  }, g.pages, " ", lang === "en" ? "pages" : "頁", " \xB7 PDF \xB7 ", g.size, lang === "zh" ? " · 內容為英文" : ""));
 }
 function MarketGuidesSection({
   lang,

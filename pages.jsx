@@ -249,12 +249,12 @@ function MarketGuideCard({ g, lang }) {
       <h3>{lang==="en" ? g.title : g.titleZh}</h3>
       <p className="mg-desc">{lang==="en" ? g.desc : g.descZh}</p>
       <ul className="mg-contents">
-        {g.contents.map((c, i) => <li key={i}>{c}</li>)}
+        {(lang === "zh" && g.contentsZh ? g.contentsZh : g.contents).map((c, i) => <li key={i}>{c}</li>)}
       </ul>
       <a className="btn btn-primary arrow-right mg-btn" href={g.file} target="_blank" rel="noopener noreferrer">
         {lang==="en" ? "Download PDF" : "下載 PDF"}
       </a>
-      <div className="mg-meta">{g.pages} {lang==="en"?"pages":"頁"} · PDF · {g.size}</div>
+      <div className="mg-meta">{g.pages} {lang==="en"?"pages":"頁"} · PDF · {g.size}{lang==="zh" ? " · 內容為英文" : ""}</div>
     </div>
   );
 }

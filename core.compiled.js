@@ -392,7 +392,7 @@ function Footer({
     }
   }, "9888 Carroll Centre Rd, Ste 200", /*#__PURE__*/React.createElement("br", null), "San Diego, CA 92126")))), /*#__PURE__*/React.createElement("div", {
     className: "footer-bottom"
-  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Jean Riley \xB7 ", D.agent.license, " \xB7 ", D.agent.brokerage), /*#__PURE__*/React.createElement("span", null, "Equal Housing Opportunity \xB7 MLS Member"))));
+  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Jean Riley \xB7 ", D.agent.license, " \xB7 ", D.agent.brokerage), /*#__PURE__*/React.createElement("span", null, lang === "en" ? "Equal Housing Opportunity · MLS Member" : "公平住房機會 · MLS 會員"))));
 }
 
 // ---------- Video card + YouTube lightbox ----------
@@ -531,7 +531,7 @@ function ListingCard({
     className: "listing-addr"
   }, /*#__PURE__*/React.createElement("strong", null, l.street), l.area), /*#__PURE__*/React.createElement("div", {
     className: "listing-meta"
-  }, hasSpecs ? /*#__PURE__*/React.createElement(React.Fragment, null, l.beds && /*#__PURE__*/React.createElement("span", null, l.beds, " BD"), l.baths && /*#__PURE__*/React.createElement("span", null, l.baths, " BA"), l.sqft && /*#__PURE__*/React.createElement("span", null, l.sqft, " SF")) : l.side && /*#__PURE__*/React.createElement("span", {
+  }, hasSpecs ? /*#__PURE__*/React.createElement(React.Fragment, null, l.beds && /*#__PURE__*/React.createElement("span", null, l.beds, " ", lang === "zh" ? "房" : "BD"), l.baths && /*#__PURE__*/React.createElement("span", null, l.baths, " ", lang === "zh" ? "衛" : "BA"), l.sqft && /*#__PURE__*/React.createElement("span", null, l.sqft, " ", lang === "zh" ? "平方英尺" : "SF")) : l.side && /*#__PURE__*/React.createElement("span", {
     className: "listing-side"
   }, (lang === "zh" ? SIDE_LABEL_ZH[l.side] : SIDE_LABEL[l.side]) || l.side), l.overAsk && /*#__PURE__*/React.createElement("span", {
     style: {

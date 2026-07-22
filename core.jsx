@@ -273,7 +273,7 @@ function Footer({ lang, go }) {
         </div>
         <div className="footer-bottom">
           <span>© 2026 Jean Riley · {D.agent.license} · {D.agent.brokerage}</span>
-          <span>Equal Housing Opportunity · MLS Member</span>
+          <span>{lang === "en" ? "Equal Housing Opportunity · MLS Member" : "公平住房機會 · MLS 會員"}</span>
         </div>
       </div>
     </footer>
@@ -378,9 +378,9 @@ function ListingCard({ l, go, lang }) {
         <div className="listing-meta">
           {hasSpecs ? (
             <>
-              {l.beds && <span>{l.beds} BD</span>}
-              {l.baths && <span>{l.baths} BA</span>}
-              {l.sqft && <span>{l.sqft} SF</span>}
+              {l.beds && <span>{l.beds} {lang==="zh"?"房":"BD"}</span>}
+              {l.baths && <span>{l.baths} {lang==="zh"?"衛":"BA"}</span>}
+              {l.sqft && <span>{l.sqft} {lang==="zh"?"平方英尺":"SF"}</span>}
             </>
           ) : (
             l.side && <span className="listing-side">{(lang==="zh" ? SIDE_LABEL_ZH[l.side] : SIDE_LABEL[l.side]) || l.side}</span>

@@ -221,6 +221,19 @@ window.JR_DATA = {
         "Things To Avoid After Applying for a Mortgage",
         "Why You Need To Work with a Real Estate Agent",
       ],
+      // The PDF itself is English; these let a Chinese reader judge whether it is
+      // worth downloading. `pdfLangNote` below sets that expectation.
+      contentsZh: [
+        "房貸利率你控制不了，但這件事可以",
+        "利率變動如何影響你未來的月付金",
+        "可選的物件變多了",
+        "新成屋價格創五年新低",
+        "該買中古屋，還是新成屋？",
+        "今年市場不會發生的三件事",
+        "現在買家最常犯的兩個錯誤",
+        "申請房貸後，千萬別做的事",
+        "為什麼你需要一位房仲",
+      ],
     },
     {
       id: "seller",
@@ -245,6 +258,16 @@ window.JR_DATA = {
         "Your Equity Could Turn You into an All-Cash Buyer",
         "A Checklist for Selling Your House",
         "The #1 Regret Sellers Have When They Don't Use an Agent",
+      ],
+      contentsZh: [
+        "現在賣房，每位屋主都該知道的事",
+        "不論市況如何，快速成交的關鍵",
+        "為什麼今年夏天佈置房屋特別值得",
+        "賣房時，真正能回本的裝修項目",
+        "房屋淨值如何改變你的換屋計畫",
+        "你的房屋淨值，可能讓你成為全現金買家",
+        "賣房前的檢查清單",
+        "沒找房仲的賣家，最後悔的一件事",
       ],
     },
   ],

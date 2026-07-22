@@ -201,7 +201,7 @@ function ListingDetail({
       borderTop: 'none',
       justifyContent: 'flex-end'
     }
-  }, /*#__PURE__*/React.createElement("span", null, l.beds, " BD"), /*#__PURE__*/React.createElement("span", null, l.baths, " BA"), /*#__PURE__*/React.createElement("span", null, l.sqft, " SF")))))), /*#__PURE__*/React.createElement("section", {
+  }, /*#__PURE__*/React.createElement("span", null, l.beds, " ", lang === "zh" ? "房" : "BD"), /*#__PURE__*/React.createElement("span", null, l.baths, " ", lang === "zh" ? "衛" : "BA"), /*#__PURE__*/React.createElement("span", null, l.sqft, " ", lang === "zh" ? "平方英尺" : "SF")))))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
