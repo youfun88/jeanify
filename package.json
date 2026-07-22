@@ -5,11 +5,12 @@
   "description": "Static marketing site for Jean Riley — San Diego Realtor®.",
   "type": "module",
   "scripts": {
-    "build": "node tools/build.mjs && node tools/build-articles.mjs && node tools/build-card.mjs",
+    "build": "node tools/build.mjs && node tools/build-articles.mjs && node tools/build-card.mjs && node tools/check-zh.mjs",
     "build:js": "node tools/build.mjs",
     "build:articles": "node tools/build-articles.mjs",
     "serve": "python3 -m http.server 8000",
-    "build:card": "node tools/build-card.mjs"
+    "build:card": "node tools/build-card.mjs",
+    "check:zh": "node tools/check-zh.mjs"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.0",

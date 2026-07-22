@@ -282,6 +282,7 @@ function AboutPage({
   }, zh(lang, tt.areaZh, tt.area))))))))));
 }
 const ARTICLES = window.JR_ARTICLES || [];
+const ARTICLES_ZH = window.JR_ARTICLES_ZH || {};
 
 // Prefer the Chinese field, fall back to English — a missing translation degrades
 // to readable rather than blank.
@@ -485,38 +486,42 @@ function ArticlesPage({
 // Mirrors tools/build-articles.mjs, which renders the same blocks to static HTML.
 // If you add a block type, add it in both places.
 function ArticleBlock({
-  b
+  b,
+  z
 }) {
+  // Anchor ids always come from the English heading, so article URLs stay ASCII
+  // and keep working when the reader switches language.
+  const d = z || b;
   switch (b.t) {
     case "h":
       return /*#__PURE__*/React.createElement("h2", {
         className: "art-h",
         id: slugifyHeading(b.x)
-      }, b.x);
+      }, d.x);
     case "ul":
       return /*#__PURE__*/React.createElement("ul", {
         className: "art-list"
-      }, b.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
+      }, d.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
         key: i
       }, li)));
     case "ol":
       return /*#__PURE__*/React.createElement("ol", {
         className: "art-list art-list-num"
-      }, b.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
+      }, d.x.map((li, i) => /*#__PURE__*/React.createElement("li", {
         key: i
       }, li)));
     case "callout":
       return /*#__PURE__*/React.createElement("aside", {
         className: "art-callout"
-      }, b.x);
+      }, d.x);
     case "table":
       return /*#__PURE__*/React.createElement("div", {
         className: "art-table-wrap"
       }, /*#__PURE__*/React.createElement("table", {
         className: "art-table"
-      }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, b.head.map((h, i) => /*#__PURE__*/React.createElement("th", {
+      }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, d.head.map((h, i) => /*#__PURE__*/React.createElement("th", {
         key: i
-      }, h)))), /*#__PURE__*/React.createElement("tbody", null, b.rows.map((r, i) => /*#__PURE__*/React.createElement("tr", {
+      }, h)))), /*#__PURE__*/React.createElement("tbody", null, d.rows.map((r, i) => /*#__PURE__*/React.createElement("tr", {
         key: i
       }, r.map((c, j) => j === 0 ? /*#__PURE__*/React.createElement("th", {
         key: j,
@@ -527,7 +532,7 @@ function ArticleBlock({
     default:
       return /*#__PURE__*/React.createElement("p", {
         className: "art-p"
-      }, b.x);
+      }, d.x);
   }
 }
 function slugifyHeading(s) {
@@ -576,7 +581,19 @@ function ArticleDetail({
       }
     }, "All articles")))));
   }
-  const headings = a.sections.filter(s => s.t === "h");
+  const zhBody = lang === "zh" ? ARTICLES_ZH[a.slug] : null;
+  const headings = a.sections.map((s, i) => ({
+    s,
+    i
+  })).filter(({
+    s
+  }) => s.t === "h").map(({
+    s,
+    i
+  }) => ({
+    id: slugifyHeading(s.x),
+    label: zhBody && zhBody.sections[i] ? zhBody.sections[i].x : s.x
+  }));
   const related = (a.related || []).map(bySlug).filter(Boolean);
   return /*#__PURE__*/React.createElement("div", {
     className: "page-fade"
@@ -616,23 +633,22 @@ function ArticleDetail({
     className: "art-answer"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow no-rule"
-  }, lang === "en" ? "The short answer" : "重點摘要"), /*#__PURE__*/React.createElement("p", null, zh(lang, a.answerZh, a.answer))), lang === "zh" && /*#__PURE__*/React.createElement("p", {
-    className: "art-lang-note"
-  }, "\u4EE5\u4E0B\u5167\u6587\u70BA\u82F1\u6587\u3002\u82E5\u60A8\u60F3\u7528\u4E2D\u6587\u4E86\u89E3\u9019\u7BC7\u7684\u5167\u5BB9\uFF0C\u6B61\u8FCE\u76F4\u63A5\u4F86\u96FB ", D3.agent.phone, "\uFF0C\u6211\u5F88\u6A02\u610F\u70BA\u60A8\u8AAA\u660E\u3002"), headings.length > 2 && /*#__PURE__*/React.createElement("nav", {
+  }, lang === "en" ? "The short answer" : "重點摘要"), /*#__PURE__*/React.createElement("p", null, zh(lang, a.answerZh, a.answer))), headings.length > 2 && /*#__PURE__*/React.createElement("nav", {
     className: "art-toc",
-    "aria-label": "On this page"
+    "aria-label": lang === "en" ? "On this page" : "本頁內容"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow no-rule"
   }, lang === "en" ? "On this page" : "本頁內容"), /*#__PURE__*/React.createElement("ol", null, headings.map((h, i) => /*#__PURE__*/React.createElement("li", {
     key: i
   }, /*#__PURE__*/React.createElement("a", {
-    href: "#" + slugifyHeading(h.x),
-    onClick: e => scrollToId(e, slugifyHeading(h.x))
-  }, h.x))))), /*#__PURE__*/React.createElement("div", {
+    href: "#" + h.id,
+    onClick: e => scrollToId(e, h.id)
+  }, h.label))))), /*#__PURE__*/React.createElement("div", {
     className: "art-body"
   }, a.sections.map((b, i) => /*#__PURE__*/React.createElement(ArticleBlock, {
     key: i,
-    b: b
+    b: b,
+    z: zhBody ? zhBody.sections[i] : null
   }))), a.credit && /*#__PURE__*/React.createElement("div", {
     className: "article-credit",
     style: {
@@ -664,7 +680,7 @@ function ArticleDetail({
       marginTop: 16
     }
   }, lang === "en" ? "Frequently asked" : "常見問題"))), /*#__PURE__*/React.createElement(FAQList, {
-    items: a.faqs,
+    items: zhBody ? zhBody.faqs : a.faqs,
     lang: lang
   }))), a.sources && a.sources.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section-sm"

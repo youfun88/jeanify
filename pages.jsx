@@ -199,6 +199,7 @@ function AboutPage({ lang, go }) {
 }
 
 const ARTICLES = window.JR_ARTICLES || [];
+const ARTICLES_ZH = window.JR_ARTICLES_ZH || {};
 
 // Prefer the Chinese field, fall back to English — a missing translation degrades
 // to readable rather than blank.
@@ -340,27 +341,30 @@ function ArticlesPage({ lang, go }) {
 // ---------- ARTICLE DETAIL ----------
 // Mirrors tools/build-articles.mjs, which renders the same blocks to static HTML.
 // If you add a block type, add it in both places.
-function ArticleBlock({ b }) {
+function ArticleBlock({ b, z }) {
+  // Anchor ids always come from the English heading, so article URLs stay ASCII
+  // and keep working when the reader switches language.
+  const d = z || b;
   switch (b.t) {
     case "h":
-      return <h2 className="art-h" id={slugifyHeading(b.x)}>{b.x}</h2>;
+      return <h2 className="art-h" id={slugifyHeading(b.x)}>{d.x}</h2>;
     case "ul":
-      return <ul className="art-list">{b.x.map((li, i) => <li key={i}>{li}</li>)}</ul>;
+      return <ul className="art-list">{d.x.map((li, i) => <li key={i}>{li}</li>)}</ul>;
     case "ol":
-      return <ol className="art-list art-list-num">{b.x.map((li, i) => <li key={i}>{li}</li>)}</ol>;
+      return <ol className="art-list art-list-num">{d.x.map((li, i) => <li key={i}>{li}</li>)}</ol>;
     case "callout":
-      return <aside className="art-callout">{b.x}</aside>;
+      return <aside className="art-callout">{d.x}</aside>;
     case "table":
       return (
         <div className="art-table-wrap">
           <table className="art-table">
-            <thead><tr>{b.head.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>
-            <tbody>{b.rows.map((r, i) => <tr key={i}>{r.map((c, j) => j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>)}</tr>)}</tbody>
+            <thead><tr>{d.head.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>
+            <tbody>{d.rows.map((r, i) => <tr key={i}>{r.map((c, j) => j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>)}</tr>)}</tbody>
           </table>
         </div>
       );
     default:
-      return <p className="art-p">{b.x}</p>;
+      return <p className="art-p">{d.x}</p>;
   }
 }
 
@@ -389,7 +393,11 @@ function ArticleDetail({ slug, lang, go }) {
     );
   }
 
-  const headings = a.sections.filter(s => s.t === "h");
+  const zhBody = lang === "zh" ? ARTICLES_ZH[a.slug] : null;
+  const headings = a.sections
+    .map((s, i) => ({ s, i }))
+    .filter(({ s }) => s.t === "h")
+    .map(({ s, i }) => ({ id: slugifyHeading(s.x), label: (zhBody && zhBody.sections[i]) ? zhBody.sections[i].x : s.x }));
   const related = (a.related || []).map(bySlug).filter(Boolean);
 
   return (
@@ -419,23 +427,15 @@ function ArticleDetail({ slug, lang, go }) {
             <p>{zh(lang, a.answerZh, a.answer)}</p>
           </div>
 
-          {/* Titles, deks and the quick answer are translated; the bodies stay in
-              English because they are written for English search and cite English
-              sources. Say so plainly rather than letting a reader hit the wall. */}
-          {lang === "zh" && (
-            <p className="art-lang-note">
-              以下內文為英文。若您想用中文了解這篇的內容，歡迎直接來電 {D3.agent.phone}，我很樂意為您說明。
-            </p>
-          )}
 
           {headings.length > 2 && (
-            <nav className="art-toc" aria-label="On this page">
+            <nav className="art-toc" aria-label={lang==="en"?"On this page":"本頁內容"}>
               <span className="eyebrow no-rule">{lang==="en"?"On this page":"本頁內容"}</span>
               <ol>
                 {headings.map((h, i) => (
                   <li key={i}>
-                    <a href={"#" + slugifyHeading(h.x)}
-                       onClick={(e) => scrollToId(e, slugifyHeading(h.x))}>{h.x}</a>
+                    <a href={"#" + h.id}
+                       onClick={(e) => scrollToId(e, h.id)}>{h.label}</a>
                   </li>
                 ))}
               </ol>
@@ -443,7 +443,7 @@ function ArticleDetail({ slug, lang, go }) {
           )}
 
           <div className="art-body">
-            {a.sections.map((b, i) => <ArticleBlock key={i} b={b} />)}
+            {a.sections.map((b, i) => <ArticleBlock key={i} b={b} z={zhBody ? zhBody.sections[i] : null} />)}
           </div>
 
           {a.credit && (
@@ -464,7 +464,7 @@ function ArticleDetail({ slug, lang, go }) {
                 <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
               </div>
             </div>
-            <FAQList items={a.faqs} lang={lang} />
+            <FAQList items={zhBody ? zhBody.faqs : a.faqs} lang={lang} />
           </div>
         </section>
       )}
