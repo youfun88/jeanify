@@ -132,7 +132,7 @@ function articleSchema(a, url) {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/" },
-        { "@type": "ListItem", "position": 2, "name": "Articles", "item": SITE + "/articles/" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": SITE + "/articles/" },
         { "@type": "ListItem", "position": 3, "name": a.title, "item": url },
       ],
     },
@@ -182,7 +182,7 @@ ${articleSchema(a, url).map((s) => `<script type="application/ld+json">\n${jsonl
   <div class="nav-links">
     <a class="nav-link" href="../index.html#/home">Home</a>
     <a class="nav-link" href="../index.html#/about">About</a>
-    <a class="nav-link active" href="./">Articles</a>
+    <a class="nav-link active" href="./">Resources</a>
     <a class="nav-link" href="../index.html#/faq">FAQ</a>
     <a class="nav-link" href="../index.html#/exchange">1031 Exchange</a>
     <a class="nav-link" href="../index.html#/contact">Contact</a>
@@ -219,7 +219,7 @@ ${chrome.nav}
   <header class="page-head">
     <div class="container-tight">
       <div class="breadcrumbs">
-        <a href="../index.html">Home</a><span>/</span><a href="./">Articles</a><span>/</span>${esc(a.category)}
+        <a href="../index.html">Home</a><span>/</span><a href="./">Resources</a><span>/</span>${esc(a.category)}
       </div>
       <span class="eyebrow">${esc(a.category)}</span>
       <h1 style="margin-top:20px">${esc(a.title)}</h1>
@@ -327,12 +327,12 @@ const indexHtml = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Articles — San Diego Real Estate Guides | Jean Riley, Realtor®</title>
+<title>Resources — San Diego Real Estate Guides &amp; Articles | Jean Riley, Realtor®</title>
 <meta name="description" content="Working guides for San Diego buyers, sellers and 1031 investors — La Jolla buying, pre-listing preparation, Mello-Roos, comparative market analysis, exchange timing and buying from overseas." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="${indexUrl}" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Articles — San Diego Real Estate Guides | Jean Riley" />
+<meta property="og:title" content="Resources — San Diego Real Estate Guides &amp; Articles | Jean Riley" />
 <meta property="og:url" content="${indexUrl}" />
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
@@ -345,7 +345,7 @@ const indexHtml = `<!DOCTYPE html>
 ${jsonld({
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Articles — Jean Riley, San Diego Realtor®",
+  "name": "Resources — Jean Riley, San Diego Realtor®",
   "url": indexUrl,
   "hasPart": ARTICLES.map((a) => ({
     "@type": "Article",
@@ -362,7 +362,7 @@ ${chrome.nav}
 <div class="page-fade">
   <header class="page-head">
     <div class="container">
-      <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span>Articles</div>
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span>Resources</div>
       <span class="eyebrow">Resources</span>
       <h1 style="margin-top:20px">Written for the <em>committed</em>.</h1>
       <p class="lede">Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.</p>

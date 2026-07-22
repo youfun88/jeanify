@@ -253,7 +253,7 @@ function Footer({ lang, go }) {
           <div>
             <h5>{lang === "en" ? "Resources" : "資源"}</h5>
             <ul>
-              <li><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang === "en" ? "Articles" : "專欄文章"}</a></li>
+              <li><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang === "en" ? "Articles & Guides" : "專欄與指南"}</a></li>
               <li><a href="#/guides/buyer" onClick={(e)=>{e.preventDefault();go("guides/buyer");}}>{lang === "en" ? "Buyer Guide" : "買家指南"}</a></li>
               <li><a href="#/guides/seller" onClick={(e)=>{e.preventDefault();go("guides/seller");}}>{lang === "en" ? "Seller Guide" : "賣家指南"}</a></li>
               <li><a href="#/faq" onClick={(e)=>{e.preventDefault();go("faq");}}>{lang === "en" ? "FAQ" : "常見問題"}</a></li>

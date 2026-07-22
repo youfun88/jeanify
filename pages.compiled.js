@@ -402,7 +402,7 @@ function ArticlesPage({
       e.preventDefault();
       go("home");
     }
-  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Articles"), /*#__PURE__*/React.createElement("span", {
+  }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Resources"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Resources" : "資源中心"), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -541,7 +541,7 @@ function ArticleDetail({
         e.preventDefault();
         go("articles");
       }
-    }, "Articles")), /*#__PURE__*/React.createElement("h1", {
+    }, "Resources")), /*#__PURE__*/React.createElement("h1", {
       style: {
         marginTop: 20
       }
@@ -582,7 +582,7 @@ function ArticleDetail({
       e.preventDefault();
       go("articles");
     }
-  }, "Articles"), /*#__PURE__*/React.createElement("span", null, "/"), a.category), /*#__PURE__*/React.createElement("span", {
+  }, "Resources"), /*#__PURE__*/React.createElement("span", null, "/"), a.category), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, a.category), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -865,7 +865,7 @@ function GuideDetail({
       e.preventDefault();
       go("articles");
     }
-  }, "Articles"), /*#__PURE__*/React.createElement("span", null, "/"), meta.en), /*#__PURE__*/React.createElement("span", {
+  }, "Resources"), /*#__PURE__*/React.createElement("span", null, "/"), meta.en), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h1", {
     style: {

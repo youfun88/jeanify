@@ -46,7 +46,7 @@ Largest recent featured closings (≥ $1M):
 - [Featured Homes (sold)](https://jeanriley.com/#/listings): 21 closings ≥ $1M with photos, prices, addresses, side represented (Buy / Listing / Both).
 - [About Jean](https://jeanriley.com/#/about): Bio, mission, Jeanify practice services, four-phase process, all client testimonials.
 - [Videos](https://jeanriley.com/#/videos): Listing songs, property tours, neighborhood walkthroughs, client voice-overs, agent testimonials. Source: https://www.youtube.com/@soldbyjean
-- [Guides](https://jeanriley.com/#/articles): Buyer Guide, Seller Guide, 1031 Exchange Primer.
+- [Resources](https://jeanriley.com/#/articles): Buyer Guide, Seller Guide, 1031 Exchange Primer, seasonal PDF market briefings, and the articles listed below.
 - [1031 Exchange](https://jeanriley.com/#/exchange): 45-day identification window, 180-day close, 200% rule, FAQ.
 - [FAQ](https://jeanriley.com/#/faq): Commission structure, timelines, Mello-Roos, 1031 exchanges, buying from overseas, listing songs.
 - [Contact](https://jeanriley.com/#/contact): Contact form and direct contact info.

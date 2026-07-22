@@ -273,7 +273,7 @@ function ArticlesPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Articles</div>
+          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Resources</div>
           <span className="eyebrow">{lang==="en"?"Resources":"資源中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Written for the <em>committed</em>.</> : <>專業 <em>專欄</em></>}</h1>
           <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資者準備的實操指南與市場札記 —— 我服務私人客戶所用的同一套方法論。"}</p>
@@ -360,7 +360,7 @@ function ArticleDetail({ slug, lang, go }) {
       <div className="page-fade">
         <header className="page-head">
           <div className="container">
-            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a></div>
+            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a></div>
             <h1 style={{ marginTop: 20 }}>Article not found</h1>
             <p className="lede">That article may have been renamed. Everything currently published is on the articles page.</p>
             <div style={{ marginTop: 24 }}>
@@ -381,7 +381,7 @@ function ArticleDetail({ slug, lang, go }) {
         <div className="container-tight">
           <div className="breadcrumbs">
             <a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>
-            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a><span>/</span>{a.category}
+            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a><span>/</span>{a.category}
           </div>
           <span className="eyebrow">{a.category}</span>
           <h1 style={{ marginTop: 20 }}>{a.title}</h1>
@@ -585,7 +585,7 @@ function GuideDetail({ kind, lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Articles</a><span>/</span>{meta.en}</div>
+          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a><span>/</span>{meta.en}</div>
           <span className="eyebrow">{lang==="en"?"Guide":"指南"}</span>
           <h1 style={{ marginTop: 20 }}><em>{lang==="en" ? meta.en : meta.zh}</em></h1>
           <p className="lede">{lang==="en" ? meta.sub.en : meta.sub.zh}</p>

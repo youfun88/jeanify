@@ -18,7 +18,7 @@ window.JR_DATA = {
     en: {
       // `listings` / `videos` are no longer top-nav items — both live as sections on
       // the home page — but the labels are still used by the footer and breadcrumbs.
-      nav: { home: "Home", listings: "Listings", videos: "Videos", about: "About", articles: "Articles", guides: "Guides", faq: "FAQ", exchange: "1031 Exchange", contact: "Contact" },
+      nav: { home: "Home", listings: "Listings", videos: "Videos", about: "About", articles: "Resources", guides: "Guides", faq: "FAQ", exchange: "1031 Exchange", contact: "Contact" },
       hero: {
         eyebrow: "San Diego · Established 2015",
         h1: ["A discerning approach to", "California coastal living."],
@@ -44,7 +44,7 @@ window.JR_DATA = {
       },
     },
     zh: {
-      nav: { home: "首頁", listings: "房源", videos: "影片", about: "關於", articles: "專欄", guides: "指南", faq: "常見問題", exchange: "1031 交換", contact: "聯絡" },
+      nav: { home: "首頁", listings: "房源", videos: "影片", about: "關於", articles: "資源", guides: "指南", faq: "常見問題", exchange: "1031 交換", contact: "聯絡" },
       hero: {
         eyebrow: "聖地亞哥 · 始於 2015",
         h1: ["以專業態度", "服務加州海岸生活"],

@@ -347,7 +347,7 @@ function Footer({
       e.preventDefault();
       go("articles");
     }
-  }, lang === "en" ? "Articles" : "專欄文章")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Articles & Guides" : "專欄與指南")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/guides/buyer",
     onClick: e => {
       e.preventDefault();
