@@ -42,26 +42,26 @@ Largest recent featured closings (≥ $1M):
 
 ## Content
 
-- [Home](https://jeanriley.com/): Overview, hero, recent featured closings, 1031 Exchange highlight, client voices, video reel.
-- [Featured Homes (sold)](https://jeanriley.com/#/listings): 21 closings ≥ $1M with photos, prices, addresses, side represented (Buy / Listing / Both).
-- [About Jean](https://jeanriley.com/#/about): Bio, mission, Jeanify practice services, four-phase process, all client testimonials.
-- [Videos](https://jeanriley.com/#/videos): Listing songs, property tours, neighborhood walkthroughs, client voice-overs, agent testimonials. Source: https://www.youtube.com/@soldbyjean
-- [Resources](https://jeanriley.com/#/articles): Buyer Guide, Seller Guide, 1031 Exchange Primer, seasonal PDF market briefings, and the articles listed below.
-- [1031 Exchange](https://jeanriley.com/#/exchange): 45-day identification window, 180-day close, 200% rule, FAQ.
-- [FAQ](https://jeanriley.com/#/faq): Commission structure, timelines, Mello-Roos, 1031 exchanges, buying from overseas, listing songs.
-- [Contact](https://jeanriley.com/#/contact): Contact form and direct contact info.
+- [Home](https://youfun88.github.io/jeanify/): Overview, hero, recent featured closings, 1031 Exchange highlight, client voices, video reel.
+- [Featured Homes (sold)](https://youfun88.github.io/jeanify/#/listings): 21 closings ≥ $1M with photos, prices, addresses, side represented (Buy / Listing / Both).
+- [About Jean](https://youfun88.github.io/jeanify/#/about): Bio, mission, Jeanify practice services, four-phase process, all client testimonials.
+- [Videos](https://youfun88.github.io/jeanify/#/videos): Listing songs, property tours, neighborhood walkthroughs, client voice-overs, agent testimonials. Source: https://www.youtube.com/@soldbyjean
+- [Resources](https://youfun88.github.io/jeanify/#/articles): Buyer Guide, Seller Guide, 1031 Exchange Primer, seasonal PDF market briefings, and the articles listed below.
+- [1031 Exchange](https://youfun88.github.io/jeanify/#/exchange): 45-day identification window, 180-day close, 200% rule, FAQ.
+- [FAQ](https://youfun88.github.io/jeanify/#/faq): Commission structure, timelines, Mello-Roos, 1031 exchanges, buying from overseas, listing songs.
+- [Contact](https://youfun88.github.io/jeanify/#/contact): Contact form and direct contact info.
 
 ## Articles
 
 Full-text articles with their own canonical URLs, sources and FAQ sections. These are static
 HTML pages (not hash routes) and are the preferred citation targets.
 
-- [What to expect when buying in La Jolla](https://jeanriley.com/articles/buying-in-la-jolla.html): La Jolla (92037) pricing vs. the county, the Coastal Overlay Zone and Coastal Development Permits, bluff/geotechnical diligence, Prop 13 basis reset and the supplemental tax bill.
-- [Pre-listing essentials: the seven-point preparation](https://jeanriley.com/articles/pre-listing-preparation.html): How much to spend preparing a home (1–3% of value), item-by-item San Diego costs, staging ROI data, the four-week sequence, and the listing-song marketing piece.
-- [1031 Exchange timing — what trips up most investors](https://jeanriley.com/articles/1031-exchange-timing.html): The 45-day and 180-day clocks, the tax-return-due-date trap that shortens the 180, three-property / 200% / 95% identification rules, boot, California FTB Form 3840, and what the One Big Beautiful Bill Act (July 2025) did and did not change.
-- [Reading a comparative market analysis](https://jeanriley.com/articles/reading-a-cma.html): CMA vs. appraisal vs. automated estimate, Zestimate median error rates (~1.7–2.4% on-market, ~7.5% off-market), what makes a comparable valid, and how adjustment grids work.
-- [Mello-Roos in San Diego: what buyers in 92127, 92130 and 92131 actually pay](https://jeanriley.com/articles/mello-roos-san-diego.html): Community Facilities District tax by area (4S Ranch, Del Sur, Pacific Highlands Ranch, Carmel Valley, Chula Vista), effect on mortgage qualification, bond terms and expiry, and how to verify a specific parcel by APN.
-- [Buying San Diego property as an international buyer](https://jeanriley.com/articles/international-buyers-san-diego.html): Foreign national and DSCR mortgages without US credit, FIRPTA withholding rates and thresholds, the $60,000 non-resident estate tax exemption, ongoing ownership costs, and remote-purchase logistics.
+- [What to expect when buying in La Jolla](https://youfun88.github.io/jeanify/articles/buying-in-la-jolla.html): La Jolla (92037) pricing vs. the county, the Coastal Overlay Zone and Coastal Development Permits, bluff/geotechnical diligence, Prop 13 basis reset and the supplemental tax bill.
+- [Pre-listing essentials: the seven-point preparation](https://youfun88.github.io/jeanify/articles/pre-listing-preparation.html): How much to spend preparing a home (1–3% of value), item-by-item San Diego costs, staging ROI data, the four-week sequence, and the listing-song marketing piece.
+- [1031 Exchange timing — what trips up most investors](https://youfun88.github.io/jeanify/articles/1031-exchange-timing.html): The 45-day and 180-day clocks, the tax-return-due-date trap that shortens the 180, three-property / 200% / 95% identification rules, boot, California FTB Form 3840, and what the One Big Beautiful Bill Act (July 2025) did and did not change.
+- [Reading a comparative market analysis](https://youfun88.github.io/jeanify/articles/reading-a-cma.html): CMA vs. appraisal vs. automated estimate, Zestimate median error rates (~1.7–2.4% on-market, ~7.5% off-market), what makes a comparable valid, and how adjustment grids work.
+- [Mello-Roos in San Diego: what buyers in 92127, 92130 and 92131 actually pay](https://youfun88.github.io/jeanify/articles/mello-roos-san-diego.html): Community Facilities District tax by area (4S Ranch, Del Sur, Pacific Highlands Ranch, Carmel Valley, Chula Vista), effect on mortgage qualification, bond terms and expiry, and how to verify a specific parcel by APN.
+- [Buying San Diego property as an international buyer](https://youfun88.github.io/jeanify/articles/international-buyers-san-diego.html): Foreign national and DSCR mortgages without US credit, FIRPTA withholding rates and thresholds, the $60,000 non-resident estate tax exemption, ongoing ownership costs, and remote-purchase logistics.
 
 ## Signature service — listing songs
 

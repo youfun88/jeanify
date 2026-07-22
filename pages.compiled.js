@@ -111,7 +111,10 @@ function AboutPage({
   }, /*#__PURE__*/React.createElement("img", {
     className: "brand-story-mark",
     src: "uploads/jeanify-logo-brass.png",
-    alt: "Jeanify"
+    alt: "Jeanify",
+    width: "699",
+    height: "309",
+    loading: "lazy"
   }), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, lang === "en" ? "The Name" : "品牌命名"), /*#__PURE__*/React.createElement("h2", {

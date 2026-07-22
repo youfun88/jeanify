@@ -52,4 +52,4 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://jeanriley.com/sitemap.xml
+Sitemap: https://youfun88.github.io/jeanify/sitemap.xml

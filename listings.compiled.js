@@ -139,7 +139,59 @@ function ListingDetail({
   lang,
   go
 }) {
-  const l = D2.listings.find(x => x.id === id) || D2.listings[0];
+  // Previously this fell back to listings[0] — so any unknown or stale URL rendered
+  // a completely different property as though it were the one requested.
+  const l = D2.listings.find(x => x.id === id);
+  if (!l) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "page-fade"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "page-head"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "container-tight"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "breadcrumbs"
+    }, /*#__PURE__*/React.createElement("a", {
+      href: "#/listings",
+      onClick: e => {
+        e.preventDefault();
+        go("listings");
+      }
+    }, lang === "en" ? "Listings" : "房源")), /*#__PURE__*/React.createElement("h1", {
+      style: {
+        marginTop: 20
+      }
+    }, lang === "en" ? "Listing not found" : "找不到這筆房源"), /*#__PURE__*/React.createElement("p", {
+      className: "lede"
+    }, lang === "en" ? "That listing may have closed or been removed. Jean's recent closings are on the listings page." : "這筆房源可能已成交或已下架。Jean 近期的成交紀錄都在房源頁面上。"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 28,
+        display: 'flex',
+        gap: 16,
+        flexWrap: 'wrap'
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "btn btn-primary arrow-right",
+      href: "#/listings",
+      onClick: e => {
+        e.preventDefault();
+        go("listings");
+      }
+    }, lang === "en" ? "View closings" : "檢視成交紀錄"), /*#__PURE__*/React.createElement("a", {
+      className: "btn btn-ghost",
+      href: "#/contact",
+      onClick: e => {
+        e.preventDefault();
+        go("contact");
+      }
+    }, lang === "en" ? "Ask Jean" : "詢問 Jean")))));
+  }
+  const SIDE = {
+    list: lang === "zh" ? "賣方" : "Listing side",
+    buy: lang === "zh" ? "買方" : "Buy side",
+    both: lang === "zh" ? "買賣雙方" : "Both sides"
+  };
+  const specs = [[lang === "en" ? "Type" : "類型", l.type], [lang === "en" ? "Beds" : "臥室", l.beds], [lang === "en" ? "Baths" : "衛浴", l.baths], [lang === "en" ? "Interior" : "室內面積", l.sqft && l.sqft + (lang === "en" ? " sq ft" : " 平方英尺")], [lang === "en" ? "Lot" : "地坪", l.lot], [lang === "en" ? "Closed" : "成交時間", l.soldDate && l.soldDate.replace(" · ", "/")], [lang === "en" ? "Represented" : "代理方", l.side && SIDE[l.side]]].filter(([, v]) => v !== undefined && v !== null && v !== "" && v !== "—");
   const heroImg = l.image ? encodeURI(l.image) : null;
   const heroStyle = heroImg ? {
     marginTop: 80,
@@ -201,7 +253,7 @@ function ListingDetail({
       borderTop: 'none',
       justifyContent: 'flex-end'
     }
-  }, /*#__PURE__*/React.createElement("span", null, l.beds, " ", lang === "zh" ? "房" : "BD"), /*#__PURE__*/React.createElement("span", null, l.baths, " ", lang === "zh" ? "衛" : "BA"), /*#__PURE__*/React.createElement("span", null, l.sqft, " ", lang === "zh" ? "平方英尺" : "SF")))))), /*#__PURE__*/React.createElement("section", {
+  }, l.beds && /*#__PURE__*/React.createElement("span", null, l.beds, " ", lang === "zh" ? "房" : "BD"), l.baths && /*#__PURE__*/React.createElement("span", null, l.baths, " ", lang === "zh" ? "衛" : "BA"), l.sqft && /*#__PURE__*/React.createElement("span", null, l.sqft, " ", lang === "zh" ? "平方英尺" : "SF"), l.soldDate && /*#__PURE__*/React.createElement("span", null, lang === "zh" ? "成交" : "Closed", " ", l.soldDate.replace(" · ", "/"))))))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -209,26 +261,20 @@ function ListingDetail({
     className: "listing-detail-layout"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, lang === "en" ? "Property Description" : "房屋介紹"), /*#__PURE__*/React.createElement("h2", {
+  }, lang === "en" ? "Property" : "物件資料"), /*#__PURE__*/React.createElement("h2", {
     style: {
       margin: '20px 0 32px'
     }
-  }, l.ph || (lang === "en" ? "An exceptional offering in San Diego's coastal corridor" : "聖地牙哥沿海地帶的難得物件")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: 'var(--ink-dim)',
-      fontSize: 17,
-      lineHeight: 1.8
-    }
-  }, lang === "en" ? "A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access." : "一棟採光充足、比例得宜的住宅，為加州室內外相連的生活方式而設。主樓層以開放式公共空間為核心，配置專業級廚房與酒藏室，並可直接通往有頂露臺。主臥獨立成區，附私人陽台與磨光石灰岩打造的頂級衛浴。下層則有兩間附衛浴的臥室、視聽室，以及可直接進出的車庫。"), /*#__PURE__*/React.createElement("div", {
+  }, l.ph || (l.status === "sold" ? lang === "en" ? "Closed by Jean Riley" : "由 Jean Riley 成交" : lang === "en" ? "Represented by Jean Riley" : "由 Jean Riley 代理")), specs.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
       gap: 24,
-      marginTop: 48,
+      marginTop: 8,
       paddingTop: 32,
       borderTop: '1px solid var(--line)'
     }
-  }, (lang === "en" ? [["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]] : [["類型", l.type || "獨立住宅"], ["建造年份", "2018"], ["地坪", l.lot || "—"], ["車庫", "雙車位，與主屋相連"], ["樓層", "兩層"], ["管理費", "無"]]).map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+  }, specs.map(([k, v]) => /*#__PURE__*/React.createElement("div", {
     key: k,
     style: {
       display: 'flex',
@@ -244,7 +290,28 @@ function ListingDetail({
       textTransform: 'uppercase',
       color: 'var(--ink-faint)'
     }
-  }, k), /*#__PURE__*/React.createElement("span", null, v))))), /*#__PURE__*/React.createElement("aside", {
+  }, k), /*#__PURE__*/React.createElement("span", null, v)))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--ink-dim)',
+      fontSize: 15,
+      lineHeight: 1.8,
+      marginTop: 32
+    }
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Full details, photography and the verified transaction record for this and every other closing are on ", /*#__PURE__*/React.createElement("a", {
+    href: D2.agent.zillow,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      color: 'var(--brass)'
+    }
+  }, "Jean's Zillow profile"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u672C\u7269\u4EF6\u8207\u5176\u4ED6\u6240\u6709\u6210\u4EA4\u7684\u5B8C\u6574\u8CC7\u6599\u3001\u7167\u7247\u8207\u7D93\u9A57\u8B49\u7684\u4EA4\u6613\u7D00\u9304\uFF0C\u90FD\u5728 ", /*#__PURE__*/React.createElement("a", {
+    href: D2.agent.zillow,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      color: 'var(--brass)'
+    }
+  }, "Jean \u7684 Zillow \u4E3B\u9801"), "\u3002"))), /*#__PURE__*/React.createElement("aside", {
     style: {
       background: 'var(--bg-elev)',
       padding: 32,

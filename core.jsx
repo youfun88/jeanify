@@ -76,7 +76,7 @@ function Nav({ route, go, lang, setLang }) {
             it as a lockup — visible on mobile too, where the links and phone are
             hidden and the bar is mostly empty anyway. */}
         <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label={lang === "zh" ? "Jeanify — Jean Riley，聖地牙哥地產經紀 — 首頁" : "Jeanify — Jean Riley, San Diego Realtor — Home"}>
-          <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+          <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" />
           <span className="nav-brand-name">
             <strong>Jean Riley</strong>
             <small>{lang === "en" ? "Realtor® · " : "地產經紀 · "}{D.agent.license}</small>
@@ -192,8 +192,8 @@ function NewsletterSignup({ lang }) {
     return (
       <p className="footer-newsletter-done">
         {lang === "en"
-          ? "You're on the list — the next quarterly briefing will come straight from Jean."
-          : "訂閱完成。下一期季度市場簡報，Jean 會直接寄給您。"}
+          ? <>You're on the list. The current Summer 2026 briefings are <a href="#/articles" style={{color:"var(--brass)"}}>ready to download now</a>, and Jean sends the next one each season.</>
+          : <>訂閱完成。目前的 2026 夏季簡報 <a href="#/articles" style={{color:"var(--brass)"}}>現在就可以下載</a>，下一期 Jean 會在每季寄給您。</>}
       </p>
     );
   }
@@ -233,7 +233,7 @@ function Footer({ lang, go }) {
         <div className="footer-grid">
           <div>
             <a className="nav-brand footer-brand" href="#/home" onClick={(e)=>{e.preventDefault();go("home");}} style={{ marginBottom: 16 }}>
-              <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+              <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" loading="lazy" />
             </a>
             <p style={{ color: "var(--ink-dim)", fontSize: 14, maxWidth: 36 + "ch", lineHeight: 1.7 }}>
               {lang === "en"

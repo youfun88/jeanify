@@ -240,7 +240,7 @@ function ContactPage({ lang, go }) {
                     serves a vCard — so a phone camera gets Jean into contacts in
                     two taps, without anyone typing a number. */}
                 <div className="contact-qr">
-                  <img src="uploads/card-qr.svg" alt={lang==="en"?"QR code linking to Jean Riley's digital business card":"掃描開啟 Jean Riley 的電子名片"} width="116" height="116" />
+                  <img loading="lazy" src="uploads/card-qr.svg" alt={lang==="en"?"QR code linking to Jean Riley's digital business card":"掃描開啟 Jean Riley 的電子名片"} width="116" height="116" />
                   <div>
                     <h4>{lang==="en"?"Save Jean to your phone":"將 Jean 存入手機通訊錄"}</h4>
                     <p>

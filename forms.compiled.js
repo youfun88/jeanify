@@ -412,6 +412,7 @@ function ContactPage({
   }, d))), /*#__PURE__*/React.createElement("div", {
     className: "contact-qr"
   }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
     src: "uploads/card-qr.svg",
     alt: lang === "en" ? "QR code linking to Jean Riley's digital business card" : "掃描開啟 Jean Riley 的電子名片",
     width: "116",

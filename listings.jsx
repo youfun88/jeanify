@@ -68,7 +68,46 @@ function ListingsPage({ lang, go, sub }) {
 
 // ---------- LISTING DETAIL ----------
 function ListingDetail({ id, lang, go }) {
-  const l = D2.listings.find(x => x.id === id) || D2.listings[0];
+  // Previously this fell back to listings[0] — so any unknown or stale URL rendered
+  // a completely different property as though it were the one requested.
+  const l = D2.listings.find(x => x.id === id);
+  if (!l) {
+    return (
+      <div className="page-fade">
+        <header className="page-head">
+          <div className="container-tight">
+            <div className="breadcrumbs">
+              <a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang==="en"?"Listings":"房源"}</a>
+            </div>
+            <h1 style={{ marginTop: 20 }}>{lang==="en"?"Listing not found":"找不到這筆房源"}</h1>
+            <p className="lede">
+              {lang==="en"
+                ? "That listing may have closed or been removed. Jean's recent closings are on the listings page."
+                : "這筆房源可能已成交或已下架。Jean 近期的成交紀錄都在房源頁面上。"}
+            </p>
+            <div style={{ marginTop: 28, display:'flex', gap: 16, flexWrap:'wrap' }}>
+              <a className="btn btn-primary arrow-right" href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>
+                {lang==="en"?"View closings":"檢視成交紀錄"}
+              </a>
+              <a className="btn btn-ghost" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+                {lang==="en"?"Ask Jean":"詢問 Jean"}
+              </a>
+            </div>
+          </div>
+        </header>
+      </div>
+    );
+  }
+  const SIDE = { list: lang==="zh" ? "賣方" : "Listing side", buy: lang==="zh" ? "買方" : "Buy side", both: lang==="zh" ? "買賣雙方" : "Both sides" };
+  const specs = [
+    [lang==="en"?"Type":"類型", l.type],
+    [lang==="en"?"Beds":"臥室", l.beds],
+    [lang==="en"?"Baths":"衛浴", l.baths],
+    [lang==="en"?"Interior":"室內面積", l.sqft && l.sqft + (lang==="en" ? " sq ft" : " 平方英尺")],
+    [lang==="en"?"Lot":"地坪", l.lot],
+    [lang==="en"?"Closed":"成交時間", l.soldDate && l.soldDate.replace(" · ", "/")],
+    [lang==="en"?"Represented":"代理方", l.side && SIDE[l.side]],
+  ].filter(([, v]) => v !== undefined && v !== null && v !== "" && v !== "—");
   const heroImg = l.image ? encodeURI(l.image) : null;
   const heroStyle = heroImg
     ? { marginTop: 80, backgroundImage: "url(" + heroImg + ")", backgroundSize: "cover", backgroundPosition: "center" }
@@ -88,7 +127,10 @@ function ListingDetail({ id, lang, go }) {
             <div style={{ textAlign:'right' }}>
               <div className="listing-price" style={{ fontSize: 48 }}>{l.price}</div>
               <div className="listing-meta" style={{ borderTop:'none', justifyContent:'flex-end' }}>
-                <span>{l.beds} {lang==="zh"?"房":"BD"}</span><span>{l.baths} {lang==="zh"?"衛":"BA"}</span><span>{l.sqft} {lang==="zh"?"平方英尺":"SF"}</span>
+                {l.beds && <span>{l.beds} {lang==="zh"?"房":"BD"}</span>}
+                {l.baths && <span>{l.baths} {lang==="zh"?"衛":"BA"}</span>}
+                {l.sqft && <span>{l.sqft} {lang==="zh"?"平方英尺":"SF"}</span>}
+                {l.soldDate && <span>{lang==="zh"?"成交":"Closed"} {l.soldDate.replace(" · ", "/")}</span>}
               </div>
             </div>
           </div>
@@ -98,24 +140,31 @@ function ListingDetail({ id, lang, go }) {
         <div className="container">
           <div className="listing-detail-layout">
             <div>
-              <span className="eyebrow">{lang==="en"?"Property Description":"房屋介紹"}</span>
-              <h2 style={{ margin:'20px 0 32px' }}>{l.ph || (lang==="en" ? "An exceptional offering in San Diego's coastal corridor" : "聖地牙哥沿海地帶的難得物件")}</h2>
-              <p style={{ color:'var(--ink-dim)', fontSize: 17, lineHeight: 1.8 }}>
+              {/* Only facts that exist in the data. This block previously asserted a
+                  hardcoded year built, garage, storey count and HOA status, plus a
+                  paragraph describing a wine room and a limestone bath — applied to
+                  every real, identifiable address Jean actually closed. */}
+              <span className="eyebrow">{lang==="en"?"Property":"物件資料"}</span>
+              <h2 style={{ margin:'20px 0 32px' }}>
+                {l.ph || (l.status === "sold"
+                  ? (lang==="en" ? "Closed by Jean Riley" : "由 Jean Riley 成交")
+                  : (lang==="en" ? "Represented by Jean Riley" : "由 Jean Riley 代理"))}
+              </h2>
+              {specs.length > 0 && (
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 24, marginTop: 8, paddingTop: 32, borderTop:'1px solid var(--line)' }}>
+                  {specs.map(([k, v]) => (
+                    <div key={k} style={{ display:'flex', justifyContent:'space-between', padding:'12px 0', borderBottom:'1px solid var(--line)' }}>
+                      <span style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>{k}</span>
+                      <span>{v}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <p style={{ color:'var(--ink-dim)', fontSize: 15, lineHeight: 1.8, marginTop: 32 }}>
                 {lang==="en"
-                  ? "A measured, light-filled residence positioned for indoor-outdoor California living. Open-plan principal rooms anchor the main level, with chef's kitchen, wine room, and seamless flow to a covered loggia. Primary suite occupies its own wing, with private terrace and a spa-grade bath finished in honed limestone. Lower level accommodates two ensuite bedrooms, media room and direct garage access."
-                  : "一棟採光充足、比例得宜的住宅，為加州室內外相連的生活方式而設。主樓層以開放式公共空間為核心，配置專業級廚房與酒藏室，並可直接通往有頂露臺。主臥獨立成區，附私人陽台與磨光石灰岩打造的頂級衛浴。下層則有兩間附衛浴的臥室、視聽室，以及可直接進出的車庫。"}
+                  ? <>Full details, photography and the verified transaction record for this and every other closing are on <a href={D2.agent.zillow} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>Jean's Zillow profile</a>.</>
+                  : <>本物件與其他所有成交的完整資料、照片與經驗證的交易紀錄，都在 <a href={D2.agent.zillow} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>Jean 的 Zillow 主頁</a>。</>}
               </p>
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 24, marginTop: 48, paddingTop: 32, borderTop:'1px solid var(--line)' }}>
-                {(lang==="en"
-                  ? [["Type", l.type || "Single Family"], ["Year Built", "2018"], ["Lot", l.lot || "—"], ["Garage", "2-car attached"], ["Stories", "Two"], ["HOA", "None"]]
-                  : [["類型", l.type || "獨立住宅"], ["建造年份", "2018"], ["地坪", l.lot || "—"], ["車庫", "雙車位，與主屋相連"], ["樓層", "兩層"], ["管理費", "無"]]
-                 ).map(([k, v]) => (
-                  <div key={k} style={{ display:'flex', justifyContent:'space-between', padding:'12px 0', borderBottom:'1px solid var(--line)' }}>
-                    <span style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>{k}</span>
-                    <span>{v}</span>
-                  </div>
-                ))}
-              </div>
             </div>
             <aside style={{ background:'var(--bg-elev)', padding: 32, border:'1px solid var(--line)', alignSelf:'start' }}>
               <div className="test-avatar" style={{ width:64, height:64, fontSize:24, marginBottom:16 }}>JR</div>

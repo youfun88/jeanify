@@ -50,7 +50,7 @@ function AboutPage({ lang, go }) {
       {/* The name — what "-ify" means and why the brand is a verb */}
       <section className="section" style={{ background:'var(--bg-elev)' }}>
         <div className="container-tight brand-story">
-          <img className="brand-story-mark" src="uploads/jeanify-logo-brass.png" alt="Jeanify" />
+          <img className="brand-story-mark" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" loading="lazy" />
           <span className="eyebrow">{lang==="en"?"The Name":"品牌命名"}</span>
           <h2 style={{ marginTop: 16 }}>
             {lang==="en"

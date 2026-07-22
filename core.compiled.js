@@ -123,7 +123,9 @@ function Nav({
   }, /*#__PURE__*/React.createElement("img", {
     className: "nav-brand-img",
     src: "uploads/jeanify-logo-brass.png",
-    alt: "Jeanify"
+    alt: "Jeanify",
+    width: "699",
+    height: "309"
   }), /*#__PURE__*/React.createElement("span", {
     className: "nav-brand-name"
   }, /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), /*#__PURE__*/React.createElement("small", null, lang === "en" ? "Realtor® · " : "地產經紀 · ", D.agent.license))), /*#__PURE__*/React.createElement("div", {
@@ -262,7 +264,17 @@ function NewsletterSignup({
   if (status === "sent") {
     return /*#__PURE__*/React.createElement("p", {
       className: "footer-newsletter-done"
-    }, lang === "en" ? "You're on the list — the next quarterly briefing will come straight from Jean." : "訂閱完成。下一期季度市場簡報，Jean 會直接寄給您。");
+    }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "You're on the list. The current Summer 2026 briefings are ", /*#__PURE__*/React.createElement("a", {
+      href: "#/articles",
+      style: {
+        color: "var(--brass)"
+      }
+    }, "ready to download now"), ", and Jean sends the next one each season.") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8A02\u95B1\u5B8C\u6210\u3002\u76EE\u524D\u7684 2026 \u590F\u5B63\u7C21\u5831 ", /*#__PURE__*/React.createElement("a", {
+      href: "#/articles",
+      style: {
+        color: "var(--brass)"
+      }
+    }, "\u73FE\u5728\u5C31\u53EF\u4EE5\u4E0B\u8F09"), "\uFF0C\u4E0B\u4E00\u671F Jean \u6703\u5728\u6BCF\u5B63\u5BC4\u7D66\u60A8\u3002"));
   }
   return /*#__PURE__*/React.createElement("form", {
     className: "footer-newsletter",
@@ -313,7 +325,10 @@ function Footer({
   }, /*#__PURE__*/React.createElement("img", {
     className: "nav-brand-img",
     src: "uploads/jeanify-logo-brass.png",
-    alt: "Jeanify"
+    alt: "Jeanify",
+    width: "699",
+    height: "309",
+    loading: "lazy"
   })), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "var(--ink-dim)",

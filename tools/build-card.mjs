@@ -130,7 +130,7 @@ const html = `<!DOCTYPE html>
 <main class="card-wrap">
   <article class="card">
     <div class="card-top">
-      <img class="card-logo" src="../uploads/jeanify-logo-brass.png" alt="Jeanify" />
+      <img class="card-logo" src="../uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" />
       <img class="card-portrait" src="../assets/jean-portrait.jpg" alt="${esc(AGENT.name)}" width="128" height="128" />
       <h1 class="card-name">${esc(AGENT.name)}</h1>
       <p class="card-title">${esc(AGENT.title)} · ${esc(AGENT.brokerage)}</p>
@@ -171,7 +171,7 @@ const html = `<!DOCTYPE html>
     </div>
 
     <div class="card-qr-block">
-      <img class="card-qr" src="../uploads/card-qr.svg" alt="QR code linking to this card" width="132" height="132" />
+      <img class="card-qr" src="../uploads/card-qr.svg" alt="QR code linking to this card" width="132" height="132" loading="lazy" />
       <p>Scan or share this card</p>
     </div>
   </article>

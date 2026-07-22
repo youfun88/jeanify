@@ -72,12 +72,12 @@ window.JR_DATA = {
   },
 
   listings: [
-    { id: "l1", status: "active", price: "$4,250,000", street: "1247 Coast Boulevard", area: "La Jolla, CA 92037", beds: 4, baths: 3.5, sqft: "3,210", lot: "0.21 ac", type: "Single Family", featured: true, ph: "Bluff-side modern with Pacific frontage" },
-    { id: "l2", status: "active", price: "$2,895,000", street: "4502 Granada Avenue", area: "Mission Hills, CA 92103", beds: 4, baths: 3, sqft: "2,840", lot: "0.18 ac", type: "Craftsman", featured: true, ph: "Restored 1923 craftsman" },
-    { id: "l3", status: "active", price: "$1,650,000", street: "812 Gravilla Street", area: "La Jolla, CA 92037", beds: 3, baths: 2, sqft: "1,790", lot: "0.12 ac", type: "Bungalow", featured: true, ph: "Walk-to-village bungalow" },
-    { id: "l4", status: "active", price: "$5,980,000", street: "227 Ocean Front Walk", area: "Del Mar, CA 92014", beds: 5, baths: 4.5, sqft: "4,120", lot: "0.24 ac", type: "Coastal Estate" },
-    { id: "l5", status: "active", price: "$1,295,000", street: "3408 Park Boulevard #401", area: "Hillcrest, CA 92103", beds: 2, baths: 2, sqft: "1,420", lot: "—", type: "Penthouse" },
-    { id: "l6", status: "active", price: "$3,495,000", street: "5601 Calumet Avenue", area: "Bird Rock, CA 92037", beds: 4, baths: 3.5, sqft: "3,050", lot: "0.16 ac", type: "Contemporary" },
+    // No active listings are published here. The six demo entries that used to sit in
+    // this slot were fabricated inventory at real-looking San Diego addresses — hidden
+    // from the listings page behind a "Coming Soon" panel, but still reachable at
+    // /listing/l1 .. l6 and indistinguishable from a genuine listing once opened.
+    // To publish a real one, add it with status: "active" and only the fields you can
+    // actually verify; the detail page renders exactly what is present and nothing more.
 
     // Real sold history from Zillow (jean's profile @JeanSD) — closings ≥ $1M
     // Total Zillow-verified sales: 197 (this list is the >$1M subset).
@@ -101,12 +101,10 @@ window.JR_DATA = {
     { id: "s16", status: "sold", price: "$1,152,888", street: "7596 Tupelo Cv", area: "San Diego, CA 92126", soldDate: "2024 · 05", side: "buy", image: "uploads/house/7596 Tupelo Cv.webp" },
     { id: "s17", status: "sold", price: "$1,450,000", street: "11575 Phantom Ln", area: "San Diego, CA 92126", soldDate: "2024 · 04", side: "buy", image: "uploads/house/11575 Phantom Ln.webp" },
     { id: "s18", status: "sold", price: "$1,880,000", street: "6686 Torenia Trl", area: "San Diego, CA 92130", soldDate: "2024 · 02", side: "list", image: "uploads/house/6686 Torenia Trl.webp" },
-    { id: "s19", status: "sold", price: "$1,671,167", street: "13060 Callcott Way", area: "San Diego, CA 92130", soldDate: "2023 · 09", side: "buy", image: "uploads/house/13060 Callcott Way.png" },
+    { id: "s19", status: "sold", price: "$1,671,167", street: "13060 Callcott Way", area: "San Diego, CA 92130", soldDate: "2023 · 09", side: "buy", image: "uploads/house/13060 Callcott Way.jpg" },
     { id: "s20", status: "sold", price: "$1,090,000", street: "16391 Veridian Cir", area: "San Diego, CA 92127", soldDate: "2023 · 08", side: "buy", image: "uploads/house/16391 Veridian Cir.webp" },
     { id: "s21", status: "sold", price: "$1,300,000", street: "1875 Gamay Ter", area: "Chula Vista, CA 91913", soldDate: "2023 · 07", side: "both", image: "uploads/house/1875 Gamay Ter.webp" },
 
-    { id: "r1", status: "rent", price: "$8,500/mo", street: "612 Prospect Street", area: "La Jolla, CA 92037", beds: 3, baths: 2, sqft: "2,100", type: "Furnished" },
-    { id: "r2", status: "rent", price: "$6,200/mo", street: "1108 Fort Stockton Drive", area: "Mission Hills, CA 92103", beds: 3, baths: 2, sqft: "1,840", type: "Long-term" },
   ],
 
   // Real client voices — first one (Yufan) is the homeowner; the rest are
