@@ -382,10 +382,10 @@ function ArticleDetail({ slug, lang, go }) {
         <header className="page-head">
           <div className="container">
             <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a></div>
-            <h1 style={{ marginTop: 20 }}>Article not found</h1>
-            <p className="lede">That article may have been renamed. Everything currently published is on the articles page.</p>
+            <h1 style={{ marginTop: 20 }}>{lang==="en"?"Article not found":"找不到這篇文章"}</h1>
+            <p className="lede">{lang==="en"?"That article may have been renamed. Everything currently published is on the articles page.":"這篇文章可能已更名。目前所有已發表的內容，都在資源頁面上。"}</p>
             <div style={{ marginTop: 24 }}>
-              <a className="btn btn-primary arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>All articles</a>
+              <a className="btn btn-primary arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"All articles":"所有文章"}</a>
             </div>
           </div>
         </header>

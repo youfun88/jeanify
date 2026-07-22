@@ -101,7 +101,7 @@ function Nav({ route, go, lang, setLang }) {
         <button
           type="button"
           className={"nav-burger" + (open ? " open" : "")}
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={lang === "zh" ? (open ? "關閉選單" : "開啟選單") : (open ? "Close menu" : "Open menu")}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
@@ -115,7 +115,7 @@ function Nav({ route, go, lang, setLang }) {
             <button
               type="button"
               className="nav-mobile-close"
-              aria-label="Close menu"
+              aria-label={lang === "zh" ? "關閉選單" : "Close menu"}
               onClick={() => setOpen(false)}
             >×</button>
             <div className="nav-mobile-links">
@@ -325,7 +325,7 @@ function VideoCard({ v, feature, lang }) {
       </button>
       {open && (
         <div className="video-modal" onClick={() => setOpen(false)} role="dialog" aria-modal="true">
-          <button type="button" className="video-modal-close" onClick={() => setOpen(false)} aria-label="Close">×</button>
+          <button type="button" className="video-modal-close" onClick={() => setOpen(false)} aria-label={lang === "zh" ? "關閉" : "Close"}>×</button>
           <div className="video-modal-frame" onClick={(e) => e.stopPropagation()}>
             <iframe
               src={ytEmbed(v.id, v.start)}

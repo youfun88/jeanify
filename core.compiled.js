@@ -152,7 +152,7 @@ function Nav({
   }, "\u4E2D\u6587"))), /*#__PURE__*/React.createElement("button", {
     type: "button",
     className: "nav-burger" + (open ? " open" : ""),
-    "aria-label": open ? "Close menu" : "Open menu",
+    "aria-label": lang === "zh" ? open ? "關閉選單" : "開啟選單" : open ? "Close menu" : "Open menu",
     "aria-expanded": open,
     onClick: () => setOpen(!open)
   }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null))), open && /*#__PURE__*/React.createElement("div", {
@@ -167,7 +167,7 @@ function Nav({
   }, /*#__PURE__*/React.createElement("button", {
     type: "button",
     className: "nav-mobile-close",
-    "aria-label": "Close menu",
+    "aria-label": lang === "zh" ? "關閉選單" : "Close menu",
     onClick: () => setOpen(false)
   }, "\xD7"), /*#__PURE__*/React.createElement("div", {
     className: "nav-mobile-links"
@@ -457,7 +457,7 @@ function VideoCard({
     type: "button",
     className: "video-modal-close",
     onClick: () => setOpen(false),
-    "aria-label": "Close"
+    "aria-label": lang === "zh" ? "關閉" : "Close"
   }, "\xD7"), /*#__PURE__*/React.createElement("div", {
     className: "video-modal-frame",
     onClick: e => e.stopPropagation()

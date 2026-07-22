@@ -566,9 +566,9 @@ function ArticleDetail({
       style: {
         marginTop: 20
       }
-    }, "Article not found"), /*#__PURE__*/React.createElement("p", {
+    }, lang === "en" ? "Article not found" : "找不到這篇文章"), /*#__PURE__*/React.createElement("p", {
       className: "lede"
-    }, "That article may have been renamed. Everything currently published is on the articles page."), /*#__PURE__*/React.createElement("div", {
+    }, lang === "en" ? "That article may have been renamed. Everything currently published is on the articles page." : "這篇文章可能已更名。目前所有已發表的內容，都在資源頁面上。"), /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 24
       }
@@ -579,7 +579,7 @@ function ArticleDetail({
         e.preventDefault();
         go("articles");
       }
-    }, "All articles")))));
+    }, lang === "en" ? "All articles" : "所有文章")))));
   }
   const zhBody = lang === "zh" ? ARTICLES_ZH[a.slug] : null;
   const headings = a.sections.map((s, i) => ({
