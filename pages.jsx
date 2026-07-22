@@ -160,8 +160,8 @@ function AboutPage({ lang, go }) {
             {D3.process.map(p => (
               <div key={p.n} className="process-step">
                 <div className="dot">{p.n}</div>
-                <h4>{p.t}</h4>
-                <p>{p.d}</p>
+                <h4>{zh(lang, p.tZh, p.t)}</h4>
+                <p>{zh(lang, p.dZh, p.d)}</p>
               </div>
             ))}
           </div>
@@ -185,8 +185,8 @@ function AboutPage({ lang, go }) {
                 <div className="test-author">
                   <div className="test-avatar">{tt.initials}</div>
                   <div>
-                    <div className="test-name">{tt.name}</div>
-                    <div className="test-meta">{tt.area}</div>
+                    <div className="test-name">{zh(lang, tt.nameZh, tt.name)}</div>
+                    <div className="test-meta">{zh(lang, tt.areaZh, tt.area)}</div>
                   </div>
                 </div>
               </div>
@@ -199,6 +199,10 @@ function AboutPage({ lang, go }) {
 }
 
 const ARTICLES = window.JR_ARTICLES || [];
+
+// Prefer the Chinese field, fall back to English — a missing translation degrades
+// to readable rather than blank.
+const zh = (lang, cn, en) => (lang === "zh" && cn) ? cn : en;
 const bySlug = (s) => ARTICLES.find(a => a.slug === s);
 
 // Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
@@ -208,7 +212,7 @@ function articleDate(iso) {
 }
 
 // One article card — used on the index and in the "related" strip.
-function ArticleCard({ a, go }) {
+function ArticleCard({ a, go, lang }) {
   return (
     <a className="article-card" href={"#/articles/" + a.slug}
        onClick={(e) => { e.preventDefault(); go("articles/" + a.slug); }}>
@@ -217,8 +221,8 @@ function ArticleCard({ a, go }) {
         style={a.image ? { backgroundImage: "url(" + encodeURI(a.image) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
       ></div>
       <div className="article-meta">{a.category} · {a.read}</div>
-      <h3>{a.title}</h3>
-      <p className="article-dek">{a.dek}</p>
+      <h3>{zh(lang, a.titleZh, a.title)}</h3>
+      <p className="article-dek">{zh(lang, a.dekZh, a.dek)}</p>
       <span className="btn-text arrow-right article-more">Read</span>
     </a>
   );
@@ -291,9 +295,9 @@ function ArticlesPage({ lang, go }) {
               <a key={g.num} className="guide-card" href={"#/guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031")} onClick={(e)=>{e.preventDefault(); go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));}}>
                 <div className="num" aria-hidden="true">{g.num}</div>
                 <span className="eyebrow no-rule">{lang==="en"?"Guide":"指南"}</span>
-                <h3>{g.title}</h3>
-                <p className="desc">{g.desc}</p>
-                <span className="btn-text arrow-right" style={{ marginTop:'auto' }}>{g.cta}</span>
+                <h3>{zh(lang, g.titleZh, g.title)}</h3>
+                <p className="desc">{zh(lang, g.descZh, g.desc)}</p>
+                <span className="btn-text arrow-right" style={{ marginTop:'auto' }}>{zh(lang, g.ctaZh, g.cta)}</span>
               </a>
             ))}
           </div>
@@ -315,7 +319,7 @@ function ArticlesPage({ lang, go }) {
             </div>
           </div>
           <div className="grid-3">
-            {ARTICLES.map(a => <ArticleCard key={a.slug} a={a} go={go} />)}
+            {ARTICLES.map(a => <ArticleCard key={a.slug} a={a} go={go} lang={lang} />)}
           </div>
         </div>
       </section>
@@ -387,8 +391,8 @@ function ArticleDetail({ slug, lang, go }) {
             <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>Resources</a><span>/</span>{a.category}
           </div>
           <span className="eyebrow">{a.category}</span>
-          <h1 style={{ marginTop: 20 }}>{a.title}</h1>
-          <p className="lede">{a.dek}</p>
+          <h1 style={{ marginTop: 20 }}>{zh(lang, a.titleZh, a.title)}</h1>
+          <p className="lede">{zh(lang, a.dekZh, a.dek)}</p>
           <div className="art-byline">
             <span>By <strong>Jean Riley</strong> · {D3.agent.license}</span>
             <span>{articleDate(a.date)}{a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""}</span>
@@ -402,8 +406,17 @@ function ArticleDetail({ slug, lang, go }) {
           {/* Quick answer — the block an AI overview is most likely to lift */}
           <div className="art-answer">
             <span className="eyebrow no-rule">{lang==="en"?"The short answer":"重點摘要"}</span>
-            <p>{a.answer}</p>
+            <p>{zh(lang, a.answerZh, a.answer)}</p>
           </div>
+
+          {/* Titles, deks and the quick answer are translated; the bodies stay in
+              English because they are written for English search and cite English
+              sources. Say so plainly rather than letting a reader hit the wall. */}
+          {lang === "zh" && (
+            <p className="art-lang-note">
+              以下內文為英文。若您想用中文了解這篇的內容，歡迎直接來電 {D3.agent.phone}，我很樂意為您說明。
+            </p>
+          )}
 
           {headings.length > 2 && (
             <nav className="art-toc" aria-label="On this page">
@@ -441,7 +454,7 @@ function ArticleDetail({ slug, lang, go }) {
                 <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
               </div>
             </div>
-            <FAQList items={a.faqs} />
+            <FAQList items={a.faqs} lang={lang} />
           </div>
         </section>
       )}
@@ -474,7 +487,7 @@ function ArticleDetail({ slug, lang, go }) {
               </div>
             </div>
             <div className="grid-3">
-              {related.map(r => <ArticleCard key={r.slug} a={r} go={go} />)}
+              {related.map(r => <ArticleCard key={r.slug} a={r} go={go} lang={lang} />)}
             </div>
           </div>
         </section>
@@ -523,7 +536,7 @@ function FAQPage({ lang, go }) {
                   <h2 style={{ marginTop: 16 }}>{lang==="en" ? grp.en : grp.zh}</h2>
                 </div>
               </div>
-              <FAQList items={items} />
+              <FAQList items={items} lang={lang} />
             </div>
           </section>
         );
@@ -551,6 +564,40 @@ function GuideDetail({ kind, lang, go }) {
     "1031": { en: "1031 Exchange Primer", zh: "1031 交換入門", sub: { en: "Identification windows and replacement strategy.", zh: "識別期與替代房產策略" } },
   };
   const meta = titles[kind] || titles.buyer;
+  // Chinese steps, keyed the same way. Falls back to English if a kind is missing.
+  const stepsZh = {
+    buyer: [
+      ["貸款預審", "介紹貸款專員，做的是真正的資格評估而不只是比利率，並一起定出您的出價上限。"],
+      ["了解需求", "您真正想要的，和您以為自己想要的，往往不同；這通常要兩三次對話才會清楚。"],
+      ["搜尋物件", "精選的 MLS 條件通知、未公開物件的引介，以及週末的看屋路線安排。"],
+      ["盡職查核", "學區資料、微氣候、管委會文件審閱與可比較成交分析。"],
+      ["出價", "價格、條件，以及一套能贏但不會讓您買貴的但書架構。"],
+      ["驗屋", "屋頂、地基、污水管線與環境檢測，配合聖地牙哥在地的專業廠商。"],
+      ["鑑價", "與貸款方協調；萬一鑑價不足，也先想好因應方式。"],
+      ["交割", "最後點交、履約保證交接，以及一個值得拍照留念的交屋時刻。"],
+    ],
+    seller: [
+      ["估價", "一份書面 CMA：三種定價情境，並說明各自對應的銷售時程。"],
+      ["整理準備", "修繕範圍、佈置計畫，以及哪些工項的錢真的收得回來。"],
+      ["攝影", "雜誌等級的建築攝影、空拍、黃昏光線與 3D 環景。"],
+      ["行銷", "MLS 上架、跨平台同步、同業預覽、紙本 DM 與數位廣告投放。"],
+      ["帶看", "依社區特性安排開放參觀，另可預約私人看屋。"],
+      ["談判", "審閱出價、擬定還價策略，以及但書解除的節奏掌控。"],
+      ["履約保證", "驗屋回覆、鑑價處理，以及交割前的各項協調。"],
+      ["交屋", "最後點交、鑰匙交付，以及交割後的後續追蹤。"],
+    ],
+    "1031": [
+      ["售前規劃", "在原房產上市之前，就先確立投資方向與替代標的的範圍。"],
+      ["合格中介", "務必在交割前完成委任。我有兩位長期配合的合格中介隨時可以接手。"],
+      ["原房產出售", "流程與一般委託銷售相同，但履約保證的每一步都須嚴格安排，以維持交換資格。"],
+      ["第 0 天", "款項匯入合格中介帳戶，45 天與 180 天的時鐘同時開始。"],
+      ["書面指定", "三物件原則（或 200% 原則），須於第 45 天前完成書面指定。"],
+      ["替代標的查核", "驗屋、貸款，必要時還包括持有架構的安排。"],
+      ["替代標的交割", "須在 180 天內完成。同時說明 boot 的計算與申報方式。"],
+      ["申報", "與您的會計師協調 Form 8824 的填報。"],
+    ],
+  }[kind];
+
   const steps = {
     buyer: [
       ["Pre-approval", "Lender introductions, qualification beyond rate-shopping, and writing your buying envelope."],
@@ -601,8 +648,8 @@ function GuideDetail({ kind, lang, go }) {
               <div key={i} style={{ display:'grid', gridTemplateColumns:'80px 1fr', gap: 32, padding:'32px 0', borderBottom:'1px solid var(--line)' }}>
                 <div style={{ fontFamily:'var(--font-display)', fontSize: 36, fontStyle:'italic', color:'var(--brass)' }}>{String(i+1).padStart(2, "0")}</div>
                 <div>
-                  <h3 style={{ fontSize: 28, marginBottom: 8 }}>{title}</h3>
-                  <p style={{ color:'var(--ink-dim)', lineHeight: 1.7 }}>{desc}</p>
+                  <h3 style={{ fontSize: 28, marginBottom: 8 }}>{(lang === "zh" && stepsZh && stepsZh[i]) ? stepsZh[i][0] : title}</h3>
+                  <p style={{ color:'var(--ink-dim)', lineHeight: 1.7 }}>{(lang === "zh" && stepsZh && stepsZh[i]) ? stepsZh[i][1] : desc}</p>
                 </div>
               </div>
             ))}
@@ -662,21 +709,21 @@ function ExchangePage({ lang, go }) {
               <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
             </div>
           </div>
-          <FAQList items={D3.faqs.filter(f => f.g === "investing")} />
+          <FAQList items={D3.faqs.filter(f => f.g === "investing")} lang={lang} />
         </div>
       </section>
     </div>
   );
 }
 
-function FAQList({ items }) {
+function FAQList({ items, lang }) {
   const [open, setOpen] = uS3(0);
   return (
     <div className="container-tight" style={{ padding: 0 }}>
       {items.map((f, i) => (
         <div key={i} className={"faq-item" + (open === i ? " open" : "")} onClick={() => setOpen(open === i ? -1 : i)}>
-          <div className="faq-q"><span>{f.q}</span><span className="toggle">+</span></div>
-          <div className="faq-a">{f.a}</div>
+          <div className="faq-q"><span>{zh(lang, f.qZh, f.q)}</span><span className="toggle">+</span></div>
+          <div className="faq-a">{zh(lang, f.aZh, f.a)}</div>
         </div>
       ))}
     </div>

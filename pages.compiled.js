@@ -248,7 +248,7 @@ function AboutPage({
     className: "process-step"
   }, /*#__PURE__*/React.createElement("div", {
     className: "dot"
-  }, p.n), /*#__PURE__*/React.createElement("h4", null, p.t), /*#__PURE__*/React.createElement("p", null, p.d)))))), /*#__PURE__*/React.createElement("section", {
+  }, p.n), /*#__PURE__*/React.createElement("h4", null, zh(lang, p.tZh, p.t)), /*#__PURE__*/React.createElement("p", null, zh(lang, p.dZh, p.d))))))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -277,11 +277,15 @@ function AboutPage({
     className: "test-avatar"
   }, tt.initials), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "test-name"
-  }, tt.name), /*#__PURE__*/React.createElement("div", {
+  }, zh(lang, tt.nameZh, tt.name)), /*#__PURE__*/React.createElement("div", {
     className: "test-meta"
-  }, tt.area)))))))));
+  }, zh(lang, tt.areaZh, tt.area))))))))));
 }
 const ARTICLES = window.JR_ARTICLES || [];
+
+// Prefer the Chinese field, fall back to English — a missing translation degrades
+// to readable rather than blank.
+const zh = (lang, cn, en) => lang === "zh" && cn ? cn : en;
 const bySlug = s => ARTICLES.find(a => a.slug === s);
 
 // Long-form dates, rendered without a timezone shift (the ISO string is a plain date).
@@ -297,7 +301,8 @@ function articleDate(iso) {
 // One article card — used on the index and in the "related" strip.
 function ArticleCard({
   a,
-  go
+  go,
+  lang
 }) {
   return /*#__PURE__*/React.createElement("a", {
     className: "article-card",
@@ -315,9 +320,9 @@ function ArticleCard({
     } : null
   }), /*#__PURE__*/React.createElement("div", {
     className: "article-meta"
-  }, a.category, " \xB7 ", a.read), /*#__PURE__*/React.createElement("h3", null, a.title), /*#__PURE__*/React.createElement("p", {
+  }, a.category, " \xB7 ", a.read), /*#__PURE__*/React.createElement("h3", null, zh(lang, a.titleZh, a.title)), /*#__PURE__*/React.createElement("p", {
     className: "article-dek"
-  }, a.dek), /*#__PURE__*/React.createElement("span", {
+  }, zh(lang, a.dekZh, a.dek)), /*#__PURE__*/React.createElement("span", {
     className: "btn-text arrow-right article-more"
   }, "Read"));
 }
@@ -429,14 +434,14 @@ function ArticlesPage({
     "aria-hidden": "true"
   }, g.num), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow no-rule"
-  }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h3", null, g.title), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? "Guide" : "指南"), /*#__PURE__*/React.createElement("h3", null, zh(lang, g.titleZh, g.title)), /*#__PURE__*/React.createElement("p", {
     className: "desc"
-  }, g.desc), /*#__PURE__*/React.createElement("span", {
+  }, zh(lang, g.descZh, g.desc)), /*#__PURE__*/React.createElement("span", {
     className: "btn-text arrow-right",
     style: {
       marginTop: 'auto'
     }
-  }, g.cta)))))), /*#__PURE__*/React.createElement("section", {
+  }, zh(lang, g.ctaZh, g.cta))))))), /*#__PURE__*/React.createElement("section", {
     className: "section",
     style: {
       background: 'var(--bg-elev)'
@@ -462,7 +467,8 @@ function ArticlesPage({
   }, ARTICLES.map(a => /*#__PURE__*/React.createElement(ArticleCard, {
     key: a.slug,
     a: a,
-    go: go
+    go: go,
+    lang: lang
   }))))));
 }
 
@@ -589,9 +595,9 @@ function ArticleDetail({
     style: {
       marginTop: 20
     }
-  }, a.title), /*#__PURE__*/React.createElement("p", {
+  }, zh(lang, a.titleZh, a.title)), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, a.dek), /*#__PURE__*/React.createElement("div", {
+  }, zh(lang, a.dekZh, a.dek)), /*#__PURE__*/React.createElement("div", {
     className: "art-byline"
   }, /*#__PURE__*/React.createElement("span", null, "By ", /*#__PURE__*/React.createElement("strong", null, "Jean Riley"), " \xB7 ", D3.agent.license), /*#__PURE__*/React.createElement("span", null, articleDate(a.date), a.updated && a.updated !== a.date ? " · Updated " + articleDate(a.updated) : ""), /*#__PURE__*/React.createElement("span", null, a.read, " read")))), /*#__PURE__*/React.createElement("article", {
     className: "section"
@@ -601,7 +607,9 @@ function ArticleDetail({
     className: "art-answer"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow no-rule"
-  }, lang === "en" ? "The short answer" : "重點摘要"), /*#__PURE__*/React.createElement("p", null, a.answer)), headings.length > 2 && /*#__PURE__*/React.createElement("nav", {
+  }, lang === "en" ? "The short answer" : "重點摘要"), /*#__PURE__*/React.createElement("p", null, zh(lang, a.answerZh, a.answer))), lang === "zh" && /*#__PURE__*/React.createElement("p", {
+    className: "art-lang-note"
+  }, "\u4EE5\u4E0B\u5167\u6587\u70BA\u82F1\u6587\u3002\u82E5\u60A8\u60F3\u7528\u4E2D\u6587\u4E86\u89E3\u9019\u7BC7\u7684\u5167\u5BB9\uFF0C\u6B61\u8FCE\u76F4\u63A5\u4F86\u96FB ", D3.agent.phone, "\uFF0C\u6211\u5F88\u6A02\u610F\u70BA\u60A8\u8AAA\u660E\u3002"), headings.length > 2 && /*#__PURE__*/React.createElement("nav", {
     className: "art-toc",
     "aria-label": "On this page"
   }, /*#__PURE__*/React.createElement("span", {
@@ -647,7 +655,8 @@ function ArticleDetail({
       marginTop: 16
     }
   }, lang === "en" ? "Frequently asked" : "常見問題"))), /*#__PURE__*/React.createElement(FAQList, {
-    items: a.faqs
+    items: a.faqs,
+    lang: lang
   }))), a.sources && a.sources.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
   }, /*#__PURE__*/React.createElement("div", {
@@ -683,7 +692,8 @@ function ArticleDetail({
   }, related.map(r => /*#__PURE__*/React.createElement(ArticleCard, {
     key: r.slug,
     a: r,
-    go: go
+    go: go,
+    lang: lang
   }))))), /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
   }, /*#__PURE__*/React.createElement("div", {
@@ -776,7 +786,8 @@ function FAQPage({
         marginTop: 16
       }
     }, lang === "en" ? grp.en : grp.zh))), /*#__PURE__*/React.createElement(FAQList, {
-      items: items
+      items: items,
+      lang: lang
     })));
   }), /*#__PURE__*/React.createElement("section", {
     className: "section-sm"
@@ -847,6 +858,12 @@ function GuideDetail({
     }
   };
   const meta = titles[kind] || titles.buyer;
+  // Chinese steps, keyed the same way. Falls back to English if a kind is missing.
+  const stepsZh = {
+    buyer: [["貸款預審", "介紹貸款專員，做的是真正的資格評估而不只是比利率，並一起定出您的出價上限。"], ["了解需求", "您真正想要的，和您以為自己想要的，往往不同；這通常要兩三次對話才會清楚。"], ["搜尋物件", "精選的 MLS 條件通知、未公開物件的引介，以及週末的看屋路線安排。"], ["盡職查核", "學區資料、微氣候、管委會文件審閱與可比較成交分析。"], ["出價", "價格、條件，以及一套能贏但不會讓您買貴的但書架構。"], ["驗屋", "屋頂、地基、污水管線與環境檢測，配合聖地牙哥在地的專業廠商。"], ["鑑價", "與貸款方協調；萬一鑑價不足，也先想好因應方式。"], ["交割", "最後點交、履約保證交接，以及一個值得拍照留念的交屋時刻。"]],
+    seller: [["估價", "一份書面 CMA：三種定價情境，並說明各自對應的銷售時程。"], ["整理準備", "修繕範圍、佈置計畫，以及哪些工項的錢真的收得回來。"], ["攝影", "雜誌等級的建築攝影、空拍、黃昏光線與 3D 環景。"], ["行銷", "MLS 上架、跨平台同步、同業預覽、紙本 DM 與數位廣告投放。"], ["帶看", "依社區特性安排開放參觀，另可預約私人看屋。"], ["談判", "審閱出價、擬定還價策略，以及但書解除的節奏掌控。"], ["履約保證", "驗屋回覆、鑑價處理，以及交割前的各項協調。"], ["交屋", "最後點交、鑰匙交付，以及交割後的後續追蹤。"]],
+    "1031": [["售前規劃", "在原房產上市之前，就先確立投資方向與替代標的的範圍。"], ["合格中介", "務必在交割前完成委任。我有兩位長期配合的合格中介隨時可以接手。"], ["原房產出售", "流程與一般委託銷售相同，但履約保證的每一步都須嚴格安排，以維持交換資格。"], ["第 0 天", "款項匯入合格中介帳戶，45 天與 180 天的時鐘同時開始。"], ["書面指定", "三物件原則（或 200% 原則），須於第 45 天前完成書面指定。"], ["替代標的查核", "驗屋、貸款，必要時還包括持有架構的安排。"], ["替代標的交割", "須在 180 天內完成。同時說明 boot 的計算與申報方式。"], ["申報", "與您的會計師協調 Form 8824 的填報。"]]
+  }[kind];
   const steps = {
     buyer: [["Pre-approval", "Lender introductions, qualification beyond rate-shopping, and writing your buying envelope."], ["Discovery", "What you actually want vs. what you think you want — refined over 2-3 conversations."], ["Search", "Curated MLS feeds, off-market introductions, and weekend tour itineraries."], ["Diligence", "School data, micro-climate, HOA review, comp set."], ["Offer", "Pricing, terms, and the contingency architecture that wins without overpaying."], ["Inspection", "Roof, foundation, sewer, environmental — with vetted San Diego specialists."], ["Appraisal", "Lender coordination and gap strategy if it comes in low."], ["Close", "Walk-through, escrow handoff, and a key delivery worth photographing."]],
     seller: [["Valuation", "A written CMA — three pricing scenarios with timeline implications for each."], ["Preparation", "Touch-up scope, staging plan, and which improvements actually return their cost."], ["Photography", "Magazine-grade architectural photography, drone, twilight, and 3D walkthroughs."], ["Marketing", "MLS, syndication, broker preview, private mailers, and digital campaign."], ["Showings", "Open houses calibrated to your neighborhood, plus private appointments by request."], ["Negotiation", "Offer review, counter strategy, and contingency removal pacing."], ["Escrow", "Inspection responses, appraisal management, and pre-close coordination."], ["Hand-off", "Final walkthrough, key handover, and post-close follow-up."]],
@@ -905,12 +922,12 @@ function GuideDetail({
       fontSize: 28,
       marginBottom: 8
     }
-  }, title), /*#__PURE__*/React.createElement("p", {
+  }, lang === "zh" && stepsZh && stepsZh[i] ? stepsZh[i][0] : title), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--ink-dim)',
       lineHeight: 1.7
     }
-  }, desc))))), /*#__PURE__*/React.createElement("div", {
+  }, lang === "zh" && stepsZh && stepsZh[i] ? stepsZh[i][1] : desc))))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 64,
       padding: 48,
@@ -1034,11 +1051,13 @@ function ExchangePage({
       marginTop: 16
     }
   }, lang === "en" ? "Frequently asked" : "常見問題"))), /*#__PURE__*/React.createElement(FAQList, {
-    items: D3.faqs.filter(f => f.g === "investing")
+    items: D3.faqs.filter(f => f.g === "investing"),
+    lang: lang
   }))));
 }
 function FAQList({
-  items
+  items,
+  lang
 }) {
   const [open, setOpen] = uS3(0);
   return /*#__PURE__*/React.createElement("div", {
@@ -1052,11 +1071,11 @@ function FAQList({
     onClick: () => setOpen(open === i ? -1 : i)
   }, /*#__PURE__*/React.createElement("div", {
     className: "faq-q"
-  }, /*#__PURE__*/React.createElement("span", null, f.q), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, zh(lang, f.qZh, f.q)), /*#__PURE__*/React.createElement("span", {
     className: "toggle"
   }, "+")), /*#__PURE__*/React.createElement("div", {
     className: "faq-a"
-  }, f.a))));
+  }, zh(lang, f.aZh, f.a)))));
 }
 window.JR_PAGES = {
   AboutPage,

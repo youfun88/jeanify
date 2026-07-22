@@ -140,8 +140,8 @@ function HomePage({ lang, go }) {
                 <div className="test-author">
                   <div className="test-avatar">{tt.initials}</div>
                   <div>
-                    <div className="test-name">{tt.name}</div>
-                    <div className="test-meta">{tt.area}</div>
+                    <div className="test-name">{lang === "zh" && tt.nameZh ? tt.nameZh : tt.name}</div>
+                    <div className="test-meta">{lang === "zh" && tt.areaZh ? tt.areaZh : tt.area}</div>
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@ function HomePage({ lang, go }) {
               </a>
             </div>
             <div className="grid-3">
-              {articles.map(a => <ArticleCard key={a.slug} a={a} go={go} />)}
+              {articles.map(a => <ArticleCard key={a.slug} a={a} go={go} lang={lang} />)}
             </div>
           </div>
         </section>

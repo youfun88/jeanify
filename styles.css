@@ -1861,6 +1861,17 @@ a.article-card { text-decoration: none; color: inherit; }
   max-width: 720px;
 }
 
+/* Shown on the Chinese site above an English article body. */
+.art-lang-note {
+  margin: -32px 0 44px;
+  padding: 14px 18px;
+  border-left: 2px solid var(--brass);
+  background: var(--bg-elev);
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .art-toc {
   margin-bottom: 56px;
   padding: 28px 32px;

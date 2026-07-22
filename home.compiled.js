@@ -295,9 +295,9 @@ function HomePage({
     className: "test-avatar"
   }, tt.initials), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "test-name"
-  }, tt.name), /*#__PURE__*/React.createElement("div", {
+  }, lang === "zh" && tt.nameZh ? tt.nameZh : tt.name), /*#__PURE__*/React.createElement("div", {
     className: "test-meta"
-  }, tt.area)))))))), songs.length > 0 && /*#__PURE__*/React.createElement("section", {
+  }, lang === "zh" && tt.areaZh ? tt.areaZh : tt.area)))))))), songs.length > 0 && /*#__PURE__*/React.createElement("section", {
     className: "section",
     style: {
       background: 'var(--bg-elev)'
@@ -412,7 +412,8 @@ function HomePage({
   }, articles.map(a => /*#__PURE__*/React.createElement(ArticleCard, {
     key: a.slug,
     a: a,
-    go: go
+    go: go,
+    lang: lang
   }))))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {

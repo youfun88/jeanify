@@ -27,6 +27,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 01
   {
     slug: "buying-in-la-jolla",
+    titleZh: "在 La Jolla 買房，該有的心理準備",
+    dekZh: "沿海開發許可這一層、多數人拖到成交前才想到的地質調查，以及 92037 的真實數字。",
+    answerZh: "在 La Jolla 買房與聖地牙哥其他區域有三個具體差異：房價約為全郡中位數的三倍；多數區域落在沿海管制區內，外觀變更需先取得沿海開發許可；靠近海崖的地號還需要一般驗屋不涵蓋的地質調查。交割期抓 30 到 45 天，並記得交割後 3 到 9 個月會另外收到一筆補充房屋稅單，貸款方不會代收。",
     category: "Buyer Guide",
     title: "What to expect when buying in La Jolla",
     dek: "The coastal permit layer, the geotechnical questions nobody asks until escrow, and what the 92037 numbers actually look like.",
@@ -104,6 +107,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 02
   {
     slug: "pre-listing-preparation",
+    titleZh: "上市前的七項準備",
+    dekZh: "準備的錢花在哪裡才回得來、能替您省下多少市場停留天數，以及一項全聖地牙哥沒有第二個房仲在做的行銷。",
+    answerZh: "上市前的準備預算，抓房屋價值的 1% 到 3%，重點放在油漆、深度清潔、庭園整理與佈置，這四項的回收最穩定。美國房屋佈置協會（RESA）的資料顯示，平均佈置花費約 3,800 美元，換得的是明顯縮短的市場停留天數。整體流程安排四週，攝影一定排在最後，等所有工項都完成再拍。",
     category: "Seller Guide",
     title: "Pre-listing essentials: the seven-point preparation",
     dek: "Where preparation money actually returns, what it buys you in days on market, and the one marketing piece no other San Diego agent is making.",
@@ -181,6 +187,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 03
   {
     slug: "1031-exchange-timing",
+    titleZh: "1031 交換的時程，投資人最常栽在哪裡",
+    dekZh: "期限本身很單純。真正出事的幾乎都不是算錯天數，而是順序，以及一條多數投資人沒聽過的規定。",
+    answerZh: "1031 交換給您的是：自原房產交割日起 45 個日曆天內以書面指定替代房產，180 個日曆天內完成交割。兩個時鐘同一天起算、同時進行，180 天並不是 45 天之後才開始。最常見的失敗不是算術，而是合格中介介入得太晚：只要售屋款項曾經進到您手上，哪怕只是短暫，這筆交換就作廢，而且無法補救。",
     category: "Investor",
     title: "1031 Exchange timing — what trips up most investors",
     dek: "The deadlines are simple. The failures are almost never about arithmetic — they are about sequencing, and about one rule most investors have never heard of.",
@@ -261,6 +270,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 04
   {
     slug: "reading-a-cma",
+    titleZh: "怎麼看懂一份 CMA",
+    dekZh: "如何分辨真正的估價與一份爭取委託的話術，以及手機上那個自動估價數字，究竟差多少。",
+    answerZh: "CMA 是以附近條件相近房屋的近期成交為基礎，再依屋況、坪數、景觀與地坪差異調整後得出的價格意見。判斷一份 CMA 的好壞，要看它挑的比較標的與調整過程，而不是最後那個數字。以未上市房屋而言，Zillow 自己公布的誤差中位數約 7.5%——換算到一間 200 萬美元的聖地牙哥房子約是 15 萬美元，這正是 CMA 與自動估價不能互相取代的原因。",
     category: "Market",
     title: "Reading a comparative market analysis",
     dek: "How to tell a real valuation from a listing pitch — and why the automated number on your phone is off by more than you think.",
@@ -343,6 +355,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 05
   {
     slug: "mello-roos-san-diego",
+    titleZh: "Mello-Roos：92127、92130、92131 的買家實際要繳多少",
+    dekZh: "這一筆會改變您貸得到多少，也解釋了為什麼隔兩條街的兩間房子稅單完全不同，以及下斡旋前該怎麼查。",
+    answerZh: "Mello-Roos 是社區設施特別區（CFD）為支應新開發社區公共建設而課徵的特別稅。在聖地牙哥較新的規劃社區——4S Ranch、Del Sur、Santaluz、Pacific Highlands Ranch——每年常見落在 1,000 到 5,000 美元以上，而 Carmel Valley 較早期的社區則往往完全沒有。由於它會併入房屋稅由貸款方代收，實質上會直接壓縮您的貸款額度。",
     category: "Buyer Guide",
     title: "Mello-Roos in San Diego: what buyers in 92127, 92130 and 92131 actually pay",
     dek: "The line item that changes what you qualify for, why two identical houses two streets apart carry different bills, and how to check before you write an offer.",
@@ -424,6 +439,9 @@ window.JR_ARTICLES = [
   // ---------------------------------------------------------------- 06
   {
     slug: "international-buyers-san-diego",
+    titleZh: "海外買家在聖地牙哥置產指南",
+    dekZh: "沒有美國信用紀錄要怎麼貸款、出售時會被預扣的那一筆，以及幾乎沒有人事先提醒的遺產稅風險。",
+    answerZh: "在美國購置不動產沒有公民、居留或簽證的限制，外國人可以直接買下聖地牙哥的房子。即使沒有美國信用紀錄或社會安全碼，也能透過外國人專案或 DSCR 貸款取得融資，頭期款通常是兩成到三成。買進之前要先規劃好的有兩件事：日後出售時的 FIRPTA 預扣，以及美國遺產稅——非居民僅有六萬美元的免稅額。",
     category: "International",
     title: "Buying San Diego property as an international buyer",
     dek: "Financing without a US credit file, the withholding rule that applies when you sell, and the estate-tax exposure almost nobody mentions until it is too late.",
