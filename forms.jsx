@@ -78,7 +78,7 @@ function EstimatorPage({ lang, go }) {
             <p className="lede">
               {lang==="en"
                 ? "Your valuation request has been sent. Jean reviews each one personally and returns a written CMA, usually within 48 hours."
-                : "您的估值請求已送出。Jean 會親自審閱每一份請求，通常於 48 小時內提供書面 CMA。"}
+                : "您的估價需求已送出。Jean 會親自看過每一份請求，通常在 48 小時內提供書面 CMA。"}
             </p>
             <p style={{ color:'var(--ink-dim)', marginTop: 20 }}>
               {lang==="en" ? "Need it sooner? Call " : "需要更快回覆？請致電 "}
@@ -102,9 +102,9 @@ function EstimatorPage({ lang, go }) {
       <header className="page-head">
         <div className="container">
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Home Valuation</div>
-          <span className="eyebrow">{lang==="en"?"Personal Valuation":"客製化估值"}</span>
-          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>What's your <em>home</em> worth?</> : <>您的 <em>房產</em> 價值幾何？</>}</h1>
-          <p className="lede">{lang==="en"?"No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours.":"不提供自動估值 —— Jean 親自審閱每份請求，通常 48 小時內提供書面 CMA。"}</p>
+          <span className="eyebrow">{lang==="en"?"Personal Valuation":"客製化估價"}</span>
+          <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>What's your <em>home</em> worth?</> : <>您的房子 <em>值多少</em>？</>}</h1>
+          <p className="lede">{lang==="en"?"No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours.":"不提供自動估價。每一份請求都由 Jean 親自審閱，通常在 48 小時內提供書面 CMA。"}</p>
         </div>
       </header>
       <section className="section">
@@ -329,7 +329,7 @@ function VideosPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Videos</div>
           <span className="eyebrow">{lang==="en"?"Video Library":"影片中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>From the <em>field</em>.</> : <>市場 <em>實錄</em></>}</h1>
-          <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"}</p>
+          <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及客戶與同業經紀人的真實分享，全部來自 Jean 的 YouTube 頻道。"}</p>
           <div style={{ marginTop: 24 }}>
             <a className="btn btn-primary arrow-right" href={D4.agent.youtube} target="_blank" rel="noopener noreferrer">
               {lang==="en"?"Visit YouTube Channel — ":"訪問 YouTube 頻道 · "}{D4.agent.youtubeHandle}
@@ -344,7 +344,7 @@ function VideosPage({ lang, go }) {
             {sectionHeader(
               lang==="en"?"Listing Songs":"房源主題曲",
               lang==="en"?"Every listing gets its own song":"每套房源，都有專屬歌曲",
-              lang==="en"?"Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take.":"不是套用罐頭配樂的幻燈片 —— 而是為該物業、街道與環境量身創作的原創歌曲。這是真正會被看完、被轉發的行銷內容，且我接下的每一套房源都包含此服務。"
+              lang==="en"?"Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take.":"不是配上罐頭音樂的幻燈片，而是為該物業、街道與周邊環境量身創作的一首歌。這樣的內容人們會看完、會轉發，而我接下的每一套房源都包含這項服務。"
             )}
             <div className="video-grid">
               {songs.map(v => <VC4 key={v.id} v={v} feature={v.feature} />)}
@@ -364,7 +364,7 @@ function VideosPage({ lang, go }) {
             {sectionHeader(
               lang==="en"?"Client Voice-Overs":"客戶配音",
               lang==="en"?"Heard from the people who lived it":"由親歷者講述",
-              lang==="en"?"Property tours narrated by Jean's actual clients — about the homes and communities they came to love.":"由 Jean 的真實客戶親自配音 —— 講述他們所喜愛的家與社區。"
+              lang==="en"?"Property tours narrated by Jean's actual clients — about the homes and communities they came to love.":"由 Jean 的真實客戶親自配音，講述他們所喜愛的家與社區。"
             )}
             <div className="video-grid">
               {voiceovers.map(v => <VC4 key={v.id} v={v} feature={v === voiceovers[0]} />)}
@@ -378,7 +378,7 @@ function VideosPage({ lang, go }) {
           <div className="container">
             {sectionHeader(
               lang==="en"?"Property & Neighborhood Tours":"房源與社區導覽",
-              lang==="en"?"Inside San Diego's homes, from Jean":"聖地亞哥家居實景，由 Jean 親自介紹",
+              lang==="en"?"Inside San Diego's homes, from Jean":"聖地牙哥家居實景，由 Jean 親自介紹",
               lang==="en"?"Walkthroughs of recent listings and the neighborhoods that surround them.":"近期房源走訪與周邊社區導覽。"
             )}
             <div className="video-grid">

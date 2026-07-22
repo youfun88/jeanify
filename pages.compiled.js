@@ -36,7 +36,7 @@ function AboutPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Treating clients ", /*#__PURE__*/React.createElement("em", null, "like royalty"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u8996\u5BA2\u6236 ", /*#__PURE__*/React.createElement("em", null, "\u70BA\u4E0A\u8CD3"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 \u8056\u5730\u4E9E\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 San Diego's Rising Star Real Estate Agent.") : /*#__PURE__*/React.createElement(React.Fragment, null, "Realtor\xAE Jean Riley \xB7 ", D3.agent.license, " \xB7 Jeanify \xB7 \u8056\u5730\u7259\u54E5\u65B0\u661F\u5730\u7522\u7D93\u7D00\u3002")))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -71,13 +71,13 @@ function AboutPage({
     style: {
       color: 'var(--ink)'
     }
-  }, "Jeanify"), " \u2014\u2014 \u52A0\u5DDE\u6700\u53D7\u4FE1\u8CF4\u7684\u623F\u5730\u7522\u5718\u968A\u4E4B\u4E00 \u2014\u2014 \u6211\u5011\u63D0\u4F9B\u8AEE\u8A62\u3001\u8AC7\u5224\uFF0C\u4E26\u8655\u7406\u6BCF\u4E00\u500B\u7D30\u7BC0\uFF0C\u78BA\u4FDD\u5BA2\u6236\u6210\u529F\u8CB7\u8CE3\u4ED6\u5011\u4E00\u751F\u4E2D\u6700\u91CD\u8981\u7684\u8CC7\u7522\u3002\u9019\u4E00\u7406\u5FF5\u6307\u5F15\u8457\u6211\u7684\u6BCF\u4E00\u9805\u5DE5\u4F5C\u3002")), /*#__PURE__*/React.createElement("p", {
+  }, "Jeanify"), "\u2014\u2014\u52A0\u5DDE\u6700\u53D7\u4FE1\u8CF4\u7684\u623F\u5730\u7522\u5718\u968A\u4E4B\u4E00\u2014\u2014\u6211\u5011\u63D0\u4F9B\u8AEE\u8A62\u3001\u4EE3\u70BA\u8AC7\u5224\uFF0C\u4E26\u7167\u9867\u6BCF\u4E00\u500B\u7D30\u7BC0\uFF0C\u8B93\u5BA2\u6236\u9806\u5229\u8CB7\u8CE3\u4ED6\u5011\u4E00\u751F\u4E2D\u6700\u91CD\u8981\u7684\u8CC7\u7522\u3002\u9019\u6A23\u7684\u4FE1\u5FF5\uFF0C\u8CAB\u7A7F\u6211\u6240\u505A\u7684\u6BCF\u4E00\u4EF6\u4E8B\u3002")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--ink-dim)',
       marginTop: 20,
       lineHeight: 1.8
     }
-  }, lang === "en" ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego." : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我能以英語、國語與台語溝通 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego." : "我之所以投入房地產，是因為喜歡幫助別人把夢想看得更清楚、走得更篤定。我能以英語、國語與台語溝通，專注於聖地牙哥地區的獨立住宅與商業不動產買賣。"), /*#__PURE__*/React.createElement("div", {
     className: "bio-credits"
   }, /*#__PURE__*/React.createElement("div", {
     className: "bio-credit"
@@ -89,7 +89,7 @@ function AboutPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Rising", /*#__PURE__*/React.createElement("br", null), "Star") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u65B0\u661F", /*#__PURE__*/React.createElement("br", null), "\u734E")), /*#__PURE__*/React.createElement("div", {
     className: "lbl"
-  }, lang === "en" ? "San Diego Award" : "聖地亞哥獎項")), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "San Diego Award" : "聖地牙哥獎項")), /*#__PURE__*/React.createElement("div", {
     className: "bio-credit"
   }, /*#__PURE__*/React.createElement("div", {
     className: "num"
@@ -185,20 +185,20 @@ function AboutPage({
       marginTop: 20,
       maxWidth: '60ch'
     }
-  }, lang === "en" ? "Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents." : "不只是傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。")), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents." : "不只是買賣成交。Jeanify 為屋主、投資人，以及有志投入房仲業的夥伴，提供完整的服務。")), /*#__PURE__*/React.createElement("div", {
     className: "grid-4"
   }, [{
     t: lang === "en" ? "Real Estate Sales" : "房產銷售",
-    d: lang === "en" ? "Single-family homes and commercial property — Jean's primary specialty." : "獨立住宅與商業地產 —— Jean 的核心專長。"
+    d: lang === "en" ? "Single-family homes and commercial property — Jean's primary specialty." : "獨立住宅與商業不動產，Jean 的核心專長。"
   }, {
     t: lang === "en" ? "Business Sales" : "企業出售",
-    d: lang === "en" ? "Confidential business brokerage with valuation and buyer vetting." : "機密企業經紀服務，含估值與買方稽核。"
+    d: lang === "en" ? "Confidential business brokerage with valuation and buyer vetting." : "企業出售全程保密，並提供估價與買方資格審核。"
   }, {
     t: lang === "en" ? "Property Management" : "物業管理",
-    d: lang === "en" ? "Tenant placement, maintenance coordination and financial reporting." : "租客匹配、維護協調與財務報告。"
+    d: lang === "en" ? "Tenant placement, maintenance coordination and financial reporting." : "招募租客、維修協調與財務報表。"
   }, {
     t: lang === "en" ? "Investment Advisory" : "投資諮詢",
-    d: lang === "en" ? "Portfolio strategy, 1031 exchange execution and replacement diligence." : "投資組合策略、1031 交換執行與替代房產盡調。"
+    d: lang === "en" ? "Portfolio strategy, 1031 exchange execution and replacement diligence." : "投資組合規劃、1031 交換執行與替代房產查核。"
   }].map((s, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
@@ -262,7 +262,7 @@ function AboutPage({
     style: {
       marginTop: 16
     }
-  }, lang === "en" ? "Client Testimonials — In their words" : "客戶推薦 —— 客戶原聲"))), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Client Testimonials — In their words" : "客戶推薦 —— 他們怎麼說"))), /*#__PURE__*/React.createElement("div", {
     className: "test-grid"
   }, D3.testimonials.map((tt, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -374,7 +374,7 @@ function MarketGuidesSection({
       marginTop: 20,
       maxWidth: '60ch'
     }
-  }, lang === "en" ? "Twenty-page briefings on where the market actually stands this quarter — rates, inventory, equity and pricing, with the charts behind each claim. Free, no email required." : "二十頁的季度市場簡報 —— 利率、庫存、房屋淨值與定價，每項論點皆附圖表佐證。免費下載，無需填寫電郵。"))), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Twenty-page briefings on where the market actually stands this quarter — rates, inventory, equity and pricing, with the charts behind each claim. Free, no email required." : "二十頁的季度市場簡報：利率、庫存、房屋淨值與定價，每項論點都附上圖表佐證。免費下載，不必留下 Email。"))), /*#__PURE__*/React.createElement("div", {
     className: only ? "grid-1" : "grid-2"
   }, guides.map(g => /*#__PURE__*/React.createElement(MarketGuideCard, {
     key: g.id,
@@ -410,7 +410,7 @@ function ArticlesPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Written for the ", /*#__PURE__*/React.createElement("em", null, "committed"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5C08\u696D ", /*#__PURE__*/React.createElement("em", null, "\u5C08\u6B04"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public." : "為買家、賣家與 1031 投資者準備的實操指南與市場札記 —— 我服務私人客戶所用的同一套方法論。"))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public." : "為買家、賣家與 1031 投資人整理的實務指南與市場札記，與我服務私人客戶時所用的是同一套方法。"))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -969,7 +969,7 @@ function ExchangePage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "The ", /*#__PURE__*/React.createElement("em", null, "1031"), " Exchange.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("em", null, "1031"), " \u4EA4\u63DB")), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each." : "投資性房產的資本利得遞延 —— 前提是時間、檔案與中介結構均精確無誤。這些細節，由我把控。"))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each." : "投資性房產的資本利得遞延，前提是時程、文件與中介架構都精確無誤。這些細節，交給我來掌握。"))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -978,11 +978,11 @@ function ExchangePage({
   }, [{
     n: "45",
     l: lang === "en" ? "Days to identify" : "天識別期",
-    d: lang === "en" ? "From the close of your relinquished property — written identification of replacement candidates." : "自交割之日起 —— 須以書面形式識別替代房產候選。"
+    d: lang === "en" ? "From the close of your relinquished property — written identification of replacement candidates." : "自交割日起算，須以書面指定替代房產。"
   }, {
     n: "180",
     l: lang === "en" ? "Days to close" : "天完成交割",
-    d: lang === "en" ? "From the same close date — the replacement transaction must fund." : "自同一交割日起 —— 替代交易必須完成放款。"
+    d: lang === "en" ? "From the same close date — the replacement transaction must fund." : "自同一交割日起算，替代房產必須完成交割。"
   }, {
     n: "200%",
     l: lang === "en" ? "Identification cap" : "識別上限",

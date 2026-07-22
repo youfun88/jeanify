@@ -46,9 +46,9 @@ window.JR_DATA = {
     zh: {
       nav: { home: "首頁", listings: "房源", videos: "影片", about: "關於", articles: "資源", guides: "指南", faq: "常見問題", exchange: "1031 交換", contact: "聯絡" },
       hero: {
-        eyebrow: "聖地亞哥 · 始於 2015",
+        eyebrow: "聖地牙哥 · 始於 2015",
         h1: ["以專業態度", "服務加州海岸生活"],
-        sub: "十年深耕聖地亞哥最受歡迎的社區——從 La Jolla 海崖豪宅到 Mission Hills 工藝風住宅，再到 1031 投資組合，全程陪伴買家、賣家與投資人。",
+        sub: "十年深耕聖地牙哥最受歡迎的社區：從 La Jolla 的海崖住宅、Mission Hills 的工藝美術風老宅，到 1031 投資配置，全程陪伴買家、賣家與投資人。",
         cta1: "預約諮詢",
         cta2: "檢視精選房源",
       },
@@ -66,7 +66,7 @@ window.JR_DATA = {
         guidesEy: "資源中心",
         guidesH: "買家、賣家與投資者指南",
         estEy: "您的房產價值",
-        estH: "客製化估值，親自為您準備",
+        estH: "客製化估價，由 Jean 親自準備",
       },
     },
   },
@@ -192,7 +192,7 @@ window.JR_DATA = {
       size: "3.0 MB",
       updated: "2026-07",
       desc: "A seasonal briefing on rates, inventory and new construction — what is actually moving the market you're about to buy in, with the numbers behind it.",
-      descZh: "針對利率、庫存與新建案的季度市場簡報 —— 用數據說明您即將進入的市場正在發生什麼。",
+      descZh: "針對利率、庫存與新建案的季度市場簡報，用數據說明您即將進入的市場，現在是什麼狀況。",
       contents: [
         "You Can't Control Mortgage Rates, But You Can Control This",
         "How Changing Mortgage Rates Affect Your Future Monthly Payment",
@@ -218,7 +218,7 @@ window.JR_DATA = {
       size: "5.0 MB",
       updated: "2026-07",
       desc: "Pricing, staging, equity and the upgrades that actually return their cost — the seller-side briefing for this season's market.",
-      descZh: "定價、佈置、房屋淨值，以及真正能回收成本的翻修項目 —— 本季市場的賣方簡報。",
+      descZh: "定價、佈置、房屋淨值，以及真正能回收成本的翻修項目：本季市場的賣方簡報。",
       contents: [
         "What Every Homeowner Needs To Know About Selling Now",
         "The Secret To Selling Fast, No Matter the Market",

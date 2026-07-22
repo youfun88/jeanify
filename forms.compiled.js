@@ -107,7 +107,7 @@ function EstimatorPage({
       }
     }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "Thank you \u2014 it's ", /*#__PURE__*/React.createElement("em", null, "with Jean"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5DF2\u9001\u9054 ", /*#__PURE__*/React.createElement("em", null, "Jean"))), /*#__PURE__*/React.createElement("p", {
       className: "lede"
-    }, lang === "en" ? "Your valuation request has been sent. Jean reviews each one personally and returns a written CMA, usually within 48 hours." : "您的估值請求已送出。Jean 會親自審閱每一份請求，通常於 48 小時內提供書面 CMA。"), /*#__PURE__*/React.createElement("p", {
+    }, lang === "en" ? "Your valuation request has been sent. Jean reviews each one personally and returns a written CMA, usually within 48 hours." : "您的估價需求已送出。Jean 會親自看過每一份請求，通常在 48 小時內提供書面 CMA。"), /*#__PURE__*/React.createElement("p", {
       style: {
         color: 'var(--ink-dim)',
         marginTop: 20
@@ -156,13 +156,13 @@ function EstimatorPage({
     }
   }, "Home"), /*#__PURE__*/React.createElement("span", null, "/"), "Home Valuation"), /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, lang === "en" ? "Personal Valuation" : "客製化估值"), /*#__PURE__*/React.createElement("h1", {
+  }, lang === "en" ? "Personal Valuation" : "客製化估價"), /*#__PURE__*/React.createElement("h1", {
     style: {
       marginTop: 20
     }
-  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "What's your ", /*#__PURE__*/React.createElement("em", null, "home"), " worth?") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u60A8\u7684 ", /*#__PURE__*/React.createElement("em", null, "\u623F\u7522"), " \u50F9\u503C\u5E7E\u4F55\uFF1F")), /*#__PURE__*/React.createElement("p", {
+  }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "What's your ", /*#__PURE__*/React.createElement("em", null, "home"), " worth?") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u60A8\u7684\u623F\u5B50 ", /*#__PURE__*/React.createElement("em", null, "\u503C\u591A\u5C11"), "\uFF1F")), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours." : "不提供自動估值 —— Jean 親自審閱每份請求，通常 48 小時內提供書面 CMA。"))), /*#__PURE__*/React.createElement("section", {
+  }, lang === "en" ? "No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours." : "不提供自動估價。每一份請求都由 Jean 親自審閱，通常在 48 小時內提供書面 CMA。"))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container-tight"
@@ -564,7 +564,7 @@ function VideosPage({
     }
   }, lang === "en" ? /*#__PURE__*/React.createElement(React.Fragment, null, "From the ", /*#__PURE__*/React.createElement("em", null, "field"), ".") : /*#__PURE__*/React.createElement(React.Fragment, null, "\u5E02\u5834 ", /*#__PURE__*/React.createElement("em", null, "\u5BE6\u9304"))), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, lang === "en" ? "Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及來自客戶與同業經紀人的真實分享 —— 全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
+  }, lang === "en" ? "Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel." : "為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及客戶與同業經紀人的真實分享，全部來自 Jean 的 YouTube 頻道。"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 24
     }
@@ -577,7 +577,7 @@ function VideosPage({
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, sectionHeader(lang === "en" ? "Listing Songs" : "房源主題曲", lang === "en" ? "Every listing gets its own song" : "每套房源，都有專屬歌曲", lang === "en" ? "Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take." : "不是套用罐頭配樂的幻燈片 —— 而是為該物業、街道與環境量身創作的原創歌曲。這是真正會被看完、被轉發的行銷內容，且我接下的每一套房源都包含此服務。"), /*#__PURE__*/React.createElement("div", {
+  }, sectionHeader(lang === "en" ? "Listing Songs" : "房源主題曲", lang === "en" ? "Every listing gets its own song" : "每套房源，都有專屬歌曲", lang === "en" ? "Not a stock music bed under a slideshow — an original song written about the actual property, its street and its setting. It is the piece of marketing that people watch to the end and send to a friend, and it is included with every listing I take." : "不是配上罐頭音樂的幻燈片，而是為該物業、街道與周邊環境量身創作的一首歌。這樣的內容人們會看完、會轉發，而我接下的每一套房源都包含這項服務。"), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
   }, songs.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
@@ -602,7 +602,7 @@ function VideosPage({
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, sectionHeader(lang === "en" ? "Client Voice-Overs" : "客戶配音", lang === "en" ? "Heard from the people who lived it" : "由親歷者講述", lang === "en" ? "Property tours narrated by Jean's actual clients — about the homes and communities they came to love." : "由 Jean 的真實客戶親自配音 —— 講述他們所喜愛的家與社區。"), /*#__PURE__*/React.createElement("div", {
+  }, sectionHeader(lang === "en" ? "Client Voice-Overs" : "客戶配音", lang === "en" ? "Heard from the people who lived it" : "由親歷者講述", lang === "en" ? "Property tours narrated by Jean's actual clients — about the homes and communities they came to love." : "由 Jean 的真實客戶親自配音，講述他們所喜愛的家與社區。"), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
   }, voiceovers.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,
@@ -612,7 +612,7 @@ function VideosPage({
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, sectionHeader(lang === "en" ? "Property & Neighborhood Tours" : "房源與社區導覽", lang === "en" ? "Inside San Diego's homes, from Jean" : "聖地亞哥家居實景，由 Jean 親自介紹", lang === "en" ? "Walkthroughs of recent listings and the neighborhoods that surround them." : "近期房源走訪與周邊社區導覽。"), /*#__PURE__*/React.createElement("div", {
+  }, sectionHeader(lang === "en" ? "Property & Neighborhood Tours" : "房源與社區導覽", lang === "en" ? "Inside San Diego's homes, from Jean" : "聖地牙哥家居實景，由 Jean 親自介紹", lang === "en" ? "Walkthroughs of recent listings and the neighborhoods that surround them." : "近期房源走訪與周邊社區導覽。"), /*#__PURE__*/React.createElement("div", {
     className: "video-grid"
   }, tours.map(v => /*#__PURE__*/React.createElement(VC4, {
     key: v.id,

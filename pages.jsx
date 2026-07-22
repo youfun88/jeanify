@@ -11,7 +11,7 @@ function AboutPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>About</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>視客戶 <em>為上賓</em></>}</h1>
-          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · 聖地亞哥新星地產經紀。</>}</p>
+          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify · 聖地牙哥新星地產經紀。</>}</p>
         </div>
       </header>
       <section className="section">
@@ -27,15 +27,15 @@ function AboutPage({ lang, go }) {
               <p style={{ color:'var(--ink-dim)', marginTop: 28, lineHeight: 1.8 }}>
                 {lang==="en"
                   ? <>At <strong style={{color:'var(--ink)'}}>Jeanify</strong> — one of the most trusted real estate groups in California — we consult, negotiate, and handle every detail so our clients successfully buy or sell what is, for most of them, the largest asset they will ever own. That orientation guides everything I do.</>
-                  : <>在 <strong style={{color:'var(--ink)'}}>Jeanify</strong> —— 加州最受信賴的房地產團隊之一 —— 我們提供諮詢、談判，並處理每一個細節，確保客戶成功買賣他們一生中最重要的資產。這一理念指引著我的每一項工作。</>}
+                  : <>在 <strong style={{color:'var(--ink)'}}>Jeanify</strong>——加州最受信賴的房地產團隊之一——我們提供諮詢、代為談判，並照顧每一個細節，讓客戶順利買賣他們一生中最重要的資產。這樣的信念，貫穿我所做的每一件事。</>}
               </p>
               <p style={{ color:'var(--ink-dim)', marginTop: 20, lineHeight: 1.8 }}>
                 {lang==="en"
                   ? "I came to real estate out of a passion for helping others pursue their dreams with clarity and confidence. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego."
-                  : "我從事房地產，源於幫助他人以清晰與自信追尋夢想的熱忱。我能以英語、國語與台語溝通 —— 專注於聖地亞哥地區獨立住宅與商業物業的買賣。"}
+                  : "我之所以投入房地產，是因為喜歡幫助別人把夢想看得更清楚、走得更篤定。我能以英語、國語與台語溝通，專注於聖地牙哥地區的獨立住宅與商業不動產買賣。"}
               </p>
               <div className="bio-credits">
-                <div className="bio-credit"><div className="num" style={{fontSize:28, lineHeight:1.1}}>{lang==="en"?<>Rising<br/>Star</>:<>新星<br/>獎</>}</div><div className="lbl">{lang==="en"?"San Diego Award":"聖地亞哥獎項"}</div></div>
+                <div className="bio-credit"><div className="num" style={{fontSize:28, lineHeight:1.1}}>{lang==="en"?<>Rising<br/>Star</>:<>新星<br/>獎</>}</div><div className="lbl">{lang==="en"?"San Diego Award":"聖地牙哥獎項"}</div></div>
                 <div className="bio-credit"><div className="num">3</div><div className="lbl">{lang==="en"?"Languages Spoken":"精通語言"}</div></div>
                 <div className="bio-credit"><div className="num">SF + CRE</div><div className="lbl">{lang==="en"?"Specialty":"專長領域"}</div></div>
               </div>
@@ -125,14 +125,14 @@ function AboutPage({ lang, go }) {
           <div style={{ marginBottom: 56 }}>
             <span className="eyebrow">{lang==="en"?"The Jeanify Practice":"Jeanify 業務"}</span>
             <h2 style={{ marginTop: 16 }}>{lang==="en"?"A full-service real estate group.":"全方位房地產服務團隊"}</h2>
-            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents.":"不只是傳統交易 —— Jeanify 為業主、投資人與有志經紀人提供完整的服務體系。"}</p>
+            <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>{lang==="en"?"Beyond traditional sales — Jeanify offers a complete suite of services for owners, investors and aspiring agents.":"不只是買賣成交。Jeanify 為屋主、投資人，以及有志投入房仲業的夥伴，提供完整的服務。"}</p>
           </div>
           <div className="grid-4">
             {[
-              { t: lang==="en"?"Real Estate Sales":"房產銷售", d: lang==="en"?"Single-family homes and commercial property — Jean's primary specialty.":"獨立住宅與商業地產 —— Jean 的核心專長。" },
-              { t: lang==="en"?"Business Sales":"企業出售", d: lang==="en"?"Confidential business brokerage with valuation and buyer vetting.":"機密企業經紀服務，含估值與買方稽核。" },
-              { t: lang==="en"?"Property Management":"物業管理", d: lang==="en"?"Tenant placement, maintenance coordination and financial reporting.":"租客匹配、維護協調與財務報告。" },
-              { t: lang==="en"?"Investment Advisory":"投資諮詢", d: lang==="en"?"Portfolio strategy, 1031 exchange execution and replacement diligence.":"投資組合策略、1031 交換執行與替代房產盡調。" },
+              { t: lang==="en"?"Real Estate Sales":"房產銷售", d: lang==="en"?"Single-family homes and commercial property — Jean's primary specialty.":"獨立住宅與商業不動產，Jean 的核心專長。" },
+              { t: lang==="en"?"Business Sales":"企業出售", d: lang==="en"?"Confidential business brokerage with valuation and buyer vetting.":"企業出售全程保密，並提供估價與買方資格審核。" },
+              { t: lang==="en"?"Property Management":"物業管理", d: lang==="en"?"Tenant placement, maintenance coordination and financial reporting.":"招募租客、維修協調與財務報表。" },
+              { t: lang==="en"?"Investment Advisory":"投資諮詢", d: lang==="en"?"Portfolio strategy, 1031 exchange execution and replacement diligence.":"投資組合規劃、1031 交換執行與替代房產查核。" },
             ].map((s, i) => (
               <div key={i} style={{padding:32, border:'1px solid var(--line)', background:'var(--bg-deep)'}}>
                 <div style={{fontFamily:'var(--font-display)', fontStyle:'italic', fontSize:32, color:'var(--brass)', marginBottom:8}}>{String(i+1).padStart(2,'0')}</div>
@@ -171,7 +171,7 @@ function AboutPage({ lang, go }) {
           <div className="sect-head">
             <div className="sect-head-title">
               <span className="eyebrow">{lang==="en"?"Client Voices":"客戶心聲"}</span>
-              <h2 style={{ marginTop: 16 }}>{lang==="en"?"Client Testimonials — In their words":"客戶推薦 —— 客戶原聲"}</h2>
+              <h2 style={{ marginTop: 16 }}>{lang==="en"?"Client Testimonials — In their words":"客戶推薦 —— 他們怎麼說"}</h2>
             </div>
           </div>
           <div className="test-grid">
@@ -255,7 +255,7 @@ function MarketGuidesSection({ lang, only }) {
             <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>
               {lang==="en"
                 ? "Twenty-page briefings on where the market actually stands this quarter — rates, inventory, equity and pricing, with the charts behind each claim. Free, no email required."
-                : "二十頁的季度市場簡報 —— 利率、庫存、房屋淨值與定價，每項論點皆附圖表佐證。免費下載，無需填寫電郵。"}
+                : "二十頁的季度市場簡報：利率、庫存、房屋淨值與定價，每項論點都附上圖表佐證。免費下載，不必留下 Email。"}
             </p>
           )}
         </div>
@@ -276,7 +276,7 @@ function ArticlesPage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>Resources</div>
           <span className="eyebrow">{lang==="en"?"Resources":"資源中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Written for the <em>committed</em>.</> : <>專業 <em>專欄</em></>}</h1>
-          <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資者準備的實操指南與市場札記 —— 我服務私人客戶所用的同一套方法論。"}</p>
+          <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資人整理的實務指南與市場札記，與我服務私人客戶時所用的是同一套方法。"}</p>
         </div>
       </header>
 
@@ -631,15 +631,15 @@ function ExchangePage({ lang, go }) {
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>Home</a><span>/</span>1031 Exchange</div>
           <span className="eyebrow">{lang==="en"?"Investor Specialty":"投資專長"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>1031</em> Exchange.</> : <><em>1031</em> 交換</>}</h1>
-          <p className="lede">{lang==="en"?"Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each.":"投資性房產的資本利得遞延 —— 前提是時間、檔案與中介結構均精確無誤。這些細節，由我把控。"}</p>
+          <p className="lede">{lang==="en"?"Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each.":"投資性房產的資本利得遞延，前提是時程、文件與中介架構都精確無誤。這些細節，交給我來掌握。"}</p>
         </div>
       </header>
       <section className="section">
         <div className="container">
           <div className="grid-3">
             {[
-              { n: "45", l: lang==="en"?"Days to identify":"天識別期", d: lang==="en"?"From the close of your relinquished property — written identification of replacement candidates.":"自交割之日起 —— 須以書面形式識別替代房產候選。" },
-              { n: "180", l: lang==="en"?"Days to close":"天完成交割", d: lang==="en"?"From the same close date — the replacement transaction must fund.":"自同一交割日起 —— 替代交易必須完成放款。" },
+              { n: "45", l: lang==="en"?"Days to identify":"天識別期", d: lang==="en"?"From the close of your relinquished property — written identification of replacement candidates.":"自交割日起算，須以書面指定替代房產。" },
+              { n: "180", l: lang==="en"?"Days to close":"天完成交割", d: lang==="en"?"From the same close date — the replacement transaction must fund.":"自同一交割日起算，替代房產必須完成交割。" },
               { n: "200%", l: lang==="en"?"Identification cap":"識別上限", d: lang==="en"?"Combined value of identified properties cannot exceed 200% of relinquished value (unless 95% rule).":"識別房產合計價值不超過原房產 200%（除非適用 95% 規則）。" },
             ].map(c => (
               <div key={c.n} style={{ padding: 40, border:'1px solid var(--line)', background:'var(--bg-elev)' }}>

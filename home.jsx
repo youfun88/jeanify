@@ -38,7 +38,7 @@ function HomePage({ lang, go }) {
         <div className="hero-stats">
           <div className="hero-stat"><div className="num">{D.agent.totalSold}</div><div className="lbl">{lang==="en"?"Verified Closings":"已驗證成交"}</div></div>
           <div className="hero-stat"><div className="num">$1M+</div><div className="lbl">{lang==="en"?"Avg. Sale Price":"平均成交價"}</div></div>
-          <div className="hero-stat"><div className="num">{D.agent.years}</div><div className="lbl">{lang==="en"?"Years San Diego":"聖地亞哥經驗"}</div></div>
+          <div className="hero-stat"><div className="num">{D.agent.years}</div><div className="lbl">{lang==="en"?"Years San Diego":"聖地牙哥經驗"}</div></div>
         </div>
       </section>
 
@@ -111,7 +111,7 @@ function HomePage({ lang, go }) {
               <p style={{ color:'var(--ink-dim)', fontSize: 17, lineHeight: 1.7 }}>
                 {lang==="en"
                   ? "The 45-day identification window is unforgiving. I work with two qualified intermediaries on standby and pre-vet replacement properties before your close — so the calendar serves your strategy, not the other way around."
-                  : "1031 交換的 45 天識別期不容差錯。我與兩位合格中介長期合作，在您交割前預先篩選替代房產 —— 讓時間表服務於策略，而非相反。"}
+                  : "1031 交換的 45 天識別期不容出錯。我與兩位合格中介長期合作，在您交割前先篩出替代房產，讓時程配合您的策略，而不是反過來被時程綁住。"}
               </p>
               <div style={{ display:'flex', gap: 16, marginTop: 8 }}>
                 <a className="btn btn-primary arrow-right" href="#/exchange" onClick={(e)=>{e.preventDefault();go("exchange");}}>
@@ -162,7 +162,7 @@ function HomePage({ lang, go }) {
                 <p className="lede" style={{ marginTop: 20, maxWidth: '58ch' }}>
                   {lang==="en"
                     ? "Not a stock music bed under a slideshow. An original song written about your property — its street, its setting, what it feels like to live there. It is the listing video people actually watch to the end, and send to a friend."
-                    : "不是套用罐頭配樂的幻燈片，而是為您的物業量身創作的原創歌曲——關於它的街道、它的環境、住在那裡的感覺。這是真正會被看完、會被轉發給朋友的房源影片。"}
+                    : "不是配上罐頭音樂的幻燈片，而是為您的房子量身創作的一首歌：唱它的街道、它的環境，以及住在那裡的感覺。這樣的影片，人們會看完，也會轉給朋友。"}
                 </p>
               </div>
               <a className="btn-text arrow-right" href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>
@@ -234,7 +234,7 @@ function HomePage({ lang, go }) {
               <p style={{ color:'var(--ink-dim)', fontSize: 17, lineHeight: 1.7, maxWidth: '40ch' }}>
                 {lang==="en"
                   ? "Automated estimates routinely miss San Diego's coastal micro-markets. Share a few details and I'll prepare a personal CMA — usually within 48 hours."
-                  : "自動估值常忽略聖地亞哥沿海微市場的真實價值。請填寫以下資訊，我將在 48 小時內為您準備客製化市場分析（CMA）。"}
+                  : "自動估價常忽略聖地牙哥沿海微市場的真實價值。請填寫以下資訊，我將在 48 小時內為您準備客製化市場分析（CMA）。"}
               </p>
             </div>
             <form className="est-form" onSubmit={(e)=>{e.preventDefault(); go("estimator");}}>
@@ -248,7 +248,7 @@ function HomePage({ lang, go }) {
               <button className="btn btn-primary arrow-right" style={{width:'100%', justifyContent:'center'}}>
                 {lang==="en"?"Begin Valuation":"開始評估"}
               </button>
-              <p className="est-note">{lang==="en"?"No automatic valuation — Jean reviews every request personally.":"不提供自動估值 —— Jean 將親自審閱每一份請求。"}</p>
+              <p className="est-note">{lang==="en"?"No automatic valuation — Jean reviews every request personally.":"不提供自動估價。每一份請求都由 Jean 親自審閱。"}</p>
             </form>
           </div>
         </div>

@@ -193,7 +193,7 @@ function NewsletterSignup({ lang }) {
       <p className="footer-newsletter-done">
         {lang === "en"
           ? "You're on the list — the next quarterly briefing will come straight from Jean."
-          : "已完成訂閱 —— 下一期季度市場簡報將由 Jean 直接寄給您。"}
+          : "訂閱完成。下一期季度市場簡報，Jean 會直接寄給您。"}
       </p>
     );
   }
@@ -238,7 +238,7 @@ function Footer({ lang, go }) {
             <p style={{ color: "var(--ink-dim)", fontSize: 14, maxWidth: 36 + "ch", lineHeight: 1.7 }}>
               {lang === "en"
                 ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand."
-                : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"}
+                : "專為重視精準、分寸與穩健的買家、賣家與 1031 投資人而設的聖地牙哥精緻房地產團隊。"}
             </p>
             <NewsletterSignup lang={lang} />
           </div>
@@ -247,7 +247,7 @@ function Footer({ lang, go }) {
             <ul>
               <li><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang === "en" ? "Featured Homes" : "精選房源"}</a></li>
               <li><a href="#/listings/active" onClick={(e)=>{e.preventDefault();go("listings/active");}}>{lang === "en" ? "Active Listings" : "在售房源"}</a></li>
-              <li><a href="#/estimator" onClick={(e)=>{e.preventDefault();go("estimator");}}>{lang === "en" ? "Home Valuation" : "房價評估"}</a></li>
+              <li><a href="#/estimator" onClick={(e)=>{e.preventDefault();go("estimator");}}>{lang === "en" ? "Home Valuation" : "房屋估價"}</a></li>
             </ul>
           </div>
           <div>

@@ -262,7 +262,7 @@ function NewsletterSignup({
   if (status === "sent") {
     return /*#__PURE__*/React.createElement("p", {
       className: "footer-newsletter-done"
-    }, lang === "en" ? "You're on the list — the next quarterly briefing will come straight from Jean." : "已完成訂閱 —— 下一期季度市場簡報將由 Jean 直接寄給您。");
+    }, lang === "en" ? "You're on the list — the next quarterly briefing will come straight from Jean." : "訂閱完成。下一期季度市場簡報，Jean 會直接寄給您。");
   }
   return /*#__PURE__*/React.createElement("form", {
     className: "footer-newsletter",
@@ -321,7 +321,7 @@ function Footer({
       maxWidth: 36 + "ch",
       lineHeight: 1.7
     }
-  }, lang === "en" ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand." : "聖地亞哥精品房地產服務，為追求精準、專業與穩健的買家、賣家及 1031 投資人服務。"), /*#__PURE__*/React.createElement(NewsletterSignup, {
+  }, lang === "en" ? "A boutique San Diego real estate practice for buyers, sellers and 1031 investors who value precision, discretion and a steady hand." : "專為重視精準、分寸與穩健的買家、賣家與 1031 投資人而設的聖地牙哥精緻房地產團隊。"), /*#__PURE__*/React.createElement(NewsletterSignup, {
     lang: lang
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Explore" : "探索"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/listings",
@@ -341,7 +341,7 @@ function Footer({
       e.preventDefault();
       go("estimator");
     }
-  }, lang === "en" ? "Home Valuation" : "房價評估")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+  }, lang === "en" ? "Home Valuation" : "房屋估價")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h5", null, lang === "en" ? "Resources" : "資源"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#/articles",
     onClick: e => {
       e.preventDefault();

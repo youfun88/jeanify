@@ -14,9 +14,9 @@ function ListingsPage({ lang, go, sub }) {
       <header className="page-head">
         <div className="container">
           <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Listings":"房源"}</div>
-          <span className="eyebrow">{lang==="en"?"Curated Portfolio · San Diego":"精選房源 · 聖地亞哥"}</span>
+          <span className="eyebrow">{lang==="en"?"Curated Portfolio · San Diego":"精選房源 · 聖地牙哥"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>Listings</em></> : <>全部 <em>房源</em></>}</h1>
-          <p className="lede">{lang==="en"?"Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods.":"涵蓋聖地亞哥沿海與都市核心社區的在售、近期成交與出租房源。"}</p>
+          <p className="lede">{lang==="en"?"Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods.":"涵蓋聖地牙哥沿海與市區核心社區的在售、近期成交與出租房源。"}</p>
         </div>
       </header>
       <section className="section">
@@ -34,7 +34,7 @@ function ListingsPage({ lang, go, sub }) {
               <p className="lede" style={{ maxWidth: '52ch', margin: '0 auto 32px' }}>
                 {lang==="en"
                   ? "Jean isn't actively representing any properties for sale at the moment. Get in touch to be the first to hear when the next listing comes to market — or to talk about selling your own home."
-                  : "Jean 目前暫無在售房源。請聯絡我們，第一時間獲取下一套上市資訊 —— 或洽談您自己的房產出售事宜。"}
+                  : "Jean 目前暫無在售房源。歡迎與我聯絡，下一套物件上市時第一時間通知您；若您正考慮出售自己的房子，也歡迎聊聊。"}
               </p>
               <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
                 {lang==="en"?"Get on Jean's List":"加入 Jean 的優先名單"}
@@ -54,7 +54,7 @@ function ListingsPage({ lang, go, sub }) {
                 <div>
                   <span className="eyebrow">{lang==="en"?"Full Track Record":"完整成交記錄"}</span>
                   <h3 style={{ margin: '12px 0 6px' }}>{lang==="en"?D2.agent.totalSold + " closings on Zillow":"在 Zillow 檢視 " + D2.agent.totalSold + " 套成交"}</h3>
-                  <p style={{ color:'var(--ink-dim)', fontSize: 14, maxWidth:'52ch' }}>{lang==="en"?"For complete deal history, photography and verified client reviews — my Zillow profile mirrors my full transaction archive.":"完整成交歷史、照片與已驗證客戶評價均同步至我的 Zillow 主頁。"}</p>
+                  <p style={{ color:'var(--ink-dim)', fontSize: 14, maxWidth:'52ch' }}>{lang==="en"?"For complete deal history, photography and verified client reviews — my Zillow profile mirrors my full transaction archive.":"完整的成交紀錄、房源照片與經驗證的客戶評價，都同步在我的 Zillow 主頁。"}</p>
                 </div>
                 <a className="btn btn-ghost arrow-right" href={D2.agent.zillow} target="_blank" rel="noopener noreferrer">{lang==="en"?"View Zillow Profile":"檢視 Zillow 主頁"}</a>
               </div>
