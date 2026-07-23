@@ -1640,6 +1640,11 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .page-head h1 { font-size: clamp(48px, 6vw, 80px); }
 .page-head h1 em { color: var(--brass); font-style: italic; }
 .page-head .lede { margin-top: 24px; font-size: 19px; max-width: 60ch; }
+/* A page head already ends in 80px of breathing room, so a full --pad-sect on
+   top of it stacked to ~200px of empty band under the header rule. Step the
+   first section down to the small token — which scales on mobile too, where
+   --pad-sect is already reduced. Section-to-section spacing is untouched. */
+.page-head + .section { padding-top: var(--pad-sect-sm); }
 .breadcrumbs {
   font-family: var(--font-mono);
   font-size: 11px;
