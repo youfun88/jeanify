@@ -3,6 +3,11 @@
 # can stop the card importing on iOS. Store these byte-for-byte.
 *.vcf -text
 
+# Same reasoning for the guide PDFs. Git's binary autodetection normally catches
+# them, but a PDF whose first 8k happens to be NUL-free would get CRLF-normalised
+# and corrupted. Be explicit.
+*.pdf -text
+
 # Generated artefacts — keep them out of diffs and language stats. They are
 # committed because CI does not build; regenerate with `npm run build`.
 *.compiled.js linguist-generated=true

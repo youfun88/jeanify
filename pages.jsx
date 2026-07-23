@@ -260,6 +260,31 @@ function MarketGuideCard({ g, lang }) {
   );
 }
 
+// The first-time buyer PDF, featured on its own above the seasonal pair. Same card,
+// full width, because its table of contents runs to thirteen entries.
+function StarterGuideSection({ lang }) {
+  const g = D3.starterGuide;
+  if (!g) return null;
+  return (
+    <div className="container">
+      <div className="sect-head">
+        <div className="sect-head-title">
+          <span className="eyebrow">{lang==="en"?"Start Here":"從這裡開始"}</span>
+          <h2 style={{ marginTop: 16 }}>{lang==="en"?"Buying your first home?":"第一次買房？"}</h2>
+          <p className="lede" style={{ marginTop: 20, maxWidth: '60ch' }}>
+            {lang==="en"
+              ? "Thirteen chapters on the part of the process nobody hands you a manual for. About a third of my buyer clients are buying their first home — this is what I wish all of them had read first. Free, no email required."
+              : "十三個章節，講的是購屋流程裡從來沒有人給你說明書的那一段。我的買方客戶大約三分之一是第一次買房，這份指南是我希望他們都能先讀過的。免費下載，不必留下 Email。"}
+          </p>
+        </div>
+      </div>
+      <div className="grid-1">
+        <MarketGuideCard g={g} lang={lang} />
+      </div>
+    </div>
+  );
+}
+
 function MarketGuidesSection({ lang, only }) {
   const guides = only ? D3.marketGuides.filter(g => g.id === only) : D3.marketGuides;
   if (!guides.length) return null;
@@ -315,9 +340,13 @@ function ArticlesPage({ lang, go }) {
         </div>
       </section>
 
-      {/* Downloadable seasonal PDF guides */}
+      {/* Downloadable PDFs — the evergreen first-time guide, then the seasonal pair.
+          One elevated band so the page keeps alternating against the articles below. */}
       <section className="section" style={{ background:'var(--bg-elev)' }}>
-        <MarketGuidesSection lang={lang} />
+        <StarterGuideSection lang={lang} />
+        <div style={{ marginTop: 96 }}>
+          <MarketGuidesSection lang={lang} />
+        </div>
       </section>
 
       {/* Articles */}
@@ -608,7 +637,7 @@ function GuideDetail({ kind, lang, go }) {
     ],
   }[kind];
 
-  const steps = {
+  const stepsAll = {
     buyer: [
       ["Pre-approval", "Lender introductions, qualification beyond rate-shopping, and writing your buying envelope."],
       ["Discovery", "What you actually want vs. what you think you want — refined over 2-3 conversations."],
@@ -639,7 +668,10 @@ function GuideDetail({ kind, lang, go }) {
       ["Replacement close", "Within 180 days. Boot calculations and reporting walk-through."],
       ["Filing", "Coordinate with your CPA on Form 8824."],
     ],
-  }[kind];
+  };
+  // Fall back the same way `meta` does. Without this an unrecognised kind —
+  // #/guides/anything — throws on steps.map and blanks the whole app until reload.
+  const steps = stepsAll[kind] || stepsAll.buyer;
 
   return (
     <div className="page-fade">
@@ -672,9 +704,15 @@ function GuideDetail({ kind, lang, go }) {
         </div>
       </section>
 
-      {/* The matching seasonal PDF, where one exists for this guide */}
+      {/* The matching seasonal PDF, where one exists for this guide. Buyers also get
+          the first-time guide — that is the audience most likely to be reading this. */}
       {(kind === "buyer" || kind === "seller") && (
         <section className="section" style={{ background:'var(--bg-elev)' }}>
+          {kind === "buyer" && (
+            <div style={{ marginBottom: 96 }}>
+              <StarterGuideSection lang={lang} />
+            </div>
+          )}
           <MarketGuidesSection lang={lang} only={kind} />
         </section>
       )}

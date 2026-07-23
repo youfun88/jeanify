@@ -368,6 +368,39 @@ function MarketGuideCard({
     className: "mg-meta"
   }, g.pages, " ", lang === "en" ? "pages" : "頁", " \xB7 PDF \xB7 ", g.size, lang === "zh" ? " · 內容為英文" : ""));
 }
+
+// The first-time buyer PDF, featured on its own above the seasonal pair. Same card,
+// full width, because its table of contents runs to thirteen entries.
+function StarterGuideSection({
+  lang
+}) {
+  const g = D3.starterGuide;
+  if (!g) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sect-head-title"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow"
+  }, lang === "en" ? "Start Here" : "從這裡開始"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginTop: 16
+    }
+  }, lang === "en" ? "Buying your first home?" : "第一次買房？"), /*#__PURE__*/React.createElement("p", {
+    className: "lede",
+    style: {
+      marginTop: 20,
+      maxWidth: '60ch'
+    }
+  }, lang === "en" ? "Thirteen chapters on the part of the process nobody hands you a manual for. About a third of my buyer clients are buying their first home — this is what I wish all of them had read first. Free, no email required." : "十三個章節，講的是購屋流程裡從來沒有人給你說明書的那一段。我的買方客戶大約三分之一是第一次買房，這份指南是我希望他們都能先讀過的。免費下載，不必留下 Email。"))), /*#__PURE__*/React.createElement("div", {
+    className: "grid-1"
+  }, /*#__PURE__*/React.createElement(MarketGuideCard, {
+    g: g,
+    lang: lang
+  })));
+}
 function MarketGuidesSection({
   lang,
   only
@@ -459,9 +492,15 @@ function ArticlesPage({
     style: {
       background: 'var(--bg-elev)'
     }
+  }, /*#__PURE__*/React.createElement(StarterGuideSection, {
+    lang: lang
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 96
+    }
   }, /*#__PURE__*/React.createElement(MarketGuidesSection, {
     lang: lang
-  })), /*#__PURE__*/React.createElement("section", {
+  }))), /*#__PURE__*/React.createElement("section", {
     className: "section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
@@ -892,11 +931,14 @@ function GuideDetail({
     seller: [["估價", "一份書面 CMA：三種定價情境，並說明各自對應的銷售時程。"], ["整理準備", "修繕範圍、佈置計畫，以及哪些工項的錢真的收得回來。"], ["攝影", "雜誌等級的建築攝影、空拍、黃昏光線與 3D 環景。"], ["行銷", "MLS 上架、跨平台同步、同業預覽、紙本 DM 與數位廣告投放。"], ["帶看", "依社區特性安排開放參觀，另可預約私人看屋。"], ["談判", "審閱出價、擬定還價策略，以及但書解除的節奏掌控。"], ["履約保證", "驗屋回覆、鑑價處理，以及交割前的各項協調。"], ["交屋", "最後點交、鑰匙交付，以及交割後的後續追蹤。"]],
     "1031": [["售前規劃", "在原房產上市之前，就先確立投資方向與替代標的的範圍。"], ["合格中介", "務必在交割前完成委任。我有兩位長期配合的合格中介隨時可以接手。"], ["原房產出售", "流程與一般委託銷售相同，但履約保證的每一步都須嚴格安排，以維持交換資格。"], ["第 0 天", "款項匯入合格中介帳戶，45 天與 180 天的時鐘同時開始。"], ["書面指定", "三物件原則（或 200% 原則），須於第 45 天前完成書面指定。"], ["替代標的查核", "驗屋、貸款，必要時還包括持有架構的安排。"], ["替代標的交割", "須在 180 天內完成。同時說明 boot 的計算與申報方式。"], ["申報", "與您的會計師協調 Form 8824 的填報。"]]
   }[kind];
-  const steps = {
+  const stepsAll = {
     buyer: [["Pre-approval", "Lender introductions, qualification beyond rate-shopping, and writing your buying envelope."], ["Discovery", "What you actually want vs. what you think you want — refined over 2-3 conversations."], ["Search", "Curated MLS feeds, off-market introductions, and weekend tour itineraries."], ["Diligence", "School data, micro-climate, HOA review, comp set."], ["Offer", "Pricing, terms, and the contingency architecture that wins without overpaying."], ["Inspection", "Roof, foundation, sewer, environmental — with vetted San Diego specialists."], ["Appraisal", "Lender coordination and gap strategy if it comes in low."], ["Close", "Walk-through, escrow handoff, and a key delivery worth photographing."]],
     seller: [["Valuation", "A written CMA — three pricing scenarios with timeline implications for each."], ["Preparation", "Touch-up scope, staging plan, and which improvements actually return their cost."], ["Photography", "Magazine-grade architectural photography, drone, twilight, and 3D walkthroughs."], ["Marketing", "MLS, syndication, broker preview, private mailers, and digital campaign."], ["Showings", "Open houses calibrated to your neighborhood, plus private appointments by request."], ["Negotiation", "Offer review, counter strategy, and contingency removal pacing."], ["Escrow", "Inspection responses, appraisal management, and pre-close coordination."], ["Hand-off", "Final walkthrough, key handover, and post-close follow-up."]],
     "1031": [["Pre-sale planning", "Identify investment thesis and replacement universe before listing the relinquished property."], ["Qualified intermediary", "Engage a QI before close. I work with two on standby."], ["Sale of relinquished", "Standard listing — but with strict escrow choreography to preserve exchange status."], ["Day 0", "Funds wired to QI. The 45/180-day clocks begin."], ["Identification", "Three-property rule (or 200% rule) — written identification by Day 45."], ["Replacement diligence", "Inspections, financing, partnership structure if applicable."], ["Replacement close", "Within 180 days. Boot calculations and reporting walk-through."], ["Filing", "Coordinate with your CPA on Form 8824."]]
-  }[kind];
+  };
+  // Fall back the same way `meta` does. Without this an unrecognised kind —
+  // #/guides/anything — throws on steps.map and blanks the whole app until reload.
+  const steps = stepsAll[kind] || stepsAll.buyer;
   return /*#__PURE__*/React.createElement("div", {
     className: "page-fade"
   }, /*#__PURE__*/React.createElement("header", {
@@ -981,7 +1023,13 @@ function GuideDetail({
     style: {
       background: 'var(--bg-elev)'
     }
-  }, /*#__PURE__*/React.createElement(MarketGuidesSection, {
+  }, kind === "buyer" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 96
+    }
+  }, /*#__PURE__*/React.createElement(StarterGuideSection, {
+    lang: lang
+  })), /*#__PURE__*/React.createElement(MarketGuidesSection, {
     lang: lang,
     only: kind
   })));

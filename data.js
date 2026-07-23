@@ -189,6 +189,59 @@ window.JR_DATA = {
     { num: "03", title: "1031 Exchange Primer", titleZh: "1031 交換入門", descZh: "識別期、合格中介與替代房產策略，寫給想遞延資本利得稅的投資人。", ctaZh: "開啟 1031 指南", desc: "Identification windows, qualified intermediaries and replacement property strategy for investors looking to defer capital gains.", cta: "Open 1031 Guide" },
   ],
 
+  // The first-time buyer guide. Same card shape as `marketGuides` below and rendered
+  // by the same component, but deliberately kept out of that array: it carries an
+  // edition year rather than a season, so it must not sit under the "updated each
+  // season" heading. Replaced when the publisher issues a new edition — drop the new
+  // PDF in uploads/guides/, then update `file`, `edition`, `size` and `updated`.
+  starterGuide: {
+    id: "first-time",
+    audience: "For First-Time Buyers",
+    audienceZh: "首購族專用",
+    title: "A Guide to Buying Your First Home",
+    titleZh: "第一次買房完全指南",
+    edition: "2026 Edition",
+    editionZh: "2026 年版",
+    file: "uploads/guides/a-guide-to-buying-your-first-home-2026.pdf",
+    pages: 20,
+    size: "6.9 MB",
+    updated: "2026-07",
+    desc: "The part of the process nobody hands you a manual for — credit scores, student loans, down payments, pre-approval, and the five questions that tell you whether you're actually ready.",
+    descZh: "購屋流程裡從來沒有人給你說明書的那一段：信用分數、學貸、頭期款、貸款預審，以及判斷自己是否真的準備好的五個問題。",
+    contents: [
+      "Buying Your First Home? It's Okay To Feel Nervous",
+      "Your Homebuying Checklist",
+      "Key Terms You Should Know Before Buying",
+      "Why Buying a Home Still Pays Off in the Long Run",
+      "The Credit Score Myth",
+      "Don't Let Your Student Loans Hold You Back from Buying",
+      "What You Really Need To Know About Down Payments",
+      "Why Pre-Approval Should Be Your First Step — Not an Afterthought",
+      "Am I Ready To Buy? These 5 Questions Will Help You Decide",
+      "Things To Avoid After Applying for a Mortgage",
+      "How To Stretch Your Options, Not Your Budget",
+      "How an Agent Helps You Throughout the Process",
+      "Your Roadmap to Homeownership",
+    ],
+    // The PDF itself is English; these let a Chinese reader judge whether it is
+    // worth downloading. The card appends a 內容為英文 note in Chinese.
+    contentsZh: [
+      "第一次買房會緊張，是正常的",
+      "購屋流程檢查清單",
+      "買房前該懂的關鍵名詞",
+      "長期來看，買房為什麼還是划算",
+      "關於信用分數的迷思",
+      "別讓學貸擋住你的購屋計畫",
+      "頭期款，你真正該知道的事",
+      "貸款預審該是第一步，而不是事後才想到",
+      "我準備好了嗎？五個問題幫你判斷",
+      "申請房貸後，千萬別做的事",
+      "把選擇變多，而不是把預算撐大",
+      "房仲在整個流程中能幫上什麼",
+      "你的購屋路線圖",
+    ],
+  },
+
   // Seasonal PDF guides, personalised with Jean's branding and hosted for download.
   // These are licensed market reports — we link the file and list its contents, but the
   // copy inside them is not reproduced as site content. Replace each quarter: drop the
