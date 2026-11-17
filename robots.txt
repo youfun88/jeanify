@@ -52,4 +52,4 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://youfun88.github.io/jeanify/sitemap.xml
+Sitemap: https://soldbyjean.com/sitemap.xml

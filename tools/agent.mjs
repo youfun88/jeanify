@@ -5,26 +5,20 @@
 
 // Production origin — canonical URLs, sitemap, Open Graph images and schema @ids.
 //
-// This MUST point at a host that actually serves the site. It previously pointed at
-// jeanriley.com, which is a parked domain: every path there returns the same 114-byte
-// stub that redirects to /lander. Telling search engines the canonical version of
-// every page lives at a domain with no content is worse than having no canonical at
-// all — it invites them to drop the real pages from the index.
+// This MUST point at a host that actually serves the site: telling search engines the
+// canonical version of every page lives somewhere with no content invites them to drop
+// the real pages from the index.
 //
-// TO ADOPT jeanriley.com once its DNS points at GitHub Pages:
-//   1. Verify it serves the real site:  curl -sI https://jeanriley.com/ | head -1
-//   2. Add a CNAME file at the repo root containing:  jeanriley.com
-//   3. Rebuild and commit:
-//        JEANIFY_SITE=https://jeanriley.com \
-//        JEANIFY_CARD_URL=https://jeanriley.com/card/ npm run build
-//   4. Update the absolute URLs in index.html, llms.txt and robots.txt to match.
-//   Do NOT add the CNAME file before DNS resolves — GitHub Pages will start
-//   redirecting github.io to a domain that does not serve the site.
-export const SITE = process.env.JEANIFY_SITE || "https://youfun88.github.io/jeanify";
+// soldbyjean.com is the GitHub Pages custom domain for this repo (see the CNAME file and
+// the "Domain" section of the README). The old https://youfun88.github.io/jeanify/ URLs
+// redirect to it, path included, so links and QR codes printed before the move still work.
+// To move domains again, change the defaults here and in build-articles.mjs, the CNAME
+// file, the Pages setting, and the absolute URLs in index.html, llms.txt and robots.txt.
+export const SITE = process.env.JEANIFY_SITE || "https://soldbyjean.com";
 
 // The card URL is encoded into a QR code that gets printed, texted and scanned, so
 // it is kept separately settable: a printed QR cannot be re-pointed later.
-export const CARD_URL = process.env.JEANIFY_CARD_URL || "https://youfun88.github.io/jeanify/card/";
+export const CARD_URL = process.env.JEANIFY_CARD_URL || "https://soldbyjean.com/card/";
 
 export const AGENT = {
   name: "Jean Riley",

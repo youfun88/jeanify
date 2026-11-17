@@ -71,6 +71,16 @@ purpose — those are the structures answer engines extract most reliably.
 
 ### Domain
 
-Canonical URLs point at `https://jeanriley.com`. It is set in two places — the `<link
-rel="canonical">` tags in `index.html`, and the `SITE` constant in
-`tools/build-articles.mjs` (overridable with `JEANIFY_SITE`). Change both together.
+The site is served at **https://soldbyjean.com** — a GitHub Pages custom domain.
+
+- **DNS** is hosted at Cloudflare (the registrar, NameBright, only holds the nameservers).
+  The apex needs the four GitHub Pages `A` records (`185.199.108.153` – `185.199.111.153`)
+  and `www` a `CNAME` to `youfun88.github.io`. Both must be **DNS only** (grey cloud):
+  GitHub issues the HTTPS certificate itself and cannot do so through Cloudflare's proxy.
+- **GitHub** holds the domain in Settings → Pages → Custom domain. Because this repo
+  deploys with Actions, that setting is what counts; the `CNAME` file is kept as a record.
+- **In the repo** the origin is set in `tools/agent.mjs` and `tools/build-articles.mjs`
+  (both overridable with `JEANIFY_SITE`), and written out in `index.html`, `llms.txt`,
+  `robots.txt` and `404.html`. Change them together.
+
+`https://youfun88.github.io/jeanify/…` redirects to the custom domain with the path kept.
