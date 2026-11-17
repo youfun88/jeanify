@@ -97,20 +97,20 @@ const HTML_STYLE = [
     : ["--pad-sect:120px", "--pad-sect-sm:72px"]),
 ].join(";");
 
-const SCRIPTS = `<!-- React 18.3.1 production builds, self-hosted in vendor/ (copied unchanged from
-     cdnjs). All scripts are \`defer\`: they run in order after the HTML is parsed, and
-     the page is already readable before they arrive. -->
-<script src="vendor/react.production.min.js" defer></script>
-<script src="vendor/react-dom.production.min.js" defer></script>
-<script src="data.js" defer></script>
-<script src="articles-content.js" defer></script>
-<script src="tweaks-panel.compiled.js" defer></script>
-<script src="core.compiled.js" defer></script>
-<script src="home.compiled.js" defer></script>
-<script src="listings.compiled.js" defer></script>
-<script src="pages.compiled.js" defer></script>
-<script src="forms.compiled.js" defer></script>
-<script src="app.compiled.js" defer></script>`;
+// The page is complete HTML, so the app's scripts are not needed to show it — only to
+// make it interactive (menu, FAQ accordions, forms, in-app navigation; plain links work
+// without them). They load once the page has finished loading, or at the visitor's
+// first tap or key press if that comes sooner, so they don't compete with the hero
+// photo and fonts for bandwidth. async=false keeps them executing in order.
+// React 18.3.1 production builds are self-hosted in vendor/ (copied unchanged from cdnjs).
+const APP_SCRIPTS = [
+  "vendor/react.production.min.js", "vendor/react-dom.production.min.js",
+  "data.js", "articles-content.js", "tweaks-panel.compiled.js", "core.compiled.js",
+  "home.compiled.js", "listings.compiled.js", "pages.compiled.js", "forms.compiled.js",
+  "app.compiled.js",
+];
+const SCRIPTS = `<script>(function(){var s=${JSON.stringify(APP_SCRIPTS)},d=0;function go(){if(d)return;d=1;removeEventListener("pointerdown",go,true);removeEventListener("keydown",go,true);s.forEach(function(u){var e=document.createElement("script");e.src=u;e.async=false;document.body.appendChild(e)})}if(document.readyState==="complete")go();else addEventListener("load",go);addEventListener("pointerdown",go,true);addEventListener("keydown",go,true)})();</script>
+`;
 
 const CSS = await siteCss();
 
