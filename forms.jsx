@@ -85,10 +85,10 @@ function EstimatorPage({ lang, go }) {
               <a href={"tel:" + D4.agent.phone.replace(/[^0-9+]/g, "")} style={{color:'var(--brass)'}}>{D4.agent.phone}</a>.
             </p>
             <div style={{ marginTop: 32, display:'flex', gap: 16, flexWrap:'wrap' }}>
-              <a className="btn btn-primary arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>
+              <a className="btn btn-primary arrow-right" {...go.link("articles")}>
                 {lang==="en"?"Read the seller guide":"閱讀賣家指南"}
               </a>
-              <a className="btn btn-ghost" href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>
+              <a className="btn btn-ghost" {...go.link("home")}>
                 {lang==="en"?"Back to home":"返回首頁"}
               </a>
             </div>
@@ -101,7 +101,7 @@ function EstimatorPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Home Valuation":"房屋估價"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Home Valuation":"房屋估價"}</div>
           <span className="eyebrow">{lang==="en"?"Personal Valuation":"客製化估價"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>What's your <em>home</em> worth?</> : <>您的房子 <em>值多少</em>？</>}</h1>
           <p className="lede">{lang==="en"?"No automated number — Jean reviews each request personally and prepares a written CMA, usually within 48 hours.":"不提供自動估價。每一份請求都由 Jean 親自審閱，通常在 48 小時內提供書面 CMA。"}</p>
@@ -207,7 +207,7 @@ function ContactPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Contact":"聯絡"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Contact":"聯絡"}</div>
           <span className="eyebrow">{lang==="en"?"Get in Touch":"聯絡"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Begin a <em>conversation</em>.</> : <>開啟 <em>對話</em></>}</h1>
         </div>
@@ -326,7 +326,7 @@ function VideosPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Videos":"影片"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Videos":"影片"}</div>
           <span className="eyebrow">{lang==="en"?"Video Library":"影片中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>From the <em>field</em>.</> : <>市場 <em>實錄</em></>}</h1>
           <p className="lede">{lang==="en"?"Original songs written for individual listings, property tours, neighborhood walkthroughs and stories from clients and fellow agents — straight from Jean's YouTube channel.":"為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及客戶與同業經紀人的真實分享，全部來自 Jean 的 YouTube 頻道。"}</p>
@@ -350,7 +350,7 @@ function VideosPage({ lang, go }) {
               {songs.map(v => <VC4 key={v.id} v={v} feature={v.feature} lang={lang} />)}
             </div>
             <div style={{ marginTop: 40, textAlign: 'center' }}>
-              <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+              <a className="btn btn-primary arrow-right" {...go.link("contact")}>
                 {lang==="en"?"Get a song for your listing":"為您的房源製作專屬歌曲"}
               </a>
             </div>

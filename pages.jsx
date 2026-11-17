@@ -8,7 +8,7 @@ function AboutPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"About":"關於"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"About":"關於"}</div>
           <span className="eyebrow">{lang==="en"?"Meet Jean":"認識 Jean"}</span>
           {/* 以客為尊 is the established phrase; 視客戶為上賓 was grammatical but
               constructed. 始終 stays in ink so the brass accent lands on the idiom
@@ -256,8 +256,7 @@ function ArticleCard({ a, go, lang }) {
   // JPEG's weight). The JPEG stays the og:image / schema image for social cards.
   const [imgRef, imgBg] = useLazyBg(a.image ? encodeURI(a.image.replace(/\.(jpe?g|png)$/i, ".webp")) : null);
   return (
-    <a className="article-card" href={"#/articles/" + a.slug}
-       onClick={(e) => { e.preventDefault(); go("articles/" + a.slug); }}>
+    <a className="article-card" {...go.link("articles/" + a.slug)}>
       <div
         ref={imgRef}
         className={"article-img" + (a.image ? " has-image" : "")}
@@ -348,7 +347,7 @@ function ArticlesPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Resources":"資源"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Resources":"資源"}</div>
           <span className="eyebrow">{lang==="en"?"Resources":"資源中心"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Written for the <em>committed</em>.</> : <>專業 <em>專欄</em></>}</h1>
           <p className="lede">{lang==="en"?"Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public.":"為買家、賣家與 1031 投資人整理的實務指南與市場札記，與我服務私人客戶時所用的是同一套方法。"}</p>
@@ -360,7 +359,7 @@ function ArticlesPage({ lang, go }) {
         <div className="container">
           <div className="grid-3">
             {D3.guides.map(g => (
-              <a key={g.num} className="guide-card" href={"#/guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031")} onClick={(e)=>{e.preventDefault(); go("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"));}}>
+              <a key={g.num} className="guide-card" {...go.link("guides/" + (g.num === "01" ? "buyer" : g.num === "02" ? "seller" : "1031"))}>
                 <div className="num" aria-hidden="true">{g.num}</div>
                 <span className="eyebrow no-rule">{lang==="en"?"Guide":"指南"}</span>
                 <h3>{zh(lang, g.titleZh, g.title)}</h3>
@@ -443,11 +442,11 @@ function ArticleDetail({ slug, lang, go }) {
       <div className="page-fade">
         <header className="page-head">
           <div className="container">
-            <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a></div>
+            <div className="breadcrumbs"><a {...go.link("articles")}>{lang==="en"?"Resources":"資源"}</a></div>
             <h1 style={{ marginTop: 20 }}>{lang==="en"?"Article not found":"找不到這篇文章"}</h1>
             <p className="lede">{lang==="en"?"That article may have been renamed. Everything currently published is on the articles page.":"這篇文章可能已更名。目前所有已發表的內容，都在資源頁面上。"}</p>
             <div style={{ marginTop: 24 }}>
-              <a className="btn btn-primary arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"All articles":"所有文章"}</a>
+              <a className="btn btn-primary arrow-right" {...go.link("articles")}>{lang==="en"?"All articles":"所有文章"}</a>
             </div>
           </div>
         </header>
@@ -467,8 +466,8 @@ function ArticleDetail({ slug, lang, go }) {
       <header className="page-head">
         <div className="container-tight">
           <div className="breadcrumbs">
-            <a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>
-            <a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{zh(lang, CAT_ZH[a.category], a.category)}
+            <a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>
+            <a {...go.link("articles")}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{zh(lang, CAT_ZH[a.category], a.category)}
           </div>
           <span className="eyebrow">{zh(lang, CAT_ZH[a.category], a.category)}</span>
           <h1 style={{ marginTop: 20 }}>{zh(lang, a.titleZh, a.title)}</h1>
@@ -569,7 +568,7 @@ function ArticleDetail({ slug, lang, go }) {
         <div className="container-tight" style={{ padding:'48px 32px', textAlign:'center', border:'1px solid var(--line)', background:'var(--bg-elev)' }}>
           <span className="eyebrow no-rule">{lang==="en"?"Next Step":"下一步"}</span>
           <h2 style={{ margin:'16px 0 24px' }}>{lang==="en"?"Questions about your own situation?":"想討論您的個人情況？"}</h2>
-          <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
+          <a className="btn btn-primary arrow-right" {...go.link("contact")}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
         </div>
       </section>
     </div>
@@ -589,7 +588,7 @@ function FAQPage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"FAQ":"常見問題"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"FAQ":"常見問題"}</div>
           <span className="eyebrow">{lang==="en"?"Frequently Asked":"常見問題"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The questions I get <em>most</em>.</> : <>最常被 <em>問到</em> 的問題</>}</h1>
           <p className="lede">{lang==="en"?"Straight answers on commission, closing costs, down payments, insurance, Mello-Roos, Prop 19, 1031 exchanges and buying from overseas. If yours isn't here, call me — I'd rather answer it directly.":"關於佣金、過戶費用、頭期款、房屋保險、Mello-Roos、Prop 19、1031 交換與海外購屋的直接解答。若未涵蓋您的問題，歡迎直接來電。"}</p>
@@ -619,7 +618,7 @@ function FAQPage({ lang, go }) {
           <span className="eyebrow no-rule">{lang==="en"?"Still unanswered":"仍有疑問"}</span>
           <h2 style={{ margin:'16px 0 24px' }}>{lang==="en"?"Ask me directly.":"歡迎直接詢問"}</h2>
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
+            <a className="btn btn-primary arrow-right" {...go.link("contact")}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
             <a className="btn btn-ghost" href={"tel:" + D3.agent.phone.replace(/[^0-9+]/g, "")}>{D3.agent.phone}</a>
           </div>
         </div>
@@ -710,7 +709,7 @@ function GuideDetail({ kind, lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{lang==="en" ? meta.en : meta.zh}</div>
+          <div className="breadcrumbs"><a {...go.link("articles")}>{lang==="en"?"Resources":"資源"}</a><span>/</span>{lang==="en" ? meta.en : meta.zh}</div>
           <span className="eyebrow">{lang==="en"?"Guide":"指南"}</span>
           <h1 style={{ marginTop: 20 }}><em>{lang==="en" ? meta.en : meta.zh}</em></h1>
           <p className="lede">{lang==="en" ? meta.sub.en : meta.sub.zh}</p>
@@ -732,7 +731,7 @@ function GuideDetail({ kind, lang, go }) {
           <div style={{ marginTop: 64, padding: 48, background:'var(--bg-elev)', border:'1px solid var(--line)', textAlign:'center' }}>
             <span className="eyebrow no-rule">{lang==="en"?"Next Step":"下一步"}</span>
             <h2 style={{ margin:'16px 0 24px' }}>{lang==="en"?"Ready when you are.":"隨時為您服務"}</h2>
-            <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
+            <a className="btn btn-primary arrow-right" {...go.link("contact")}>{lang==="en"?"Schedule a Consultation":"預約諮詢"}</a>
           </div>
         </div>
       </section>
@@ -759,7 +758,7 @@ function ExchangePage({ lang, go }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"1031 Exchange":"1031 交換"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"1031 Exchange":"1031 交換"}</div>
           <span className="eyebrow">{lang==="en"?"Investor Specialty":"投資專長"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>1031</em> Exchange.</> : <><em>1031</em> 交換</>}</h1>
           <p className="lede">{lang==="en"?"Defer capital gains on investment property — provided the calendar, paperwork and intermediary structure are exact. I handle each.":"投資性房產的資本利得遞延，前提是時程、文件與中介架構都精確無誤。這些細節，交給我來掌握。"}</p>
@@ -803,7 +802,7 @@ function FAQList({ items, lang }) {
     <div className="container-tight" style={{ padding: 0 }}>
       {items.map((f, i) => (
         <div key={i} className={"faq-item" + (open === i ? " open" : "")} onClick={() => setOpen(open === i ? -1 : i)}>
-          <div className="faq-q"><span>{zh(lang, f.qZh, f.q)}</span><span className="toggle">+</span></div>
+          <div className="faq-q"><h3>{zh(lang, f.qZh, f.q)}</h3><span className="toggle">+</span></div>
           <div className="faq-a">{zh(lang, f.aZh, f.a)}</div>
         </div>
       ))}

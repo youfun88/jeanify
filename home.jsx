@@ -32,8 +32,8 @@ function HomePage({ lang, go }) {
           <div className="hero-meta">
             <p className="hero-sub">{t.hero.sub}</p>
             <div className="hero-actions">
-              <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{t.hero.cta1}</a>
-              <a className="btn btn-ghost" href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{t.hero.cta2}</a>
+              <a className="btn btn-primary arrow-right" {...go.link("contact")}>{t.hero.cta1}</a>
+              <a className="btn btn-ghost" {...go.link("listings")}>{t.hero.cta2}</a>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@ function HomePage({ lang, go }) {
                 <div className="bio-credit"><div className="num">{D.agent.totalSold}</div><div className="lbl">{lang==="en"?"Closed Transactions":"成交數"}</div></div>
                 <div className="bio-credit"><div className="num">EN/中</div><div className="lbl">{lang==="en"?"Bilingual Service":"雙語服務"}</div></div>
               </div>
-              <a className="btn btn-ghost arrow-right" href="#/about" onClick={(e)=>{e.preventDefault();go("about");}} style={{ marginTop: 36 }}>
+              <a className="btn btn-ghost arrow-right" {...go.link("about")} style={{ marginTop: 36 }}>
                 {lang==="en"?"More About Jean":"瞭解更多"}
               </a>
             </div>
@@ -87,7 +87,7 @@ function HomePage({ lang, go }) {
               <span className="eyebrow">{t.sections.soldEy}</span>
               <h2 style={{ marginTop: 16 }}><em>{t.sections.soldH}</em></h2>
             </div>
-            <a className="btn-text arrow-right" href="#/listings/sold" onClick={(e)=>{e.preventDefault();go("listings/sold");}}>
+            <a className="btn-text arrow-right" {...go.link("listings/sold")}>
               {lang==="en"?"All " + D.agent.totalSold + " Closings on Zillow":"Zillow 上全部 " + D.agent.totalSold + " 套成交"}
             </a>
           </div>
@@ -116,7 +116,7 @@ function HomePage({ lang, go }) {
                   : "1031 交換的 45 天識別期不容出錯。我與兩位合格中介長期合作，在您交割前先篩出替代房產，讓時程配合您的策略，而不是反過來被時程綁住。"}
               </p>
               <div style={{ display:'flex', gap: 16, marginTop: 8 }}>
-                <a className="btn btn-primary arrow-right" href="#/exchange" onClick={(e)=>{e.preventDefault();go("exchange");}}>
+                <a className="btn btn-primary arrow-right" {...go.link("exchange")}>
                   {lang==="en"?"1031 Strategy Page":"瞭解 1031 策略"}
                 </a>
               </div>
@@ -167,7 +167,7 @@ function HomePage({ lang, go }) {
                     : "不是配上罐頭音樂的幻燈片，而是為您的房子量身創作的一首歌：唱它的街道、它的環境，以及住在那裡的感覺。這樣的影片，人們會看完，也會轉給朋友。"}
                 </p>
               </div>
-              <a className="btn-text arrow-right" href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>
+              <a className="btn-text arrow-right" {...go.link("videos")}>
                 {lang==="en"?"All Videos":"完整影片"}
               </a>
             </div>
@@ -175,7 +175,7 @@ function HomePage({ lang, go }) {
               {songs.map(v => <VideoCard key={v.id} v={v} feature={v.feature} lang={lang} />)}
             </div>
             <div style={{ marginTop: 36, display:'flex', justifyContent:'center' }}>
-              <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+              <a className="btn btn-primary arrow-right" {...go.link("contact")}>
                 {lang==="en"?"Get a song for your listing":"為您的房源製作專屬歌曲"}
               </a>
             </div>
@@ -191,7 +191,7 @@ function HomePage({ lang, go }) {
               <span className="eyebrow">{t.sections.videoEy}</span>
               <h2 style={{ marginTop: 16 }}>{t.sections.videoH}</h2>
             </div>
-            <a className="btn-text arrow-right" href="#/videos" onClick={(e)=>{e.preventDefault();go("videos");}}>{lang==="en"?"Full Library":"完整影片"}</a>
+            <a className="btn-text arrow-right" {...go.link("videos")}>{lang==="en"?"Full Library":"完整影片"}</a>
           </div>
           <div className="video-grid">
             {reel.map(v => (
@@ -215,7 +215,7 @@ function HomePage({ lang, go }) {
                 <span className="eyebrow">{lang==="en"?"Field Notes":"札記"}</span>
                 <h2 style={{ marginTop: 16 }}>{lang==="en"?"Reading for buyers, sellers and investors":"買家、賣家與投資人的閱讀清單"}</h2>
               </div>
-              <a className="btn-text arrow-right" href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>
+              <a className="btn-text arrow-right" {...go.link("articles")}>
                 {lang==="en"?"All Articles":"全部文章"}
               </a>
             </div>

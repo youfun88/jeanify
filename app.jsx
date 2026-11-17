@@ -1,33 +1,30 @@
 /* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect */
-const { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, scrollToId } = window.JR_CORE;
+const { useRoute, pageMeta, LANG_KEY, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, scrollToId } = window.JR_CORE;
 const { HomePage } = window.JR_HOME;
 const { ListingsPage, ListingDetail } = window.JR_LISTINGS;
 const { AboutPage, ArticlesPage, ArticleDetail, GuideDetail, ExchangePage, FAQPage } = window.JR_PAGES;
 const { EstimatorPage, ContactPage, VideosPage } = window.JR_FORMS;
 
-// useTweaks persists through the design-tool host, not through the browser, and it
-// always initialises from TWEAK_DEFAULTS — so a visitor who picked 中文 was dropped
-// back to English by any full page load: a refresh, a return visit, or following a
-// link out to /articles/*.html and back. Language is a visitor preference, so it is
-// stored here instead.
-const LANG_KEY = "jeanify.lang";
-const storedLang = (() => {
-  try { const v = localStorage.getItem(LANG_KEY); return (v === "en" || v === "zh") ? v : null; }
-  catch { return null; }   // private mode / storage disabled
-})();
-
-function App() {
-  const [route, go] = useHashRoute();
+// The page's language comes from its URL (/zh/… is Chinese), so the prerendered HTML
+// and the app always agree. The toggle moves to the other language's URL and also
+// records the choice, which tools/build-pages.mjs uses to send old #/hash links from
+// a Chinese reader to the Chinese page.
+//
+// `initial` ({ route, lang }) is passed only by the prerender (tools/build-pages.mjs).
+function App({ initial }) {
+  const [{ route, lang }, go] = useRoute(initial);
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [lang, setLangLocal] = React.useState(storedLang || tweaks.lang || "en");
-  // Only follow the tweaks panel when the visitor has no stored preference of
-  // their own, or the panel's default would clobber their choice on mount.
-  React.useEffect(() => { if (!storedLang) setLangLocal(tweaks.lang); }, [tweaks.lang]);
   const setLang = (l) => {
-    setLangLocal(l);
-    setTweak("lang", l);
     try { localStorage.setItem(LANG_KEY, l); } catch { /* storage unavailable */ }
+    if (l !== lang) go(route, l);
   };
+
+  // In-app navigation doesn't load a new document, so keep the tab title in step.
+  const first = React.useRef(true);
+  React.useEffect(() => {
+    if (first.current) { first.current = false; return; }
+    document.title = pageMeta(route, lang).title;
+  }, [route, lang]);
 
   // Keep <html lang> in step so screen readers pronounce the page correctly and
   // search engines see the right language.
@@ -71,7 +68,7 @@ function App() {
 
   return (
     <div data-screen-label={"Page · " + (main || "home")}>
-      <a className="skip-link" href="#main" onClick={(e) => scrollToId(e, "main")}>
+      <a className="skip-link" href={go.link(route).href + "#main"} onClick={(e) => scrollToId(e, "main")}>
         {lang === "en" ? "Skip to content" : "跳至主要內容"}
       </a>
       <Nav route={route} go={go} lang={lang} setLang={setLang} />
@@ -79,7 +76,7 @@ function App() {
       <Footer lang={lang} go={go} />
       <TweaksPanel title="Tweaks">
         <TweakSection title="Language">
-          <TweakRadio value={tweaks.lang} onChange={(v) => setTweak("lang", v)} options={[["en", "EN"], ["zh", "中文"]]} />
+          <TweakRadio value={tweaks.lang} onChange={(v) => { setTweak("lang", v); setLang(v); }} options={[["en", "EN"], ["zh", "中文"]]} />
         </TweakSection>
         <TweakSection title="Accent">
           <TweakColor value={tweaks.accent} onChange={(v) => setTweak("accent", v)} options={ACCENT_OPTIONS} />
@@ -95,4 +92,12 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+window.JR_APP = App;
+
+// Pages are prerendered (tools/build-pages.mjs), so React adopts the existing markup
+// rather than drawing it again. An empty root (the v2 review build) renders fresh.
+if (typeof document !== "undefined") {
+  const el = document.getElementById("root");
+  if (el.firstElementChild) ReactDOM.hydrateRoot(el, <App />);
+  else ReactDOM.createRoot(el).render(<App />);
+}

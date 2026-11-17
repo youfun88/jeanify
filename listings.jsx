@@ -13,7 +13,7 @@ function ListingsPage({ lang, go, sub }) {
     <div className="page-fade">
       <header className="page-head">
         <div className="container">
-          <div className="breadcrumbs"><a href="#/home" onClick={(e)=>{e.preventDefault();go("home");}}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Listings":"房源"}</div>
+          <div className="breadcrumbs"><a {...go.link("home")}>{lang==="en"?"Home":"首頁"}</a><span>/</span>{lang==="en"?"Listings":"房源"}</div>
           <span className="eyebrow">{lang==="en"?"Curated Portfolio · San Diego":"精選房源 · 聖地牙哥"}</span>
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>The <em>Listings</em></> : <>全部 <em>房源</em></>}</h1>
           <p className="lede">{lang==="en"?"Active representation, recent closings and rental opportunities across San Diego's coastal corridor and core urban neighborhoods.":"涵蓋聖地牙哥沿海與市區核心社區的在售、近期成交與出租房源。"}</p>
@@ -36,7 +36,7 @@ function ListingsPage({ lang, go, sub }) {
                   ? "Jean isn't actively representing any properties for sale at the moment. Get in touch to be the first to hear when the next listing comes to market — or to talk about selling your own home."
                   : "Jean 目前暫無在售房源。歡迎與我聯絡，下一套物件上市時第一時間通知您；若您正考慮出售自己的房子，也歡迎聊聊。"}
               </p>
-              <a className="btn btn-primary arrow-right" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+              <a className="btn btn-primary arrow-right" {...go.link("contact")}>
                 {lang==="en"?"Get on Jean's List":"加入 Jean 的優先名單"}
               </a>
             </div>
@@ -77,7 +77,7 @@ function ListingDetail({ id, lang, go }) {
         <header className="page-head">
           <div className="container-tight">
             <div className="breadcrumbs">
-              <a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang==="en"?"Listings":"房源"}</a>
+              <a {...go.link("listings")}>{lang==="en"?"Listings":"房源"}</a>
             </div>
             <h1 style={{ marginTop: 20 }}>{lang==="en"?"Listing not found":"找不到這筆房源"}</h1>
             <p className="lede">
@@ -86,10 +86,10 @@ function ListingDetail({ id, lang, go }) {
                 : "這筆房源可能已成交或已下架。Jean 近期的成交紀錄都在房源頁面上。"}
             </p>
             <div style={{ marginTop: 28, display:'flex', gap: 16, flexWrap:'wrap' }}>
-              <a className="btn btn-primary arrow-right" href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>
+              <a className="btn btn-primary arrow-right" {...go.link("listings")}>
                 {lang==="en"?"View closings":"檢視成交紀錄"}
               </a>
-              <a className="btn btn-ghost" href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>
+              <a className="btn btn-ghost" {...go.link("contact")}>
                 {lang==="en"?"Ask Jean":"詢問 Jean"}
               </a>
             </div>
@@ -117,7 +117,7 @@ function ListingDetail({ id, lang, go }) {
       <div className={"detail-hero" + (heroImg ? " has-image" : "")} style={heroStyle}>
         <div className="detail-hero-overlay"></div>
         <div className="detail-hero-content container">
-          <div className="breadcrumbs"><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang==="en"?"Listings":"房源"}</a><span>/</span>{l.street}</div>
+          <div className="breadcrumbs"><a {...go.link("listings")}>{lang==="en"?"Listings":"房源"}</a><span>/</span>{l.street}</div>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', gap: 40, flexWrap:'wrap' }}>
             <div>
               <span className="eyebrow">{lang==="zh" ? (l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售") : (l.status === "sold" ? "Closed" : l.status === "rent" ? "For Rent" : "Active")} · {l.area.split(",")[0]}</span>
@@ -170,7 +170,7 @@ function ListingDetail({ id, lang, go }) {
               <div className="test-avatar" style={{ width:64, height:64, fontSize:24, marginBottom:16 }}>JR</div>
               <h4>Jean Riley</h4>
               <div style={{ color:'var(--ink-dim)', fontSize:13, marginBottom: 24 }}>{lang==="en"?"Listing Agent":"委託經紀"} · {D2.agent.brokerage}</div>
-              <a className="btn btn-primary arrow-right" style={{ width:'100%', justifyContent:'center', marginBottom: 12 }} href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>{lang==="en"?"Schedule Tour":"預約看屋"}</a>
+              <a className="btn btn-primary arrow-right" style={{ width:'100%', justifyContent:'center', marginBottom: 12 }} {...go.link("contact")}>{lang==="en"?"Schedule Tour":"預約看屋"}</a>
               <a className="btn btn-ghost" style={{ width:'100%', justifyContent:'center' }}>{D2.agent.phone}</a>
             </aside>
           </div>
