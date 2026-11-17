@@ -17,6 +17,14 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 /* Every substitution must hit exactly once. If index.html changes shape, fail loudly
    here instead of publishing a v2 that silently lost its stylesheet or its <base>. */
 function swap(html, from, to, label) {
+  if (from instanceof RegExp) {
+    const hits = html.match(new RegExp(from.source, "g")) || [];
+    if (hits.length !== 1) {
+      console.error(`build-v2: expected exactly one "${label}" in index.html, found ${hits.length}.`);
+      process.exit(1);
+    }
+    return html.replace(from, () => to);
+  }
   const parts = html.split(from);
   if (parts.length !== 2) {
     console.error(`build-v2: expected exactly one "${label}" in index.html, found ${parts.length - 1}.`);
@@ -68,9 +76,9 @@ html = swap(
 );
 html = swap(
   html,
-  `<link rel="stylesheet" href="styles.css" />`,
+  /<style id="site-css">[\s\S]*?<\/style>/,
   `<link rel="stylesheet" href="styles.css" />\n<link rel="stylesheet" href="v2/light.css" />`,
-  "styles.css link",
+  "inlined site CSS",
 );
 html = swap(html, `</body>`, `${HASH_LINK_FIX}\n</body>`, "closing body tag");
 html = swap(

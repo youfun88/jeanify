@@ -22,6 +22,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { siteCss } from "./site-css.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -52,6 +53,7 @@ if (!Array.isArray(ARTICLES) || !ARTICLES.length) {
   process.exit(1);
 }
 const DATA = await load("data.js", "JR_DATA");
+const CSS = await siteCss();
 
 const esc = (s) => String(s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -213,7 +215,7 @@ ${a.image ? `<meta property="og:image" content="${SITE}/${a.image.replace(/^\//,
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <meta name="theme-color" content="#0b0d10" />
-<link rel="stylesheet" href="/styles.css" />
+${CSS}
 ${articleSchema(a, url, lang, faqs).map((s) => `<script type="application/ld+json">\n${jsonld(s)}\n</script>`).join("\n")}
 ${GA}`;
 }

@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
+import { siteCss } from "./site-css.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = process.env.JEANIFY_SITE || "https://www.soldbyjean.com";
@@ -110,6 +111,8 @@ const SCRIPTS = `<!-- React 18.3.1 production builds, self-hosted in vendor/ (co
 <script src="pages.compiled.js" defer></script>
 <script src="forms.compiled.js" defer></script>
 <script src="app.compiled.js" defer></script>`;
+
+const CSS = await siteCss();
 
 // ---- JSON-LD ----
 const HOME_SCHEMA = JSON.parse(await readFile(join(ROOT, "tools", "home-schema.json"), "utf8"));
@@ -231,7 +234,7 @@ ${isHome ? `<!-- The hero photo is a CSS background: fetch it now rather than af
      is parsed. Same files and media query as .hero-bg in styles.css. -->
 <link rel="preload" as="image" href="uploads/hero-san-diego-dusk-portrait.webp" type="image/webp" media="(max-aspect-ratio: 2/3)" fetchpriority="high" />
 <link rel="preload" as="image" href="uploads/hero-san-diego-dusk.webp" type="image/webp" media="not all and (max-aspect-ratio: 2/3)" fetchpriority="high" />
-` : ""}<link rel="stylesheet" href="styles.css" />
+` : ""}${CSS}
 ${schemaFor(route, lang, meta, url).map((s) => `<script type="application/ld+json">\n${jsonld(s)}\n</script>`).join("\n")}
 ${GA}
 </head>
