@@ -1,6 +1,6 @@
 /* global React */
 const { useState: uS3, useEffect: uE3 } = React;
-const { D: D3, scrollToId } = window.JR_CORE;
+const { D: D3, scrollToId, useLazyBg } = window.JR_CORE;
 
 // ---------- ABOUT ----------
 function AboutPage({ lang, go }) {
@@ -252,14 +252,16 @@ function articleDate(iso, lang) {
 
 // One article card — used on the index and in the "related" strip.
 function ArticleCard({ a, go, lang }) {
+  // Cards show the WebP sibling of the article image (800px wide, a tenth of the
+  // JPEG's weight). The JPEG stays the og:image / schema image for social cards.
+  const [imgRef, imgBg] = useLazyBg(a.image ? encodeURI(a.image.replace(/\.(jpe?g|png)$/i, ".webp")) : null);
   return (
     <a className="article-card" href={"#/articles/" + a.slug}
        onClick={(e) => { e.preventDefault(); go("articles/" + a.slug); }}>
       <div
+        ref={imgRef}
         className={"article-img" + (a.image ? " has-image" : "")}
-        // Cards show the WebP sibling of the article image (800px wide, a tenth of the
-        // JPEG's weight). The JPEG stays the og:image / schema image for social cards.
-        style={a.image ? { backgroundImage: "url(" + encodeURI(a.image.replace(/\.(jpe?g|png)$/i, ".webp")) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
+        style={a.image ? { backgroundImage: imgBg, backgroundSize: "cover", backgroundPosition: "center" } : null}
       ></div>
       <div className="article-meta">{zh(lang, CAT_ZH[a.category], a.category)} · {readZh(lang, a.read)}</div>
       <h3>{zh(lang, a.titleZh, a.title)}</h3>

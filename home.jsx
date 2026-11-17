@@ -1,6 +1,6 @@
 /* global React */
 const { useState: uS, useEffect: uE } = React;
-const { D, ListingCard, VideoCard } = window.JR_CORE;
+const { D, ListingCard, VideoCard, useLazyBg } = window.JR_CORE;
 
 // ---------- HOME ----------
 function HomePage({ lang, go }) {
@@ -11,6 +11,8 @@ function HomePage({ lang, go }) {
   const articles = (window.JR_ARTICLES || []).slice(0, 3);
   // pages.jsx loads after this file, so resolve at render time rather than import time.
   const { ArticleCard } = window.JR_PAGES;
+  const [bioRef, bioBg] = useLazyBg("uploads/coastline-aerial.webp");
+  const [specRef, specBg] = useLazyBg("uploads/1031-investment.webp");
 
   return (
     <div className="page-fade">
@@ -54,7 +56,7 @@ function HomePage({ lang, go }) {
       <section className="section" style={{ background: "var(--bg-elev)" }}>
         <div className="container">
           <div className="bio-grid">
-            <div className="bio-portrait" style={{ backgroundImage: "url(uploads/coastline-aerial.webp)", backgroundSize: "cover", backgroundPosition: "center" }}></div>
+            <div ref={bioRef} className="bio-portrait" style={{ backgroundImage: bioBg, backgroundSize: "cover", backgroundPosition: "center" }}></div>
             <div>
               <span className="eyebrow">{t.sections.bioEy}</span>
               <h2 style={{ margin: "20px 0 32px" }}>{t.sections.bioH}</h2>
@@ -99,7 +101,7 @@ function HomePage({ lang, go }) {
       <section className="section-sm">
         <div className="container">
           <div className="specialty">
-            <div className="specialty-img" style={{ backgroundImage: "url(uploads/1031-investment.webp)", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div ref={specRef} className="specialty-img" style={{ backgroundImage: specBg, backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="specialty-credit">
                 {lang==="en"?"Photo by ":"照片："}<a href="https://unsplash.com/@aalolens?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Aalo Lens</a>{" "}
                 {lang==="en"?"on ":"，來源 "}<a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>

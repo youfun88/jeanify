@@ -288,6 +288,28 @@ const VIDEO_CAT_ZH = {
   "Neighborhood": "社區介紹",
   "Agent Testimonial": "同業推薦",
 };
+// ---------- Lazy background images ----------
+// The photos on these pages are CSS backgrounds, which the browser fetches as soon as
+// the element renders — so the home page used to pull every listing photo, video
+// thumbnail and article image (about 1 MB) at once, competing with the hero and fonts.
+// This hands back the url only once the element is within 400px of the viewport.
+// Returns [ref, cssUrlOrNull]; without IntersectionObserver it loads straight away.
+function useLazyBg(src) {
+  const ref = useRef(null);
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    if (!src || near) return;
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setNear(true); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { setNear(true); io.disconnect(); }
+    }, { rootMargin: "400px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [src, near]);
+  return [ref, src && near ? "url(" + src + ")" : undefined];
+}
+
 function ytThumb(id) { return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; }
 function ytEmbed(id, start) {
   return "https://www.youtube-nocookie.com/embed/" + id +
@@ -308,13 +330,15 @@ function VideoCard({ v, feature, lang }) {
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
   }, [open]);
   const isFeature = feature || v.feature;
+  const [thumbRef, thumbBg] = useLazyBg(ytThumb(v.id));
   return (
     <>
       <button
         type="button"
+        ref={thumbRef}
         className={"video-card" + (isFeature ? " feature" : "")}
         onClick={() => setOpen(true)}
-        style={{ backgroundImage: "url(" + ytThumb(v.id) + ")" }}
+        style={{ backgroundImage: thumbBg }}
       >
         {/* The accessible name comes from the visible title and category, with the
             "Play video" verb read out first. An aria-label here replaced the visible
@@ -350,8 +374,9 @@ function ListingCard({ l, go, lang }) {
   const hasSpecs = l.beds || l.baths || l.sqft;
   // Photo source: explicit image > YouTube tour thumbnail > none (typographic placeholder).
   const photoSrc = l.image ? encodeURI(l.image) : (l.videoId ? ytThumb(l.videoId) : null);
+  const [photoRef, photoBg] = useLazyBg(photoSrc);
   const photoStyle = photoSrc
-    ? { backgroundImage: "url(" + photoSrc + ")", backgroundSize: "cover", backgroundPosition: "center" }
+    ? { backgroundImage: photoBg, backgroundSize: "cover", backgroundPosition: "center" }
     : null;
   // For typographic placeholder, parse neighborhood / city from "City, ST 92127"
   const cityMatch = l.area && l.area.match(/^([^,]+),\s*([A-Z]{2})\s*(\d{5})?/);
@@ -359,7 +384,7 @@ function ListingCard({ l, go, lang }) {
   const zipName = cityMatch ? cityMatch[3] : null;
   return (
     <a className="listing-card" href={"#/listing/" + l.id} onClick={(e) => { e.preventDefault(); go("listing/" + l.id); }}>
-      <div className={"listing-photo" + (photoSrc ? " has-image" : "")} style={photoStyle}>
+      <div ref={photoRef} className={"listing-photo" + (photoSrc ? " has-image" : "")} style={photoStyle}>
         <div className={"listing-status " + (l.status === "sold" ? "sold" : l.status === "rent" ? "rent" : "")}>
           {lang === "zh"
             ? (l.status === "sold" ? "已成交" : l.status === "rent" ? "出租中" : "在售")
@@ -395,4 +420,4 @@ function ListingCard({ l, go, lang }) {
   );
 }
 
-window.JR_CORE = { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, ListingCard, VideoCard, ytThumb, ytEmbed, ytWatch, scrollToId, D };
+window.JR_CORE = { useHashRoute, TWEAK_DEFAULTS, FONT_PAIRS, ACCENT_OPTIONS, Nav, Footer, ListingCard, VideoCard, useLazyBg, ytThumb, ytEmbed, ytWatch, scrollToId, D };
