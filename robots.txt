@@ -2,54 +2,88 @@
 # including AI / LLM crawlers (GEO-friendly).
 User-agent: *
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 # Major AI crawlers (named explicitly in case the wildcard isn't honored)
 User-agent: GPTBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Applebot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Bingbot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: cohere-ai
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: meta-externalagent
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: Bytespider
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 User-agent: DuckAssistBot
 Allow: /
+Disallow: /pending
+Disallow: /log
 
 Sitemap: https://www.soldbyjean.com/sitemap.xml
