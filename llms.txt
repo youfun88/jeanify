@@ -43,18 +43,22 @@ Largest recent featured closings (≥ $1M):
 ## Content
 
 - [Home](https://www.soldbyjean.com/): Overview, hero, recent featured closings, 1031 Exchange highlight, client voices, video reel.
-- [Featured Homes (sold)](https://www.soldbyjean.com/#/listings): 21 closings ≥ $1M with photos, prices, addresses, side represented (Buy / Listing / Both).
-- [About Jean](https://www.soldbyjean.com/#/about): Bio, mission, Jeanify practice services, four-phase process, all client testimonials.
-- [Videos](https://www.soldbyjean.com/#/videos): Listing songs, property tours, neighborhood walkthroughs, client voice-overs, agent testimonials. Source: https://www.youtube.com/@soldbyjean
-- [Resources](https://www.soldbyjean.com/#/articles): Buyer Guide, Seller Guide, 1031 Exchange Primer, seasonal PDF market briefings, and the articles listed below.
-- [1031 Exchange](https://www.soldbyjean.com/#/exchange): 45-day identification window, 180-day close, 200% rule, FAQ.
-- [FAQ](https://www.soldbyjean.com/#/faq): Commission structure, timelines, Mello-Roos, 1031 exchanges, buying from overseas, listing songs.
-- [Contact](https://www.soldbyjean.com/#/contact): Contact form and direct contact info.
+- [Featured Homes (sold)](https://www.soldbyjean.com/listings/): 21 closings ≥ $1M with photos, prices, addresses, side represented (Buy / Listing / Both).
+- [About Jean](https://www.soldbyjean.com/about/): Bio, mission, Jeanify practice services, four-phase process, all client testimonials.
+- [Videos](https://www.soldbyjean.com/videos/): Listing songs, property tours, neighborhood walkthroughs, client voice-overs, agent testimonials. Source: https://www.youtube.com/@soldbyjean
+- [Resources](https://www.soldbyjean.com/articles/): Buyer Guide, Seller Guide, 1031 Exchange Primer, seasonal PDF market briefings, and the articles listed below.
+- [1031 Exchange](https://www.soldbyjean.com/1031-exchange/): 45-day identification window, 180-day close, 200% rule, FAQ.
+- [FAQ](https://www.soldbyjean.com/faq/): Commission structure, timelines, Mello-Roos, 1031 exchanges, buying from overseas, listing songs.
+- [Contact](https://www.soldbyjean.com/contact/): Contact form and direct contact info.
+- [Buyer's Guide](https://www.soldbyjean.com/guides/buyer/): Eight steps from pre-approval to keys in hand.
+- [Seller's Guide](https://www.soldbyjean.com/guides/seller/): Eight steps covering pricing, preparation, marketing and negotiation.
+- [1031 Exchange Primer](https://www.soldbyjean.com/guides/1031/): Eight steps from pre-sale planning to filing Form 8824.
+- [Home Valuation](https://www.soldbyjean.com/estimator/): Request a written CMA, prepared personally by Jean, usually within 48 hours.
 
 ## Articles
 
-Full-text articles with their own canonical URLs, sources and FAQ sections. These are static
-HTML pages (not hash routes) and are the preferred citation targets.
+Full-text articles with their own canonical URLs, sources and FAQ sections. Every page on
+the site is static HTML; the articles are the preferred citation targets.
 
 - [What to expect when buying in La Jolla](https://www.soldbyjean.com/articles/buying-in-la-jolla.html): La Jolla (92037) pricing vs. the county, the Coastal Overlay Zone and Coastal Development Permits, bluff/geotechnical diligence, Prop 13 basis reset and the supplemental tax bill.
 - [Pre-listing essentials: the seven-point preparation](https://www.soldbyjean.com/articles/pre-listing-preparation.html): How much to spend preparing a home (1–3% of value), item-by-item San Diego costs, staging ROI data, the four-week sequence, and the listing-song marketing piece.
@@ -63,6 +67,29 @@ HTML pages (not hash routes) and are the preferred citation targets.
 - [Mello-Roos in San Diego: what buyers in 92127, 92130 and 92131 actually pay](https://www.soldbyjean.com/articles/mello-roos-san-diego.html): Community Facilities District tax by area (4S Ranch, Del Sur, Pacific Highlands Ranch, Carmel Valley, Chula Vista), effect on mortgage qualification, bond terms and expiry, and how to verify a specific parcel by APN.
 - [Buying San Diego property as an international buyer](https://www.soldbyjean.com/articles/international-buyers-san-diego.html): Foreign national and DSCR mortgages without US credit, FIRPTA withholding rates and thresholds, the $60,000 non-resident estate tax exemption, ongoing ownership costs, and remote-purchase logistics.
 
+## 中文 (Traditional Chinese)
+
+Every page is also published in Traditional Chinese under /zh/, linked to its English
+counterpart with hreflang.
+
+- [首頁](https://www.soldbyjean.com/zh/)
+- [認識 Jean](https://www.soldbyjean.com/zh/about/)
+- [常見問題](https://www.soldbyjean.com/zh/faq/)
+- [1031 交換](https://www.soldbyjean.com/zh/1031-exchange/)
+- [精選房源](https://www.soldbyjean.com/zh/listings/)
+- [影片中心](https://www.soldbyjean.com/zh/videos/)
+- [資源中心](https://www.soldbyjean.com/zh/articles/)
+- [買家指南](https://www.soldbyjean.com/zh/guides/buyer/) · [賣家指南](https://www.soldbyjean.com/zh/guides/seller/) · [1031 交換入門](https://www.soldbyjean.com/zh/guides/1031/)
+- [聯絡](https://www.soldbyjean.com/zh/contact/) · [房屋估價](https://www.soldbyjean.com/zh/estimator/)
+
+Articles in Chinese:
+
+- [在 La Jolla 買房，該有的心理準備](https://www.soldbyjean.com/zh/articles/buying-in-la-jolla.html)
+- [上市前的七項準備](https://www.soldbyjean.com/zh/articles/pre-listing-preparation.html)
+- [1031 交換的時程，投資人最常栽在哪裡](https://www.soldbyjean.com/zh/articles/1031-exchange-timing.html)
+- [怎麼看懂一份 CMA](https://www.soldbyjean.com/zh/articles/reading-a-cma.html)
+- [Mello-Roos：92127、92130、92131 的買家實際要繳多少](https://www.soldbyjean.com/zh/articles/mello-roos-san-diego.html)
+- [海外買家在聖地牙哥置產指南](https://www.soldbyjean.com/zh/articles/international-buyers-san-diego.html)
 ## Signature service — listing songs
 
 For every listing Jean takes she commissions an original song written about that specific
