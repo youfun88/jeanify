@@ -118,7 +118,7 @@ window.JR_ARTICLES = [
     updated: "2026-07-20",
     image: "uploads/articles/pre-listing.jpg",
     credit: { name: "Zac Gudakov", url: "https://unsplash.com/@zacgudakov" },
-    metaTitle: "Pre-Listing Home Preparation: The Seven-Point Checklist (2026)",
+    metaTitle: "Pre-Listing Home Preparation: Seven-Point Checklist (2026)",
     metaDesc: "A seven-point pre-listing preparation framework for San Diego sellers — what to spend, what returns, staging ROI data, and how to sequence the four weeks before your home hits the MLS.",
     answer:
       "Plan to spend 1–3% of your home's value preparing it for market, weighted toward paint, deep cleaning, landscaping and staging — the four items with the most consistent return. Industry data from the Real Estate Staging Association puts average staging spend near $3,800 against materially shorter time on market. Sequence the work over about four weeks so photography happens last, after everything is finished.",
@@ -198,7 +198,7 @@ window.JR_ARTICLES = [
     updated: "2026-07-15",
     image: "uploads/articles/1031-exchange.jpg",
     credit: { name: "Clemens van Lay", url: "https://unsplash.com/@clemensvanlay" },
-    metaTitle: "1031 Exchange Timing Rules in 2026: 45-Day and 180-Day Deadlines",
+    metaTitle: "1031 Exchange Timing in 2026: 45-Day and 180-Day Deadlines",
     metaDesc: "The 45-day and 180-day 1031 exchange deadlines explained for 2026, including the tax-return trap that shortens your window, identification rules, and what the One Big Beautiful Bill Act did and did not change.",
     answer:
       "A 1031 exchange gives you 45 calendar days from the close of your relinquished property to identify replacement property in writing, and 180 calendar days to close on it. Both clocks start the same day and run concurrently — the 180 is not an extension of the 45. The most common failure is not missing a deadline by arithmetic but engaging a qualified intermediary too late: if you take receipt of the sale proceeds, even briefly, the exchange is dead and cannot be repaired.",
@@ -367,7 +367,7 @@ window.JR_ARTICLES = [
     // 17134 Monterey Ridge Way — one of Jean's own 92127 closings, and exactly the
     // master-planned housing stock this article is about. No stock photo needed.
     image: "uploads/articles/mello-roos.jpg",
-    metaTitle: "Mello-Roos in San Diego (92127, 92130, 92131): 2026 Buyer's Guide",
+    metaTitle: "Mello-Roos in San Diego (92127, 92130, 92131): 2026 Guide",
     metaDesc: "What Mello-Roos costs San Diego buyers in 4S Ranch, Del Sur, Carmel Valley and Pacific Highlands Ranch — typical annual amounts, how it affects mortgage qualification, when it expires, and how to verify a specific parcel before offering.",
     answer:
       "Mello-Roos is a special tax levied by a Community Facilities District to pay for infrastructure in newer California developments. In San Diego's newer master-planned communities — 4S Ranch, Del Sur, Santaluz and Pacific Highlands Ranch — it commonly runs $1,000 to $5,000+ per year on top of your regular property tax, while older Carmel Valley neighborhoods often carry none at all. Because lenders include it in your escrowed payment, it directly reduces how much home you qualify for.",
@@ -451,7 +451,7 @@ window.JR_ARTICLES = [
     // Coastal San Diego from the air — the view an overseas buyer forms of the
     // market before they ever stand in it. Cropped from uploads/coastline-aerial.jpg.
     image: "uploads/articles/international.jpg",
-    metaTitle: "Buying San Diego Real Estate as a Foreign National (2026 Guide)",
+    metaTitle: "Buying San Diego Real Estate as a Foreign National (2026)",
     metaDesc: "A 2026 guide for international buyers of San Diego property — foreign national mortgages without US credit, FIRPTA withholding on resale, the $60,000 non-resident estate tax threshold, and the documents to prepare before you offer.",
     answer:
       "There is no citizenship, residency or visa requirement to buy property in the United States — a foreign national can purchase San Diego real estate outright. Financing is available without a US credit history or Social Security number through foreign national and DSCR loan programs, typically requiring 20–30% down. The two things to plan for before buying are FIRPTA withholding when you eventually sell, and US estate tax exposure, which for non-resident aliens begins above just $60,000 of US-situated assets.",
