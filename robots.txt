@@ -52,4 +52,4 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://soldbyjean.com/sitemap.xml
+Sitemap: https://www.soldbyjean.com/sitemap.xml

@@ -71,7 +71,9 @@ purpose — those are the structures answer engines extract most reliably.
 
 ### Domain
 
-The site is served at **https://soldbyjean.com** — a GitHub Pages custom domain.
+The site is served at **https://www.soldbyjean.com** — a GitHub Pages custom domain.
+The bare `soldbyjean.com` redirects to `www` (GitHub does this because the custom domain
+is the `www` name and the apex also points at GitHub).
 
 - **DNS** is hosted at Cloudflare (account yufansapp@gmail.com; the registrar, NameBright,
   only holds the nameservers). The apex has the four GitHub Pages `A` records
@@ -88,4 +90,5 @@ The site is served at **https://soldbyjean.com** — a GitHub Pages custom domai
   (both overridable with `JEANIFY_SITE`), and written out in `index.html`, `llms.txt`,
   `robots.txt` and `404.html`. Change them together.
 
-`https://youfun88.github.io/jeanify/…` redirects to the custom domain with the path kept.
+`https://youfun88.github.io/jeanify/…` and `https://soldbyjean.com/…` redirect to
+`https://www.soldbyjean.com/…` with the path kept.

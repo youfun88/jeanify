@@ -22,7 +22,7 @@ const OUT_DIR = join(ROOT, "articles");
 
 // Production origin. The SPA's own canonical (index.html) points here too — if the
 // site moves domains, change it in both places.
-const SITE = process.env.JEANIFY_SITE || "https://soldbyjean.com";
+const SITE = process.env.JEANIFY_SITE || "https://www.soldbyjean.com";
 
 const AGENT = {
   name: "Jean Riley",
