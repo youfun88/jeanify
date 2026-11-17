@@ -73,10 +73,15 @@ purpose — those are the structures answer engines extract most reliably.
 
 The site is served at **https://soldbyjean.com** — a GitHub Pages custom domain.
 
-- **DNS** is hosted at Cloudflare (the registrar, NameBright, only holds the nameservers).
-  The apex needs the four GitHub Pages `A` records (`185.199.108.153` – `185.199.111.153`)
-  and `www` a `CNAME` to `youfun88.github.io`. Both must be **DNS only** (grey cloud):
-  GitHub issues the HTTPS certificate itself and cannot do so through Cloudflare's proxy.
+- **DNS** is hosted at Cloudflare (account yufansapp@gmail.com; the registrar, NameBright,
+  only holds the nameservers). The apex has the four GitHub Pages `A` records
+  (`185.199.108.153` – `185.199.111.153`) and `www` is a `CNAME` to `youfun88.github.io`.
+- **HTTPS is Cloudflare's**, not GitHub's: all five records are **Proxied** (orange cloud),
+  SSL/TLS mode is **Full**, Universal SSL issues the certificate, and **Always Use HTTPS**
+  does the http → https redirect. GitHub cannot issue its own certificate behind the
+  proxy, so leave GitHub's "Enforce HTTPS" off — turning both on risks a redirect loop.
+  To go back to a GitHub certificate, set the records to DNS only, wait for GitHub to
+  issue it, then enable "Enforce HTTPS" in Settings → Pages.
 - **GitHub** holds the domain in Settings → Pages → Custom domain. Because this repo
   deploys with Actions, that setting is what counts; the `CNAME` file is kept as a record.
 - **In the repo** the origin is set in `tools/agent.mjs` and `tools/build-articles.mjs`
