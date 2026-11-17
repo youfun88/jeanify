@@ -259,7 +259,7 @@ window.JR_ARTICLES = [
         a: "Typically $800 to $1,500 for a standard delayed exchange, plus modest per-property fees for additional replacements. Reverse and improvement exchanges cost substantially more. Choose on the strength of the QI's bonding, insurance and segregated-account practices rather than on price — you are handing this firm your entire sale proceeds." },
     ],
     sources: [
-      { name: "IRS — Like-kind exchanges under IRC Section 1031", url: "https://www.irs.gov/newsroom/like-kind-exchanges-real-estate-tax-tips" },
+      { name: "IRS — Like-kind exchanges under IRC Section 1031", url: "https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips" },
       { name: "IPX1031 — Section 1031 tax reform updates", url: "https://www.ipx1031.com/1031-tax-reform-updates/" },
       { name: "Accruit — 1031 reporting deadlines and the impact of H.R.1", url: "https://www.accruit.com/blog/tax-day-2026-1031-exchange-reporting-deadlines-and-the-impact-of-h-r-1/" },
       { name: "California FTB — Form 3840, like-kind exchanges", url: "https://www.ftb.ca.gov/forms/2024/2024-3840.pdf" },

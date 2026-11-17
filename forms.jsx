@@ -245,8 +245,8 @@ function ContactPage({ lang, go }) {
                     <h4>{lang==="en"?"Save Jean to your phone":"將 Jean 存入手機通訊錄"}</h4>
                     <p>
                       {lang==="en"
-                        ? <>Point your camera at the code to open Jean's digital card, then tap <strong style={{color:'var(--ink)'}}>Save to Contacts</strong>. Or <a href="card/" target="_blank" rel="noopener noreferrer">open the card</a> directly.</>
-                        : <>用手機相機掃描此碼即可開啟電子名片，點選 <strong style={{color:'var(--ink)'}}>存入通訊錄</strong> 即可儲存。也可 <a href="card/" target="_blank" rel="noopener noreferrer">直接開啟名片</a>。</>}
+                        ? <>Point your camera at the code to open Jean's digital card, then tap <strong style={{color:'var(--ink)'}}>Save to Contacts</strong>. Or <a href="/card/" target="_blank" rel="noopener noreferrer">open the card</a> directly.</>
+                        : <>用手機相機掃描此碼即可開啟電子名片，點選 <strong style={{color:'var(--ink)'}}>存入通訊錄</strong> 即可儲存。也可 <a href="/card/" target="_blank" rel="noopener noreferrer">直接開啟名片</a>。</>}
                     </p>
                   </div>
                 </div>
