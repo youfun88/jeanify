@@ -208,6 +208,8 @@ for (const a of ARTICLES) {
 <html lang="en">
 <head>
 ${chrome.head(a, url)}
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS26F5FFHR');
+addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=G-YS26F5FFHR';document.head.appendChild(s);},1500);});</script>
 </head>
 <body>
 ${chrome.nav}
@@ -352,6 +354,8 @@ ${jsonld({
   })),
 })}
 </script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS26F5FFHR');
+addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=G-YS26F5FFHR';document.head.appendChild(s);},1500);});</script>
 </head>
 <body>
 ${chrome.nav}
