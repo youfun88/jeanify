@@ -80,9 +80,12 @@ h1, h2, h3, h4 {
   margin: 0;
   color: var(--ink);
 }
-h1 { font-size: clamp(48px, 7vw, 104px); }
-h2 { font-size: clamp(36px, 4.5vw, 64px); }
-h3 { font-size: clamp(24px, 2.4vw, 36px); }
+/* The scale was retuned to narrow the gap between display and small type: headlines
+   came down (h1 topped out at 104px) and the 11px labels went up to 12px, so the two
+   ends of the page no longer read as "huge" and "tiny" side by side. */
+h1 { font-size: clamp(40px, 5vw, 76px); }
+h2 { font-size: clamp(32px, 3.6vw, 52px); }
+h3 { font-size: clamp(23px, 2.1vw, 32px); }
 h4 { font-size: 22px; }
 
 p { margin: 0; }
@@ -91,7 +94,7 @@ p { margin: 0; }
 /* Eyebrow */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--brass);
@@ -192,7 +195,7 @@ p { margin: 0; }
 }
 .nav-brand-name small {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   line-height: 1;
@@ -204,6 +207,12 @@ p { margin: 0; }
    plus phone plus the language toggle — so drop the credential line there only. */
 @media (min-width: 1025px) and (max-width: 1260px) {
   .nav-brand-name small { display: none; }
+  /* Tighten the bar too, or the brand runs into "Home" and "Contact" into the phone. */
+  .nav { padding-left: 28px; padding-right: 28px; }
+  .nav-links { gap: 22px; margin: 0 20px; }
+  .nav-link { font-size: 13px; }
+  .nav-right { gap: 16px; }
+  .nav-phone { font-size: 15px; }
 }
 @media (max-width: 420px) {
   .nav-brand-name small { display: none; }
@@ -227,7 +236,7 @@ p { margin: 0; }
   gap: 36px;
 }
 .nav-link {
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.05em;
   color: var(--ink-dim);
   position: relative;
@@ -260,7 +269,7 @@ p { margin: 0; }
   border-radius: 999px;
   padding: 3px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
 }
 .lang-toggle button {
@@ -299,7 +308,7 @@ p { margin: 0; }
   align-items: center;
   gap: 12px;
   padding: 16px 28px;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   border-radius: 0;
@@ -329,7 +338,7 @@ p { margin: 0; }
   letter-spacing: 0.16em;
   color: var(--brass);
   border-bottom: 1px solid var(--brass);
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
 }
 .btn-text:hover { color: var(--brass-bright); }
@@ -348,7 +357,10 @@ p { margin: 0; }
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: flex-end;
+  /* Column, bottom-aligned. As a row, .hero-stats sat BESIDE the full-width content
+     block and was squeezed against the right edge, where its last label clipped. */
+  flex-direction: column;
+  justify-content: flex-end;
   /* The nav is position:fixed, so without top padding the headline's first line
      sits underneath it once the content is taller than the viewport. */
   padding-top: 136px;
@@ -370,7 +382,7 @@ p { margin: 0; }
   right: 18px;
   z-index: 4;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: rgba(255,255,255,0.72);
   text-shadow: 0 1px 4px rgba(11,13,16,0.9);
@@ -421,7 +433,8 @@ p { margin: 0; }
 
 .hero-headline {
   font-style: italic;
-  max-width: 14ch;
+  /* Two rows on desktop: the lead-in, then the brass phrase (the <em>) on its own
+     line. A 14ch cap used to force four. Narrow screens still wrap as they need to. */
   line-height: 1.15;
   text-shadow: 0 2px 26px rgba(11,13,16,0.55), 0 1px 4px rgba(11,13,16,0.4);
 }
@@ -431,12 +444,13 @@ p { margin: 0; }
    is height — four lines of 104px type plus sub-copy, buttons and stats overflow,
    and the top line gets pushed under the nav. Step the type down by height too. */
 @media (max-height: 900px) {
-  .hero-headline { font-size: clamp(40px, 5.4vw, 78px); }
+  .hero-headline { font-size: clamp(38px, 4.6vw, 66px); }
   .hero-meta { margin-top: 40px; }
+  .hero-stats { margin-top: 32px; padding-top: 22px; }
 }
 @media (max-height: 760px) {
   .hero { padding-top: 118px; padding-bottom: 56px; }
-  .hero-headline { font-size: clamp(34px, 4.4vw, 60px); max-width: 18ch; }
+  .hero-headline { font-size: clamp(34px, 4vw, 54px); }
   .hero-meta { margin-top: 28px; }
   .hero-sub { font-size: 16px; }
 }
@@ -446,6 +460,7 @@ p { margin: 0; }
   .hero-sub { font-size: 15px; }
 }
 .hero-headline em {
+  display: block;
   font-style: italic;
   color: var(--brass);
 }
@@ -474,8 +489,12 @@ p { margin: 0; }
 }
 .hero-stats {
   position: relative;
-  margin-top: 64px;
-  padding-top: 32px;
+  /* Same measure and gutters as .container, so the rule and figures line up with
+     the headline above. */
+  width: calc(100% - 64px);
+  max-width: calc(var(--container) - 64px);
+  margin: 48px auto 0;
+  padding-top: 28px;
   border-top: 1px solid var(--line);
   display: flex;
   gap: 64px;
@@ -483,13 +502,13 @@ p { margin: 0; }
 }
 .hero-stat .num {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 40px;
   color: var(--brass);
   line-height: 1;
 }
 .hero-stat .lbl {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -545,7 +564,7 @@ p { margin: 0; }
 .search-tab {
   padding: 14px 22px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -561,7 +580,7 @@ p { margin: 0; }
 .search-field:last-of-type { border-right: none; }
 .search-field label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -740,7 +759,7 @@ textarea:focus-visible,
 .card-title { color: var(--brass); font-size: 15px; margin-top: 10px; }
 .card-license {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   color: var(--ink-faint);
   margin-top: 8px;
@@ -791,7 +810,7 @@ textarea:focus-visible,
 .card-row-k {
   flex: 0 0 78px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -810,7 +829,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .card-links a {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -830,7 +849,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .card-qr-block p {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -838,7 +857,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .card-foot {
   margin-top: 26px;
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   color: var(--ink-faint);
 }
@@ -941,7 +960,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .mg-edition {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -975,7 +994,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .mg-meta {
   margin-top: 16px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -1019,7 +1038,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   display: grid;
   place-items: center;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   color: rgba(255,255,255,0.25);
   text-transform: uppercase;
@@ -1046,7 +1065,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .ph-mark-zip {
   margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.3em;
   color: var(--brass);
   opacity: 0.75;
@@ -1067,7 +1086,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   border: 1px solid var(--brass);
   color: var(--brass);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -1107,7 +1126,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   padding-top: 16px;
   border-top: 1px solid var(--line);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-dim);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1128,7 +1147,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   border: 1px solid var(--brass);
   color: var(--brass);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 6px 10px;
@@ -1174,7 +1193,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   display: grid;
   place-items: center;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   color: rgba(255,255,255,0.22);
   text-transform: uppercase;
@@ -1222,7 +1241,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .bio-credit .lbl {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -1275,7 +1294,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   font-size: 18px;
 }
 .test-name { font-size: 14px; color: var(--ink); }
-.test-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.test-meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
 
 /* Video */
 .video-grid {
@@ -1358,7 +1377,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .video-card.feature .ttl { font-size: 28px; }
 .video-card .meta {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: #cfc6b4;
   text-transform: uppercase;
@@ -1449,7 +1468,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .est-step-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   color: var(--brass);
   text-transform: uppercase;
@@ -1466,7 +1485,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .input-row label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -1521,7 +1540,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   right: 14px;
   z-index: 2;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: rgba(255,255,255,0.55);
 }
@@ -1572,7 +1591,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .footer h5 {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--brass);
@@ -1591,7 +1610,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   flex-wrap: wrap;
   gap: 16px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-faint);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1616,7 +1635,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   background: var(--brass);
   color: #1a1611;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -1637,7 +1656,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   z-index: 0;
 }
 .page-head .container { position: relative; z-index: 1; }
-.page-head h1 { font-size: clamp(48px, 6vw, 80px); }
+.page-head h1 { font-size: clamp(40px, 4.6vw, 64px); }
 .page-head h1 em { color: var(--brass); font-style: italic; }
 .page-head .lede { margin-top: 24px; font-size: 19px; max-width: 60ch; }
 /* A page head already ends in 80px of breathing room, so a full --pad-sect on
@@ -1647,7 +1666,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .page-head + .section { padding-top: var(--pad-sect-sm); }
 .breadcrumbs {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -1668,7 +1687,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
   padding: 10px 18px;
   border: 1px solid var(--line);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-dim);
@@ -1684,7 +1703,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 .filter-count {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink-faint);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1805,7 +1824,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .article-meta {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brass);
@@ -1816,7 +1835,7 @@ a.card-row:hover .card-row-v { text-decoration: underline; }
 }
 .article-credit {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--ink-faint);
   margin-top: -6px;
@@ -1843,7 +1862,7 @@ a.article-card { text-decoration: none; color: inherit; }
   padding-top: 22px;
   border-top: 1px solid var(--line);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-faint);
@@ -2173,11 +2192,11 @@ a.article-card { text-decoration: none; color: inherit; }
   .footer-newsletter { flex-direction: column; border: none; gap: 12px; }
   .footer-newsletter input { border: 1px solid var(--line); padding: 14px 16px; }
   .footer-newsletter button { padding: 14px; width: 100%; }
-  .footer-bottom { font-size: 11px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .footer-bottom { font-size: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
   .nav { padding: 16px 20px; }
   .container { padding: 0 20px; }
   .specialty-body { padding: 32px 24px; }
   .estimator { padding: 32px 24px; }
   .process { grid-template-columns: 1fr; }
-  .hero-credit { font-size: 11px; bottom: 10px; right: 12px; }
+  .hero-credit { font-size: 12px; bottom: 10px; right: 12px; }
 }

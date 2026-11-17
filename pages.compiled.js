@@ -1098,7 +1098,7 @@ function ExchangePage({
   }, c.n), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--font-mono)',
-      fontSize: 11,
+      fontSize: 12,
       letterSpacing: '.18em',
       textTransform: 'uppercase',
       color: 'var(--ink-dim)',

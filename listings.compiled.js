@@ -96,7 +96,7 @@ function ListingsPage({
     style: {
       marginTop: 32,
       fontFamily: 'var(--font-mono)',
-      fontSize: 11,
+      fontSize: 12,
       letterSpacing: '.18em',
       textTransform: 'uppercase',
       color: 'var(--ink-faint)'
@@ -285,7 +285,7 @@ function ListingDetail({
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: 'var(--font-mono)',
-      fontSize: 11,
+      fontSize: 12,
       letterSpacing: '.18em',
       textTransform: 'uppercase',
       color: 'var(--ink-faint)'

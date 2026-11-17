@@ -45,7 +45,7 @@ function ListingsPage({ lang, go, sub }) {
           )}
           {filter === "sold" && (
             <>
-              <div style={{ marginTop: 32, fontFamily:'var(--font-mono)', fontSize: 11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>
+              <div style={{ marginTop: 32, fontFamily:'var(--font-mono)', fontSize: 12, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>
                 {lang==="en"
                   ? <>Showing {items.length} closings ≥ $1M · {D2.agent.totalSold} total sales on Zillow</>
                   : <>顯示 {items.length} 套 100 萬美元以上成交 · Zillow 總計 {D2.agent.totalSold} 套</>}
@@ -154,7 +154,7 @@ function ListingDetail({ id, lang, go }) {
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 24, marginTop: 8, paddingTop: 32, borderTop:'1px solid var(--line)' }}>
                   {specs.map(([k, v]) => (
                     <div key={k} style={{ display:'flex', justifyContent:'space-between', padding:'12px 0', borderBottom:'1px solid var(--line)' }}>
-                      <span style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>{k}</span>
+                      <span style={{ fontFamily:'var(--font-mono)', fontSize: 12, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-faint)' }}>{k}</span>
                       <span>{v}</span>
                     </div>
                   ))}

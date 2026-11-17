@@ -742,7 +742,7 @@ function ExchangePage({ lang, go }) {
             ].map(c => (
               <div key={c.n} style={{ padding: 40, border:'1px solid var(--line)', background:'var(--bg-elev)' }}>
                 <div style={{ fontFamily:'var(--font-display)', fontSize: 96, color:'var(--brass)', lineHeight: 1, marginBottom: 8 }}>{c.n}</div>
-                <div style={{ fontFamily:'var(--font-mono)', fontSize: 11, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-dim)', marginBottom: 16 }}>{c.l}</div>
+                <div style={{ fontFamily:'var(--font-mono)', fontSize: 12, letterSpacing:'.18em', textTransform:'uppercase', color:'var(--ink-dim)', marginBottom: 16 }}>{c.l}</div>
                 <p style={{ color:'var(--ink-dim)', lineHeight: 1.7 }}>{c.d}</p>
               </div>
             ))}
