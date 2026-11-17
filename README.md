@@ -28,6 +28,7 @@ npm run build    # compile JSX + regenerate article pages and sitemap
 | --- | --- |
 | `npm run build:js` | Every root `*.jsx` → `*.compiled.js` (preset-react, wrapped in an IIFE) |
 | `npm run build:articles` | `articles-content.js` → `articles/*.html` + `sitemap.xml` |
+| `npm run build:v2` | `index.html` → `v2/index.html`, the white-background review build |
 | `npm run build` | Both |
 
 ## Layout
@@ -40,6 +41,8 @@ articles-content.js   Article bodies — single source of truth
 articles/             GENERATED — do not hand-edit
 sitemap.xml           GENERATED — do not hand-edit
 tools/                Build scripts
+v2/                   White-background review build — light.css is hand-written,
+                      index.html is GENERATED from ../index.html
 ```
 
 ### Routing and SEO

@@ -1,0 +1,157 @@
+/* Jean Riley Real Estate — v2 review build: white background.
+ *
+ * Loaded AFTER ../styles.css by v2/index.html and only by that page, so the live dark
+ * site is untouched. It works by re-pointing the design tokens, then fixing the
+ * handful of rules in styles.css that hard-code a dark colour.
+ *
+ * Two things to know before editing:
+ *
+ * 1. Tokens are set on <body>, not :root. app.jsx writes --brass / --brass-bright as
+ *    inline styles on <html> (the tweaks panel accent), and an inline style beats any
+ *    stylesheet rule on the same element. Declaring them one level down wins instead.
+ *
+ * 2. Anything that sits on a photograph keeps the dark palette. A lit photo needs light
+ *    text over a dark scrim whatever the page colour is, so those regions re-declare
+ *    the original tokens locally ("on-photo scope", below) rather than being restyled.
+ */
+
+html { background: #ffffff; color-scheme: light; }
+
+body {
+  --bg-deep: #ffffff;
+  --bg-elev: #f7f5f0;          /* card / banded-section surface */
+  --bg-elev-2: #efebe3;
+  --line: rgba(110, 84, 34, 0.16);
+  --line-strong: rgba(110, 84, 34, 0.38);
+
+  /* Brass has to darken to stay legible: the original #c9a567 is 2.3:1 on white.
+     #8a6a2f measures 5.0:1 on white and 4.6:1 on --bg-elev. */
+  --brass: #8a6a2f;
+  --brass-bright: #6b5122;     /* hover — goes darker on a light ground, not lighter */
+  --brass-deep: #6b5122;
+  --brass-soft: rgba(138, 106, 47, 0.10);
+
+  --ink: #1a1611;
+  --ink-dim: #575043;
+  --ink-faint: #6f6858;
+
+  --green: #4d7a48;
+  --rose: #b05555;
+  --error: #b3362f;
+
+  /* Text colour for anything filled with --brass. */
+  --on-brass: #ffffff;
+}
+
+/* The film grain is an overlay-blended noise layer tuned for near-black; on white it
+   only muddies the page. */
+body::before { display: none; }
+
+/* ---------- On-photo scope: the original dark palette ---------- */
+.hero,
+.detail-hero,
+.video-card,
+.video-modal,
+.listing-status,
+.listing-fav,
+.listing-video-pill {
+  --bg-deep: #0b0d10;
+  --bg-elev: #14171c;
+  --bg-elev-2: #1c2026;
+  --line: rgba(214, 188, 138, 0.14);
+  --line-strong: rgba(214, 188, 138, 0.32);
+  --brass: #c9a567;
+  --brass-bright: #e3c388;
+  --brass-deep: #8b7340;
+  --brass-soft: rgba(201, 165, 103, 0.12);
+  --ink: #ece6d8;
+  --ink-dim: #a39b8b;
+  --ink-faint: #918a79;
+  --green: #7fa67a;
+  --rose: #c97a7a;
+  --on-brass: #1a1611;
+}
+/* Custom properties inherit, but `color` inherits as an already-computed value — so
+   text that relies on the inherited body colour needs it restated here. */
+.hero,
+.detail-hero,
+.video-card,
+.video-modal { color: var(--ink); }
+
+/* ---------- Brass-filled controls ---------- */
+.btn-primary,
+.lang-toggle button.active,
+.search-submit,
+.skip-link,
+.card-save,
+.footer-newsletter button,
+.filter-pill.active,
+.video-card:hover .play { color: var(--on-brass); }
+.btn-primary:hover { box-shadow: 0 12px 28px -14px rgba(110, 84, 34, 0.55); }
+
+/* ---------- Navigation ---------- */
+/* The dark site fades the bar out over the hero. A transparent bar can't work here:
+   it would need light text over the home-page photo and dark text on every inner
+   page. A solid white bar reads correctly on both. */
+.nav {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: var(--line);
+}
+.nav.scrolled { background: rgba(255, 255, 255, 0.97); }
+.nav-brand-name { border-left-color: rgba(110, 84, 34, 0.3); }
+.nav-phone:hover { text-shadow: none; }
+.nav-burger,
+.nav-mobile-close { background: rgba(255, 255, 255, 0.8); }
+.nav-mobile-backdrop { background: rgba(26, 22, 17, 0.45); }
+
+/* ---------- Surfaces that hard-coded a dark fill ---------- */
+.footer { background: var(--bg-elev); }
+
+.estimator {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(201, 165, 103, 0.16), transparent 50%),
+    linear-gradient(135deg, #fbfaf6 0%, #f3eee3 100%);
+}
+.estimator::before { opacity: 0.25; }
+
+.listing-card:hover { box-shadow: 0 24px 56px -28px rgba(60, 45, 15, 0.35); }
+
+/* Photo-less placeholders: light tile, dark type. */
+.listing-photo { background: linear-gradient(135deg, #f4f0e7, #e8e1d2); }
+.listing-photo::before {
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(201, 165, 103, 0.18), transparent 50%),
+    repeating-linear-gradient(45deg, rgba(110, 84, 34, 0.035) 0 8px, transparent 8px 16px);
+}
+.listing-photo .ph-label { color: rgba(26, 22, 17, 0.55); }
+.ph-mark-city { color: rgba(26, 22, 17, 0.72); }
+.ph-mark-zip { color: var(--brass-bright); opacity: 1; }   /* 5.7:1 on the tile */
+.listing-photo.has-image { background: #e8e1d2; }
+.listing-photo.has-image::before {
+  background:
+    linear-gradient(to top, rgba(11, 13, 16, 0.45) 0%, transparent 45%),
+    linear-gradient(to bottom, rgba(11, 13, 16, 0.25) 0%, transparent 25%);
+}
+
+.bio-portrait { background: linear-gradient(135deg, #f1ece1 0%, #e6dfd0 100%); }
+.bio-portrait .ph-label { color: rgba(26, 22, 17, 0.5); }
+
+.test-avatar { background: linear-gradient(135deg, #f4f0e7, #e8e1d2); }
+
+.article-img { background: linear-gradient(135deg, #f4f0e7, #e8e1d2); }
+.article-img::before {
+  background:
+    radial-gradient(circle at 30% 50%, rgba(201, 165, 103, 0.2), transparent 60%),
+    repeating-linear-gradient(60deg, rgba(110, 84, 34, 0.035) 0 10px, transparent 10px 20px);
+}
+.article-img.has-image { background-color: #e8e1d2; }
+.article-img.has-image::before { background: none; }
+
+.specialty-img,
+.video-card { background-color: #e8e1d2; }
+
+.guide-card .num { color: rgba(138, 106, 47, 0.22); }
+
+/* Error red: #d9534f is 3.9:1 on white. */
+.form-status.error { border-left-color: var(--error); }
+.footer-newsletter-err { color: var(--error); }

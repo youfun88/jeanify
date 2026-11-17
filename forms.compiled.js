@@ -534,7 +534,7 @@ function ContactPage({
   }, status === "sending" ? lang === "en" ? "Sending…" : "傳送中…" : lang === "en" ? "Send Message" : "傳送"), status === "error" && /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 16,
-      color: '#e08b8b',
+      color: 'var(--error, #e08b8b)',
       fontSize: 13,
       fontFamily: 'var(--font-mono)'
     }

@@ -294,7 +294,7 @@ function ContactPage({ lang, go }) {
                       : (lang==="en"?"Send Message":"傳送")}
                   </button>
                   {status === "error" && (
-                    <p style={{ marginTop: 16, color: '#e08b8b', fontSize: 13, fontFamily: 'var(--font-mono)' }}>
+                    <p style={{ marginTop: 16, color: 'var(--error, #e08b8b)', fontSize: 13, fontFamily: 'var(--font-mono)' }}>
                       {errorMsg || (lang==="en"?"Send failed. Please call (858) 598-3888 or email Jean@CentermacSD.com.":"傳送失敗，請致電 (858) 598-3888 或寄信至 Jean@CentermacSD.com。")}
                     </p>
                   )}
