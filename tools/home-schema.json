@@ -5,7 +5,7 @@
     "@id": "https://www.soldbyjean.com/#agent",
     "name": "Jean Riley",
     "alternateName": "Sold by Jean",
-    "description": "San Diego Realtor® with Jeanify Specializing in coastal homes, commercial property and 1031 Exchange. 200+ verified Zillow closings. Bilingual English / Mandarin / Taiwanese.",
+    "description": "San Diego Realtor® with the Jeanify team at Centermac SD, Inc, specializing in coastal homes, commercial property and 1031 Exchange. 200+ verified Zillow closings. Bilingual English / Mandarin / Taiwanese.",
     "url": "https://www.soldbyjean.com/",
     "image": "https://www.soldbyjean.com/assets/jean-portrait.jpg",
     "telephone": "+1-858-598-3888",
@@ -78,7 +78,7 @@
     ],
     "memberOf": {
       "@type": "RealEstateOrganization",
-      "name": "Jeanify",
+      "name": "Centermac SD, Inc",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "9888 Carroll Centre Rd, Ste 200",
@@ -146,7 +146,9 @@
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": "https://www.soldbyjean.com/#office",
-    "name": "Jean Riley · Jeanify",
+    "name": "Jean Riley, Centermac SD, Inc",
+    "alternateName": ["Jeanify", "Sold by Jean"],
+    "parentOrganization": { "@type": "RealEstateOrganization", "name": "Centermac SD, Inc" },
     "image": "https://www.soldbyjean.com/uploads/jeanify-logo-brass.png",
     "logo": "https://www.soldbyjean.com/uploads/jeanify-logo-brass.png",
     "url": "https://www.soldbyjean.com/",

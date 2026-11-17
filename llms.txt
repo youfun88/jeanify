@@ -1,12 +1,13 @@
 # Jean Riley — San Diego Realtor®
 
-> A boutique San Diego real estate practice. Jean Riley is a Realtor® with Jeanify (DRE# 02004228), with 200+ verified Zillow closings. She specializes in single-family homes, commercial property and 1031 Exchange across San Diego's coastal corridor. Bilingual: English, Mandarin (中文), and Taiwanese (台語).
+> A boutique San Diego real estate practice. Jean Riley is a Realtor® (DRE# 02004228) who leads the Jeanify team at Centermac SD, Inc, with 200+ verified Zillow closings. She specializes in single-family homes, commercial property and 1031 Exchange across San Diego's coastal corridor. Bilingual: English, Mandarin (中文), and Taiwanese (台語).
 
 ## Agent
 
 - **Name:** Jean Riley
 - **Brand:** Sold by Jean / Jeanify
-- **Brokerage:** Jeanify
+- **Team:** Jeanify
+- **Brokerage:** Centermac SD, Inc
 - **License:** DRE# 02004228 (California)
 - **Phone:** (858) 598-3888
 - **Email:** Jean@CentermacSD.com

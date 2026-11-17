@@ -36,7 +36,8 @@ const AGENT = {
   phone: "+1-858-598-3888",
   phoneDisplay: "(858) 598-3888",
   email: "Jean@CentermacSD.com",
-  brokerage: "Jeanify",
+  team: "Jeanify",
+  brokerage: "Centermac SD, Inc",
   logo: SITE + "/uploads/jeanify-logo-brass.png",
 };
 
@@ -247,7 +248,7 @@ function nav(lang, enPath, zhPath) {
 const footer = (lang) => `<footer class="footer">
   <div class="container">
     <div class="footer-bottom" style="border-top:none;">
-      <span>© 2026 ${esc(AGENT.name)} · ${esc(AGENT.license)} · ${esc(AGENT.brokerage)}</span>
+      <span>© 2026 ${esc(AGENT.name)} · ${esc(AGENT.license)} · ${esc(AGENT.team)} · ${esc(AGENT.brokerage)}</span>
       <span>${T[lang].footer}</span>
     </div>
   </div>
