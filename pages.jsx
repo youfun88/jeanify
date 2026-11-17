@@ -50,7 +50,7 @@ function AboutPage({ lang, go }) {
       {/* The name — what "-ify" means and why the brand is a verb */}
       <section className="section" style={{ background:'var(--bg-elev)' }}>
         <div className="container-tight brand-story">
-          <img className="brand-story-mark" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" loading="lazy" />
+          <img className="brand-story-mark" src="uploads/jeanify-logo-brass.webp" alt="Jeanify" width="300" height="133" loading="lazy" />
           <span className="eyebrow">{lang==="en"?"The Name":"品牌命名"}</span>
           <h2 style={{ marginTop: 16 }}>
             {lang==="en"
@@ -199,7 +199,35 @@ function AboutPage({ lang, go }) {
 }
 
 const ARTICLES = window.JR_ARTICLES || [];
-const ARTICLES_ZH = window.JR_ARTICLES_ZH || {};
+
+// Chinese article bodies (articles-content-zh.js) are only read by ArticleDetail in
+// 中文, so they are fetched on demand rather than with every page load: that file was
+// 21 KB (gzipped) on the home page's critical path for nothing. Resolves to {} on
+// failure, which degrades to the English body.
+let zhBodiesPromise = null;
+function loadZhBodies() {
+  if (window.JR_ARTICLES_ZH) return Promise.resolve(window.JR_ARTICLES_ZH);
+  if (!zhBodiesPromise) {
+    zhBodiesPromise = new Promise((resolve) => {
+      const s = document.createElement("script");
+      s.src = "articles-content-zh.js";   // relative to <base>, so it works under /v2 too
+      s.onload = () => resolve(window.JR_ARTICLES_ZH || {});
+      s.onerror = () => { zhBodiesPromise = null; resolve({}); };
+      document.head.appendChild(s);
+    });
+  }
+  return zhBodiesPromise;
+}
+function useZhBodies(lang) {
+  const [bodies, setBodies] = uS3(() => window.JR_ARTICLES_ZH || null);
+  uE3(() => {
+    if (lang !== "zh" || bodies) return;
+    let live = true;
+    loadZhBodies().then((b) => { if (live) setBodies(b); });
+    return () => { live = false; };
+  }, [lang, bodies]);
+  return bodies || {};
+}
 
 // Prefer the Chinese field, fall back to English — a missing translation degrades
 // to readable rather than blank.
@@ -229,7 +257,9 @@ function ArticleCard({ a, go, lang }) {
        onClick={(e) => { e.preventDefault(); go("articles/" + a.slug); }}>
       <div
         className={"article-img" + (a.image ? " has-image" : "")}
-        style={a.image ? { backgroundImage: "url(" + encodeURI(a.image) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
+        // Cards show the WebP sibling of the article image (800px wide, a tenth of the
+        // JPEG's weight). The JPEG stays the og:image / schema image for social cards.
+        style={a.image ? { backgroundImage: "url(" + encodeURI(a.image.replace(/\.(jpe?g|png)$/i, ".webp")) + ")", backgroundSize: "cover", backgroundPosition: "center" } : null}
       ></div>
       <div className="article-meta">{zh(lang, CAT_ZH[a.category], a.category)} · {readZh(lang, a.read)}</div>
       <h3>{zh(lang, a.titleZh, a.title)}</h3>
@@ -403,6 +433,7 @@ function slugifyHeading(s) {
 
 function ArticleDetail({ slug, lang, go }) {
   const a = bySlug(slug);
+  const ARTICLES_ZH = useZhBodies(lang);
   uE3(() => { window.scrollTo(0, 0); }, [slug]);
 
   if (!a) {

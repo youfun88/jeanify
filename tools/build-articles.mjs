@@ -55,7 +55,7 @@ const headingId = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-
 
 // Articles without a photo fall through to the CSS gradient placeholder.
 const cardImg = (a) => a.image
-  ? `<div class="article-img has-image" style="background-image:url(../${encodeURI(a.image)});background-size:cover;background-position:center"></div>`
+  ? `<div class="article-img has-image" style="background-image:url(../${encodeURI(a.image.replace(/\.(jpe?g|png)$/i, ".webp"))});background-size:cover;background-position:center"></div>`
   : `<div class="article-img"></div>`;
 
 const longDate = (iso) => {
@@ -169,15 +169,12 @@ ${a.image ? `<meta property="og:image" content="${SITE}/${a.image.replace(/^\//,
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 <meta name="theme-color" content="#0b0d10" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
 ${articleSchema(a, url).map((s) => `<script type="application/ld+json">\n${jsonld(s)}\n</script>`).join("\n")}`,
 
   nav: `<nav class="nav scrolled">
   <a class="nav-brand" href="../index.html" aria-label="Jeanify — Home">
-    <img class="nav-brand-img" src="../uploads/jeanify-logo-brass.png" alt="Jeanify" />
+    <img class="nav-brand-img" src="../uploads/jeanify-logo-brass.webp" alt="Jeanify" width="300" height="133" />
   </a>
   <div class="nav-links">
     <a class="nav-link" href="../index.html#/home">Home</a>
@@ -215,6 +212,7 @@ ${chrome.head(a, url)}
 <body>
 ${chrome.nav}
 
+<main>
 <article class="page-fade">
   <header class="page-head">
     <div class="container-tight">
@@ -310,6 +308,7 @@ ${related.map((r) => `        <a class="article-card" href="./${r.slug}.html">
     </div>
   </section>
 </article>
+</main>
 
 ${chrome.footer}
 </body>
@@ -337,9 +336,6 @@ const indexHtml = `<!DOCTYPE html>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 <meta name="theme-color" content="#0b0d10" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
 ${jsonld({
@@ -359,6 +355,7 @@ ${jsonld({
 </head>
 <body>
 ${chrome.nav}
+<main>
 <div class="page-fade">
   <header class="page-head">
     <div class="container">
@@ -381,6 +378,7 @@ ${ARTICLES.map((a) => `        <a class="article-card" href="./${a.slug}.html">
     </div>
   </section>
 </div>
+</main>
 ${chrome.footer}
 </body>
 </html>

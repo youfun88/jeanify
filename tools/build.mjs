@@ -28,6 +28,10 @@ for (const file of files) {
     presets: [["@babel/preset-react", {}]],
     babelrc: false,
     configFile: false,
+    // Whitespace and comments stripped: these files are shipped as-is, and the
+    // readable source is the .jsx next to them.
+    comments: false,
+    minified: true,
   });
 
   const out = `(function(){\n${code}\n})();\n`;

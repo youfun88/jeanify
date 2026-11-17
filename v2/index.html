@@ -32,10 +32,14 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="theme-color" content="#ffffff" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Fraunces:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<!-- The hero photo is the home page's largest paint, but it is a CSS background that
+     only appears once React renders, so the browser can't find it on its own until
+     every script has run. Fetch it now, in parallel. Same files and media query as
+     .hero-bg in styles.css. The nav logo is in the same position. Fonts are
+     self-hosted from styles.css. -->
+<link rel="preload" as="image" href="uploads/jeanify-logo-brass.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="uploads/hero-san-diego-dusk-portrait.webp" type="image/webp" media="(max-aspect-ratio: 2/3)" fetchpriority="high" />
+<link rel="preload" as="image" href="uploads/hero-san-diego-dusk.webp" type="image/webp" media="not all and (max-aspect-ratio: 2/3)" fetchpriority="high" />
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="v2/light.css" />
 
@@ -414,20 +418,21 @@
 </main>
 </noscript>
 
-<!-- Production builds: ~40% smaller than the development bundles and materially
-     faster to render, with the dev-only warning machinery stripped out. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="data.js"></script>
-<script src="articles-content.js"></script>
-<script src="articles-content-zh.js"></script>
-<script src="tweaks-panel.compiled.js"></script>
-<script src="core.compiled.js"></script>
-<script src="home.compiled.js"></script>
-<script src="listings.compiled.js"></script>
-<script src="pages.compiled.js"></script>
-<script src="forms.compiled.js"></script>
-<script src="app.compiled.js"></script>
+<!-- React 18.3.1 production builds, self-hosted in vendor/ (copied unchanged from
+     cdnjs) so they arrive over the page's own connection instead of a new one.
+     All scripts are `defer`: they still run in this order, but no longer hold up the
+     first paint of the page. -->
+<script src="vendor/react.production.min.js" defer></script>
+<script src="vendor/react-dom.production.min.js" defer></script>
+<script src="data.js" defer></script>
+<script src="articles-content.js" defer></script>
+<script src="tweaks-panel.compiled.js" defer></script>
+<script src="core.compiled.js" defer></script>
+<script src="home.compiled.js" defer></script>
+<script src="listings.compiled.js" defer></script>
+<script src="pages.compiled.js" defer></script>
+<script src="forms.compiled.js" defer></script>
+<script src="app.compiled.js" defer></script>
 <script>
 document.addEventListener("click", function (e) {
   if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

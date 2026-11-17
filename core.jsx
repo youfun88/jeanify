@@ -76,7 +76,7 @@ function Nav({ route, go, lang, setLang }) {
             it as a lockup — visible on mobile too, where the links and phone are
             hidden and the bar is mostly empty anyway. */}
         <a className="nav-brand" href="#/home" onClick={(e) => { e.preventDefault(); go("home"); }} aria-label={lang === "zh" ? "Jeanify — Jean Riley，聖地牙哥地產經紀 — 首頁" : "Jeanify — Jean Riley, San Diego Realtor — Home"}>
-          <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" />
+          <img className="nav-brand-img" src="uploads/jeanify-logo-brass.webp" alt="Jeanify" width="300" height="133" />
           <span className="nav-brand-name">
             <strong>Jean Riley</strong>
             <small>{lang === "en" ? "Realtor® · " : "地產經紀 · "}{D.agent.license}</small>
@@ -233,7 +233,7 @@ function Footer({ lang, go }) {
         <div className="footer-grid">
           <div>
             <a className="nav-brand footer-brand" href="#/home" onClick={(e)=>{e.preventDefault();go("home");}} style={{ marginBottom: 16 }}>
-              <img className="nav-brand-img" src="uploads/jeanify-logo-brass.png" alt="Jeanify" width="699" height="309" loading="lazy" />
+              <img className="nav-brand-img" src="uploads/jeanify-logo-brass.webp" alt="Jeanify" width="300" height="133" loading="lazy" />
             </a>
             <p style={{ color: "var(--ink-dim)", fontSize: 14, maxWidth: 36 + "ch", lineHeight: 1.7 }}>
               {lang === "en"
@@ -243,7 +243,7 @@ function Footer({ lang, go }) {
             <NewsletterSignup lang={lang} />
           </div>
           <div>
-            <h5>{lang === "en" ? "Explore" : "探索"}</h5>
+            <h2>{lang === "en" ? "Explore" : "探索"}</h2>
             <ul>
               <li><a href="#/listings" onClick={(e)=>{e.preventDefault();go("listings");}}>{lang === "en" ? "Featured Homes" : "精選房源"}</a></li>
               <li><a href="#/listings/active" onClick={(e)=>{e.preventDefault();go("listings/active");}}>{lang === "en" ? "Active Listings" : "在售房源"}</a></li>
@@ -251,7 +251,7 @@ function Footer({ lang, go }) {
             </ul>
           </div>
           <div>
-            <h5>{lang === "en" ? "Resources" : "資源"}</h5>
+            <h2>{lang === "en" ? "Resources" : "資源"}</h2>
             <ul>
               <li><a href="#/articles" onClick={(e)=>{e.preventDefault();go("articles");}}>{lang === "en" ? "Articles & Guides" : "專欄與指南"}</a></li>
               <li><a href="#/guides/buyer" onClick={(e)=>{e.preventDefault();go("guides/buyer");}}>{lang === "en" ? "Buyer Guide" : "買家指南"}</a></li>
@@ -263,7 +263,7 @@ function Footer({ lang, go }) {
             </ul>
           </div>
           <div>
-            <h5>{lang === "en" ? "Contact" : "聯絡"}</h5>
+            <h2>{lang === "en" ? "Contact" : "聯絡"}</h2>
             <ul>
               <li><a href={"tel:" + D.agent.phone.replace(/[^0-9+]/g, "")}>{D.agent.phone}</a></li>
               <li><a href={"mailto:" + D.agent.email}>{D.agent.email}</a></li>
@@ -315,9 +315,12 @@ function VideoCard({ v, feature, lang }) {
         className={"video-card" + (isFeature ? " feature" : "")}
         onClick={() => setOpen(true)}
         style={{ backgroundImage: "url(" + ytThumb(v.id) + ")" }}
-        aria-label={(lang === "zh" ? "播放影片：" : "Play video: ") + v.title}
       >
-        <span className="play">▶</span>
+        {/* The accessible name comes from the visible title and category, with the
+            "Play video" verb read out first. An aria-label here replaced the visible
+            text instead, which voice-control users can't match (WCAG 2.5.3). */}
+        <span className="sr-only">{lang === "zh" ? "播放影片：" : "Play video: "}</span>
+        <span className="play" aria-hidden="true">▶</span>
         <span className="video-overlay">
           <span className="ttl">{v.title}</span>
           <span className="meta">{lang === "zh" ? (VIDEO_CAT_ZH[v.category] || v.category) : v.category}</span>

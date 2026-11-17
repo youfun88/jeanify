@@ -54,7 +54,7 @@ function HomePage({ lang, go }) {
       <section className="section" style={{ background: "var(--bg-elev)" }}>
         <div className="container">
           <div className="bio-grid">
-            <div className="bio-portrait" style={{ backgroundImage: "url(uploads/coastline-aerial.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}></div>
+            <div className="bio-portrait" style={{ backgroundImage: "url(uploads/coastline-aerial.webp)", backgroundSize: "cover", backgroundPosition: "center" }}></div>
             <div>
               <span className="eyebrow">{t.sections.bioEy}</span>
               <h2 style={{ margin: "20px 0 32px" }}>{t.sections.bioH}</h2>
@@ -99,7 +99,7 @@ function HomePage({ lang, go }) {
       <section className="section-sm">
         <div className="container">
           <div className="specialty">
-            <div className="specialty-img" style={{ backgroundImage: "url(uploads/1031-investment.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div className="specialty-img" style={{ backgroundImage: "url(uploads/1031-investment.webp)", backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="specialty-credit">
                 {lang==="en"?"Photo by ":"照片："}<a href="https://unsplash.com/@aalolens?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Aalo Lens</a>{" "}
                 {lang==="en"?"on ":"，來源 "}<a href="https://unsplash.com/?utm_source=jean_riley&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
@@ -239,7 +239,7 @@ function HomePage({ lang, go }) {
             </div>
             <form className="est-form" onSubmit={(e)=>{e.preventDefault(); go("estimator");}}>
               <div className="est-step-label">— {lang==="en"?"Step 1 of 3":"第 1 / 3 步"}</div>
-              <h4>{lang==="en"?"Your property address":"您的房產地址"}</h4>
+              <h3>{lang==="en"?"Your property address":"您的房產地址"}</h3>
               <p style={{color:'var(--ink-dim)', fontSize: 14, margin:'8px 0 24px'}}>{lang==="en"?"Begin with the address. Next steps cover condition and contact details.":"從地址開始。後續將瞭解房產狀況與聯絡方式。"}</p>
               <div className="input-row">
                 <label>{lang==="en"?"Street Address":"街道地址"}</label>
