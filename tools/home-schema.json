@@ -1,0 +1,190 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "@id": "https://www.soldbyjean.com/#agent",
+    "name": "Jean Riley",
+    "alternateName": "Sold by Jean",
+    "description": "San Diego Realtor® with Jeanify Specializing in coastal homes, commercial property and 1031 Exchange. 200+ verified Zillow closings. Bilingual English / Mandarin / Taiwanese.",
+    "url": "https://www.soldbyjean.com/",
+    "image": "https://www.soldbyjean.com/assets/jean-portrait.jpg",
+    "telephone": "+1-858-598-3888",
+    "email": "Jean@CentermacSD.com",
+    "knowsLanguage": [
+      "en",
+      "zh-Hant",
+      "zh",
+      "nan"
+    ],
+    "jobTitle": "Realtor®",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "California DRE License",
+        "identifier": "DRE# 02004228"
+      }
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "San Diego"
+      },
+      {
+        "@type": "Place",
+        "name": "La Jolla"
+      },
+      {
+        "@type": "Place",
+        "name": "Bird Rock"
+      },
+      {
+        "@type": "Place",
+        "name": "Del Mar"
+      },
+      {
+        "@type": "Place",
+        "name": "Mission Hills"
+      },
+      {
+        "@type": "Place",
+        "name": "Point Loma"
+      },
+      {
+        "@type": "Place",
+        "name": "Carmel Valley"
+      },
+      {
+        "@type": "Place",
+        "name": "Carlsbad"
+      },
+      {
+        "@type": "Place",
+        "name": "Rancho Santa Fe"
+      },
+      {
+        "@type": "Place",
+        "name": "Mira Mesa"
+      }
+    ],
+    "knowsAbout": [
+      "Single-family homes",
+      "Commercial real estate",
+      "1031 Exchange",
+      "Property management",
+      "Investment property",
+      "First-time home buyers",
+      "Bilingual real estate services"
+    ],
+    "memberOf": {
+      "@type": "RealEstateOrganization",
+      "name": "Jeanify",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "9888 Carroll Centre Rd, Ste 200",
+        "addressLocality": "San Diego",
+        "addressRegion": "CA",
+        "postalCode": "92126",
+        "addressCountry": "US"
+      }
+    },
+    "sameAs": [
+      "https://www.youtube.com/@soldbyjean",
+      "https://www.zillow.com/profile/JeanSD"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "7",
+      "reviewCount": "7"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Yufan C."
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Jean helped me buy a home in National City and then guided me through both the purchase and sale of my commercial office space in Sorrento Valley. She is meticulous, easy to work with, and fights for the best deal — whether I'm on the buyer or the seller side."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Y. Family"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Jean is incredibly knowledgeable and endlessly patient. She has personally handled five real estate transactions for my family — and thanks to her expertise and strong negotiation, we've reached every goal we set."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "ShianRu K."
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Jean is full of passion and explains every step along the way. She's deeply professional, detail-oriented, and walked me through every contract item line by line."
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "@id": "https://www.soldbyjean.com/#office",
+    "name": "Jean Riley · Jeanify",
+    "image": "https://www.soldbyjean.com/uploads/jeanify-logo-brass.png",
+    "logo": "https://www.soldbyjean.com/uploads/jeanify-logo-brass.png",
+    "url": "https://www.soldbyjean.com/",
+    "telephone": "+1-858-598-3888",
+    "email": "Jean@CentermacSD.com",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "9888 Carroll Centre Rd, Ste 200",
+      "addressLocality": "San Diego",
+      "addressRegion": "CA",
+      "postalCode": "92126",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "32.9061",
+      "longitude": "-117.1265"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "19:00"
+      }
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "San Diego County"
+    }
+  }
+]
