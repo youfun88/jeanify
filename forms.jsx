@@ -412,6 +412,8 @@ function VideosPage({ lang, go }) {
           </a>
         </div>
       </section>
+
+      <window.JR_PAGES.PageFAQ id="videos" lang={lang} />
     </div>
   );
 }

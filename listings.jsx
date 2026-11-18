@@ -62,6 +62,8 @@ function ListingsPage({ lang, go, sub }) {
           )}
         </div>
       </section>
+
+      {filter === "sold" && <window.JR_PAGES.PageFAQ id="listings" lang={lang} bg />}
     </div>
   );
 }

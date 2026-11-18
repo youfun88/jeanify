@@ -369,4 +369,44 @@ window.JR_DATA = {
 
     { g: "investing", q: "I'm inheriting my parents' home — will the property taxes go up?", qZh: "繼承父母的房子，房屋稅會變高嗎？", aZh: "通常會，而且可能差很多。Proposition 19 大幅限縮了原本的父母子女免重估規定：現在只適用於父母的主要自住宅，且子女必須在一年內將它作為自己的主要住所，免重估額度上限則是原課稅價值再加上一筆逐年調整的金額——2025 年 2 月 16 日至 2027 年 2 月 15 日之間為 1,044,586 美元。出租房、度假屋與投資性房產完全不適用，因此一間持有多年、Prop 13 課稅基礎很低的家族房產，在移轉時可能被重估到市價。請務必在移轉之前就諮詢遺產律師，而不是之後。", a: "Usually yes, and often by a lot. Proposition 19 narrowed the old parent-child exclusion sharply. It now applies only to the parent's principal residence, only if the child makes it their own primary residence within one year, and only up to the prior taxable value plus an indexed amount — $1,044,586 for transfers between 16 February 2025 and 15 February 2027. Rentals, vacation homes and investment property no longer qualify at all, so a long-held family property with a very low Prop 13 basis can be reassessed to market value on transfer. Talk to an estate attorney before the transfer, not after." },
   ],
+
+  // Short FAQ sections near the end of other pages (PageFAQ in pages.jsx). Keyed by
+  // route; the build mirrors each into that page's FAQPage JSON-LD. Answers use only
+  // facts already on the site. Each key stands alone: drop one and its page loses
+  // the section and the schema, nothing else.
+  pageFaqs: {
+    listings: {
+      h: "What should you know about these homes?",
+      hZh: "關於這些房源，常見哪些問題？",
+      items: [
+        { q: "Are the homes on this page for sale?", qZh: "這一頁的房子還在賣嗎？",
+          a: "No. These are a selection of my closings at $1 million and above. For homes I currently represent, see For Sale, or contact me to hear first when the next listing comes to market.",
+          aZh: "不是。這裡是我 100 萬美元以上的部分成交物件。目前在售的房源請看「在售」分頁，也歡迎與我聯絡，下一套物件上市時第一時間通知您。" },
+        { q: "Did you represent the buyer or the seller?", qZh: "您在這些交易中代表買方還是賣方？",
+          a: "Each card says so: Buy Side means I represented the buyer, Listing Side means I represented the seller, and Both Sides means I represented both.",
+          aZh: "每張卡片上都有標示：「買方」是我代表買方，「賣方」是我代表賣方，「買賣雙方」是兩邊都由我代表。" },
+        { q: "Where can I see your full sales history?", qZh: "哪裡可以看到完整的成交紀錄？",
+          a: "On my Zillow profile, which mirrors my full transaction archive: more than 200 closings, with photography and verified client reviews.",
+          aZh: "在我的 Zillow 主頁。那裡同步了我完整的成交紀錄，共 200 套以上，還有房源照片與經驗證的客戶評價。" },
+        { q: "Can you help me sell my home?", qZh: "您可以幫我賣房子嗎？",
+          a: "Yes. Start with a personal CMA, which I prepare myself, usually within 48 hours. Every listing I take also gets its own original song, at no extra cost.",
+          aZh: "可以。先從一份客製化市場分析（CMA）開始，由我親自準備，通常 48 小時內完成。我接下的每一套房源，也都會有專屬的原創歌曲，不另外收費。" },
+      ],
+    },
+    videos: {
+      h: "What are these videos?",
+      hZh: "這些影片是什麼？",
+      items: [
+        { q: "What is a listing song?", qZh: "什麼是房源主題曲？",
+          a: "For every listing I take, I commission an original song written specifically about that property and produce it as a short video for YouTube and social media. It is included in my listing package at no extra cost.",
+          aZh: "我接下的每一套房源，都會為那間房子量身創作一首原創歌曲，製作成短影片放在 YouTube 與社群上。這項服務包含在委託內容裡，不另外收費。" },
+        { q: "Who narrates the client voice-over videos?", qZh: "客戶配音影片是誰配的音？",
+          a: "My actual clients. They narrate tours of the homes and communities they came to love.",
+          aZh: "我真實的客戶。他們親自配音，介紹自己所喜愛的家與社區。" },
+        { q: "Where can I watch more?", qZh: "哪裡可以看更多影片？",
+          a: "On my YouTube channel, @soldbyjean. Subscribe to see the next listing song and tour.",
+          aZh: "在我的 YouTube 頻道 @soldbyjean。訂閱後就能看到下一首房源主題曲與房源導覽。" },
+      ],
+    },
+  },
 };

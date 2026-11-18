@@ -97,11 +97,11 @@ function useRoute(initial) {
 const SUFFIX = { en: " | Jean Riley, San Diego Realtor®", zh: " | Jean Riley 聖地牙哥地產經紀" };
 const PAGE_META = {
   home: {
-    en: ["Jean Riley — San Diego Realtor® · 200+ Closings", "Jean Riley is a San Diego Realtor® with the Jeanify team at Centermac SD, Inc — 200+ verified Zillow closings, bilingual (English / Mandarin / Taiwanese), specializing in San Diego coastal homes, commercial property and 1031 Exchange. DRE# 02004228."],
-    zh: ["Jean Riley — 聖地牙哥地產經紀 · 200+ 已驗證成交", "十年深耕聖地牙哥最受歡迎的社區：從 La Jolla 的海崖住宅、Mission Hills 的工藝美術風老宅，到 1031 投資配置，全程陪伴買家、賣家與投資人。"],
+    en: ["Jean Riley — San Diego Realtor® · Mandarin & Taiwanese", "San Diego Realtor® Jean Riley (DRE# 02004228) works in English, Mandarin and Taiwanese: homes, commercial property and 1031 exchanges. 200+ Zillow closings."],
+    zh: ["Jean Riley — 聖地牙哥地產經紀 · 國語、台語、英語服務", "聖地牙哥地產經紀 Jean Riley（DRE# 02004228）可用國語、台語與英語服務：住宅、商業不動產與 1031 交換，Zillow 已驗證成交 200+。"],
   },
   about: {
-    en: ["About Jean Riley — San Diego Realtor® · Jeanify", "Realtor® Jean Riley · DRE# 02004228 · Jeanify, Centermac SD, Inc · San Diego's Rising Star Real Estate Agent. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego."],
+    en: ["About Jean Riley · San Diego Realtor® · Mandarin & Taiwanese", "Realtor® Jean Riley · DRE# 02004228 · Jeanify, Centermac SD, Inc · San Diego's Rising Star Real Estate Agent. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego."],
     zh: ["認識 Jean" + SUFFIX.zh, "Realtor® Jean Riley · DRE# 02004228 · Jeanify（Centermac SD, Inc）· 聖地牙哥新星地產經紀。我能以英語、國語與台語溝通，專注於聖地牙哥地區的獨立住宅與商業不動產買賣。"],
   },
   articles: {

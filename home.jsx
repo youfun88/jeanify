@@ -10,7 +10,7 @@ function HomePage({ lang, go }) {
   const reel = D.videos.filter(v => v.group !== "song").slice(0, 5);
   const articles = (window.JR_ARTICLES || []).slice(0, 3);
   // pages.jsx loads after this file, so resolve at render time rather than import time.
-  const { ArticleCard } = window.JR_PAGES;
+  const { ArticleCard, PageFAQ } = window.JR_PAGES;
   const [bioRef, bioBg] = useLazyBg("uploads/coastline-aerial.webp");
   const [specRef, specBg] = useLazyBg("uploads/1031-investment.webp");
 
@@ -225,6 +225,8 @@ function HomePage({ lang, go }) {
           </div>
         </section>
       )}
+
+      <PageFAQ id="home" lang={lang} />
 
       {/* Estimator CTA */}
       <section className="section">

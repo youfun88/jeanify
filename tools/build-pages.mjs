@@ -165,6 +165,8 @@ function schemaFor(route, lang, meta, url) {
       "name": lang === "en" ? "Articles — Jean Riley, San Diego Realtor®" : "文章 — Jean Riley 聖地牙哥地產經紀",
       "itemListElement": ARTICLES.map((a, i) => ({ "@type": "ListItem", "position": i + 1, "url": articleUrl(a, lang), "name": pick(lang, a.titleZh, a.title) })),
     });
+    const hf = (D.pageFaqs || {}).home;
+    if (hf && hf.items && hf.items.length) out.push(faqPage(hf.items, lang));
     return out;
   }
   const page = { "@context": "https://schema.org", "name": meta.title, "description": meta.description, "url": url, "inLanguage": lang === "zh" ? "zh-Hant" : "en-US" };
@@ -177,6 +179,8 @@ function schemaFor(route, lang, meta, url) {
   // Exactly the questions and answers the page shows.
   if (route === "faq") out.push(faqPage(FAQS, lang));
   if (route === "exchange") out.push(faqPage(FAQS.filter((f) => f.g === "investing"), lang));
+  const pf = (D.pageFaqs || {})[route];
+  if (pf && pf.items && pf.items.length) out.push(faqPage(pf.items, lang));
   out.push(crumbs(route, lang));
   return out;
 }

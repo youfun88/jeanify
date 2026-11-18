@@ -194,6 +194,8 @@ function AboutPage({ lang, go }) {
           </div>
         </div>
       </section>
+
+      <PageFAQ id="about" lang={lang} bg />
     </div>
   );
 }
@@ -748,6 +750,8 @@ function GuideDetail({ kind, lang, go }) {
           <MarketGuidesSection lang={lang} only={kind} />
         </section>
       )}
+
+      <PageFAQ id={"guides/" + kind} lang={lang} />
     </div>
   );
 }
@@ -810,4 +814,25 @@ function FAQList({ items, lang }) {
   );
 }
 
-window.JR_PAGES = { AboutPage, ArticlesPage, ArticleDetail, ArticleCard, GuideDetail, ExchangePage, FAQPage, FAQList };
+// Short FAQ section near the end of a page, from D.pageFaqs[id] (data.js). Renders
+// nothing when the page has none; tools/build-pages.mjs writes the matching FAQPage
+// JSON-LD from the same entry.
+function PageFAQ({ id, lang, bg }) {
+  const f = (D3.pageFaqs || {})[id];
+  if (!f || !f.items || !f.items.length) return null;
+  return (
+    <section className="section" data-page-faq={id} style={bg ? { background:'var(--bg-elev)' } : null}>
+      <div className="container">
+        <div className="sect-head">
+          <div className="sect-head-title">
+            <span className="eyebrow">{lang==="en"?"FAQ":"常見問題"}</span>
+            <h2 style={{ marginTop: 16 }}>{zh(lang, f.hZh, f.h)}</h2>
+          </div>
+        </div>
+        <FAQList items={f.items} lang={lang} />
+      </div>
+    </section>
+  );
+}
+
+window.JR_PAGES = { AboutPage, ArticlesPage, ArticleDetail, ArticleCard, GuideDetail, ExchangePage, FAQPage, FAQList, PageFAQ };
