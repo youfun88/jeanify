@@ -98,22 +98,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.soldbyjean.com/listings/"/>
   </url>
   <url>
-    <loc>https://www.soldbyjean.com/listings/active/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.soldbyjean.com/listings/active/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.soldbyjean.com/zh/listings/active/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.soldbyjean.com/listings/active/"/>
-  </url>
-  <url>
-    <loc>https://www.soldbyjean.com/zh/listings/active/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.soldbyjean.com/listings/active/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.soldbyjean.com/zh/listings/active/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.soldbyjean.com/listings/active/"/>
-  </url>
-  <url>
     <loc>https://www.soldbyjean.com/videos/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

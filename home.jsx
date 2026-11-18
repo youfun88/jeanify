@@ -72,7 +72,7 @@ function HomePage({ lang, go }) {
                 <div className="bio-credit"><div className="num">EN/中</div><div className="lbl">{lang==="en"?"Bilingual Service":"雙語服務"}</div></div>
               </div>
               <a className="btn btn-ghost arrow-right" {...go.link("about")} style={{ marginTop: 36 }}>
-                {lang==="en"?"More About Jean":"瞭解更多"}
+                {lang==="en"?"More About Jean":"認識 Jean"}
               </a>
             </div>
           </div>

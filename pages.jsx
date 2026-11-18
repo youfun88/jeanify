@@ -577,10 +577,10 @@ function ArticleDetail({ slug, lang, go }) {
 
 // ---------- FAQ ----------
 const FAQ_GROUPS = [
-  { id: "working", en: "Working with Jean", zh: "與 Jean 合作" },
-  { id: "buying",  en: "Buying",            zh: "購屋" },
-  { id: "selling", en: "Selling",           zh: "售屋" },
-  { id: "investing", en: "Investing & 1031", zh: "投資與 1031" },
+  { id: "working", en: "What is it like to work with Jean?", zh: "和 Jean 合作是什麼樣子？" },
+  { id: "buying",  en: "What do buyers ask?", zh: "買房常見哪些問題？" },
+  { id: "selling", en: "What do sellers ask?", zh: "賣房常見哪些問題？" },
+  { id: "investing", en: "What do investors ask about 1031?", zh: "投資與 1031 常見哪些問題？" },
 ];
 
 function FAQPage({ lang, go }) {
@@ -786,7 +786,7 @@ function ExchangePage({ lang, go }) {
           <div className="sect-head">
             <div className="sect-head-title">
               <span className="eyebrow">{lang==="en"?"FAQ":"常見問題"}</span>
-              <h2 style={{ marginTop: 16 }}>{lang==="en"?"Frequently asked":"常見問題"}</h2>
+              <h2 style={{ marginTop: 16 }}>{lang==="en"?"What do investors ask about 1031 exchanges?":"1031 交換常見哪些問題？"}</h2>
             </div>
           </div>
           <FAQList items={D3.faqs.filter(f => f.g === "investing")} lang={lang} />
