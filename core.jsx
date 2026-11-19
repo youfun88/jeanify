@@ -102,7 +102,7 @@ const PAGE_META = {
   },
   about: {
     en: ["About Jean Riley · San Diego Realtor® · Mandarin & Taiwanese", "Realtor® Jean Riley · DRE# 02004228 · Jeanify, Centermac SD, Inc · San Diego's Rising Star Real Estate Agent. I speak English, Mandarin and Taiwanese — and I specialize in the buying and selling of single-family homes and commercial properties across San Diego."],
-    zh: ["認識 Jean" + SUFFIX.zh, "Realtor® Jean Riley · DRE# 02004228 · Jeanify（Centermac SD, Inc）· 聖地牙哥新星地產經紀。我能以英語、國語與台語溝通，專注於聖地牙哥地區的獨立住宅與商業不動產買賣。"],
+    zh: ["認識 Jean Riley · 聖地牙哥中文房仲（國語、台語）", "Realtor® Jean Riley · DRE# 02004228 · Jeanify（Centermac SD, Inc）· 聖地牙哥新星地產經紀。我能以英語、國語與台語溝通，專注於聖地牙哥地區的獨立住宅與商業不動產買賣。"],
   },
   articles: {
     en: ["San Diego Real Estate Guides & Articles | Jean Riley", "Working playbooks and field notes for buyers, sellers and 1031 investors — the same frameworks I use with private clients, made public."],
@@ -129,12 +129,12 @@ const PAGE_META = {
     zh: ["影片中心" + SUFFIX.zh, "為個別房源創作的原創歌曲、房源實地走訪、社區導覽，以及客戶與同業經紀人的真實分享，全部來自 Jean 的 YouTube 頻道。"],
   },
   "guides/buyer": {
-    en: ["The Buyer's Guide" + SUFFIX.en, "The Buyer's Guide: from pre-approval to keys in hand. Pre-approval, discovery, search, diligence, offer, inspection, appraisal and close."],
+    en: ["How to Buy a House in San Diego | Jean Riley, Realtor®", "Buying a house in San Diego, step by step: pre-approval, discovery, search, diligence, offer, inspection, appraisal and close. From Realtor® Jean Riley."],
     zh: ["買家指南" + SUFFIX.zh, "買家指南：從預先批貸到拿到鑰匙。貸款預審、了解需求、搜尋物件、盡職查核、出價、驗屋、鑑價與交割。"],
   },
   "guides/seller": {
     en: ["The Seller's Guide" + SUFFIX.en, "The Seller's Guide: pricing, preparation, marketing and negotiation. Valuation, preparation, photography, marketing, showings, negotiation, escrow and hand-off."],
-    zh: ["賣家指南" + SUFFIX.zh, "賣家指南：定價、準備、營銷與談判。估價、整理準備、攝影、行銷、帶看、談判、履約保證與交屋。"],
+    zh: ["聖地牙哥賣房指南 · 中文房仲 Jean Riley", "想賣掉聖地牙哥的房子？賣家指南：估價、整理準備、攝影、行銷、帶看、談判、履約保證與交屋。Jean Riley 可用國語、台語與英語服務。"],
   },
   "guides/1031": {
     en: ["1031 Exchange Primer" + SUFFIX.en, "1031 Exchange Primer: identification windows and replacement strategy. Pre-sale planning, qualified intermediary, Day 0, identification, replacement close and filing."],
