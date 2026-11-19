@@ -130,7 +130,25 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p lang="en">Nothing yet.</p><p lang="zh-Hant">目前還沒有。</p>
+<div class="item" data-item="[Yufan] Old /blog address forwards to Articles" data-type="setting" data-page="/blog (old address)" data-page-zh="/blog（舊網址）" data-status="approved" data-approved="2026-11-20">
+<h3>1. [Yufan] Old /blog address forwards to Articles</h3>
+<p lang="en">Search Console (28 days to 2026-11-15, first data: 457 impressions, 1 click): Google still shows the old site&rsquo;s <code>https://soldbyjean.com/blog</code> (2 impressions, average position 2.5), and it returns 404 today. A small hand-written <code>blog/index.html</code> sends visitors to <code>/articles/</code> (meta refresh) with a canonical to <code>/articles/</code> and noindex, so Google moves the listing over. Carries GA and stl-track like every public page. Not in the sitemap. The old <code>/idx/details/listing/…</code> addresses (most of the 457 impressions are old listing-address searches) stay 404: those listings are gone. Branch <code>seo/blog-redirect</code>.</p>
+<p lang="zh-Hant">Search Console（到 2026-11-15 的 28 天，第一次有資料：457 次曝光、1 次點擊）：Google 仍顯示舊網站的 <code>https://soldbyjean.com/blog</code>（2 次曝光，平均排名 2.5），但現在打開是 404。新增一個手寫的 <code>blog/index.html</code>，把訪客轉到 <code>/articles/</code>（meta refresh），canonical 指向 <code>/articles/</code> 並加 noindex，讓 Google 把這筆結果換成文章頁。和其他公開頁一樣有 GA 與 stl-track，不放進 sitemap。舊的 <code>/idx/details/listing/…</code> 網址（457 次曝光大多是舊房源地址的搜尋）維持 404，那些房源已不存在。分支 <code>seo/blog-redirect</code>。</p>
+<ul>
+<li><strong lang="en">https://www.soldbyjean.com/blog/:</strong><strong lang="zh-Hant">https://www.soldbyjean.com/blog/：</strong><span class="ba was"><b>Before</b>404 Page not found</span><span class="ba now"><b>After</b>Forwards to /articles/ (canonical /articles/, noindex)</span></li>
+</ul>
+<div class="links"><a href="https://github.com/youfun88/jeanify/compare/main...seo/blog-redirect" target="_blank" rel="noopener">Diff</a><a href="/articles/" target="_blank" rel="noopener">Articles page</a></div>
+</div>
+<div class="item" data-item="[Yufan] llms.txt: name Taiwanese and say how to buy a house in San Diego" data-type="setting" data-page="llms.txt" data-page-zh="llms.txt" data-status="approved" data-approved="2026-11-20">
+<h3>2. [Yufan] llms.txt: name Taiwanese and say how to buy a house in San Diego</h3>
+<p lang="en">AI check of 2026-11-18 (4 engines): 想賣掉聖地牙哥的房子，有推薦會說中文的房仲嗎？ named Jean 0 of 4, 聖地牙哥買房，有推薦會說中文或台語的房仲嗎？ 1 of 4 (rank 4); the leaders state their languages plainly. &ldquo;I want to buy a house in San Diego. Who can help me?&rdquo; 0 of 4. llms.txt, the file AI assistants read for a site summary, lists the service as &ldquo;for Mandarin-speaking clients&rdquo; only, and its Buyer&rsquo;s Guide line has no place or task (the page title changed today to &ldquo;How to Buy a House in San Diego&rdquo;). Two lines change; no facts change. Branch <code>seo/llms-languages</code>.</p>
+<p lang="zh-Hant">2026-11-18 AI 檢測（4 個 AI）：「想賣掉聖地牙哥的房子，有推薦會說中文的房仲嗎？」4 個回答 0 個提到 Jean，「聖地牙哥買房，有推薦會說中文或台語的房仲嗎？」1 個（第 4 名）；被推薦的房仲都直接寫出會說的語言。「I want to buy a house in San Diego. Who can help me?」0 個。llms.txt 是 AI 助理讀取網站摘要的檔案，裡面服務項目只寫「for Mandarin-speaking clients」，買家指南那一行也沒有地點和「買房」（頁面標題今天已改為「How to Buy a House in San Diego」）。只改兩行，不改任何事實。分支 <code>seo/llms-languages</code>。</p>
+<ul>
+<li data-pair="1"><strong lang="en">Specialties:</strong><strong lang="zh-Hant">服務項目：</strong><span class="ba was"><b>Before</b>- Bilingual real estate services for Mandarin-speaking clients</span><span class="ba now"><b>After</b>- Real estate services in Mandarin (國語) and Taiwanese (台語) for San Diego buyers and sellers</span></li>
+<li data-pair="2"><strong lang="en">Content, Buyer&rsquo;s Guide line:</strong><strong lang="zh-Hant">內容，買家指南那一行：</strong><span class="ba was"><b>Before</b>Buyer&#39;s Guide: Eight steps from pre-approval to keys in hand.</span><span class="ba now"><b>After</b>Buyer&#39;s Guide: How to buy a house in San Diego, in eight steps from pre-approval to keys in hand.</span></li>
+</ul>
+<div class="links"><a href="https://github.com/youfun88/jeanify/compare/main...seo/llms-languages" target="_blank" rel="noopener">Diff</a><a href="/llms.txt" target="_blank" rel="noopener">Live llms.txt</a></div>
+</div>
 <script>
 (function(){
   var API='https://admin.shiptolive.com/api/contact';
