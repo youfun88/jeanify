@@ -28,7 +28,7 @@ export const AGENT = {
   title: "Realtor®",
   license: "DRE# 02004228",
   team: "Jeanify",
-  brokerage: "Centermac SD, Inc",
+  brokerage: "Jeanify",
   phone: "+18585983888",
   phoneDisplay: "(858) 598-3888",
   email: "Jean@CentermacSD.com",

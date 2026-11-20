@@ -37,7 +37,7 @@ const AGENT = {
   phoneDisplay: "(858) 598-3888",
   email: "Jean@CentermacSD.com",
   team: "Jeanify",
-  brokerage: "Centermac SD, Inc",
+  brokerage: "Jeanify",
   logo: SITE + "/uploads/jeanify-logo-brass.png",
 };
 
