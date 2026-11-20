@@ -434,7 +434,7 @@ function Footer({ lang, go }) {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Jean Riley · {D.agent.license} · {D.agent.team} · {D.agent.brokerage}</span>
+          <span>© 2026 Jean Riley · {D.agent.license} · {D.agent.brokerage}</span>
           <span>{lang === "en" ? "Equal Housing Opportunity · MLS Member" : "公平住房機會 · MLS 會員"}</span>
         </div>
       </div>

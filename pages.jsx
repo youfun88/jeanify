@@ -14,7 +14,7 @@ function AboutPage({ lang, go }) {
               constructed. 始終 stays in ink so the brass accent lands on the idiom
               intact rather than splitting it. */}
           <h1 style={{ marginTop: 20 }}>{lang==="en" ? <>Treating clients <em>like royalty</em>.</> : <>始終 <em>以客為尊</em></>}</h1>
-          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · Jeanify, {D3.agent.brokerage} · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · Jeanify（{D3.agent.brokerage}）· 聖地牙哥新星地產經紀。</>}</p>
+          <p className="lede">{lang==="en"?<>Realtor® Jean Riley · {D3.agent.license} · {D3.agent.brokerage} · San Diego's Rising Star Real Estate Agent.</>:<>Realtor® Jean Riley · {D3.agent.license} · {D3.agent.brokerage} · 聖地牙哥新星地產經紀。</>}</p>
         </div>
       </header>
       <section className="section">
