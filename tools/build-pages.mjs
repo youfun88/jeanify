@@ -109,7 +109,13 @@ const APP_SCRIPTS = [
   "home.compiled.js", "listings.compiled.js", "pages.compiled.js", "forms.compiled.js",
   "app.compiled.js",
 ];
-const SCRIPTS = `<script>(function(){var s=${JSON.stringify(APP_SCRIPTS)},d=0;function go(){if(d)return;d=1;removeEventListener("pointerdown",go,true);removeEventListener("keydown",go,true);s.forEach(function(u){var e=document.createElement("script");e.src=u;e.async=false;document.body.appendChild(e)})}if(document.readyState==="complete")go();else addEventListener("load",go);addEventListener("pointerdown",go,true);addEventListener("keydown",go,true)})();</script>
+// Each URL carries a hash of the file's contents (?v=…). Cloudflare and browsers keep
+// these files for hours; without the hash a deploy could serve fresh HTML with an old
+// script, and the old script re-renders stale text over the page once it loads.
+const { createHash } = await import("node:crypto");
+const VERSIONED_SCRIPTS = await Promise.all(APP_SCRIPTS.map(async (f) =>
+  f + "?v=" + createHash("sha256").update(await readFile(join(ROOT, f))).digest("hex").slice(0, 10)));
+const SCRIPTS = `<script>(function(){var s=${JSON.stringify(VERSIONED_SCRIPTS)},d=0;function go(){if(d)return;d=1;removeEventListener("pointerdown",go,true);removeEventListener("keydown",go,true);s.forEach(function(u){var e=document.createElement("script");e.src=u;e.async=false;document.body.appendChild(e)})}if(document.readyState==="complete")go();else addEventListener("load",go);addEventListener("pointerdown",go,true);addEventListener("keydown",go,true)})();</script>
 `;
 
 const CSS = await siteCss();
