@@ -61,7 +61,8 @@ const ROUTES = [
   ["faq", "monthly", "0.8"],
   ["exchange", "monthly", "0.8"],
   ["listings", "weekly", "0.9"],
-  ["listings/active", "weekly", "0.7", false], // always "none currently": noindex + out of the sitemap until it lists homes
+  // noindex + out of the sitemap while it says "none currently"; indexed once data.js has an active listing
+  ["listings/active", "weekly", "0.7", D.listings.some((l) => l.status === "active")],
   ["videos", "weekly", "0.8"],
   ["guides/buyer", "monthly", "0.6"],
   ["guides/seller", "monthly", "0.6"],
@@ -216,7 +217,7 @@ function page(route, lang) {
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${esc(meta.description)}" />
 ${isHome && lang === "en" ? `<meta name="keywords" content="Jean Riley, Sold by Jean, San Diego Realtor, San Diego real estate, La Jolla homes, Mira Mesa, Carmel Valley, Carlsbad, Rancho Santa Fe, 1031 exchange San Diego, Jeanify, Mandarin speaking realtor San Diego, DRE 02004228" />\n` : ""}<meta name="author" content="Jean Riley" />
-<meta name="robots" content="${route === "listings/active" ? "noindex, follow" : "index, follow, max-image-preview:large"}" />
+<meta name="robots" content="${route === "listings/active" && !D.listings.some((l) => l.status === "active") ? "noindex, follow" : "index, follow, max-image-preview:large"}" />
 <link rel="canonical" href="${url}" />
 <link rel="alternate" hreflang="en" href="${en}" />
 <link rel="alternate" hreflang="zh-Hant" href="${zh}" />

@@ -160,11 +160,14 @@ function pageMeta(route, lang) {
       let title = l.street + ", " + l.area.split(",")[0] + SUFFIX[L];
       if (title.length > 60) title = l.street + SUFFIX[L];
       if (title.length > 60) title = l.street + " | Jean Riley";
-      return { title, description: l.street + ", " + l.area + " — " + l.price + ". " + closed + ", " + D.agent.brokerage + " · " + D.agent.license + "." };
+      return { title, description: l.street + ", " + l.area + (l.price ? " — " + l.price : "") + ". " + closed + ", " + D.agent.brokerage + " · " + D.agent.license + "." };
     }
   }
   const key = PAGE_META[route] ? route : PAGE_META[main] ? main : "home";
   const [title, description] = PAGE_META[key][L];
+  if (route === "listings/active" && D.listings.some((x) => x.status === "active")) {
+    return { title, description: L === "en" ? "Homes for sale in San Diego that Realtor® Jean Riley represents now. Contact Jean to schedule a tour." : "Jean Riley 目前代理、正在出售的聖地牙哥房屋。想看屋，歡迎與 Jean 聯絡預約。" };
+  }
   return { title, description };
 }
 
@@ -563,7 +566,7 @@ function ListingCard({ l, go, lang }) {
         {l.videoId && <div className="listing-video-pill">▶ {lang==="zh"?"影片導覽":"Video Tour"}</div>}
       </div>
       <div className="listing-body">
-        <div className="listing-price">{l.price}</div>
+        <div className="listing-price">{l.price || (l.status === "active" ? (lang==="zh" ? "價格請見 Zillow" : "Price on Zillow") : null)}</div>
         <div className="listing-addr"><strong>{l.street}</strong>{l.area}</div>
         <div className="listing-meta">
           {hasSpecs ? (

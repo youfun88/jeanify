@@ -25,9 +25,9 @@ function ListingsPage({ lang, go, sub }) {
             {[["sold", lang==="en"?"Featured Homes":"精選房源"], ["active", lang==="en"?"For Sale":"在售"]].map(([k, l]) => (
               <button key={k} className={"filter-pill" + (filter===k?" active":"")} onClick={()=>{setFilter(k); go("listings" + (k==="sold"?"":"/"+k));}}>{l}</button>
             ))}
-            <span className="filter-count">{filter === "active" ? (lang==="en"?"none currently":"暫無") : (items.length + " " + (lang==="en"?"properties":"套房產"))}</span>
+            <span className="filter-count">{items.length === 0 ? (lang==="en"?"none currently":"暫無") : (items.length + " " + (lang==="en"?"properties":"套房產"))}</span>
           </div>
-          {filter === "active" ? (
+          {filter === "active" && items.length === 0 ? (
             <div style={{ padding: '80px 32px', textAlign: 'center', border: '1px solid var(--line)', background: 'var(--bg-elev)' }}>
               <span className="eyebrow no-rule">{lang==="en"?"Coming Soon":"敬請期待"}</span>
               <h2 style={{ margin: '20px 0 16px' }}>{lang==="en"?<>New listings <em>on the way</em>.</>:<>新房源 <em>即將上線</em></>}</h2>
@@ -163,7 +163,11 @@ function ListingDetail({ id, lang, go }) {
                 </div>
               )}
               <p style={{ color:'var(--ink-dim)', fontSize: 15, lineHeight: 1.8, marginTop: 32 }}>
-                {lang==="en"
+                {l.status === "active" && l.url
+                  ? (lang==="en"
+                    ? <>Price, photos and full details for this home are on <a href={l.url} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>its Zillow listing</a>. To see it in person, contact Jean.</>
+                    : <>這間房子的價格、照片與完整資料，請見 <a href={l.url} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>Zillow 上的房源頁面</a>。想實地看屋，請與 Jean 聯絡。</>)
+                  : lang==="en"
                   ? <>Full details, photography and the verified transaction record for this and every other closing are on <a href={D2.agent.zillow} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>Jean's Zillow profile</a>.</>
                   : <>本物件與其他所有成交的完整資料、照片與經驗證的交易紀錄，都在 <a href={D2.agent.zillow} target="_blank" rel="noopener noreferrer" style={{color:'var(--brass)'}}>Jean 的 Zillow 主頁</a>。</>}
               </p>

@@ -80,6 +80,12 @@ window.JR_DATA = {
     // To publish a real one, add it with status: "active" and only the fields you can
     // actually verify; the detail page renders exactly what is present and nothing more.
 
+    // Active listings Jean asked to add (Suggestions, 2026-11-21). Only the address and
+    // her Zillow listing link are verified; price, beds/baths, size and photos are asked
+    // in the /pending Questions box. `url` = the listing's own page.
+    { id: "a1", status: "active", street: "8646 New Salem St Unit 9", area: "San Diego, CA 92126", url: "https://www.zillow.com/homedetails/8646-New-Salem-St-UNIT-9-San-Diego-CA-92126/16788110_zpid/" },
+    { id: "a2", status: "active", street: "12252 Horado Rd", area: "San Diego, CA 92128", url: "https://www.zillow.com/homedetails/12252-Horado-Rd-San-Diego-CA-92128/16743501_zpid/" },
+
     // Real sold history from Zillow (jean's profile @JeanSD) — closings ≥ $1M
     // Total Zillow-verified sales: 197 (this list is the >$1M subset).
     // `side` = "list" (Jean represented seller) | "buy" | "both"
