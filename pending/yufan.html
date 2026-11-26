@@ -99,7 +99,7 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </script>
 <h1>Developer review · SEO / AEO / GEO</h1>
 <p>Search and AI-visibility changes for Yufan to approve: titles, descriptions, schema, internal links, llms.txt, sitemap, keywords. Content changes go to Jean at <a href="/pending/">/pending</a>. Not linked from the site and not indexed. The GX10 job applies approved changes at its next run (once a day).</p>
-<p class="updated">Updated 2026-11-21.</p>
+<p class="updated">Updated 2026-11-27.</p>
 
 <!-- review-ui (/pending/review-ui.js + .css, shared by /pending and /pending/yufan):
   - Language: an EN / 中文 switch shows one language. Write every explanation, note, label and question twice, each in
@@ -130,7 +130,15 @@ document.querySelector('.tab-close').addEventListener('click',function(){
 </div>
 -->
 <h2>Waiting for approval</h2>
-<p class="empty">Nothing yet.</p>
+<div class="item" data-item="[Yufan] 404 page: link to the homes for sale now" data-type="setting" data-page="404 page" data-page-zh="404 頁面" data-status="approved" data-approved="2026-11-27">
+<h3>1. [Yufan] 404 page: link to the homes for sale now</h3>
+<p lang="en">Search Console (28 days to 2026-11-23: 3,109 impressions, 11 clicks): 8 of the 11 clicks went to old <code>/idx/photogallery/…</code> and <code>/idx/details/listing/…</code> addresses from the old IDX site. Those return the 404 page, which says &ldquo;the listing may have closed&rdquo; but links only to recent closings, not to the homes Jean has for sale now (/listings/active/, live since 2026-11-22). One link is added at the top of the 404 page&rsquo;s Popular list. The <code>/idx/</code> addresses stay 404 (the listings are gone). Hand-written <code>404.html</code> only; no build change. Branch <code>seo/404-for-sale-link</code>.</p>
+<p lang="zh-Hant">Search Console（到 2026-11-23 的 28 天：3,109 次曝光、11 次點擊）：11 次點擊裡有 8 次進到舊 IDX 網站的 <code>/idx/photogallery/…</code>、<code>/idx/details/listing/…</code> 網址。這些網址打開是 404 頁，頁面寫「房源可能已成交」，但只連到成交紀錄，沒有連到 Jean 目前在賣的房子（/listings/active/，11-22 上線）。在 404 頁「Popular」清單最上面加一個連結。<code>/idx/</code> 網址維持 404（房源已不存在）。只改手寫的 <code>404.html</code>，不動 build。分支 <code>seo/404-for-sale-link</code>。</p>
+<ul>
+<li><strong lang="en">404 page, Popular list (new first line):</strong><strong lang="zh-Hant">404 頁，Popular 清單（新增第一行）：</strong><span class="ba was"><b>Before</b>Recent closings — 21 sales over $1M</span><span class="ba now"><b>After</b>Homes for sale now — Jean's current listings / Recent closings — 21 sales over $1M</span></li>
+</ul>
+<div class="links"><a href="https://github.com/youfun88/jeanify/compare/main...seo/404-for-sale-link" target="_blank" rel="noopener">Diff</a><a href="/listings/active/" target="_blank" rel="noopener">Homes for sale page</a></div>
+</div>
 <script>
 (function(){
   var API='https://admin.shiptolive.com/api/contact';
